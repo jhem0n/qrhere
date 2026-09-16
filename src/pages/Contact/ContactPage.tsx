@@ -4,7 +4,6 @@ import { Mail, ExternalLink, HelpCircle, Shield, FileText } from 'lucide-react';
 import { SEOHead } from '../../components/common/SEOHead';
 import { Breadcrumbs } from '../../components/common/Breadcrumbs';
 import { SEO_CONFIG } from '../../config/seo.config';
-import { AdBanner } from '../../components/ads/AdBanner';
 
 export const ContactPage: React.FC = () => {
   const breadcrumbs = [{ name: 'Contact', path: '/contact' }];
@@ -16,8 +15,6 @@ export const ContactPage: React.FC = () => {
       <div className="max-w-3xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-16 flex-1 flex flex-col">
         {/* Semantic Breadcrumbs Navigation */}
         <Breadcrumbs items={breadcrumbs} />
-
-        <AdBanner position="top" />
 
         {/* Centered Main Contact Content */}
         <div className="my-auto py-10 sm:py-14 text-center">
@@ -91,8 +88,6 @@ export const ContactPage: React.FC = () => {
             </div>
           </div>
         </div>
-
-        <AdBanner position="bottom" />
       </div>
     </>
   );

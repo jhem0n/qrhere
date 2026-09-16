@@ -9,7 +9,6 @@ import { ImageScanner } from '../../components/scanner/ImageScanner';
 import { ScanResultCard } from '../../components/qr/ScanResultCard';
 import { QRScanResult } from '../../types/qr.types';
 import { QRScannerService } from '../../services/qr/scanner.service';
-import { AdBanner, AdSidebar } from '../../components/ads';
 
 export const ScanPage: React.FC = () => {
   const [method, setMethod] = useState<'camera' | 'image'>('camera');
@@ -49,8 +48,6 @@ export const ScanPage: React.FC = () => {
             or smartphone. Processed 100% locally in your web browser with zero server uploads.
           </p>
         </header>
-
-        <AdBanner position="top" />
 
         {/* Scanner Card */}
         <section aria-label="QR Here Scanner Tool" className="flex flex-col items-center">
@@ -156,11 +153,9 @@ export const ScanPage: React.FC = () => {
           )}
         </section>
 
-        <AdBanner position="inline" />
-
         {/* Detailed Semantic Instructions & Technical Guidance */}
         <section aria-label="Scanner Instructions & Technical Guidelines" className="mt-14">
-          <AdSidebar className="space-y-8" sidebarAriaLabel="Scanner Technical Guidelines Sponsorship">
+          <div className="space-y-8">
             <div>
               <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
               How to Scan QR Codes Online
@@ -258,10 +253,8 @@ export const ScanPage: React.FC = () => {
               </Link>
             </div>
           </div>
-          </AdSidebar>
+          </div>
         </section>
-
-        <AdBanner position="bottom" />
       </div>
     </>
   );

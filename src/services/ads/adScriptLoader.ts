@@ -1,95 +1,72 @@
 /**
- * Centralized Google AdSense Script Loader
+ * Centralized Google AdSense Auto Ads Script Loader
  * 
  * Safety & Quality:
- * - Strictly guarded by ADS_CONFIG.ADS_ENABLED (false by default).
- * - ZERO network calls or DOM script injections if ads are disabled or publisher ID is empty.
- * - Single-instance loader prevents redundant script tags.
+ * - Loads the official Google AdSense Auto Ads script globally ONCE.
+ * - Guarded by ADS_CONFIG.ADS_ENABLED=true, TEST_MODE=false, and valid VITE_ADSENSE_CLIENT_ID.
+ * - Idempotent: checks for existing script before injection; never injects duplicate scripts.
+ * - No manual ad units or manual ad placements.
+ * - Google's machine learning autonomously determines optimal, non-intrusive placements.
  */
 
-import { ADS_CONFIG, canLoadLiveAds, isValidAdSenseClientId } from '../../config/ads.config';
+import { ADS_CONFIG, canLoadLiveAutoAds, normalizeAdSenseClientId } from '../../config/ads.config';
 
-let isScriptInjected = false;
-let isScriptLoaded = false;
-let isErrorGuardRegistered = false;
+let isAutoAdsScriptInjected = false;
+let isAutoAdsScriptLoaded = false;
 
 /**
- * Registers an error listener to prevent AdSense slot sizing errors
- * (e.g., No slot size for availableWidth) from polluting uncaught error telemetry.
+ * Initializes and injects the global Google AdSense Auto Ads script.
+ * Runs once globally during application startup.
  */
-export function registerAdSenseErrorGuard(): void {
-  if (isErrorGuardRegistered || typeof window === 'undefined') {
-    return;
-  }
-  isErrorGuardRegistered = true;
-
-  window.addEventListener('error', (event: ErrorEvent) => {
-    const msg = typeof event.message === 'string' ? event.message : '';
-    if (
-      msg.includes('adsbygoogle') ||
-      msg.includes('No slot size for availableWidth') ||
-      event.error?.name === 'TagError'
-    ) {
-      event.preventDefault();
-      console.warn('[AdSense Guard] Handled slot sizing error:', msg);
-    }
-  });
-}
-
-/**
- * Injects Google AdSense script ONLY when VITE_ADS_ENABLED=true and a valid client ID is configured.
- * Returns a promise that resolves when the script is loaded or resolves immediately if disabled.
- */
-export function loadAdSenseScript(): Promise<boolean> {
+export function loadGoogleAutoAdsScript(): Promise<boolean> {
   return new Promise((resolve) => {
-    // Strict Requirement: Do not load Google AdSense scripts unless VITE_ADS_ENABLED=true and a valid client ID is configured
-    if (!canLoadLiveAds()) {
+    // Only execute in browser environments
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
       resolve(false);
       return;
     }
 
-    registerAdSenseErrorGuard();
+    // Check if live Auto ads are permitted
+    if (!canLoadLiveAutoAds()) {
+      resolve(false);
+      return;
+    }
 
-    // Return if already loaded
-    if (isScriptLoaded) {
+    // Prevent duplicate injection
+    if (isAutoAdsScriptLoaded || isAutoAdsScriptInjected) {
       resolve(true);
       return;
     }
 
-    // Check if script already exists in document
+    // Check if script tag already exists in document head
     const existingScript = document.querySelector('script[src*="adsbygoogle.js"]');
     if (existingScript) {
-      isScriptInjected = true;
-      isScriptLoaded = true;
-      resolve(true);
-      return;
-    }
-
-    if (isScriptInjected) {
+      isAutoAdsScriptInjected = true;
+      isAutoAdsScriptLoaded = true;
       resolve(true);
       return;
     }
 
     try {
+      const clientId = normalizeAdSenseClientId(ADS_CONFIG.PUBLISHER_ID);
       const script = document.createElement('script');
+      script.id = 'google-adsense-auto-ads';
       script.async = true;
       script.crossOrigin = 'anonymous';
-      script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(
-        ADS_CONFIG.PUBLISHER_ID
-      )}`;
+      script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(clientId)}`;
 
       script.onload = () => {
-        isScriptLoaded = true;
+        isAutoAdsScriptLoaded = true;
         resolve(true);
       };
 
       script.onerror = () => {
-        // Silently handle blocker or network error without crashing app
+        // Silently resolve if blocked by network or content blockers
         resolve(false);
       };
 
       document.head.appendChild(script);
-      isScriptInjected = true;
+      isAutoAdsScriptInjected = true;
     } catch {
       resolve(false);
     }
@@ -97,29 +74,9 @@ export function loadAdSenseScript(): Promise<boolean> {
 }
 
 /**
- * Safely push an ad unit request to the AdSense queue.
- * Only executes if live ads are permitted and window.adsbygoogle is available.
+ * Returns whether the Google AdSense Auto Ads script is injected into the DOM.
  */
-export function pushAdUnit(): void {
-  if (!canLoadLiveAds()) {
-    return;
-  }
-
-  registerAdSenseErrorGuard();
-
-  try {
-    const win = window as unknown as { adsbygoogle?: Array<Record<string, unknown>> };
-    win.adsbygoogle = win.adsbygoogle || [];
-    win.adsbygoogle.push({});
-  } catch (err) {
-    // Ad blockers or offline mode: Fail silently
-    console.warn('[AdSense Guard] push caught:', err);
-  }
-}
-
-/**
- * Checks if AdSense script has been injected.
- */
-export function isAdSenseScriptLoaded(): boolean {
-  return isScriptLoaded || isScriptInjected;
+export function isAdSenseAutoAdsInjected(): boolean {
+  if (typeof document === 'undefined') return false;
+  return isAutoAdsScriptInjected || Boolean(document.querySelector('script[src*="adsbygoogle.js"]'));
 }

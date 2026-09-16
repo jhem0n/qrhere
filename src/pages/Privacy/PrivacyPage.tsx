@@ -5,7 +5,6 @@ import { SEOHead } from '../../components/common/SEOHead';
 import { Breadcrumbs } from '../../components/common/Breadcrumbs';
 import { SEO_CONFIG } from '../../config/seo.config';
 import { APP_CONFIG } from '../../config/app.config';
-import { AdBanner } from '../../components/ads/AdBanner';
 
 export const PrivacyPage: React.FC = () => {
   const lastUpdated = 'September 15, 2026';
@@ -31,8 +30,6 @@ export const PrivacyPage: React.FC = () => {
             Last Updated: {lastUpdated} • Effective Date: {lastUpdated}
           </p>
         </header>
-
-        <AdBanner position="top" />
 
         {/* Quick Highlights Summary */}
         <div className="mb-10 rounded-2xl border border-emerald-200 bg-emerald-50/40 p-6 dark:border-emerald-900/40 dark:bg-emerald-950/20">
@@ -206,8 +203,6 @@ export const PrivacyPage: React.FC = () => {
             </p>
           </section>
         </div>
-
-        <AdBanner position="bottom" />
       </div>
     </>
   );

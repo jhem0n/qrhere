@@ -17,7 +17,6 @@ import { ImageScanner } from '../../components/scanner/ImageScanner';
 import { QRGeneratorForm } from '../../components/generator/QRGeneratorForm';
 import { ScanResultCard } from '../../components/qr/ScanResultCard';
 import { QRScanResult } from '../../types/qr.types';
-import { AdBanner, AdSidebar } from '../../components/ads';
 
 export const HomePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'scan' | 'create'>('scan');
@@ -85,11 +84,6 @@ export const HomePage: React.FC = () => {
           </div>
         </section>
 
-        {/* Ad Placement: Top Content (Configured, zero footprint if disabled) */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AdBanner position="top" />
-        </div>
-
         {/* Interactive Tool Area (Visually Dominant) */}
         <section
           id="tool-workbench-section"
@@ -152,15 +146,10 @@ export const HomePage: React.FC = () => {
           )}
         </section>
 
-        {/* Ad Placement: Inline Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AdBanner position="inline" />
-        </div>
-
         {/* Informational Guides Section */}
         <section className="border-t border-slate-200/80 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30 py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            <AdSidebar className="space-y-16" sidebarAriaLabel="Educational Guides Sponsorship">
+            <div className="space-y-16">
               {/* Feature Highlights Group */}
               <div>
               <div className="text-center max-w-2xl mx-auto mb-10">
@@ -346,14 +335,9 @@ export const HomePage: React.FC = () => {
                 </div>
               </div>
             </div>
-          </AdSidebar>
+          </div>
           </div>
         </section>
-
-        {/* Ad Placement: Bottom */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AdBanner position="bottom" />
-        </div>
       </div>
     </>
   );

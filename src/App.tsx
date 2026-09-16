@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { GoogleAnalyticsTracker } from './components/common/GoogleAnalyticsTracker';
+import { GoogleAutoAds } from './components/common/GoogleAutoAds';
 import { HomePage } from './pages/Home/HomePage';
 import { ScanPage } from './pages/Scan/ScanPage';
 import { CreatePage } from './pages/Create/CreatePage';
@@ -15,6 +16,7 @@ import { NotFoundPage } from './pages/NotFound/NotFoundPage';
 export default function App() {
   return (
     <BrowserRouter>
+      <GoogleAutoAds />
       <GoogleAnalyticsTracker />
       <Routes>
         <Route element={<Layout />}>

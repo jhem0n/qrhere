@@ -5,7 +5,6 @@ import { SEOHead } from '../../components/common/SEOHead';
 import { Breadcrumbs } from '../../components/common/Breadcrumbs';
 import { SEO_CONFIG } from '../../config/seo.config';
 import { APP_CONFIG } from '../../config/app.config';
-import { AdBanner } from '../../components/ads/AdBanner';
 
 export const TermsPage: React.FC = () => {
   const lastUpdated = 'September 15, 2026';
@@ -31,8 +30,6 @@ export const TermsPage: React.FC = () => {
             Last Updated: {lastUpdated} • Effective Date: {lastUpdated}
           </p>
         </header>
-
-        <AdBanner position="top" />
 
         <div className="prose prose-slate dark:prose-invert max-w-none text-sm text-slate-700 dark:text-slate-300 space-y-6 leading-relaxed">
           <section>
@@ -150,8 +147,6 @@ export const TermsPage: React.FC = () => {
             </p>
           </section>
         </div>
-
-        <AdBanner position="bottom" />
       </div>
     </>
   );

@@ -4,7 +4,6 @@ import { HelpCircle, ChevronDown, ChevronUp, Search, Camera, PlusCircle, Message
 import { SEOHead } from '../../components/common/SEOHead';
 import { Breadcrumbs } from '../../components/common/Breadcrumbs';
 import { SEO_CONFIG } from '../../config/seo.config';
-import { AdBanner, AdSidebar } from '../../components/ads';
 
 interface FAQItem {
   question: string;
@@ -157,8 +156,6 @@ export const FAQPage: React.FC = () => {
           </p>
         </header>
 
-        <AdBanner position="top" />
-
         {/* Search & Category Filter Controls */}
         <section aria-label="FAQ Filters" className="my-6 space-y-4">
           <div className="relative">
@@ -194,7 +191,7 @@ export const FAQPage: React.FC = () => {
 
         {/* FAQ Accordion List */}
         <section aria-label="Questions and Answers">
-          <AdSidebar className="space-y-3" sidebarAriaLabel="FAQ Sponsorship">
+          <div className="space-y-3">
             <h2 className="sr-only">Knowledge Base Articles</h2>
             {filteredFaqs.length === 0 ? (
               <div className="rounded-2xl border border-slate-200 dark:border-slate-800 p-8 text-center bg-white dark:bg-slate-900">
@@ -241,10 +238,8 @@ export const FAQPage: React.FC = () => {
                 );
               })
             )}
-          </AdSidebar>
+          </div>
         </section>
-
-        <AdBanner position="inline" />
 
         {/* Additional Help Links */}
         <section aria-label="Support and Contact Resources" className="mt-12 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 p-6">
@@ -278,8 +273,6 @@ export const FAQPage: React.FC = () => {
             </Link>
           </div>
         </section>
-
-        <AdBanner position="bottom" />
       </div>
     </>
   );

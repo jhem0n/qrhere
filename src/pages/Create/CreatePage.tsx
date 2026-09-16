@@ -5,7 +5,6 @@ import { SEOHead } from '../../components/common/SEOHead';
 import { Breadcrumbs } from '../../components/common/Breadcrumbs';
 import { SEO_CONFIG } from '../../config/seo.config';
 import { QRGeneratorForm } from '../../components/generator/QRGeneratorForm';
-import { AdBanner, AdSidebar } from '../../components/ads';
 
 export const CreatePage: React.FC = () => {
   const breadcrumbs = [{ name: 'Create QR Code', path: '/create' }];
@@ -28,18 +27,14 @@ export const CreatePage: React.FC = () => {
           </p>
         </header>
 
-        <AdBanner position="top" />
-
         {/* Generator Form Section */}
         <section aria-label="QR Code Generator Form" className="my-6">
           <QRGeneratorForm />
         </section>
 
-        <AdBanner position="inline" />
-
         {/* Engineering & Design Guidance */}
         <section aria-label="QR Code Technical Specifications & Standards" className="mt-14">
-          <AdSidebar className="space-y-8" sidebarAriaLabel="Technical Standards Sponsorship">
+          <div className="space-y-8">
             <div>
               <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
                 Technical Specifications & Printing Standards
@@ -145,10 +140,8 @@ export const CreatePage: React.FC = () => {
               </Link>
             </div>
           </div>
-          </AdSidebar>
+          </div>
         </section>
-
-        <AdBanner position="bottom" />
       </div>
     </>
   );

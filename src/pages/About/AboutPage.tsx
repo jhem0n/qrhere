@@ -5,7 +5,6 @@ import { SEOHead } from '../../components/common/SEOHead';
 import { Breadcrumbs } from '../../components/common/Breadcrumbs';
 import { SEO_CONFIG } from '../../config/seo.config';
 import { APP_CONFIG } from '../../config/app.config';
-import { AdBanner } from '../../components/ads/AdBanner';
 
 export const AboutPage: React.FC = () => {
   const breadcrumbs = [{ name: 'About', path: '/about' }];
@@ -28,8 +27,6 @@ export const AboutPage: React.FC = () => {
             compromising user privacy or requiring invasive account signups.
           </p>
         </header>
-
-        <AdBanner position="top" />
 
         {/* Content Body */}
         <article className="space-y-10 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
@@ -147,8 +144,6 @@ export const AboutPage: React.FC = () => {
             </div>
           </div>
         </article>
-
-        <AdBanner position="bottom" />
       </div>
     </>
   );

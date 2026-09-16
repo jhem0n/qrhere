@@ -1,0 +1,6 @@
+# Google AdSense Authorized Digital Sellers (ads.txt) for https://qrhere.online/
+# Official AdSense seller entry format:
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+#
+# Replace pub-XXXXXXXXXXXXXXXX with your actual 16-digit Google AdSense publisher ID
+# (found in your Google AdSense account under: Settings > Account > Account information > Publisher ID).
