@@ -9,7 +9,6 @@ import {
   Download,
   Lock,
   ArrowRight,
-  Sparkles,
 } from 'lucide-react';
 import { SEOHead } from '../../components/common/SEOHead';
 import { SEO_CONFIG, generateWebsiteSchema } from '../../config/seo.config';
@@ -42,13 +41,15 @@ export const HomePage: React.FC = () => {
       <div className="w-full">
         {/* Hero Section */}
         <section className="pt-8 pb-4 sm:pt-10 sm:pb-6 px-4 sm:px-6 lg:px-8 text-center max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 dark:bg-blue-950/40 px-3.5 py-1 text-xs font-semibold text-blue-700 dark:text-blue-300 border border-blue-200/60 dark:border-blue-900/40">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>100% Free & In-Browser Privacy</span>
-          </div>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            QR Code Scanner
+          </h1>
+          <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            The QR code scanner online lets you scan QR codes without any app. Upload an image or use your camera to scan a QR code.
+          </p>
 
           {/* Primary Action Switcher */}
-          <div className="mt-5 sm:mt-6 flex justify-center">
+          <div className="mt-6 flex justify-center">
             <div className="inline-flex p-1.5 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-inner">
               <button
                 type="button"

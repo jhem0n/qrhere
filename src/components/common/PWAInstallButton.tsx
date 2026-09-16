@@ -18,7 +18,7 @@ export const PWAInstallButton: React.FC = () => {
         id="pwa-install-btn"
         onClick={install}
         className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
-        aria-label="Install QR Now as a Progressive Web App"
+        aria-label="Install QR Here as a Progressive Web App"
       >
         <Download className="w-4 h-4" aria-hidden="true" />
         <span>Install App</span>
@@ -34,7 +34,7 @@ export const PWAInstallButton: React.FC = () => {
           id="pwa-install-ios-btn"
           onClick={() => setShowIOSGuide(true)}
           className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
-          aria-label="How to install QR Now on iOS"
+          aria-label="How to install QR Here on iOS"
         >
           <Download className="w-3.5 h-3.5" aria-hidden="true" />
           <span>Install App</span>

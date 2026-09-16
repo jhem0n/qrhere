@@ -78,7 +78,7 @@ export const PrivacyPage: React.FC = () => {
               2. Client-Side QR Processing (Camera & Image Uploads)
             </h2>
             <p>
-              When you use QR Now, your device processes data entirely locally:
+              When you use QR Here, your device processes data entirely locally:
             </p>
             <ul className="list-disc pl-5 space-y-1 text-xs sm:text-sm">
               <li>

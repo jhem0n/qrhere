@@ -21,51 +21,51 @@ export interface FAQItemSchema {
 
 export const SEO_CONFIG: Record<string, RouteSEO> = {
   home: {
-    title: 'QR Now - Free QR Code Scanner & Generator | Fast & Private',
+    title: 'QR Code Scanner - Online Scanner without App | QR Here',
     description:
-      'Scan QR codes with your camera or image files, or create custom vector QR codes instantly. 100% private, client-side decoding with zero server uploads.',
+      'The QR code scanner online lets you scan QR codes without any app. Upload an image or use your camera to scan a QR code. 100% private in-browser decoding.',
     keywords:
-      'QR code scanner, QR code generator, scan QR code online, create QR code, camera QR reader, vector QR code SVG, private QR scanner, QR Now',
+      'QR code scanner, scan QR code online, QR scanner without app, camera QR scanner, scan QR from image, online QR code reader, QR Here',
     canonicalPath: '/',
     ogType: 'website',
   },
   scan: {
-    title: 'Online QR Code Scanner | QR Now',
+    title: 'Online QR Code Scanner - Camera & Image Scanner | QR Here',
     description:
-      'Scan QR codes instantly using your web camera, mobile camera, or image upload. Fast, private client-side decoding with real-time security link inspection.',
+      'Scan QR codes instantly using your device camera or image upload. Fast, private client-side decoding with real-time security link inspection.',
     keywords:
-      'QR code scanner online, camera QR scanner, scan QR from image, upload QR code, webcam QR reader, fast QR reader, mobile QR reader, QR Now',
+      'QR code scanner online, camera QR scanner, scan QR from image, upload QR code, webcam QR reader, fast QR reader, mobile QR reader, QR Here',
     canonicalPath: '/scan',
     ogType: 'website',
   },
   create: {
-    title: 'Free QR Code Generator | Create Custom Vector & PNG Codes | QR Now',
+    title: 'QR Code Generator - Create Custom Codes with Logos & Frames | QR Here',
     description:
-      'Generate high-resolution QR codes for websites, Wi-Fi networks, text, emails, and phone numbers. Customize error correction, colors, and download in PNG or SVG format.',
+      'Create custom QR codes with logos, frames, and colors. Download your QR code as vector SVG or high-resolution PNG with 100% in-browser generation.',
     keywords:
-      'free QR code generator, create QR code, custom QR code maker, vector QR code SVG, high resolution QR code PNG, Wi-Fi QR code generator, QR Now',
+      'QR code generator, create QR code, QR code generator with logo, custom QR code maker, vector QR code SVG, high resolution QR code PNG, Wi-Fi QR code generator, QR Here',
     canonicalPath: '/create',
     ogType: 'website',
   },
   about: {
-    title: 'About QR Now | Privacy-First In-Browser Technology',
+    title: 'About QR Here | Privacy-First In-Browser Technology',
     description:
-      'Learn how QR Now operates entirely in your browser using modern WebAssembly and Canvas algorithms to ensure total privacy and zero data harvesting.',
+      'Learn how QR Here operates entirely in your browser using modern WebAssembly and Canvas algorithms to ensure total privacy and zero data harvesting.',
     keywords:
-      'about QR Now, private QR scanner, client side QR code, browser QR decoding, zero knowledge scanner',
+      'about QR Here, private QR scanner, client side QR code, browser QR decoding, zero knowledge scanner',
     canonicalPath: '/about',
     ogType: 'website',
   },
   contact: {
-    title: 'Contact | QR Now',
+    title: 'Contact | QR Here',
     description:
-      'For any question or request regarding QR Now, mail us directly or check out other open source projects.',
-    keywords: 'contact QR Now, QR code email, QR Now feedback, jhem0n',
+      'For any question or request regarding QR Here, mail us directly or check out other open source projects.',
+    keywords: 'contact QR Here, QR code email, QR Here feedback, jhem0n',
     canonicalPath: '/contact',
     ogType: 'website',
   },
   faq: {
-    title: 'QR Now FAQ | Frequently Asked Questions',
+    title: 'QR Here FAQ | Frequently Asked Questions',
     description:
       'Comprehensive answers to common questions about scanning with camera or image upload, generating Wi-Fi codes, error correction levels, and privacy safety.',
     keywords:
@@ -74,7 +74,7 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
     ogType: 'website',
   },
   privacy: {
-    title: 'Privacy Policy | QR Now Zero-Knowledge Architecture',
+    title: 'Privacy Policy | QR Here Zero-Knowledge Architecture',
     description:
       'Our strict privacy policy. Learn how all QR decoding and generation executes locally in your browser with zero data retention and zero tracking.',
     keywords:
@@ -83,16 +83,16 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
     ogType: 'website',
   },
   terms: {
-    title: 'Terms of Service | QR Now',
+    title: 'Terms of Service | QR Here',
     description:
-      'Terms of service, usage guidelines, and disclaimers for using the QR Now web application.',
+      'Terms of service, usage guidelines, and disclaimers for using the QR Here web application.',
     keywords: 'terms of service, user agreement, disclaimer, terms of use',
     canonicalPath: '/terms',
     ogType: 'website',
   },
   notFound: {
-    title: '404 - Page Not Found | QR Now',
-    description: 'The requested page could not be found on QR Now.',
+    title: '404 - Page Not Found | QR Here',
+    description: 'The requested page could not be found on QR Here.',
     keywords: '404, not found, page not found',
     canonicalPath: '/404',
     ogType: 'website',

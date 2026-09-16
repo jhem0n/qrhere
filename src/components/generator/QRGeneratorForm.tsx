@@ -1,198 +1,222 @@
-import React, { useState, useEffect, useId, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import {
-  Globe,
-  FileText,
   Download,
   Copy,
   Check,
-  RotateCcw,
-  Sliders,
   AlertTriangle,
   Sparkles,
   QrCode,
-  ArrowRightLeft,
   ShieldCheck,
-  Info,
-  CheckCircle2,
+  ShieldAlert,
 } from 'lucide-react';
-import { QRErrorCorrectionLevel, QRGenerationOptions } from '../../types/qr.types';
-import { QRGeneratorService, GenerationResult } from '../../services/qr/generator.service';
+import { DataType, QRAdvancedOptions, AllQRFormData } from '../../types/qr-advanced.types';
+import { formatPayload } from '../../utils/qr/payload-formatters';
+import { AdvancedQRRenderer, AdvancedGenerationResult } from '../../services/qr/advanced-renderer.service';
+import { QRGeneratorService } from '../../services/qr/generator.service';
 import { evaluateQRColorScannability } from '../../utils/qr/color-contrast';
 import { isUrlSafe } from '../../utils/security/url';
-import { APP_CONFIG } from '../../config/app.config';
-
-type Mode = 'url' | 'text';
-
-// Quick color presets with guaranteed high contrast
-const COLOR_PRESETS = [
-  { name: 'Classic Black', fg: '#000000', bg: '#ffffff' },
-  { name: 'Midnight Navy', fg: '#0f172a', bg: '#ffffff' },
-  { name: 'Deep Royal', fg: '#1e3a8a', bg: '#f8fafc' },
-  { name: 'Forest Emerald', fg: '#064e3b', bg: '#f0fdf4' },
-  { name: 'Warm Charcoal', fg: '#1c1917', bg: '#fafaf9' },
-];
+import { DataTabs } from './tabs/DataTabs';
+import { DataTypeInputs } from './tabs/DataTypeInputs';
+import { ColorAccordion } from './accordions/ColorAccordion';
+import { DesignAccordion } from './accordions/DesignAccordion';
+import { LogoAccordion } from './accordions/LogoAccordion';
+import { OptionsAccordion } from './accordions/OptionsAccordion';
 
 export const QRGeneratorForm: React.FC = () => {
-  // Mode selection: URL or Plain Text first
-  const [activeMode, setActiveMode] = useState<Mode>('url');
+  // 1. Data Type Selector (14 types)
+  const [activeType, setActiveType] = useState<DataType>('link');
 
-  // Input states - Link input starts empty with placeholder
-  const [urlInput, setUrlInput] = useState('');
-  const [textInput, setTextInput] = useState('');
+  // 2. Data store for each data type
+  const [formData, setFormData] = useState<AllQRFormData>({
+    link: { url: 'https://example.com' },
+    text: { text: '' },
+    email: { to: '', subject: '', body: '' },
+    location: { latitude: '', longitude: '', address: '' },
+    phone: { phone: '' },
+    sms: { phone: '', message: '' },
+    whatsapp: { phone: '', message: '' },
+    skype: { username: '', action: 'call' },
+    zoom: { meetingId: '', password: '', joinUrl: '' },
+    wifi: { ssid: '', password: '', encryption: 'WPA', hidden: false },
+    vcard: {
+      firstName: '',
+      lastName: '',
+      phone: '',
+      email: '',
+      company: '',
+      jobTitle: '',
+      address: '',
+      website: '',
+    },
+    event: {
+      title: '',
+      location: '',
+      startDate: '',
+      endDate: '',
+      description: '',
+    },
+    paypal: { type: 'me', account: '', amount: '' },
+    bitcoin: { address: '', amount: '' },
+  });
+
+  // 3. Advanced styling & customizer options
+  const [options, setOptions] = useState<QRAdvancedOptions>({
+    bgColor: '#ffffff',
+    fgColor: '#000000',
+    isTransparentBg: false,
+    isGradient: false,
+    gradientColor2: '#2563eb',
+    gradientType: 'linear',
+    bgImageUrl: undefined,
+    bgImageOpacity: 0.3,
+
+    pattern: 'square',
+    markerBorder: 'square',
+    markerCenter: 'square',
+    hasCustomMarkerColor: false,
+    markerBorderColor: '#000000',
+    markerCenterColor: '#000000',
+
+    logoUrl: undefined,
+    logoPreset: undefined,
+    removeBgBehindLogo: true,
+    logoSize: 20,
+
+    size: 300,
+    margin: 2,
+    errorCorrection: 'M',
+    frameStyle: 'none',
+    frameLabel: 'SCAN ME',
+    frameFont: 'Inter, sans-serif',
+    frameLabelSize: 14,
+    hasCustomFrameColor: false,
+    frameColor: '#000000',
+  });
+
+  // 4. Accordion collapse states
+  const [openAccordions, setOpenAccordions] = useState({
+    colors: false,
+    design: false,
+    logo: false,
+    options: false,
+  });
+
+  const toggleAccordion = (name: keyof typeof openAccordions) => {
+    setOpenAccordions((prev) => ({ ...prev, [name]: !prev[name] }));
+  };
+
+  // 5. Validation and security feedback
   const [validationError, setValidationError] = useState<string | null>(null);
   const [urlSecurityWarning, setUrlSecurityWarning] = useState<{ reason?: string } | null>(null);
 
-  // Submitted & validated payload currently displayed in preview
-  const [generatedPayload, setGeneratedPayload] = useState<string | null>(null);
-
-  // Customization states
-  const [showAdvanced, setShowAdvanced] = useState(false);
-  const [size, setSize] = useState<number>(APP_CONFIG.limits.defaultSize);
-  const [margin, setMargin] = useState<number>(3);
-  const [errorCorrection, setErrorCorrection] = useState<QRErrorCorrectionLevel>('M');
-  const [fgColor, setFgColor] = useState<string>('#0f172a'); // slate-900
-  const [bgColor, setBgColor] = useState<string>('#ffffff'); // pure white
-
-  // Output states
-  const [result, setResult] = useState<GenerationResult>({ dataUrl: '', svgString: '' });
+  // 6. Preview rendering outputs
+  const [result, setResult] = useState<AdvancedGenerationResult>({
+    dataUrl: '',
+    svgString: '',
+    mimeType: 'image/png',
+  });
   const [isGenerating, setIsGenerating] = useState(false);
   const [copiedSource, setCopiedSource] = useState(false);
   const [copiedImage, setCopiedImage] = useState(false);
 
-  const urlInputId = useId();
-  const textInputId = useId();
-  const sizeInputId = useId();
-  const marginInputId = useId();
+  // Compute raw payload from active data type
+  const rawPayload = useMemo(() => {
+    return formatPayload(activeType, formData);
+  }, [activeType, formData]);
 
-  // Evaluate WCAG contrast safety in real-time
-  const contrastAnalysis = evaluateQRColorScannability(fgColor, bgColor);
+  // Scannability contrast analysis
+  const contrastAnalysis = useMemo(() => {
+    const bg = options.isTransparentBg ? '#ffffff' : options.bgColor;
+    return evaluateQRColorScannability(options.fgColor, bg);
+  }, [options.fgColor, options.bgColor, options.isTransparentBg]);
 
-  // Compute active untrusted raw source payload
-  const currentSourceText = activeMode === 'url' ? urlInput : textInput;
-  const rawPayload = currentSourceText.trim();
+  const hasLogo = Boolean(options.logoUrl || options.logoPreset);
 
-  // Core QR generation service call
-  const generateQRCode = useCallback(
-    async (textToEncode: string) => {
-      const hexPattern = /^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/;
-      const safeFg = hexPattern.test(fgColor) ? fgColor : '#0f172a';
-      const safeBg = hexPattern.test(bgColor) ? bgColor : '#ffffff';
+  // Clear errors when the user edits or changes input
+  const handleInputChange = () => {
+    if (validationError || urlSecurityWarning) {
+      setValidationError(null);
+      setUrlSecurityWarning(null);
+    }
+  };
+
+  // Core render dispatcher
+  const renderCode = useCallback(
+    async (payloadText: string, currentOptions: QRAdvancedOptions) => {
+      if (!payloadText || !payloadText.trim()) {
+        setResult({ dataUrl: '', svgString: '', mimeType: 'image/png' });
+        return;
+      }
 
       setIsGenerating(true);
       try {
-        const options: QRGenerationOptions = {
-          text: textToEncode,
-          size,
-          margin,
-          errorCorrectionLevel: errorCorrection,
-          color: {
-            dark: safeFg,
-            light: safeBg,
-          },
-        };
-
-        const res = await QRGeneratorService.generateQR(options);
+        const res = await AdvancedQRRenderer.render(payloadText, currentOptions);
         setResult(res);
       } catch (err) {
-        setValidationError(err instanceof Error ? err.message : 'Generation failed.');
+        console.error('QR rendering error:', err);
       } finally {
         setIsGenerating(false);
       }
     },
-    [size, margin, errorCorrection, fgColor, bgColor]
+    []
   );
 
-  // When styling options change, update already generated QR code without re-validating inputs
+  // Live real-time update (debounced) whenever payload or styling options change
   useEffect(() => {
-    if (!generatedPayload) return;
+    // Only live-render if we have a non-empty payload
+    if (!rawPayload.trim()) return;
 
-    let isMounted = true;
-    const hexPattern = /^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/;
-    const safeFg = hexPattern.test(fgColor) ? fgColor : '#0f172a';
-    const safeBg = hexPattern.test(bgColor) ? bgColor : '#ffffff';
+    // In link mode, if it contains an unsafe scheme like javascript:, don't live-render
+    if (activeType === 'link') {
+      const check = isUrlSafe(rawPayload);
+      if (!check.isSafe) {
+        return;
+      }
+    }
 
-    const options: QRGenerationOptions = {
-      text: generatedPayload,
-      size,
-      margin,
-      errorCorrectionLevel: errorCorrection,
-      color: {
-        dark: safeFg,
-        light: safeBg,
-      },
-    };
+    const timer = setTimeout(() => {
+      renderCode(rawPayload, options);
+    }, 180);
 
-    QRGeneratorService.generateQR(options)
-      .then((res) => {
-        if (isMounted) {
-          setResult(res);
-        }
-      })
-      .catch((err) => {
-        if (isMounted) {
-          setValidationError(err instanceof Error ? err.message : 'Generation failed.');
-        }
-      });
+    return () => clearTimeout(timer);
+  }, [rawPayload, options, activeType, renderCode]);
 
-    return () => {
-      isMounted = false;
-    };
-  }, [generatedPayload, size, margin, errorCorrection, fgColor, bgColor]);
-
-  // Handle Explicit "Generate QR Code" action
-  // Complete validation is performed HERE, never on individual keystrokes
+  // Handle Explicit "Generate QR Code" click with full validation
   const handleManualGenerate = async () => {
-    const textToEncode = (activeMode === 'url' ? urlInput : textInput).trim();
+    const trimmed = rawPayload.trim();
 
-    if (!textToEncode) {
-      setResult({ dataUrl: '', svgString: '' });
-      setGeneratedPayload(null);
+    if (!trimmed) {
+      setResult({ dataUrl: '', svgString: '', mimeType: 'image/png' });
       setUrlSecurityWarning(null);
       setValidationError(
-        activeMode === 'url'
+        activeType === 'link'
           ? 'URL is required. Please enter a valid website URL.'
-          : 'Please enter text content to generate a QR code.'
+          : 'Please enter valid information to generate a QR code.'
       );
       return;
     }
 
-    // Security check: In URL mode, validate scheme and URL safety
-    if (activeMode === 'url') {
-      const safety = isUrlSafe(textToEncode);
+    // Security check for link mode
+    if (activeType === 'link') {
+      const safety = isUrlSafe(trimmed);
       if (!safety.isSafe) {
-        setResult({ dataUrl: '', svgString: '' });
-        setGeneratedPayload(null);
+        setResult({ dataUrl: '', svgString: '', mimeType: 'image/png' });
         setUrlSecurityWarning({ reason: safety.reason });
         setValidationError(safety.reason || 'Cannot encode dangerous or untrusted URL scheme.');
         return;
       }
     }
 
-    // Input is valid and safe: clear errors and generate
+    // Input is valid: clear any prior errors and render immediately
     setUrlSecurityWarning(null);
     setValidationError(null);
-    setGeneratedPayload(textToEncode);
-
-    await generateQRCode(textToEncode);
+    await renderCode(trimmed, options);
   };
 
-  // Handle "Clear" button click
-  const handleClear = () => {
-    if (activeMode === 'url') {
-      setUrlInput('');
-    } else {
-      setTextInput('');
-    }
-    setValidationError(null);
-    setUrlSecurityWarning(null);
-    setGeneratedPayload(null);
-    setResult({ dataUrl: '', svgString: '' });
-  };
-
-  // Handle "Copy Source Text" button click
+  // Handle "Copy Source Text"
   const handleCopySourceText = async () => {
-    if (!currentSourceText) return;
-    const ok = await QRGeneratorService.copyText(currentSourceText);
+    if (!rawPayload.trim()) return;
+    const ok = await QRGeneratorService.copyText(rawPayload);
     if (ok) {
       setCopiedSource(true);
       setTimeout(() => setCopiedSource(false), 2000);
@@ -202,18 +226,16 @@ export const QRGeneratorForm: React.FC = () => {
   // Handle PNG Download
   const handleDownloadPNG = () => {
     if (!result.dataUrl) return;
-    const prefix = activeMode === 'url' ? 'qr-url' : 'qr-text';
-    QRGeneratorService.downloadPNG(result.dataUrl, `${prefix}-${Date.now()}.png`);
+    QRGeneratorService.downloadPNG(result.dataUrl, `qr-${activeType}-${Date.now()}.png`);
   };
 
-  // Handle SVG Download (Vector)
+  // Handle SVG Download
   const handleDownloadSVG = () => {
     if (!result.svgString) return;
-    const prefix = activeMode === 'url' ? 'qr-url' : 'qr-text';
-    QRGeneratorService.downloadSVG(result.svgString, `${prefix}-${Date.now()}.svg`);
+    QRGeneratorService.downloadSVG(result.svgString, `qr-${activeType}-${Date.now()}.svg`);
   };
 
-  // Handle Copy QR Image (PNG Blob)
+  // Handle Copy Image
   const handleCopyImage = async () => {
     if (!result.dataUrl) return;
     const ok = await QRGeneratorService.copyImage(result.dataUrl);
@@ -223,439 +245,138 @@ export const QRGeneratorForm: React.FC = () => {
     }
   };
 
-  // Swap Foreground and Background colors
-  const handleInvertColors = () => {
-    const tempFg = fgColor;
-    setFgColor(bgColor);
-    setBgColor(tempFg);
-  };
-
   return (
     <div
       id="qr-generator-container"
-      className="w-full max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start"
+      className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start"
     >
-      {/* LEFT COLUMN: Input Form, Presets & Controls (7 cols) */}
-      <div className="lg:col-span-7 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-5 sm:p-7 shadow-xs">
-        {/* Mode Selector: URL and Plain-Text First */}
-        <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              id="mode-url-btn"
-              onClick={() => {
-                setActiveMode('url');
-                setValidationError(null);
-                setUrlSecurityWarning(null);
-              }}
-              className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition cursor-pointer min-h-[44px] ${
-                activeMode === 'url'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
-              }`}
-              aria-selected={activeMode === 'url'}
-            >
-              <Globe className="w-4 h-4" />
-              <span>Website URL</span>
-            </button>
+      {/* LEFT COLUMN: Data Tabs, Dynamic Inputs & Accordions (7 cols) */}
+      <div className="lg:col-span-7 space-y-5 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-5 sm:p-7 shadow-xs">
+        {/* 1. Data Type Tabs */}
+        <div>
+          <span className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+            Select Data Type
+          </span>
+          <DataTabs
+            activeType={activeType}
+            onSelectType={(newType) => {
+              setActiveType(newType);
+              handleInputChange();
+            }}
+          />
+        </div>
 
-            <button
-              type="button"
-              id="mode-text-btn"
-              onClick={() => {
-                setActiveMode('text');
-                setValidationError(null);
-                setUrlSecurityWarning(null);
-              }}
-              className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition cursor-pointer min-h-[44px] ${
-                activeMode === 'text'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
-              }`}
-              aria-selected={activeMode === 'text'}
-            >
-              <FileText className="w-4 h-4" />
-              <span>Plain Text</span>
-            </button>
+        {/* 2. Dynamic Input Fields for Active Data Type */}
+        <div className="pt-2">
+          <DataTypeInputs
+            activeType={activeType}
+            data={formData}
+            onChange={setFormData}
+            onInputChange={handleInputChange}
+          />
+        </div>
+
+        {/* Security / Validation Feedback (only triggered on manual generate) */}
+        {urlSecurityWarning && (
+          <div
+            id="url-security-warning"
+            className="flex items-start gap-3 rounded-2xl border border-rose-200 bg-rose-50/90 p-3.5 text-xs text-rose-800 dark:border-rose-900/50 dark:bg-rose-950/30 dark:text-rose-200"
+          >
+            <ShieldAlert className="w-4 h-4 shrink-0 text-rose-600 mt-0.5" />
+            <div>
+              <p className="font-semibold">Untrusted URL Scheme:</p>
+              <p className="text-rose-600 dark:text-rose-400 mt-0.5">{urlSecurityWarning.reason}</p>
+            </div>
           </div>
+        )}
 
-          {/* Quick Clear Button */}
+        {validationError && !urlSecurityWarning && (
+          <div
+            id="validation-error-msg"
+            className="flex items-center gap-2 rounded-2xl border border-rose-200 bg-rose-50 p-3 text-xs font-semibold text-rose-700 dark:border-rose-900/50 dark:bg-rose-950/30 dark:text-rose-300"
+          >
+            <AlertTriangle className="w-4 h-4 shrink-0 text-rose-600" />
+            <span>{validationError}</span>
+          </div>
+        )}
+
+        {/* Action Buttons: Generate QR Code & Copy Source Text */}
+        <div className="pt-2 flex flex-wrap items-center gap-3">
           <button
             type="button"
-            id="clear-btn"
-            onClick={handleClear}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer min-h-[36px]"
-            title="Clear current input"
+            id="generate-qr-btn"
+            onClick={handleManualGenerate}
+            className="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer min-h-[44px]"
           >
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span>Clear</span>
+            <Sparkles className="w-4 h-4" />
+            <span>Generate QR Code</span>
+          </button>
+
+          <button
+            type="button"
+            id="copy-source-text-btn"
+            onClick={handleCopySourceText}
+            disabled={!rawPayload.trim()}
+            className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-750 transition focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer min-h-[44px]"
+            title="Copy formatted source payload to clipboard"
+          >
+            {copiedSource ? (
+              <>
+                <Check className="w-4 h-4 text-emerald-600" />
+                <span className="text-emerald-600 dark:text-emerald-400">Source Copied!</span>
+              </>
+            ) : (
+              <>
+                <Copy className="w-4 h-4" />
+                <span>Copy Source Text</span>
+              </>
+            )}
           </button>
         </div>
 
-        {/* Input Controls */}
-        <div className="mt-5 space-y-4">
-          {activeMode === 'url' ? (
-            <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label
-                  htmlFor={urlInputId}
-                  className="block text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider"
-                >
-                  Target Website URL <span className="text-rose-500">*</span>
-                </label>
-                {urlInput.length > 0 && (
-                  <span className="text-[11px] text-slate-400 font-mono">
-                    {urlInput.length} chars
-                  </span>
-                )}
-              </div>
+        {/* 3. Four Collapsible Accordions replacing old "Customize" */}
+        <div className="pt-3 space-y-3">
+          {/* Accordion A: Colors */}
+          <ColorAccordion
+            isOpen={openAccordions.colors}
+            onToggle={() => toggleAccordion('colors')}
+            options={options}
+            onChange={setOptions}
+          />
 
-              <input
-                id={urlInputId}
-                type="url"
-                maxLength={APP_CONFIG.limits.maxQrTextInputLength}
-                value={urlInput}
-                onChange={(e) => {
-                  setUrlInput(e.target.value);
-                  if (validationError) setValidationError(null);
-                  if (urlSecurityWarning) setUrlSecurityWarning(null);
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    e.preventDefault();
-                    handleManualGenerate();
-                  }
-                }}
-                placeholder="https://example.com"
-                className="w-full rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-950/50 px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition"
-              />
+          {/* Accordion B: Design */}
+          <DesignAccordion
+            isOpen={openAccordions.design}
+            onToggle={() => toggleAccordion('design')}
+            options={options}
+            onChange={setOptions}
+          />
 
-              <p className="mt-1.5 text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
-                <Info className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                <span>Tip: Always include http:// or https:// for instant mobile opening.</span>
-              </p>
+          {/* Accordion C: Logo */}
+          <LogoAccordion
+            isOpen={openAccordions.logo}
+            onToggle={() => toggleAccordion('logo')}
+            options={options}
+            onChange={setOptions}
+          />
 
-              {/* URL Protocol Safety Warning - rendered ONLY when validation triggers upon clicking Generate QR Code */}
-              {urlSecurityWarning && (
-                <div
-                  role="alert"
-                  className="mt-2.5 flex items-start gap-2 rounded-xl border border-rose-200 bg-rose-50 p-2.5 text-xs text-rose-800 dark:border-rose-900/40 dark:bg-rose-950/20 dark:text-rose-300"
-                >
-                  <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
-                  <div>
-                    <strong>Untrusted URL Scheme:</strong>
-                    {urlSecurityWarning.reason ? ` ${urlSecurityWarning.reason}` : ''}
-                  </div>
-                </div>
-              )}
-            </div>
-          ) : (
-            <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label
-                  htmlFor={textInputId}
-                  className="block text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider"
-                >
-                  Text Content <span className="text-rose-500">*</span>
-                </label>
-                <span className="text-[11px] text-slate-400 font-mono">
-                  {textInput.length} / {APP_CONFIG.limits.maxQrTextInputLength}
-                </span>
-              </div>
-
-              <textarea
-                id={textInputId}
-                rows={5}
-                value={textInput}
-                onChange={(e) => {
-                  setTextInput(e.target.value);
-                  if (validationError) setValidationError(null);
-                  if (urlSecurityWarning) setUrlSecurityWarning(null);
-                }}
-                placeholder="Type or paste any plain text, notes, Wi-Fi details, or Unicode characters here..."
-                maxLength={APP_CONFIG.limits.maxQrTextInputLength}
-                className="w-full rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-950/50 px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition"
-              />
-
-              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                Full Unicode, emoji, and special character support.
-              </p>
-            </div>
-          )}
-
-          {/* Validation Error Message */}
-          {validationError && (
-            <div
-              role="alert"
-              className="flex items-center gap-2 rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs font-semibold text-rose-700 dark:border-rose-900/50 dark:bg-rose-950/30 dark:text-rose-300"
-            >
-              <AlertTriangle className="w-4 h-4 shrink-0 text-rose-600" />
-              <span>{validationError}</span>
-            </div>
-          )}
-
-          {/* Core Action Buttons: Generate & Copy Source Text */}
-          <div className="pt-2 flex flex-wrap items-center gap-3">
-            <button
-              type="button"
-              id="generate-qr-btn"
-              onClick={handleManualGenerate}
-              className="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer min-h-[44px]"
-            >
-              <Sparkles className="w-4 h-4" />
-              <span>Generate QR Code</span>
-            </button>
-
-            <button
-              type="button"
-              id="copy-source-text-btn"
-              onClick={handleCopySourceText}
-              disabled={!currentSourceText.trim()}
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-750 transition focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer min-h-[44px]"
-              title="Copy the source text or URL to clipboard"
-            >
-              {copiedSource ? (
-                <>
-                  <Check className="w-4 h-4 text-emerald-600" />
-                  <span className="text-emerald-600 dark:text-emerald-400">Source Copied!</span>
-                </>
-              ) : (
-                <>
-                  <Copy className="w-4 h-4" />
-                  <span>Copy Source Text</span>
-                </>
-              )}
-            </button>
-          </div>
-
-          {/* Toggle Advanced Styling & Customization */}
-          <div className="pt-2">
-            <button
-              type="button"
-              id="toggle-customizer-btn"
-              onClick={() => setShowAdvanced(!showAdvanced)}
-              className="w-full flex items-center justify-between px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-950/40 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer min-h-[44px]"
-            >
-              <span className="flex items-center gap-2">
-                <Sliders className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                <span>Customize Size, Margin, Colors & Error Correction</span>
-              </span>
-              <span className="text-blue-600 dark:text-blue-400 text-xs">
-                {showAdvanced ? 'Collapse' : 'Expand'}
-              </span>
-            </button>
-          </div>
-
-          {/* ADVANCED CUSTOMIZER PANEL */}
-          {showAdvanced && (
-            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/40 dark:bg-slate-950/30 p-4 sm:p-5 space-y-5 animate-in fade-in duration-150">
-              {/* Size & Margin Controls */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Size / Resolution */}
-                <div>
-                  <div className="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
-                    <label htmlFor={sizeInputId}>Output Resolution</label>
-                    <span className="font-mono text-blue-600 dark:text-blue-400">{size} × {size} px</span>
-                  </div>
-                  <input
-                    id={sizeInputId}
-                    type="range"
-                    min={APP_CONFIG.limits.minSize}
-                    max={APP_CONFIG.limits.maxSize}
-                    step={32}
-                    value={size}
-                    onChange={(e) => setSize(Number(e.target.value))}
-                    className="w-full accent-blue-600 cursor-pointer"
-                  />
-                  <div className="flex justify-between text-[10px] text-slate-400 mt-1">
-                    <span>128px (Web)</span>
-                    <span>300px (Default)</span>
-                    <span>1024px (Print)</span>
-                  </div>
-                </div>
-
-                {/* Margin (Quiet Zone) */}
-                <div>
-                  <div className="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
-                    <label htmlFor={marginInputId}>Quiet Zone (Margin)</label>
-                    <span className="font-mono text-blue-600 dark:text-blue-400">{margin} blocks</span>
-                  </div>
-                  <input
-                    id={marginInputId}
-                    type="range"
-                    min={0}
-                    max={8}
-                    step={1}
-                    value={margin}
-                    onChange={(e) => setMargin(Number(e.target.value))}
-                    className="w-full accent-blue-600 cursor-pointer"
-                  />
-                  <div className="flex justify-between text-[10px] text-slate-400 mt-1">
-                    <span>0 (Tight)</span>
-                    <span>3-4 (Recommended)</span>
-                    <span>8 (Spacious)</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Error Correction Level */}
-              <div>
-                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
-                  Reed-Solomon Error Correction Level
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  {[
-                    { level: 'L', label: 'Low (7%)', desc: 'Dense data' },
-                    { level: 'M', label: 'Medium (15%)', desc: 'Standard' },
-                    { level: 'Q', label: 'Quartile (25%)', desc: 'Damaged codes' },
-                    { level: 'H', label: 'High (30%)', desc: 'Outdoor / Print' },
-                  ].map((ec) => (
-                    <button
-                      key={ec.level}
-                      type="button"
-                      onClick={() => setErrorCorrection(ec.level as QRErrorCorrectionLevel)}
-                      className={`p-2.5 text-left rounded-xl border text-xs transition cursor-pointer min-h-[44px] ${
-                        errorCorrection === ec.level
-                          ? 'border-blue-600 bg-blue-50 dark:bg-blue-950/50 text-blue-900 dark:text-blue-200 ring-1 ring-blue-600'
-                          : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50'
-                      }`}
-                    >
-                      <div className="font-bold">{ec.label}</div>
-                      <div className="text-[10px] text-slate-500 dark:text-slate-400">{ec.desc}</div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Color Customization & Swatches */}
-              <div className="pt-2 border-t border-slate-200 dark:border-slate-800 space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                    Colors & Palette
-                  </span>
-                  <button
-                    type="button"
-                    onClick={handleInvertColors}
-                    className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 transition cursor-pointer"
-                  >
-                    <ArrowRightLeft className="w-3 h-3" />
-                    <span>Invert Colors</span>
-                  </button>
-                </div>
-
-                {/* Color Pickers */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Foreground */}
-                  <div>
-                    <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">
-                      Foreground (Pattern)
-                    </label>
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="color"
-                        value={fgColor}
-                        onChange={(e) => setFgColor(e.target.value)}
-                        className="h-10 w-12 rounded-lg border border-slate-300 dark:border-slate-700 cursor-pointer p-0.5"
-                      />
-                      <input
-                        type="text"
-                        value={fgColor}
-                        onChange={(e) => setFgColor(e.target.value)}
-                        className="w-28 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-xs font-mono text-slate-900 dark:text-white"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Background */}
-                  <div>
-                    <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">
-                      Background (Canvas)
-                    </label>
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="color"
-                        value={bgColor}
-                        onChange={(e) => setBgColor(e.target.value)}
-                        className="h-10 w-12 rounded-lg border border-slate-300 dark:border-slate-700 cursor-pointer p-0.5"
-                      />
-                      <input
-                        type="text"
-                        value={bgColor}
-                        onChange={(e) => setBgColor(e.target.value)}
-                        className="w-28 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-xs font-mono text-slate-900 dark:text-white"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Preset Palette Buttons */}
-                <div>
-                  <span className="block text-[10px] text-slate-400 uppercase tracking-wider mb-1.5">
-                    High Contrast Presets:
-                  </span>
-                  <div className="flex flex-wrap gap-2">
-                    {COLOR_PRESETS.map((p) => (
-                      <button
-                        key={p.name}
-                        type="button"
-                        onClick={() => {
-                          setFgColor(p.fg);
-                          setBgColor(p.bg);
-                        }}
-                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-[11px] text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer"
-                      >
-                        <span
-                          className="w-3 h-3 rounded-full border border-slate-300"
-                          style={{ backgroundColor: p.fg }}
-                        />
-                        <span>{p.name}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* WCAG Contrast Ratio & Scannability Assessment */}
-                <div
-                  role="status"
-                  className={`flex items-start gap-2.5 rounded-xl border p-3 text-xs transition ${
-                    contrastAnalysis.isScannable
-                      ? 'border-emerald-200 bg-emerald-50/70 text-emerald-900 dark:border-emerald-900/40 dark:bg-emerald-950/20 dark:text-emerald-200'
-                      : 'border-rose-200 bg-rose-50 text-rose-900 dark:border-rose-900/40 dark:bg-rose-950/20 dark:text-rose-200'
-                  }`}
-                >
-                  {contrastAnalysis.isScannable ? (
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  ) : (
-                    <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
-                  )}
-                  <div>
-                    <div className="font-bold flex items-center gap-2">
-                      <span>WCAG Contrast Ratio: {contrastAnalysis.formattedRatio}</span>
-                      <span className="text-[11px] font-normal px-1.5 py-0.5 rounded bg-white/70 dark:bg-slate-900/50">
-                        {contrastAnalysis.isOptimal
-                          ? 'Optimal (≥ 7:1)'
-                          : contrastAnalysis.isScannable
-                          ? 'Acceptable (≥ 4:1)'
-                          : 'Low Contrast (< 4:1)'}
-                      </span>
-                    </div>
-                    {contrastAnalysis.warning ? (
-                      <p className="mt-1 leading-relaxed">{contrastAnalysis.warning}</p>
-                    ) : (
-                      <p className="mt-0.5 text-[11px] opacity-90">
-                        High color contrast ensures fast, reliable scanning across all optical sensors and ambient lighting conditions.
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+          {/* Accordion D: Options (Resolution, Margins, Error Correction, Frames) */}
+          <OptionsAccordion
+            isOpen={openAccordions.options}
+            onToggle={() => toggleAccordion('options')}
+            options={options}
+            onChange={setOptions}
+            hasLogo={hasLogo}
+          />
         </div>
       </div>
 
-      {/* RIGHT COLUMN: Live Preview, Scannability Badge & Downloads (5 cols) */}
-      <div className="lg:col-span-5 flex flex-col items-center bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-7 shadow-xs lg:sticky lg:top-24">
+      {/* RIGHT COLUMN: Live QR Preview Panel (COMPLETELY UNTOUCHED LAYOUT & ID) */}
+      <div
+        id="qr-preview-panel"
+        className="w-full lg:w-[360px] xl:w-[400px] shrink-0 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-7 shadow-sm flex flex-col items-center sticky top-24 self-start"
+      >
+        {/* Header with Title & Level */}
         <div className="w-full flex items-center justify-between mb-4">
           <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <QrCode className="w-4 h-4 text-blue-600 dark:text-blue-400" />
@@ -664,7 +385,7 @@ export const QRGeneratorForm: React.FC = () => {
 
           {result.dataUrl && (
             <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500">
-              {size}×{size}px • Level {errorCorrection}
+              {options.size}×{options.size}px • Level {hasLogo ? 'H' : options.errorCorrection}
             </span>
           )}
         </div>
@@ -683,7 +404,7 @@ export const QRGeneratorForm: React.FC = () => {
                 <QrCode className="w-6 h-6 opacity-60" />
               </div>
               <p className="text-xs font-medium text-slate-500 dark:text-slate-400">
-                Enter a URL or text to render live preview
+                Enter content to render live preview
               </p>
             </div>
           )}
@@ -771,7 +492,7 @@ export const QRGeneratorForm: React.FC = () => {
               type="button"
               id="copy-text-btn"
               onClick={handleCopySourceText}
-              disabled={!rawPayload}
+              disabled={!rawPayload.trim()}
               className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-800/60 px-3 py-2.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition disabled:opacity-40 cursor-pointer min-h-[44px]"
             >
               {copiedSource ? (

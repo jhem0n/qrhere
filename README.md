@@ -1,4 +1,4 @@
-# QR Now — QR Code Scanner & Generator
+# QR Here — QR Code Scanner & Generator
 
 A high-performance, privacy-first web application for scanning and generating QR codes directly inside the browser using HTML5 Canvas, WebRTC, and Web Workers with zero server-side uploads.
 

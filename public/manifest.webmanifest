@@ -1,6 +1,6 @@
 {
-  "name": "QR Now - QR Code Scanner & Generator",
-  "short_name": "QR Now",
+  "name": "QR Here - QR Code Scanner & Generator",
+  "short_name": "QR Here",
   "description": "Fast, private online QR code scanner and generator with zero server uploads.",
   "start_url": "/",
   "scope": "/",

@@ -53,7 +53,7 @@ export const ScanPage: React.FC = () => {
         <AdBanner position="top" />
 
         {/* Scanner Card */}
-        <section aria-label="QR Now Scanner Tool" className="flex flex-col items-center">
+        <section aria-label="QR Here Scanner Tool" className="flex flex-col items-center">
           {result ? (
             <div className="w-full max-w-xl">
               <ScanResultCard result={result} onScanAgain={handleScanAgain} />

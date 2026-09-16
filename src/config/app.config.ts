@@ -46,8 +46,8 @@ export function getSiteUrl(): string {
 }
 
 export const APP_CONFIG = {
-  name: 'QR Now',
-  shortName: 'QR Now',
+  name: 'QR Here',
+  shortName: 'QR Here',
   tagline: 'Fast, Privacy-Focused QR Code Scanner & Generator',
   description:
     'Free online QR code scanner and generator. Scan QR codes with your camera or image files, and create custom high-resolution QR codes completely in your browser.',
