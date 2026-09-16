@@ -144,9 +144,23 @@ export class CameraService {
   }
 
   /**
+   * Checks if an error is due to user denial or permissions policy
+   */
+  public isPermissionDenied(err: any): boolean {
+    const name = err?.name || '';
+    const message = err?.message || '';
+    return (
+      name === 'NotAllowedError' ||
+      name === 'PermissionDeniedError' ||
+      message.toLowerCase().includes('denied') ||
+      message.toLowerCase().includes('permission')
+    );
+  }
+
+  /**
    * Maps technical DOMExceptions into clear, helpful user-facing errors
    */
-  private humanizeCameraError(err: any): string {
+  public humanizeCameraError(err: any): string {
     const name = err?.name || '';
     const message = err?.message || '';
 

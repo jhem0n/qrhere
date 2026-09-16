@@ -35,16 +35,16 @@ export const ScanPage: React.FC = () => {
     <>
       <SEOHead seo={SEO_CONFIG.scan} breadcrumbs={breadcrumbs} />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {/* Semantic Breadcrumbs Navigation */}
         <Breadcrumbs items={breadcrumbs} />
 
         {/* Page Header */}
-        <header className="text-center max-w-2xl mx-auto mb-8">
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <header className="text-center max-w-3xl lg:max-w-4xl mx-auto mb-8 sm:mb-10">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Online QR Code Scanner
           </h1>
-          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          <p className="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl sm:max-w-3xl mx-auto">
             Scan QR codes instantly using your device camera or upload image files from your computer
             or smartphone. Processed 100% locally in your web browser with zero server uploads.
           </p>
@@ -55,21 +55,21 @@ export const ScanPage: React.FC = () => {
         {/* Scanner Card */}
         <section aria-label="QR Here Scanner Tool" className="flex flex-col items-center">
           {result ? (
-            <div className="w-full max-w-xl">
+            <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl">
               <ScanResultCard result={result} onScanAgain={handleScanAgain} />
             </div>
           ) : (
-            <div className="w-full max-w-xl bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm">
+            <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 lg:p-10 shadow-sm">
               {/* Method Switcher */}
-              <div className="flex items-center justify-center gap-2 mb-6">
+              <div className="flex items-center justify-center gap-3 mb-8">
                 <button
                   type="button"
                   id="scan-tab-camera"
                   onClick={() => setMethod('camera')}
-                  className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer min-h-[44px] ${
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer min-h-[44px] ${
                     method === 'camera'
                       ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-xs'
-                      : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-200'
+                      : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
                   }`}
                 >
                   <Camera className="w-4 h-4" />
@@ -80,10 +80,10 @@ export const ScanPage: React.FC = () => {
                   type="button"
                   id="scan-tab-upload"
                   onClick={() => setMethod('image')}
-                  className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer min-h-[44px] ${
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer min-h-[44px] ${
                     method === 'image'
                       ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-xs'
-                      : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-200'
+                      : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
                   }`}
                 >
                   <Upload className="w-4 h-4" />
@@ -93,25 +93,28 @@ export const ScanPage: React.FC = () => {
 
               {/* Scanning Active Component */}
               {method === 'camera' ? (
-                <CameraScanner onScanSuccess={handleScanSuccess} />
+                <CameraScanner
+                  onScanSuccess={handleScanSuccess}
+                  onSwitchToUpload={() => setMethod('image')}
+                />
               ) : (
                 <ImageScanner onScanSuccess={handleScanSuccess} />
               )}
 
               {/* Test Samples Bar for Phase 3 Validation */}
-              <div className="mt-8 pt-5 border-t border-slate-100 dark:border-slate-800">
-                <div className="flex items-center justify-between mb-2">
+              <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800">
+                <div className="flex items-center justify-between mb-2.5">
                   <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                     Scanner Test Scenarios
                   </span>
-                  <span className="text-[10px] text-slate-400">Click to verify security & decoding</span>
+                  <span className="text-[11px] text-slate-400">Click to verify security & decoding</span>
                 </div>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-2">
                   <button
                     type="button"
                     id="test-safe-url-btn"
                     onClick={() => handleLoadTestSample('https://example.com/getting-started?ref=qr')}
-                    className="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-[11px] font-medium text-slate-700 dark:text-slate-300 hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-950/40 transition cursor-pointer min-h-[36px]"
+                    className="px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-950/40 transition cursor-pointer min-h-[38px]"
                   >
                     Safe Web URL
                   </button>
@@ -119,7 +122,7 @@ export const ScanPage: React.FC = () => {
                     type="button"
                     id="test-dangerous-scheme-btn"
                     onClick={() => handleLoadTestSample('javascript:alert(document.domain)')}
-                    className="px-2.5 py-1.5 rounded-lg border border-rose-200 dark:border-rose-900/60 bg-rose-50/60 dark:bg-rose-950/30 text-[11px] font-medium text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900/50 transition cursor-pointer min-h-[36px]"
+                    className="px-3 py-2 rounded-lg border border-rose-200 dark:border-rose-900/60 bg-rose-50/60 dark:bg-rose-950/30 text-xs font-medium text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900/50 transition cursor-pointer min-h-[38px]"
                   >
                     Dangerous Scheme (javascript:)
                   </button>

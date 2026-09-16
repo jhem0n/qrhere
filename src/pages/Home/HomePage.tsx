@@ -99,43 +99,46 @@ export const HomePage: React.FC = () => {
             <div className="flex flex-col items-center">
               {/* If a code was detected, display the result card */}
               {scanResult ? (
-                <div className="w-full max-w-xl">
+                <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl">
                   <ScanResultCard result={scanResult} onScanAgain={handleScanAgain} />
                 </div>
               ) : (
-                <div className="w-full max-w-xl bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm">
+                <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 lg:p-10 shadow-sm">
                   {/* Scanner Sub-method Toggle */}
-                  <div className="flex items-center justify-center gap-2 mb-6">
+                  <div className="flex items-center justify-center gap-3 mb-8">
                     <button
                       type="button"
                       onClick={() => setScanMethod('camera')}
-                      className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer ${
+                      className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer min-h-[44px] ${
                         scanMethod === 'camera'
                           ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-xs'
                           : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-200'
                       }`}
                     >
-                      <Camera className="w-3.5 h-3.5" />
+                      <Camera className="w-4 h-4" />
                       <span>Use Camera</span>
                     </button>
 
                     <button
                       type="button"
                       onClick={() => setScanMethod('image')}
-                      className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer ${
+                      className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer min-h-[44px] ${
                         scanMethod === 'image'
                           ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-xs'
                           : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-200'
                       }`}
                     >
-                      <Upload className="w-3.5 h-3.5" />
+                      <Upload className="w-4 h-4" />
                       <span>Upload Image</span>
                     </button>
                   </div>
 
                   {/* Render Selected Scanning Method */}
                   {scanMethod === 'camera' ? (
-                    <CameraScanner onScanSuccess={handleScanSuccess} />
+                    <CameraScanner
+                      onScanSuccess={handleScanSuccess}
+                      onSwitchToUpload={() => setScanMethod('image')}
+                    />
                   ) : (
                     <ImageScanner onScanSuccess={handleScanSuccess} />
                   )}
