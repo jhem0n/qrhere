@@ -1,0 +1,20 @@
+# QR Here
+
+> Online QR code scanner and generator. Scan with your camera or image files, and generate custom high-resolution QR codes completely in your browser.
+
+## Core Tools
+
+- [QR Code Scanner](https://qrhere.online/scan): Scan QR codes directly with your device webcam or by uploading image files. Decoded 100% locally in your browser.
+- [QR Code Generator](https://qrhere.online/create): Create customized vector QR codes with colors, dots, corners, and embedded logos with SVG or PNG export.
+- [Homepage](https://qrhere.online/): Fast access to browser-based QR code scanning and creation.
+
+## Support & Documentation
+
+- [Frequently Asked Questions](https://qrhere.online/faq): Answers to common questions regarding camera permissions, offline usage, and printing specifications.
+- [About QR Here](https://qrhere.online/about): Background on our zero-knowledge architecture, performance design, and client-side processing.
+- [Contact](https://qrhere.online/contact): Support, feedback, and technical inquiries for QR Here.
+
+## Legal & Policies
+
+- [Privacy Policy](https://qrhere.online/privacy): Clear disclosure explaining our client-side zero-knowledge architecture with no server storage.
+- [Terms of Service](https://qrhere.online/terms): Usage conditions, license guidelines, and terms for using QR Here.

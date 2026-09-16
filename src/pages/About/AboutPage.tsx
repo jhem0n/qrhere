@@ -111,6 +111,10 @@ export const AboutPage: React.FC = () => {
               Closing the camera or navigating away instantly calls <code className="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">MediaStreamTrack.stop()</code> on every active video track to ensure hardware indicators turn off and your camera cannot be accessed in the background. Read our full data handling details in our{' '}
               <Link to="/privacy" className="text-blue-600 dark:text-blue-400 underline font-medium">
                 Privacy Policy
+              </Link>{' '}
+              and review our{' '}
+              <Link to="/terms" className="text-blue-600 dark:text-blue-400 underline font-medium">
+                Terms of Service
               </Link>.
             </p>
           </section>

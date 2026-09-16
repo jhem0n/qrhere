@@ -21,60 +21,60 @@ export interface FAQItemSchema {
 
 export const SEO_CONFIG: Record<string, RouteSEO> = {
   home: {
-    title: 'QR Code Scanner - Online Scanner without App | QR Here',
+    title: 'QR Code Scanner - Online Scanner & Generator | QR Here',
     description:
-      'The QR code scanner online lets you scan QR codes without any app. Upload an image or use your camera to scan a QR code. 100% private in-browser decoding.',
+      'Online QR code scanner and generator. Scan with your camera or image files, and generate custom high-resolution QR codes completely in your browser.',
     keywords:
       'QR code scanner, scan QR code online, QR scanner without app, camera QR scanner, scan QR from image, online QR code reader, QR Here',
     canonicalPath: '/',
     ogType: 'website',
   },
   scan: {
-    title: 'Online QR Code Scanner - Camera & Image Scanner | QR Here',
+    title: 'Online QR Code Scanner | QR Here',
     description:
-      'Scan QR codes instantly using your device camera or image upload. Fast, private client-side decoding with real-time security link inspection.',
+      'Scan QR codes instantly using your device camera or upload image files. Fast, private client-side decoding with zero server uploads.',
     keywords:
       'QR code scanner online, camera QR scanner, scan QR from image, upload QR code, webcam QR reader, fast QR reader, mobile QR reader, QR Here',
     canonicalPath: '/scan',
     ogType: 'website',
   },
   create: {
-    title: 'QR Code Generator - Create Custom Codes with Logos & Frames | QR Here',
+    title: 'QR Code Generator | QR Here',
     description:
-      'Create custom QR codes with logos, frames, and colors. Download your QR code as vector SVG or high-resolution PNG with 100% in-browser generation.',
+      'Create custom QR codes with logos, frames, and colors. Download high-resolution vector SVG or PNG QR codes with 100% in-browser generation.',
     keywords:
       'QR code generator, create QR code, QR code generator with logo, custom QR code maker, vector QR code SVG, high resolution QR code PNG, Wi-Fi QR code generator, QR Here',
     canonicalPath: '/create',
     ogType: 'website',
   },
   about: {
-    title: 'About QR Here | Privacy-First In-Browser Technology',
+    title: 'About QR Here',
     description:
-      'Learn how QR Here operates entirely in your browser using modern WebAssembly and Canvas algorithms to ensure total privacy and zero data harvesting.',
+      'Learn how QR Here operates entirely in your browser using modern client-side algorithms to ensure total privacy and zero data harvesting.',
     keywords:
       'about QR Here, private QR scanner, client side QR code, browser QR decoding, zero knowledge scanner',
     canonicalPath: '/about',
     ogType: 'website',
   },
   contact: {
-    title: 'Contact | QR Here',
+    title: 'Contact QR Here',
     description:
-      'For any question or request regarding QR Here, mail us directly or check out other open source projects.',
+      'Contact the QR Here maintainer for technical support, feedback, bug reports, or feature requests regarding our online QR tools.',
     keywords: 'contact QR Here, QR code email, QR Here feedback, jhem0n',
     canonicalPath: '/contact',
     ogType: 'website',
   },
   faq: {
-    title: 'QR Here FAQ | Frequently Asked Questions',
+    title: 'Frequently Asked Questions | QR Here',
     description:
-      'Comprehensive answers to common questions about scanning with camera or image upload, generating Wi-Fi codes, error correction levels, and privacy safety.',
+      'Clear answers to common questions about scanning with camera or image upload, generating Wi-Fi QR codes, error correction, and privacy safety.',
     keywords:
       'QR code FAQ, how to scan QR code, how to create QR code, QR code security, safe QR scanning, Wi-Fi QR code help',
     canonicalPath: '/faq',
     ogType: 'website',
   },
   privacy: {
-    title: 'Privacy Policy | QR Here Zero-Knowledge Architecture',
+    title: 'Privacy Policy | QR Here',
     description:
       'Our strict privacy policy. Learn how all QR decoding and generation executes locally in your browser with zero data retention and zero tracking.',
     keywords:
@@ -85,7 +85,7 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
   terms: {
     title: 'Terms of Service | QR Here',
     description:
-      'Terms of service, usage guidelines, and disclaimers for using the QR Here web application.',
+      'Terms of service, usage guidelines, and open standard disclaimers for using the QR Here web application.',
     keywords: 'terms of service, user agreement, disclaimer, terms of use',
     canonicalPath: '/terms',
     ogType: 'website',

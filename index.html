@@ -18,7 +18,7 @@
     <title>QR Code Scanner - Online Scanner & Generator | QR Here</title>
     <meta
       name="description"
-      content="Fast, privacy-focused online QR code scanner and generator. Scan QR codes with your camera or image files, or create custom high-resolution vector QR codes completely in your browser."
+      content="Online QR code scanner and generator. Scan with your camera or image files, and generate custom high-resolution QR codes completely in your browser."
     />
     <meta
       name="keywords"
@@ -35,7 +35,7 @@
     <meta property="og:title" content="QR Code Scanner - Online Scanner & Generator | QR Here" />
     <meta
       property="og:description"
-      content="Fast, privacy-focused online QR code scanner and generator. Scan QR codes with your camera or image files, or create custom high-resolution vector QR codes completely in your browser."
+      content="Online QR code scanner and generator. Scan with your camera or image files, and generate custom high-resolution QR codes completely in your browser."
     />
     <meta property="og:image" content="/icon.svg" />
     <meta property="og:image:type" content="image/svg+xml" />
@@ -46,7 +46,7 @@
     <meta name="twitter:title" content="QR Code Scanner - Online Scanner & Generator | QR Here" />
     <meta
       name="twitter:description"
-      content="Fast, privacy-focused online QR code scanner and generator. Scan QR codes with your camera or image files, or create custom high-resolution vector QR codes completely in your browser."
+      content="Online QR code scanner and generator. Scan with your camera or image files, and generate custom high-resolution QR codes completely in your browser."
     />
     <meta name="twitter:image" content="/icon.svg" />
 
@@ -61,7 +61,86 @@
     <meta name="apple-mobile-web-app-title" content="QR Here" />
   </head>
   <body class="bg-white text-slate-900 antialiased selection:bg-blue-600 selection:text-white dark:bg-slate-950 dark:text-slate-100">
-    <div id="root"></div>
+    <div id="root">
+      <div class="min-h-screen flex flex-col bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+        <header class="w-full border-b border-slate-200/80 bg-white/90 dark:border-slate-800 dark:bg-slate-900/90">
+          <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+            <a href="/" class="flex items-center gap-2.5 font-bold text-slate-900 dark:text-white">
+              <span class="text-base tracking-tight leading-tight">QR Here</span>
+            </a>
+            <nav class="flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+              <a href="/scan" class="hover:text-blue-600">Scan</a>
+              <a href="/create" class="hover:text-blue-600">Create</a>
+              <a href="/about" class="hover:text-blue-600">About</a>
+              <a href="/contact" class="hover:text-blue-600">Contact</a>
+            </nav>
+          </div>
+        </header>
+
+        <main class="flex-1">
+          <section class="pt-8 pb-6 px-4 text-center max-w-4xl mx-auto">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              QR Code Scanner
+            </h1>
+            <p class="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              The QR code scanner online lets you scan QR codes without any app. Upload an image or use your camera to scan a QR code.
+            </p>
+            <div class="mt-6 flex justify-center gap-4">
+              <a href="/scan" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold bg-blue-600 text-white shadow-sm">
+                Scan QR Code
+              </a>
+              <a href="/create" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border border-slate-300 dark:border-slate-700">
+                Create QR Code
+              </a>
+            </div>
+          </section>
+
+          <section class="max-w-4xl mx-auto px-4 py-8 space-y-6 text-sm text-slate-700 dark:text-slate-300">
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white">
+              Fast, Private In-Browser QR Code Scanning & Creation
+            </h2>
+            <p>
+              QR Here provides browser-based QR scanning and generation without requiring mobile app installations, browser extensions, or account registrations. Every operation runs strictly on your device using client-side algorithms, guaranteeing that your camera feed and images remain private.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+              <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+                <h3 class="font-bold text-slate-900 dark:text-white mb-2">Camera Scanning</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400">
+                  Scan codes using your webcam or mobile camera. Live video stream frames are decoded in memory with autofocus and instant URL safety checks.
+                </p>
+              </div>
+              <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+                <h3 class="font-bold text-slate-900 dark:text-white mb-2">Image File Upload</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400">
+                  Upload screenshot or image files in PNG, JPG, or WEBP formats. The image is parsed via HTML5 Canvas with multi-pass binarization.
+                </p>
+              </div>
+              <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+                <h3 class="font-bold text-slate-900 dark:text-white mb-2">Vector Generation</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400">
+                  Generate high-resolution vector SVG and PNG QR codes with customizable dot patterns, corner styles, colors, and embedded center logos.
+                </p>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <footer class="w-full border-t border-slate-200/80 bg-slate-50 dark:border-slate-800 dark:bg-slate-950 mt-auto py-8">
+          <div class="mx-auto max-w-7xl px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <p>© 2026 QR Here. All rights reserved.</p>
+            <div class="flex flex-wrap gap-4">
+              <a href="/scan" class="hover:text-blue-600">Scan QR</a>
+              <a href="/create" class="hover:text-blue-600">Create QR</a>
+              <a href="/faq" class="hover:text-blue-600">FAQ</a>
+              <a href="/about" class="hover:text-blue-600">About</a>
+              <a href="/contact" class="hover:text-blue-600">Contact</a>
+              <a href="/privacy" class="hover:text-blue-600">Privacy Policy</a>
+              <a href="/terms" class="hover:text-blue-600">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

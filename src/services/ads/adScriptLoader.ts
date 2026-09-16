@@ -11,6 +11,30 @@ import { ADS_CONFIG, canLoadLiveAds, isValidAdSenseClientId } from '../../config
 
 let isScriptInjected = false;
 let isScriptLoaded = false;
+let isErrorGuardRegistered = false;
+
+/**
+ * Registers an error listener to prevent AdSense slot sizing errors
+ * (e.g., No slot size for availableWidth) from polluting uncaught error telemetry.
+ */
+export function registerAdSenseErrorGuard(): void {
+  if (isErrorGuardRegistered || typeof window === 'undefined') {
+    return;
+  }
+  isErrorGuardRegistered = true;
+
+  window.addEventListener('error', (event: ErrorEvent) => {
+    const msg = typeof event.message === 'string' ? event.message : '';
+    if (
+      msg.includes('adsbygoogle') ||
+      msg.includes('No slot size for availableWidth') ||
+      event.error?.name === 'TagError'
+    ) {
+      event.preventDefault();
+      console.warn('[AdSense Guard] Handled slot sizing error:', msg);
+    }
+  });
+}
 
 /**
  * Injects Google AdSense script ONLY when VITE_ADS_ENABLED=true and a valid client ID is configured.
@@ -23,6 +47,8 @@ export function loadAdSenseScript(): Promise<boolean> {
       resolve(false);
       return;
     }
+
+    registerAdSenseErrorGuard();
 
     // Return if already loaded
     if (isScriptLoaded) {
@@ -79,12 +105,15 @@ export function pushAdUnit(): void {
     return;
   }
 
+  registerAdSenseErrorGuard();
+
   try {
     const win = window as unknown as { adsbygoogle?: Array<Record<string, unknown>> };
     win.adsbygoogle = win.adsbygoogle || [];
     win.adsbygoogle.push({});
-  } catch {
+  } catch (err) {
     // Ad blockers or offline mode: Fail silently
+    console.warn('[AdSense Guard] push caught:', err);
   }
 }
 

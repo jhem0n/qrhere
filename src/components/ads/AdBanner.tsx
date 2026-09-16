@@ -15,7 +15,7 @@ interface AdBannerProps {
  * Maps placement positions ('top' | 'inline' | 'bottom' | 'sidebar') to centralized slot definitions.
  * Returns null immediately when ADS_ENABLED is false to eliminate unnecessary DOM elements and whitespace.
  */
-export const AdBanner: React.FC<AdBannerProps> = ({ position, className, ariaLabel }) => {
+export const AdBanner: React.FC<AdBannerProps> = ({ position, className = '', ariaLabel }) => {
   // If ads are disabled globally, collapse immediately with zero footprint
   if (!ADS_CONFIG.ADS_ENABLED) {
     return null;
@@ -25,11 +25,11 @@ export const AdBanner: React.FC<AdBannerProps> = ({ position, className, ariaLab
 
   return (
     <div
-      className={`w-full flex justify-center ${
+      className={`w-full max-w-full flex justify-center overflow-hidden ${
         position === 'sidebar' ? 'my-0' : 'my-4'
       }`}
     >
-      <AdSlot slot={slot} className={className} ariaLabel={ariaLabel} />
+      <AdSlot slot={slot} className={`w-full ${className}`} ariaLabel={ariaLabel} />
     </div>
   );
 };

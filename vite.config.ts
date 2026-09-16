@@ -2,10 +2,12 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import path from 'path';
+import fs from 'fs';
 import { defineConfig, Plugin } from 'vite';
+import { STATIC_ROUTES } from './scripts/prerender-data';
 
 /**
- * Generates sitemap.xml and robots.txt dynamically with the configured domain.
+ * Generates sitemap.xml, robots.txt, llms.txt, and static HTML pages for all routes dynamically.
  * Strictly prevents localhost or 127.0.0.1 from ever leaking into SEO assets.
  */
 function seoFilesPlugin(): Plugin {
@@ -24,53 +26,55 @@ function seoFilesPlugin(): Plugin {
     return 'https://qrhere.online';
   };
 
+  const currentDate = new Date().toISOString().split('T')[0];
+
   const generateSitemap = (domain: string) => `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>${domain}/</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>${currentDate}</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>${domain}/scan</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>${domain}/create</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>${domain}/faq</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>${domain}/about</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>${domain}/contact</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>${domain}/privacy</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>${domain}/terms</loc>
-    <lastmod>2026-09-15</lastmod>
+    <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -81,6 +85,28 @@ function seoFilesPlugin(): Plugin {
 Allow: /
 
 Sitemap: ${domain}/sitemap.xml
+`;
+
+  const generateLlmsTxt = (domain: string) => `# QR Here
+
+> Online QR code scanner and generator. Scan with your camera or image files, and generate custom high-resolution QR codes completely in your browser.
+
+## Core Tools
+
+- [QR Code Scanner](${domain}/scan): Scan QR codes directly with your device webcam or by uploading image files. Decoded 100% locally in your browser.
+- [QR Code Generator](${domain}/create): Create customized vector QR codes with colors, dots, corners, and embedded logos with SVG or PNG export.
+- [Homepage](${domain}/): Fast access to browser-based QR code scanning and creation.
+
+## Support & Documentation
+
+- [Frequently Asked Questions](${domain}/faq): Answers to common questions regarding camera permissions, offline usage, and printing specifications.
+- [About QR Here](${domain}/about): Background on our zero-knowledge architecture, performance design, and client-side processing.
+- [Contact](${domain}/contact): Support, feedback, and technical inquiries for QR Here.
+
+## Legal & Policies
+
+- [Privacy Policy](${domain}/privacy): Clear disclosure explaining our client-side zero-knowledge architecture with no server storage.
+- [Terms of Service](${domain}/terms): Usage conditions, license guidelines, and terms for using QR Here.
 `;
 
   return {
@@ -97,6 +123,79 @@ Sitemap: ${domain}/sitemap.xml
         fileName: 'robots.txt',
         source: generateRobots(domain),
       });
+      this.emitFile({
+        type: 'asset',
+        fileName: 'llms.txt',
+        source: generateLlmsTxt(domain),
+      });
+    },
+    closeBundle() {
+      const distDir = path.resolve(__dirname, 'dist');
+      const indexPath = path.join(distDir, 'index.html');
+      if (fs.existsSync(indexPath)) {
+        const domain = resolveDomain();
+        const baseHtml = fs.readFileSync(indexPath, 'utf-8');
+
+        for (const route of STATIC_ROUTES) {
+          let routeHtml = baseHtml;
+          // Replace title
+          routeHtml = routeHtml.replace(
+            /<title>[^<]*<\/title>/i,
+            `<title>${route.title}</title>`
+          );
+          // Replace description
+          routeHtml = routeHtml.replace(
+            /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/i,
+            `<meta name="description" content="${route.description}" />`
+          );
+          // Replace keywords
+          routeHtml = routeHtml.replace(
+            /<meta\s+name="keywords"\s+content="[^"]*"\s*\/?>/i,
+            `<meta name="keywords" content="${route.keywords}" />`
+          );
+          // Replace canonical
+          routeHtml = routeHtml.replace(
+            /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/i,
+            `<link rel="canonical" href="${domain}${route.path}" />`
+          );
+          // Replace og:url
+          routeHtml = routeHtml.replace(
+            /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/i,
+            `<meta property="og:url" content="${domain}${route.path}" />`
+          );
+          // Replace og:title
+          routeHtml = routeHtml.replace(
+            /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/i,
+            `<meta property="og:title" content="${route.title}" />`
+          );
+          // Replace og:description
+          routeHtml = routeHtml.replace(
+            /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/i,
+            `<meta property="og:description" content="${route.description}" />`
+          );
+          // Replace twitter:title
+          routeHtml = routeHtml.replace(
+            /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>/i,
+            `<meta name="twitter:title" content="${route.title}" />`
+          );
+          // Replace twitter:description
+          routeHtml = routeHtml.replace(
+            /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>/i,
+            `<meta name="twitter:description" content="${route.description}" />`
+          );
+          // Replace <main class="flex-1">...</main> inside #root
+          routeHtml = routeHtml.replace(
+            /<main class="flex-1">[\s\S]*?<\/main>/i,
+            `<main class="flex-1">${route.htmlContent}</main>`
+          );
+
+          const routeDir = path.join(distDir, route.folder);
+          if (!fs.existsSync(routeDir)) {
+            fs.mkdirSync(routeDir, { recursive: true });
+          }
+          fs.writeFileSync(path.join(routeDir, 'index.html'), routeHtml, 'utf-8');
+        }
+      }
     },
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
@@ -108,6 +207,10 @@ Sitemap: ${domain}/sitemap.xml
         if (req.url === '/robots.txt') {
           res.setHeader('Content-Type', 'text/plain');
           return res.end(generateRobots(domain));
+        }
+        if (req.url === '/llms.txt') {
+          res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+          return res.end(generateLlmsTxt(domain));
         }
         next();
       });

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Shield, Lock, EyeOff, ServerOff, Database } from 'lucide-react';
 import { SEOHead } from '../../components/common/SEOHead';
 import { Breadcrumbs } from '../../components/common/Breadcrumbs';
@@ -64,10 +65,7 @@ export const PrivacyPage: React.FC = () => {
             <h2 className="text-lg font-bold text-slate-900 dark:text-white">1. Introduction</h2>
             <p>
               Welcome to {APP_CONFIG.name} ("we", "our", or "the Service"), operated by{' '}
-              <span className="font-mono bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">
-                [Website Owner / Operator Name]
-              </span>
-              . We believe that everyday utility tools should respect user privacy by design. This
+              {APP_CONFIG.name}. We believe that everyday utility tools should respect user privacy by design. This
               Privacy Policy explains how our website operates, what data is processed, and our
               strict zero-knowledge architecture.
             </p>
@@ -177,11 +175,34 @@ export const PrivacyPage: React.FC = () => {
 
           <section>
             <h2 className="text-lg font-bold text-slate-900 dark:text-white">
-              7. Contact Information
+              7. Terms of Service
+            </h2>
+            <p>
+              For additional details regarding acceptable use, intellectual property, and service guidelines, please review our{' '}
+              <Link to="/terms" className="text-blue-600 dark:text-blue-400 font-semibold underline underline-offset-4">
+                Terms of Service
+              </Link>
+              .
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+              8. Contact Information
             </h2>
             <p>
               If you have any questions or concerns regarding this Privacy Policy, please visit our{' '}
-              <a href="/contact" className="text-blue-600 underline">Contact Page</a>.
+              <Link to="/contact" className="text-blue-600 dark:text-blue-400 font-semibold underline underline-offset-4">
+                Contact Page
+              </Link>{' '}
+              or email{' '}
+              <a
+                href={`mailto:${APP_CONFIG.contactEmail}`}
+                className="text-blue-600 dark:text-blue-400 font-semibold underline underline-offset-4"
+              >
+                {APP_CONFIG.contactEmail}
+              </a>
+              .
             </p>
           </section>
         </div>

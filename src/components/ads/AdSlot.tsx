@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ADS_CONFIG, canLoadLiveAds } from '../../config/ads.config';
 import { AdSlotDefinition } from '../../types/ads.types';
 import { loadAdSenseScript, pushAdUnit } from '../../services/ads/adScriptLoader';
@@ -18,6 +18,9 @@ export interface AdSlotProps {
  * Reusable Centralized AdSlot Component for Google AdSense monetization.
  * 
  * Safety & Quality Standards:
+ * - Prevents "No slot size for availableWidth=0/94" errors by verifying that the
+ *   container is attached, visible, and has adequate rendered width (>= 250px for banners,
+ *   >= 160px for sidebars) BEFORE rendering the <ins class="adsbygoogle"> tag or pushing.
  * - When ads are disabled (VITE_ADS_ENABLED=false), renders a safe, inert placeholder
  *   in development/test mode, or cleanly collapses to null when test mode is off.
  * - ZERO external network requests or script injections unless VITE_ADS_ENABLED=true
@@ -32,27 +35,87 @@ export const AdSlot: React.FC<AdSlotProps> = ({
   ariaLabel,
   showPlaceholder,
 }) => {
-  const adRef = useRef<HTMLDivElement>(null);
+  const adRef = useRef<HTMLElement>(null);
+  const insRef = useRef<HTMLModElement>(null);
   const isPushedRef = useRef(false);
+  const [isSlotReady, setIsSlotReady] = useState(false);
 
   const isLive = canLoadLiveAds();
   const renderPlaceholder = showPlaceholder !== undefined ? showPlaceholder : ADS_CONFIG.TEST_MODE;
+  const minRequiredWidth = slot.position === 'sidebar' ? 160 : 250;
 
+  // Verify that the ad container is visible and has sufficient width before mounting the ins tag
   useEffect(() => {
-    // Only execute external AdSense loading if strictly permitted
     if (!isLive) {
       return;
     }
 
-    if (!isPushedRef.current) {
+    const el = adRef.current;
+    if (!el) {
+      return;
+    }
+
+    const evaluateSlotReadiness = () => {
+      // Container must be in document flow, not display:none, and have width >= minRequiredWidth
+      const isVisible = Boolean(el.offsetParent !== null || el.getClientRects().length > 0);
+      const currentWidth = el.offsetWidth || el.clientWidth || el.getBoundingClientRect().width;
+
+      if (isVisible && currentWidth >= minRequiredWidth) {
+        setIsSlotReady(true);
+        return true;
+      }
+      return false;
+    };
+
+    if (evaluateSlotReadiness()) {
+      return;
+    }
+
+    let resizeObserver: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(() => {
+        if (evaluateSlotReadiness()) {
+          resizeObserver?.disconnect();
+        }
+      });
+      resizeObserver.observe(el);
+    }
+
+    const timer = setTimeout(() => {
+      evaluateSlotReadiness();
+    }, 250);
+
+    return () => {
+      resizeObserver?.disconnect();
+      clearTimeout(timer);
+    };
+  }, [isLive, minRequiredWidth, slot.id]);
+
+  // Once the ins element is mounted and rendered with positive width, trigger pushAdUnit
+  useEffect(() => {
+    if (!isLive || !isSlotReady || isPushedRef.current) {
+      return;
+    }
+
+    const frameId = requestAnimationFrame(() => {
+      const insEl = insRef.current;
+      if (!insEl) return;
+
+      const currentWidth = insEl.offsetWidth || insEl.clientWidth;
+      if (currentWidth < minRequiredWidth) {
+        return;
+      }
+
       isPushedRef.current = true;
       loadAdSenseScript().then((success) => {
         if (success) {
           pushAdUnit();
         }
       });
-    }
-  }, [isLive, slot.id]);
+    });
+
+    return () => cancelAnimationFrame(frameId);
+  }, [isLive, isSlotReady, minRequiredWidth]);
 
   // When ads are disabled and placeholders are not requested, return null immediately
   if (!ADS_CONFIG.ADS_ENABLED) {
@@ -68,7 +131,9 @@ export const AdSlot: React.FC<AdSlotProps> = ({
         ref={adRef}
         role="complementary"
         aria-label={ariaLabel || `Advertisement: ${slot.name}`}
-        className={`my-6 flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30 p-2.5 text-center transition-all ${className}`}
+        className={`w-full max-w-full ${
+          slot.position === 'sidebar' ? 'my-0' : 'my-4 max-w-4xl mx-auto'
+        } flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30 p-2.5 text-center transition-all ${className}`}
         style={{ minHeight: `${slot.minHeightPx}px` }}
       >
         {/* Explicit AdSense Policy Label */}
@@ -76,19 +141,33 @@ export const AdSlot: React.FC<AdSlotProps> = ({
           Advertisement
         </span>
 
-        {/* Google AdSense ins element */}
-        <ins
-          className="adsbygoogle"
-          style={{
-            display: 'block',
-            width: '100%',
-            minHeight: `${slot.minHeightPx}px`,
-          }}
-          data-ad-client={ADS_CONFIG.PUBLISHER_ID}
-          data-ad-slot={slot.slotId || ''}
-          data-ad-format={slot.format}
-          data-full-width-responsive="true"
-        />
+        {/* Google AdSense ins element container */}
+        <div
+          className="w-full flex justify-center items-center overflow-hidden"
+          style={{ minHeight: `${slot.minHeightPx}px` }}
+        >
+          {isSlotReady ? (
+            <ins
+              ref={insRef}
+              className="adsbygoogle"
+              style={{
+                display: 'block',
+                width: '100%',
+                minWidth: `${minRequiredWidth}px`,
+                minHeight: `${slot.minHeightPx}px`,
+              }}
+              data-ad-client={ADS_CONFIG.PUBLISHER_ID}
+              data-ad-slot={slot.slotId || ''}
+              data-ad-format={slot.format}
+              data-full-width-responsive="true"
+            />
+          ) : (
+            <div
+              style={{ minHeight: `${slot.minHeightPx}px`, width: '100%' }}
+              aria-hidden="true"
+            />
+          )}
+        </div>
       </aside>
     );
   }
@@ -100,7 +179,9 @@ export const AdSlot: React.FC<AdSlotProps> = ({
         ref={adRef}
         role="region"
         aria-label={ariaLabel || `Ad Placement Slot: ${slot.name}`}
-        className={`my-6 flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/60 dark:bg-slate-900/40 p-4 text-center select-none transition-all ${className}`}
+        className={`w-full max-w-full ${
+          slot.position === 'sidebar' ? 'my-0' : 'my-4 max-w-4xl mx-auto'
+        } flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/60 dark:bg-slate-900/40 p-4 text-center select-none transition-all ${className}`}
         style={{ minHeight: `${slot.minHeightPx}px` }}
       >
         <div className="flex items-center gap-1.5 mb-1">

@@ -1,6 +1,6 @@
 {
   "name": "QR Here",
-  "description": "Fast, privacy-focused online QR code scanner and generator. Scan with your camera or image files, and generate custom high-resolution QR codes completely in your browser.",
+  "description": "Online QR code scanner and generator. Scan with your camera or image files, and generate custom high-resolution QR codes completely in your browser.",
   "requestFramePermissions": [
     "camera"
   ],

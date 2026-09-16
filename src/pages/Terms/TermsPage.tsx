@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Scale } from 'lucide-react';
 import { SEOHead } from '../../components/common/SEOHead';
 import { Breadcrumbs } from '../../components/common/Breadcrumbs';
@@ -38,10 +39,7 @@ export const TermsPage: React.FC = () => {
             <h2 className="text-lg font-bold text-slate-900 dark:text-white">1. Agreement to Terms</h2>
             <p>
               By accessing or using {APP_CONFIG.name} ("the Service"), operated by{' '}
-              <span className="font-mono bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">
-                [Website Owner / Operator Name]
-              </span>
-              , you agree to be bound by these Terms of Service. If you do not agree with any part
+              {APP_CONFIG.name}, you agree to be bound by these Terms of Service. If you do not agree with any part
               of these terms, you must discontinue use of the Service immediately.
             </p>
           </section>
@@ -106,10 +104,7 @@ export const TermsPage: React.FC = () => {
             </h2>
             <p>
               The application interface, design systems, logos, and custom code are the property of{' '}
-              <span className="font-mono bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">
-                [Website Owner / Operator Name]
-              </span>
-              . The QR code standard itself is an open standard created by Denso Wave Incorporated.
+              {APP_CONFIG.name}. The QR code standard itself is an open standard created by Denso Wave Incorporated.
               You retain all ownership rights to any content, text, or graphics you create or scan
               using the application.
             </p>
@@ -120,21 +115,34 @@ export const TermsPage: React.FC = () => {
               7. Governing Law & Jurisdiction
             </h2>
             <p>
-              These Terms shall be governed by and construed in accordance with the laws of{' '}
-              <span className="font-mono bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">
-                [Jurisdiction / Country]
-              </span>
-              , without regard to its conflict of law provisions.
+              These Terms shall be governed by and construed in accordance with the laws of the applicable legal jurisdiction, without regard to its conflict of law provisions.
             </p>
           </section>
 
           <section>
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white">8. Contact Us</h2>
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+              8. Privacy & Data Protection
+            </h2>
             <p>
-              Questions regarding these Terms of Service should be directed to:{' '}
+              Your privacy is fundamental to our service design. All QR code decoding and image processing executes strictly in your browser. For comprehensive details on our zero-knowledge architecture, please see our{' '}
+              <Link to="/privacy" className="text-blue-600 dark:text-blue-400 font-semibold underline underline-offset-4">
+                Privacy Policy
+              </Link>
+              .
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">9. Contact Us</h2>
+            <p>
+              Questions regarding these Terms of Service should be directed to our{' '}
+              <Link to="/contact" className="text-blue-600 dark:text-blue-400 font-semibold underline underline-offset-4">
+                Contact Page
+              </Link>{' '}
+              or via email at:{' '}
               <a
                 href={`mailto:${APP_CONFIG.contactEmail}`}
-                className="text-blue-600 dark:text-blue-400 font-semibold"
+                className="text-blue-600 dark:text-blue-400 font-semibold underline underline-offset-4"
               >
                 {APP_CONFIG.contactEmail}
               </a>
