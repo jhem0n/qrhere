@@ -11,10 +11,17 @@ import { defineConfig, Plugin } from 'vite';
 function seoFilesPlugin(): Plugin {
   const resolveDomain = () => {
     const raw = process.env.VITE_SITE_URL || process.env.APP_URL || '';
-    if (raw && !raw.includes('localhost') && !raw.includes('127.0.0.1')) {
+    if (
+      raw &&
+      !raw.includes('localhost') &&
+      !raw.includes('127.0.0.1') &&
+      !raw.includes('qr-now.online') &&
+      !raw.includes('qrcodescanner.app') &&
+      !raw.includes('run.app')
+    ) {
       return raw.trim().replace(/\/$/, '');
     }
-    return 'https://qrcodescanner.app';
+    return 'https://qrhere.online';
   };
 
   const generateSitemap = (domain: string) => `<?xml version="1.0" encoding="UTF-8"?>

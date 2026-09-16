@@ -3,7 +3,7 @@
  * All application metadata, domain settings, and contact information are defined here.
  */
 
-const DEFAULT_PRODUCTION_DOMAIN = 'https://qrcodescanner.app';
+const DEFAULT_PRODUCTION_DOMAIN = 'https://qrhere.online';
 
 /**
  * Resolves the production-ready site URL.
@@ -13,35 +13,37 @@ const DEFAULT_PRODUCTION_DOMAIN = 'https://qrcodescanner.app';
  * Ensures sitemaps and canonical URLs never point to localhost.
  */
 export function getSiteUrl(): string {
-  // 1. Check explicit client environment variable VITE_SITE_URL
+  // Check explicit client environment variable VITE_SITE_URL if it points to a valid custom domain
   const viteSiteUrl =
     typeof import.meta !== 'undefined' ? (import.meta.env?.VITE_SITE_URL as string | undefined) : undefined;
   if (viteSiteUrl && typeof viteSiteUrl === 'string' && viteSiteUrl.trim()) {
     const cleaned = viteSiteUrl.trim().replace(/\/$/, '');
-    if (!cleaned.includes('localhost') && !cleaned.includes('127.0.0.1')) {
+    if (
+      !cleaned.includes('localhost') &&
+      !cleaned.includes('127.0.0.1') &&
+      !cleaned.includes('qr-now.online') &&
+      !cleaned.includes('qrcodescanner.app') &&
+      !cleaned.includes('run.app')
+    ) {
       return cleaned;
     }
   }
 
-  // 2. Check injected APP_URL (e.g. from Cloud Run / AI Studio container environment)
-  const appUrl =
-    typeof import.meta !== 'undefined' ? (import.meta.env?.APP_URL as string | undefined) : undefined;
-  if (appUrl && typeof appUrl === 'string' && appUrl.trim()) {
-    const cleaned = appUrl.trim().replace(/\/$/, '');
-    if (!cleaned.includes('localhost') && !cleaned.includes('127.0.0.1')) {
-      return cleaned;
-    }
-  }
-
-  // 3. If running in a browser on a live production domain (not local dev)
+  // If running in a browser on a live custom domain (e.g. production qrhere.online)
   if (typeof window !== 'undefined' && window.location && window.location.origin) {
     const origin = window.location.origin;
-    if (!origin.includes('localhost') && !origin.includes('127.0.0.1')) {
+    if (
+      !origin.includes('localhost') &&
+      !origin.includes('127.0.0.1') &&
+      !origin.includes('qr-now.online') &&
+      !origin.includes('qrcodescanner.app') &&
+      !origin.includes('run.app')
+    ) {
       return origin.replace(/\/$/, '');
     }
   }
 
-  // 4. Fallback production domain - NEVER localhost
+  // Official canonical production domain: https://qrhere.online
   return DEFAULT_PRODUCTION_DOMAIN;
 }
 
@@ -56,8 +58,8 @@ export const APP_CONFIG = {
   get siteUrl(): string {
     return getSiteUrl();
   },
-  contactEmail: 'support@qrcodescanner.app',
-  githubUrl: 'https://github.com',
+  contactEmail: 'qrhereonline@gmail.com',
+  githubUrl: 'https://github.com/jhem0n',
   features: {
     cameraScanning: true,
     imageScanning: true,

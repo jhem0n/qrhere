@@ -87,7 +87,7 @@ All environment variables are optional during development. Configure them in `.e
 
 | Variable | Required | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `VITE_SITE_URL` | No | `https://qrcodescanner.app` | Canonical production domain used for SEO canonical tags, OpenGraph URLs, and sitemaps. |
+| `VITE_SITE_URL` | No | `https://qrhere.online` | Canonical production domain used for SEO canonical tags, OpenGraph URLs, and sitemaps. |
 | `APP_URL` | No | Container injected URL | Fallback hosting URL provided by cloud runtime environments. |
 | `VITE_ADS_ENABLED` | No | `false` | Master toggle for Google AdSense monetization. Must be explicitly set to `"true"` to enable ad slots. |
 | `VITE_ADSENSE_CLIENT_ID` | Conditional | `""` | Google AdSense Publisher/Client ID (e.g., `ca-pub-1234567890123456`). Required only when `VITE_ADS_ENABLED=true`. |

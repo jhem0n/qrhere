@@ -199,10 +199,6 @@ export const CameraScanner: React.FC<CameraScannerProps> = ({
           <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight">
             Camera QR Scanner
           </h3>
-          <p className="mt-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md leading-relaxed">
-            Scan any QR code using your webcam or smartphone camera. All video processing runs
-            100% locally in your browser with zero data uploaded.
-          </p>
 
           {/* Privacy Guarantee Badge */}
           <div className="mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-xs text-emerald-700 dark:text-emerald-400 font-medium border border-emerald-200/60 dark:border-emerald-900/40">

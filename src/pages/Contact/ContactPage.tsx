@@ -33,11 +33,11 @@ export const ContactPage: React.FC = () => {
               For any question or request you can mail me at{' '}
               <span className="text-slate-500 dark:text-slate-400">[</span>{' '}
               <a
-                href="mailto:qrnow@gmail.com"
+                href="mailto:qrhereonline@gmail.com"
                 id="contact-email-link"
                 className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium underline underline-offset-4 decoration-blue-500/40 hover:decoration-blue-500 transition-colors"
               >
-                qrnow at gmail.com
+                qrhereonline at gmail.com
               </a>{' '}
               <span className="text-slate-500 dark:text-slate-400">]</span>
             </p>
