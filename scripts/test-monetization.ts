@@ -67,6 +67,8 @@ const adsTxtPath = path.resolve(process.cwd(), 'public/ads.txt');
 assert.ok(fs.existsSync(adsTxtPath), 'public/ads.txt must exist');
 const adsTxtContent = fs.readFileSync(adsTxtPath, 'utf8');
 assert.ok(adsTxtContent.includes('google.com'), 'ads.txt must include google.com seller specification');
+assert.ok(adsTxtContent.includes('pub-6935522846608744'), 'ads.txt must include exact publisher ID pub-6935522846608744');
+assert.ok(adsTxtContent.includes('DIRECT'), 'ads.txt must include DIRECT relationship type');
 assert.ok(adsTxtContent.includes('f08c47fec0942fa0'), 'ads.txt must include official Google AdSense certification authority ID');
 console.log('✓ Test 4 Passed: ads.txt is properly deployed in public/ for production accessibility at /ads.txt.');
 

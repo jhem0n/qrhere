@@ -128,6 +128,14 @@ Sitemap: ${domain}/sitemap.xml
         fileName: 'llms.txt',
         source: generateLlmsTxt(domain),
       });
+      const adsTxtPath = path.resolve(__dirname, 'public/ads.txt');
+      if (fs.existsSync(adsTxtPath)) {
+        this.emitFile({
+          type: 'asset',
+          fileName: 'ads.txt',
+          source: fs.readFileSync(adsTxtPath, 'utf-8'),
+        });
+      }
     },
     closeBundle() {
       const distDir = path.resolve(__dirname, 'dist');
@@ -211,6 +219,13 @@ Sitemap: ${domain}/sitemap.xml
         if (req.url === '/llms.txt') {
           res.setHeader('Content-Type', 'text/plain; charset=utf-8');
           return res.end(generateLlmsTxt(domain));
+        }
+        if (req.url === '/ads.txt') {
+          res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+          const adsTxtFile = path.resolve(__dirname, 'public/ads.txt');
+          if (fs.existsSync(adsTxtFile)) {
+            return res.end(fs.readFileSync(adsTxtFile, 'utf-8'));
+          }
         }
         next();
       });
