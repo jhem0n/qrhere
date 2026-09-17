@@ -28,64 +28,60 @@ function seoFilesPlugin(): Plugin {
 
   const currentDate = new Date().toISOString().split('T')[0];
 
-  const generateSitemap = (domain: string) => `<?xml version="1.0" encoding="UTF-8"?>
+  const getSitemapXml = () => {
+    const sitemapPath = path.resolve(__dirname, 'public/sitemap.xml');
+    if (fs.existsSync(sitemapPath)) {
+      return fs.readFileSync(sitemapPath, 'utf-8');
+    }
+    return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>${domain}/</loc>
+    <loc>https://qrhere.online/</loc>
     <lastmod>${currentDate}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
   </url>
   <url>
-    <loc>${domain}/scan</loc>
+    <loc>https://qrhere.online/scan</loc>
     <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
   </url>
   <url>
-    <loc>${domain}/create</loc>
+    <loc>https://qrhere.online/create</loc>
     <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
   </url>
   <url>
-    <loc>${domain}/faq</loc>
+    <loc>https://qrhere.online/faq</loc>
     <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
-    <loc>${domain}/about</loc>
+    <loc>https://qrhere.online/about</loc>
     <lastmod>${currentDate}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
-    <loc>${domain}/contact</loc>
+    <loc>https://qrhere.online/contact</loc>
     <lastmod>${currentDate}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
-    <loc>${domain}/privacy</loc>
+    <loc>https://qrhere.online/privacy</loc>
     <lastmod>${currentDate}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
-    <loc>${domain}/terms</loc>
+    <loc>https://qrhere.online/terms</loc>
     <lastmod>${currentDate}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
   </url>
 </urlset>
 `;
+  };
 
-  const generateRobots = (domain: string) => `User-agent: *
+  const getRobotsTxt = () => {
+    const robotsPath = path.resolve(__dirname, 'public/robots.txt');
+    if (fs.existsSync(robotsPath)) {
+      return fs.readFileSync(robotsPath, 'utf-8');
+    }
+    return `User-agent: *
 Allow: /
 
-Sitemap: ${domain}/sitemap.xml
+Sitemap: https://qrhere.online/sitemap.xml
 `;
+  };
 
   const generateLlmsTxt = (domain: string) => `# QR Here
 
@@ -116,12 +112,12 @@ Sitemap: ${domain}/sitemap.xml
       this.emitFile({
         type: 'asset',
         fileName: 'sitemap.xml',
-        source: generateSitemap(domain),
+        source: getSitemapXml(),
       });
       this.emitFile({
         type: 'asset',
         fileName: 'robots.txt',
-        source: generateRobots(domain),
+        source: getRobotsTxt(),
       });
       this.emitFile({
         type: 'asset',
@@ -209,12 +205,12 @@ Sitemap: ${domain}/sitemap.xml
       server.middlewares.use((req, res, next) => {
         const domain = resolveDomain();
         if (req.url === '/sitemap.xml') {
-          res.setHeader('Content-Type', 'application/xml');
-          return res.end(generateSitemap(domain));
+          res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+          return res.end(getSitemapXml());
         }
         if (req.url === '/robots.txt') {
-          res.setHeader('Content-Type', 'text/plain');
-          return res.end(generateRobots(domain));
+          res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+          return res.end(getRobotsTxt());
         }
         if (req.url === '/llms.txt') {
           res.setHeader('Content-Type', 'text/plain; charset=utf-8');

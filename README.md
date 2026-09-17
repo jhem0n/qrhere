@@ -107,7 +107,7 @@ The application incorporates a comprehensive, modern SEO framework:
   - `FAQPage` on Homepage and FAQ Page
 - **Crawlers**:
   - `public/robots.txt`: Directs search engine bots and points to the sitemap.
-  - `public/sitemap.xml`: XML sitemap covering all routes with priority ratings and change frequencies.
+  - `public/sitemap.xml`: XML sitemap covering all canonical routes according to the sitemaps.org standard.
 
 ---
 
