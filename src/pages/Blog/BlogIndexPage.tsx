@@ -31,13 +31,60 @@ export const BlogIndexPage: React.FC = () => {
           </p>
         </header>
 
-        {/* Featured Post Card */}
+        {/* Articles List */}
         <section aria-label="Latest Articles" className="space-y-8">
+          {/* New vCard Digital Business Cards Article */}
           <article className="group relative rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-sm hover:shadow-md hover:border-blue-200 dark:hover:border-blue-900 transition-all duration-200">
             <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-slate-400 mb-4">
               <span className="inline-flex items-center gap-1 font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50 px-2.5 py-1 rounded-md">
                 <Sparkles className="w-3 h-3" />
-                Featured Guide
+                Latest Guide
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <Calendar className="w-3.5 h-3.5 text-slate-400" />
+                <time dateTime="2026-09-18">September 18, 2026</time>
+              </span>
+              <span>•</span>
+              <span className="inline-flex items-center gap-1">
+                <Clock className="w-3.5 h-3.5 text-slate-400" />
+                <span>4 min read</span>
+              </span>
+            </div>
+
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
+              <Link to="/blog/how-to-create-vcard-qr-code" className="focus:outline-none focus:underline">
+                How to Create a vCard QR Code for Digital Business Cards (Free)
+              </Link>
+            </h2>
+
+            <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
+              Learn how to create a digital business card QR code using a free vCard generator. Enable
+              contacts to save your name, phone, email, and company straight into their smartphone address book
+              with a single camera scan—zero app installation required.
+            </p>
+
+            <div className="mt-6 flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+              <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                <span>Includes Step-by-Step UI Screenshots &amp; RFC Standards Table</span>
+              </div>
+
+              <Link
+                to="/blog/how-to-create-vcard-qr-code"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 transition shadow-sm shadow-blue-500/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                aria-label="Read article: How to Create a vCard QR Code for Digital Business Cards (Free)"
+              >
+                <span>Read Article</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+            </div>
+          </article>
+
+          {/* Static vs Dynamic QR Code Article */}
+          <article className="group relative rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-sm hover:shadow-md hover:border-blue-200 dark:hover:border-blue-900 transition-all duration-200">
+            <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-slate-400 mb-4">
+              <span className="inline-flex items-center gap-1 font-semibold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md">
+                Technical Comparison
               </span>
               <span className="inline-flex items-center gap-1">
                 <Calendar className="w-3.5 h-3.5 text-slate-400" />

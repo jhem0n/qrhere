@@ -108,6 +108,15 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
     canonicalPath: '/blog/static-vs-dynamic-qr-code',
     ogType: 'article',
   },
+  blogVcardBusinessCards: {
+    title: 'vCard QR Code Generator Free: Create Digital Cards | QR Here',
+    description:
+      'Create digital business card QR codes using a vCard QR code generator free online. Enable instant address book saves with zero apps required. Generate yours now!',
+    keywords:
+      'vcard qr code generator free, digital business card qr code, contact qr code generator, free vcard qr code maker, vcard qr code, digital business cards, instant contact save',
+    canonicalPath: '/blog/how-to-create-vcard-qr-code',
+    ogType: 'article',
+  },
   notFound: {
     title: '404 - Page Not Found | QR Here',
     description: 'The requested page could not be found on QR Here.',

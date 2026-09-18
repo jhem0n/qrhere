@@ -412,6 +412,20 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
         <div class="space-y-6">
           <article class="p-6 rounded-2xl border border-slate-200 bg-white">
             <h2 class="text-xl font-bold text-slate-900 mb-2">
+              <a href="/blog/how-to-create-vcard-qr-code" class="text-blue-600 underline">
+                How to Create a vCard QR Code for Digital Business Cards (Free)
+              </a>
+            </h2>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Learn how to create a digital business card QR code using a free vCard generator. Enable contacts to save your name, phone, email, and company straight into their smartphone address book with a single camera scan.
+            </p>
+            <a href="/blog/how-to-create-vcard-qr-code" class="inline-block px-4 py-2 rounded-xl text-sm font-semibold text-white bg-blue-600">
+              Read Article
+            </a>
+          </article>
+
+          <article class="p-6 rounded-2xl border border-slate-200 bg-white">
+            <h2 class="text-xl font-bold text-slate-900 mb-2">
               <a href="/blog/static-vs-dynamic-qr-code" class="text-blue-600 underline">
                 Static vs Dynamic QR Code: What’s the Difference?
               </a>
@@ -464,6 +478,56 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
           <div>
             <h2 class="text-xl font-bold text-slate-900 mb-2">How to Scan a QR Code</h2>
             <p>You can use your mobile camera or <a href="/scan" class="text-blue-600 underline font-medium">scan QR code</a> tools directly online using your webcam or photo uploads.</p>
+          </div>
+        </section>
+      </article>
+    `,
+  },
+  {
+    path: '/blog/how-to-create-vcard-qr-code',
+    folder: 'blog/how-to-create-vcard-qr-code',
+    title: 'vCard QR Code Generator Free: Create Digital Cards | QR Here',
+    description:
+      'Create digital business card QR codes using a vCard QR code generator free online. Enable instant address book saves with zero apps required. Generate yours now!',
+    keywords:
+      'vcard qr code generator free, digital business card qr code, contact qr code generator, free vcard qr code maker, vcard qr code, digital business cards',
+    heading: 'How to Create a vCard QR Code for Digital Business Cards (Free)',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog' },
+      {
+        name: 'vCard QR Code for Digital Business Cards',
+        path: '/blog/how-to-create-vcard-qr-code',
+      },
+    ],
+    htmlContent: `
+      <article class="max-w-4xl mx-auto px-4 py-8">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+          How to Create a vCard QR Code for Digital Business Cards (Free)
+        </h1>
+        <p class="text-base text-slate-600 leading-relaxed mb-8">
+          A vCard QR code instantly shares your contact details directly to a smartphone native address book with a single camera scan. Using a browser-based <strong>vcard qr code generator free</strong> tool eliminates manual contact entry and ensures your contacts save your information error-free without downloading any third-party app.
+        </p>
+
+        <section class="space-y-6 text-sm text-slate-700 leading-relaxed">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Step 1: Select the vCard Contact Type</h2>
+            <p>Navigate to the <a href="/create" class="text-blue-600 underline font-medium">QR Here QR Code Generator</a> and select the V-card / Contact tab from the payload selector.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Step 2: Input Your Contact Information</h2>
+            <p>Fill in your First Name, Last Name, Phone Number, Email, Company, Job Title, and Website URL in standard RFC 6350 formatting.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Step 3: Set Error Correction to Level M or Q</h2>
+            <p>Select Medium (15%) or Quartile (25%) error correction to preserve scannability even on textured or handled business card paper.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Step 4: Download in High-Resolution SVG or PNG</h2>
+            <p>Download vector SVG for crisp physical printing or PNG for digital email signatures. Test your code using the <a href="/scan" class="text-blue-600 underline font-medium">online QR scanner</a>.</p>
           </div>
         </section>
       </article>

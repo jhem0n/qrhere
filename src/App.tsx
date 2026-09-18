@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { GoogleAnalyticsTracker } from './components/common/GoogleAnalyticsTracker';
 import { GoogleAutoAds } from './components/common/GoogleAutoAds';
@@ -13,6 +13,7 @@ import { PrivacyPage } from './pages/Privacy/PrivacyPage';
 import { TermsPage } from './pages/Terms/TermsPage';
 import { BlogIndexPage } from './pages/Blog/BlogIndexPage';
 import { BlogPostStaticVsDynamic } from './pages/Blog/BlogPostStaticVsDynamic';
+import { BlogPostVcardQrCode } from './pages/Blog/BlogPostVcardQrCode';
 import { NotFoundPage } from './pages/NotFound/NotFoundPage';
 
 export default function App() {
@@ -27,6 +28,14 @@ export default function App() {
           <Route path="/create" element={<CreatePage />} />
           <Route path="/blog" element={<BlogIndexPage />} />
           <Route path="/blog/static-vs-dynamic-qr-code" element={<BlogPostStaticVsDynamic />} />
+          <Route
+            path="/blog/how-to-create-vcard-qr-code"
+            element={<BlogPostVcardQrCode />}
+          />
+          <Route
+            path="/blog/how-to-create-vcard-qr-code-digital-business-cards"
+            element={<Navigate to="/blog/how-to-create-vcard-qr-code" replace />}
+          />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/faq" element={<FAQPage />} />

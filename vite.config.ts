@@ -56,6 +56,10 @@ function seoFilesPlugin(): Plugin {
     <lastmod>${currentDate}</lastmod>
   </url>
   <url>
+    <loc>https://qrhere.online/blog/how-to-create-vcard-qr-code</loc>
+    <lastmod>${currentDate}</lastmod>
+  </url>
+  <url>
     <loc>https://qrhere.online/faq</loc>
     <lastmod>${currentDate}</lastmod>
   </url>
