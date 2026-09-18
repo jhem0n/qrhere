@@ -21,11 +21,11 @@ export interface FAQItemSchema {
 
 export const SEO_CONFIG: Record<string, RouteSEO> = {
   home: {
-    title: 'QR Code Scanner - Online Scanner & Generator | QR Here',
+    title: 'Online QR Code Scanner & Generator | QR Here',
     description:
       'Online QR code scanner and generator. Scan with your camera or image files, and generate custom high-resolution QR codes completely in your browser.',
     keywords:
-      'QR code scanner, scan QR code online, QR scanner without app, camera QR scanner, scan QR from image, online QR code reader, QR Here',
+      'QR code scanner, scan QR code online, QR scanner without app, create wifi qr code, whatsapp qr code, whataapp qr code generator, online QR code reader, QR Here',
     canonicalPath: '/',
     ogType: 'website',
   },
@@ -34,16 +34,16 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
     description:
       'Scan QR codes instantly using your device camera or upload image files. Fast, private client-side decoding with zero server uploads.',
     keywords:
-      'QR code scanner online, camera QR scanner, scan QR from image, upload QR code, webcam QR reader, fast QR reader, mobile QR reader, QR Here',
+      'QR code scanner online, wifi password scanner, scan wifi password, free QR code scanner, offline QR code scanner app, scan QR code no app, Online QR reader, QR code to Password, QR Here',
     canonicalPath: '/scan',
     ogType: 'website',
   },
   create: {
-    title: 'QR Code Generator | QR Here',
+    title: 'All QR Code Generator | QR Here',
     description:
       'Create custom QR codes with logos, frames, and colors. Download high-resolution vector SVG or PNG QR codes with 100% in-browser generation.',
     keywords:
-      'QR code generator, create QR code, QR code generator with logo, custom QR code maker, vector QR code SVG, high resolution QR code PNG, Wi-Fi QR code generator, QR Here',
+      'create link to QR code, create url to qr code, whatsapp qr code maker, create QR code, QR code generator with logo, custom QR code maker, vector QR code SVG, high resolution QR code PNG, Wi-Fi QR code generator, QR Here',
     canonicalPath: '/create',
     ogType: 'website',
   },
@@ -89,6 +89,24 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
     keywords: 'terms of service, user agreement, disclaimer, terms of use',
     canonicalPath: '/terms',
     ogType: 'website',
+  },
+  blog: {
+    title: 'QR Code Blog | Guides, Tips & Tutorials',
+    description:
+      'Learn about QR codes, scanning, generation, static and dynamic QR codes, and practical tips with simple guides and tutorials.',
+    keywords:
+      'QR code blog, static vs dynamic QR code, QR code tutorials, QR code guides, QR scanner tips, QR generator guide',
+    canonicalPath: '/blog',
+    ogType: 'website',
+  },
+  blogStaticVsDynamic: {
+    title: 'Static vs Dynamic QR Code: What’s the Difference?',
+    description:
+      'Learn the difference between static and dynamic QR codes, how they work, their key benefits, limitations, and which type to use.',
+    keywords:
+      'static vs dynamic QR code, how to work QR code, static QR code, dynamic QR code, static QR, dynamic QR, editable QR code, QR code generator, QR code scanner, QR code tracking, QR code analytics',
+    canonicalPath: '/blog/static-vs-dynamic-qr-code',
+    ogType: 'article',
   },
   notFound: {
     title: '404 - Page Not Found | QR Here',
@@ -173,6 +191,50 @@ export function generateBreadcrumbSchema(breadcrumbs: BreadcrumbItem[], siteUrl:
       name: crumb.name,
       item: `${siteUrl.replace(/\/$/, '')}${crumb.path}`,
     })),
+  };
+}
+
+/**
+ * Generates Schema.org Article entity
+ */
+export function generateArticleSchema(
+  data: {
+    headline: string;
+    description: string;
+    canonicalPath: string;
+    datePublished: string;
+    dateModified: string;
+    image?: string;
+  },
+  siteUrl: string = getSiteUrl()
+) {
+  const fullUrl = `${siteUrl.replace(/\/$/, '')}${data.canonicalPath}`;
+  return {
+    '@type': 'Article',
+    headline: data.headline,
+    description: data.description,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': fullUrl,
+    },
+    url: fullUrl,
+    datePublished: data.datePublished,
+    dateModified: data.dateModified,
+    image: data.image || `${siteUrl}/icon.svg`,
+    author: {
+      '@type': 'Organization',
+      name: APP_CONFIG.name,
+      url: siteUrl,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: APP_CONFIG.name,
+      url: siteUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/icon.svg`,
+      },
+    },
   };
 }
 

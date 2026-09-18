@@ -387,4 +387,86 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
       </section>
     `,
   },
+  {
+    path: '/blog',
+    folder: 'blog',
+    title: 'QR Code Blog | Guides, Tips & Tutorials',
+    description:
+      'Learn about QR codes, scanning, generation, static and dynamic QR codes, and practical tips with simple guides and tutorials.',
+    keywords:
+      'QR code blog, static vs dynamic QR code, QR code tutorials, QR code guides, QR scanner tips, QR generator guide',
+    heading: 'Blog',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog' },
+    ],
+    htmlContent: `
+      <section class="max-w-4xl mx-auto px-4 py-8">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+          Blog
+        </h1>
+        <p class="text-base text-slate-600 max-w-2xl leading-relaxed mb-8">
+          Learn about QR codes, scanning, generation, static and dynamic QR codes, and practical tips with simple guides and tutorials.
+        </p>
+
+        <div class="space-y-6">
+          <article class="p-6 rounded-2xl border border-slate-200 bg-white">
+            <h2 class="text-xl font-bold text-slate-900 mb-2">
+              <a href="/blog/static-vs-dynamic-qr-code" class="text-blue-600 underline">
+                Static vs Dynamic QR Code: What’s the Difference?
+              </a>
+            </h2>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Learn the difference between static and dynamic QR codes, how they work, their key benefits, limitations, and which type to use.
+            </p>
+            <a href="/blog/static-vs-dynamic-qr-code" class="inline-block px-4 py-2 rounded-xl text-sm font-semibold text-white bg-blue-600">
+              Read Article
+            </a>
+          </article>
+        </div>
+      </section>
+    `,
+  },
+  {
+    path: '/blog/static-vs-dynamic-qr-code',
+    folder: 'blog/static-vs-dynamic-qr-code',
+    title: 'Static vs Dynamic QR Code: What’s the Difference?',
+    description:
+      'Learn the difference between static and dynamic QR codes, how they work, their key benefits, limitations, and which type to use.',
+    keywords:
+      'static vs dynamic QR code, static QR code, dynamic QR code, static QR, dynamic QR, editable QR code, QR code generator, QR code scanner, QR code tracking, QR code analytics',
+    heading: 'Static vs Dynamic QR Code: What’s the Difference?',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog' },
+      { name: 'Static vs Dynamic QR Code', path: '/blog/static-vs-dynamic-qr-code' },
+    ],
+    htmlContent: `
+      <article class="max-w-4xl mx-auto px-4 py-8">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+          Static vs Dynamic QR Code: What’s the Difference?
+        </h1>
+        <p class="text-base text-slate-600 leading-relaxed mb-8">
+          Learn the difference between static and dynamic QR codes, how they work, their key benefits, limitations, and which type to use.
+        </p>
+
+        <section class="space-y-6 text-sm text-slate-700 leading-relaxed">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">What Is a Static QR Code?</h2>
+            <p>A static QR code encodes its information directly into the pattern of black and white squares. Because the data is etched into the code itself, changing the information requires generating a new QR code. You can <a href="/create" class="text-blue-600 underline font-medium">generate static QR</a> codes for websites, Wi-Fi networks, and contact info.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">What Is a Dynamic QR Code?</h2>
+            <p>A dynamic QR code encodes an intermediary redirect URL, allowing the final destination to be modified at any time without replacing the printed barcode.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">How to Scan a QR Code</h2>
+            <p>You can use your mobile camera or <a href="/scan" class="text-blue-600 underline font-medium">scan QR code</a> tools directly online using your webcam or photo uploads.</p>
+          </div>
+        </section>
+      </article>
+    `,
+  },
 ];

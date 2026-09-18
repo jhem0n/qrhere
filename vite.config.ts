@@ -48,6 +48,14 @@ function seoFilesPlugin(): Plugin {
     <lastmod>${currentDate}</lastmod>
   </url>
   <url>
+    <loc>https://qrhere.online/blog</loc>
+    <lastmod>${currentDate}</lastmod>
+  </url>
+  <url>
+    <loc>https://qrhere.online/blog/static-vs-dynamic-qr-code</loc>
+    <lastmod>${currentDate}</lastmod>
+  </url>
+  <url>
     <loc>https://qrhere.online/faq</loc>
     <lastmod>${currentDate}</lastmod>
   </url>

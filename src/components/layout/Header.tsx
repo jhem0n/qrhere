@@ -27,6 +27,7 @@ export const Header: React.FC = () => {
   const navLinks = [
     { to: '/scan', label: 'Scan' },
     { to: '/create', label: 'Create' },
+    { to: '/blog', label: 'Blog' },
     { to: '/about', label: 'About' },
     { to: '/contact', label: 'Contact' },
   ];

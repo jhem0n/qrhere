@@ -11,6 +11,8 @@ import { ContactPage } from './pages/Contact/ContactPage';
 import { FAQPage } from './pages/FAQ/FAQPage';
 import { PrivacyPage } from './pages/Privacy/PrivacyPage';
 import { TermsPage } from './pages/Terms/TermsPage';
+import { BlogIndexPage } from './pages/Blog/BlogIndexPage';
+import { BlogPostStaticVsDynamic } from './pages/Blog/BlogPostStaticVsDynamic';
 import { NotFoundPage } from './pages/NotFound/NotFoundPage';
 
 export default function App() {
@@ -23,6 +25,8 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/scan" element={<ScanPage />} />
           <Route path="/create" element={<CreatePage />} />
+          <Route path="/blog" element={<BlogIndexPage />} />
+          <Route path="/blog/static-vs-dynamic-qr-code" element={<BlogPostStaticVsDynamic />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/faq" element={<FAQPage />} />

@@ -30,6 +30,8 @@ const EXPECTED_ROUTES = [
   'https://qrhere.online/',
   'https://qrhere.online/scan',
   'https://qrhere.online/create',
+  'https://qrhere.online/blog',
+  'https://qrhere.online/blog/static-vs-dynamic-qr-code',
   'https://qrhere.online/faq',
   'https://qrhere.online/about',
   'https://qrhere.online/contact',
