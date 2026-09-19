@@ -169,10 +169,6 @@ export const HomePage: React.FC = () => {
                   <h3 className="text-sm font-bold text-slate-900 dark:text-white">
                     Zero Server Uploads
                   </h3>
-                  <p className="mt-1 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    All QR decoding and rendering happens locally in your browser memory. Your images
-                    and scanned text never touch our servers.
-                  </p>
                 </div>
 
                 <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs">
@@ -182,10 +178,6 @@ export const HomePage: React.FC = () => {
                   <h3 className="text-sm font-bold text-slate-900 dark:text-white">
                     Malicious Link Defense
                   </h3>
-                  <p className="mt-1 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Automatic safety inspection blocks malicious script schemes such as javascript:
-                    and vbscript: to protect you from exploits.
-                  </p>
                 </div>
 
                 <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs">
@@ -195,10 +187,6 @@ export const HomePage: React.FC = () => {
                   <h3 className="text-sm font-bold text-slate-900 dark:text-white">
                     PNG & Vector SVG
                   </h3>
-                  <p className="mt-1 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Download high-resolution raster images or crisp vector SVGs suitable for
-                    professional printing on posters, flyers, and merchandise.
-                  </p>
                 </div>
 
                 <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs">
@@ -208,10 +196,6 @@ export const HomePage: React.FC = () => {
                   <h3 className="text-sm font-bold text-slate-900 dark:text-white">
                     Offline PWA Capable
                   </h3>
-                  <p className="mt-1 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Install this app on your device for instant offline access. Scan and create QR
-                    codes anywhere, even without an active internet connection.
-                  </p>
                 </div>
               </div>
             </div>
