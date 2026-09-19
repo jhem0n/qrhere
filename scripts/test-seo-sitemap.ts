@@ -28,8 +28,7 @@ console.log(`Found ${urls.length} URLs in sitemap:`, urls);
 
 const EXPECTED_ROUTES = [
   'https://qrhere.online/',
-  'https://qrhere.online/scan',
-  'https://qrhere.online/create',
+  'https://qrhere.online/qr-code-generator',
   'https://qrhere.online/blog',
   'https://qrhere.online/blog/static-vs-dynamic-qr-code',
   'https://qrhere.online/blog/how-to-create-vcard-qr-code',
@@ -44,6 +43,8 @@ assert.strictEqual(urls.length, EXPECTED_ROUTES.length, `Expected exactly ${EXPE
 for (const expected of EXPECTED_ROUTES) {
   assert.ok(urls.includes(expected), `Sitemap must include ${expected}`);
 }
+assert.ok(!urls.includes('https://qrhere.online/scan'), 'Sitemap must not include /scan');
+assert.ok(!urls.includes('https://qrhere.online/create'), 'Sitemap must not include /create');
 
 // 4. Verify no illegal or unwanted URLs
 for (const url of urls) {

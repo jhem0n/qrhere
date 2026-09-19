@@ -1,12 +1,11 @@
 # QR Here
 
-> Online QR code scanner and generator. Scan with your camera or image files, and generate custom high-resolution QR codes completely in your browser.
+> The QR code scanner online lets you scan QR codes without any app. Upload an image or use your camera to scan a QR code. Also includes custom vector QR code generation completely in your browser.
 
 ## Core Tools
 
-- [QR Code Scanner](https://qrhere.online/scan): Scan QR codes directly with your device webcam or by uploading image files. Decoded 100% locally in your browser.
-- [QR Code Generator](https://qrhere.online/create): Create customized vector QR codes with colors, dots, corners, and embedded logos with SVG or PNG export.
-- [Homepage](https://qrhere.online/): Fast access to browser-based QR code scanning and creation.
+- [QR Code Scanner](https://qrhere.online/): Scan QR codes directly with your device webcam or by uploading image files. Decoded 100% locally in your browser with zero server uploads.
+- [QR Code Generator](https://qrhere.online/qr-code-generator): Create customized vector QR codes with colors, dots, corners, and embedded logos with SVG or PNG export.
 
 ## Support & Documentation
 
@@ -18,3 +17,10 @@
 
 - [Privacy Policy](https://qrhere.online/privacy): Clear disclosure explaining our client-side zero-knowledge architecture with no server storage.
 - [Terms of Service](https://qrhere.online/terms): Usage conditions, license guidelines, and terms for using QR Here.
+
+## Articles & Guides
+
+- [QR Code Blog](https://qrhere.online/blog): Practical tutorials, technical comparisons, and guides on QR codes.
+- [Static vs Dynamic QR Code](https://qrhere.online/blog/static-vs-dynamic-qr-code): Comprehensive technical comparison between static and dynamic QR codes.
+- [How to Create a vCard QR Code](https://qrhere.online/blog/how-to-create-vcard-qr-code): Guide on generating digital business card QR codes for smartphone address books.
+

@@ -18,73 +18,17 @@ export interface StaticRouteConfig {
 
 export const STATIC_ROUTES: StaticRouteConfig[] = [
   {
-    path: '/scan',
-    folder: 'scan',
-    title: 'Online QR Code Scanner | QR Here',
-    description:
-      'Scan QR codes instantly using your device camera or upload image files. Fast, private client-side decoding with zero server uploads.',
-    keywords:
-      'QR code scanner online, camera QR scanner, scan QR from image, upload QR code, webcam QR reader, fast QR reader, mobile QR reader, QR Here',
-    heading: 'Online QR Code Scanner',
-    breadcrumbs: [
-      { name: 'Home', path: '/' },
-      { name: 'Scan', path: '/scan' },
-    ],
-    htmlContent: `
-      <section class="max-w-4xl mx-auto px-4 py-8">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight text-center mb-4">
-          Online QR Code Scanner
-        </h1>
-        <p class="text-base text-slate-600 max-w-2xl mx-auto text-center leading-relaxed mb-8">
-          Scan QR codes instantly using your device camera or upload image files from your computer or smartphone. Processed 100% locally in your web browser with zero server uploads.
-        </p>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-          <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50">
-            <h2 class="text-lg font-bold text-slate-900 mb-2">Live Camera Scanning</h2>
-            <p class="text-sm text-slate-600 leading-relaxed">
-              Use your device webcam or rear smartphone camera with automatic autofocus, mirror inversion options, and real-time link safety checks. Video stream frames are processed strictly in browser RAM and discarded immediately.
-            </p>
-          </div>
-          <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50">
-            <h2 class="text-lg font-bold text-slate-900 mb-2">Image File Upload</h2>
-            <p class="text-sm text-slate-600 leading-relaxed">
-              Drop screenshot captures or photo files in PNG, JPG, or WEBP formats. Multi-pass binarization handles low-contrast or angled QR codes without sending your pictures to any external server.
-            </p>
-          </div>
-        </div>
-
-        <div class="p-6 rounded-2xl border border-blue-100 bg-blue-50/50 my-6">
-          <h2 class="text-base font-bold text-blue-950 mb-2">Need to create a QR code instead?</h2>
-          <p class="text-sm text-blue-900/80 mb-4">
-            Design customized QR codes with colors, patterns, and logos using our companion generator tool.
-          </p>
-          <a href="/create" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-blue-600 text-white shadow-sm hover:bg-blue-700">
-            Open QR Generator
-          </a>
-        </div>
-
-        <div class="border-t border-slate-200 pt-6 mt-8 text-sm text-slate-600 space-y-4">
-          <h2 class="text-lg font-bold text-slate-900">Browser Compatibility & Safety</h2>
-          <p>
-            Our scanner runs on Google Chrome, Apple Safari, Mozilla Firefox, Microsoft Edge, and mobile browsers on iOS and Android. For more information regarding permissions and security practices, please visit our <a href="/faq" class="text-blue-600 underline">FAQ</a> and <a href="/privacy" class="text-blue-600 underline">Privacy Policy</a>.
-          </p>
-        </div>
-      </section>
-    `,
-  },
-  {
-    path: '/create',
-    folder: 'create',
+    path: '/qr-code-generator',
+    folder: 'qr-code-generator',
     title: 'QR Code Generator | QR Here',
     description:
-      'Create custom QR codes with logos, frames, and colors. Download high-resolution vector SVG or PNG QR codes with 100% in-browser generation.',
+      'Create custom QR codes with logos, frames, and colors. Download your QR code as SVG or PNG.',
     keywords:
       'QR code generator, create QR code, QR code generator with logo, custom QR code maker, vector QR code SVG, high resolution QR code PNG, Wi-Fi QR code generator, QR Here',
     heading: 'QR Code Generator',
     breadcrumbs: [
       { name: 'Home', path: '/' },
-      { name: 'Create', path: '/create' },
+      { name: 'QR Code Generator', path: '/qr-code-generator' },
     ],
     htmlContent: `
       <section class="max-w-4xl mx-auto px-4 py-8">
@@ -92,7 +36,7 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
           QR Code Generator
         </h1>
         <p class="text-base text-slate-600 max-w-2xl mx-auto text-center leading-relaxed mb-8">
-          Create custom QR codes with logos, frames, and colors. Download your QR code as vector SVG or high-resolution PNG with 100% in-browser generation.
+          Create custom QR codes with logos, frames, and colors. Download your QR code as SVG or PNG.
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
@@ -121,7 +65,7 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
           <p class="text-sm text-blue-900/80 mb-4">
             Always verify your newly generated QR codes before printing or distributing them.
           </p>
-          <a href="/scan" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-blue-600 text-white shadow-sm hover:bg-blue-700">
+          <a href="/" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-blue-600 text-white shadow-sm hover:bg-blue-700">
             Open QR Scanner
           </a>
         </div>
@@ -138,7 +82,7 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
   {
     path: '/about',
     folder: 'about',
-    title: 'About QR Here',
+    title: 'About Us | QR Here',
     description:
       'Learn how QR Here operates entirely in your browser using modern client-side algorithms to ensure total privacy and zero data harvesting.',
     keywords:
@@ -181,8 +125,8 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
         </div>
 
         <div class="border-t border-slate-200 pt-6 mt-8 flex flex-wrap gap-4 text-sm">
-          <a href="/scan" class="text-blue-600 font-semibold underline">Online Scanner</a>
-          <a href="/create" class="text-blue-600 font-semibold underline">QR Generator</a>
+          <a href="/" class="text-blue-600 font-semibold underline">Online Scanner</a>
+          <a href="/qr-code-generator" class="text-blue-600 font-semibold underline">QR Generator</a>
           <a href="/faq" class="text-blue-600 font-semibold underline">FAQ</a>
           <a href="/privacy" class="text-blue-600 font-semibold underline">Privacy Policy</a>
           <a href="/terms" class="text-blue-600 font-semibold underline">Terms of Service</a>
@@ -194,7 +138,7 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
   {
     path: '/contact',
     folder: 'contact',
-    title: 'Contact QR Here',
+    title: 'Contact Us | QR Here',
     description:
       'Contact the QR Here maintainer for technical support, feedback, bug reports, or feature requests regarding our online QR tools.',
     keywords: 'contact QR Here, QR code email, QR Here feedback, jhem0n',
@@ -289,8 +233,8 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
         </div>
 
         <div class="border-t border-slate-200 pt-6 mt-8 flex flex-wrap gap-4 text-sm">
-          <a href="/scan" class="text-blue-600 font-semibold underline">Try Camera Scanner</a>
-          <a href="/create" class="text-blue-600 font-semibold underline">Generate QR Code</a>
+          <a href="/" class="text-blue-600 font-semibold underline">Try Camera Scanner</a>
+          <a href="/qr-code-generator" class="text-blue-600 font-semibold underline">Generate QR Code</a>
           <a href="/contact" class="text-blue-600 font-semibold underline">Contact Support</a>
         </div>
       </section>
@@ -390,7 +334,7 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
   {
     path: '/blog',
     folder: 'blog',
-    title: 'QR Code Blog | Guides, Tips & Tutorials',
+    title: 'QR Code Blog: Guides, Tips & Tutorials | QR Here',
     description:
       'Learn about QR codes, scanning, generation, static and dynamic QR codes, and practical tips with simple guides and tutorials.',
     keywords:
@@ -444,7 +388,7 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
   {
     path: '/blog/static-vs-dynamic-qr-code',
     folder: 'blog/static-vs-dynamic-qr-code',
-    title: 'Static vs Dynamic QR Code: What’s the Difference?',
+    title: 'Static vs Dynamic QR Code: What’s the Difference? | QR Here',
     description:
       'Learn the difference between static and dynamic QR codes, how they work, their key benefits, limitations, and which type to use.',
     keywords:
@@ -467,7 +411,7 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
         <section class="space-y-6 text-sm text-slate-700 leading-relaxed">
           <div>
             <h2 class="text-xl font-bold text-slate-900 mb-2">What Is a Static QR Code?</h2>
-            <p>A static QR code encodes its information directly into the pattern of black and white squares. Because the data is etched into the code itself, changing the information requires generating a new QR code. You can <a href="/create" class="text-blue-600 underline font-medium">generate static QR</a> codes for websites, Wi-Fi networks, and contact info.</p>
+            <p>A static QR code encodes its information directly into the pattern of black and white squares. Because the data is etched into the code itself, changing the information requires generating a new QR code. You can <a href="/qr-code-generator" class="text-blue-600 underline font-medium">generate static QR</a> codes for websites, Wi-Fi networks, and contact info.</p>
           </div>
 
           <div>
@@ -477,7 +421,7 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
 
           <div>
             <h2 class="text-xl font-bold text-slate-900 mb-2">How to Scan a QR Code</h2>
-            <p>You can use your mobile camera or <a href="/scan" class="text-blue-600 underline font-medium">scan QR code</a> tools directly online using your webcam or photo uploads.</p>
+            <p>You can use your mobile camera or <a href="/" class="text-blue-600 underline font-medium">scan QR code</a> tools directly online using your webcam or photo uploads.</p>
           </div>
         </section>
       </article>
@@ -512,7 +456,7 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
         <section class="space-y-6 text-sm text-slate-700 leading-relaxed">
           <div>
             <h2 class="text-xl font-bold text-slate-900 mb-2">Step 1: Select the vCard Contact Type</h2>
-            <p>Navigate to the <a href="/create" class="text-blue-600 underline font-medium">QR Here QR Code Generator</a> and select the V-card / Contact tab from the payload selector.</p>
+            <p>Navigate to the <a href="/qr-code-generator" class="text-blue-600 underline font-medium">QR Here QR Code Generator</a> and select the V-card / Contact tab from the payload selector.</p>
           </div>
 
           <div>
@@ -527,7 +471,7 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
 
           <div>
             <h2 class="text-xl font-bold text-slate-900 mb-2">Step 4: Download in High-Resolution SVG or PNG</h2>
-            <p>Download vector SVG for crisp physical printing or PNG for digital email signatures. Test your code using the <a href="/scan" class="text-blue-600 underline font-medium">online QR scanner</a>.</p>
+            <p>Download vector SVG for crisp physical printing or PNG for digital email signatures. Test your code using the <a href="/" class="text-blue-600 underline font-medium">online QR scanner</a>.</p>
           </div>
         </section>
       </article>

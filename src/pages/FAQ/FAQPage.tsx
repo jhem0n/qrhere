@@ -251,14 +251,14 @@ export const FAQPage: React.FC = () => {
           </p>
           <div className="flex flex-wrap items-center gap-3">
             <Link
-              to="/scan"
+              to="/"
               className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition"
             >
               <Camera className="w-3.5 h-3.5" />
               <span>Test Camera Scanner</span>
             </Link>
             <Link
-              to="/create"
+              to="/qr-code-generator"
               className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition"
             >
               <PlusCircle className="w-3.5 h-3.5" />

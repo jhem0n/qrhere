@@ -1,6 +1,6 @@
 {
   "name": "QR Here",
-  "description": "Online QR code scanner and generator. Scan with your camera or image files, and generate custom high-resolution QR codes completely in your browser.",
+  "description": "The QR code scanner online lets you scan QR codes without any app. Upload an image or use your camera to scan a QR code.",
   "requestFramePermissions": [
     "camera"
   ],

@@ -43,20 +43,12 @@ export const NotFoundPage: React.FC = () => {
             to="/"
             className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-blue-700 transition min-h-[44px]"
           >
-            <Home className="w-4 h-4" />
-            <span>Return Home</span>
-          </Link>
-
-          <Link
-            to="/scan"
-            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-2.5 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition min-h-[44px]"
-          >
             <Camera className="w-4 h-4" />
-            <span>Scan QR Code</span>
+            <span>QR Code Scanner</span>
           </Link>
 
           <Link
-            to="/create"
+            to="/qr-code-generator"
             className="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-2.5 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition min-h-[44px]"
           >
             <PlusCircle className="w-4 h-4" />

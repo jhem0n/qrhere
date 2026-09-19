@@ -28,14 +28,14 @@
       "name": "Scan QR Code",
       "short_name": "Scan",
       "description": "Quickly scan a QR code using camera or image",
-      "url": "/scan",
+      "url": "/",
       "icons": [{ "src": "/icon.svg", "sizes": "512x512" }]
     },
     {
-      "name": "Create QR Code",
-      "short_name": "Create",
+      "name": "QR Code Generator",
+      "short_name": "Generator",
       "description": "Generate custom QR codes with live preview",
-      "url": "/create",
+      "url": "/qr-code-generator",
       "icons": [{ "src": "/icon.svg", "sizes": "512x512" }]
     }
   ]

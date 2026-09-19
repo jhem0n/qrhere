@@ -1,34 +1,30 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Camera,
-  Upload,
-  PlusCircle,
-  ShieldCheck,
-  Zap,
-  Download,
-  Lock,
-  ArrowRight,
-} from 'lucide-react';
+import { Camera, Upload, Lightbulb, ShieldCheck, ArrowRight, HelpCircle } from 'lucide-react';
 import { SEOHead } from '../../components/common/SEOHead';
 import { SEO_CONFIG, generateWebsiteSchema } from '../../config/seo.config';
 import { CameraScanner } from '../../components/scanner/CameraScanner';
 import { ImageScanner } from '../../components/scanner/ImageScanner';
-import { QRGeneratorForm } from '../../components/generator/QRGeneratorForm';
 import { ScanResultCard } from '../../components/qr/ScanResultCard';
 import { QRScanResult } from '../../types/qr.types';
+import { QRScannerService } from '../../services/qr/scanner.service';
 
 export const HomePage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'scan' | 'create'>('scan');
-  const [scanMethod, setScanMethod] = useState<'camera' | 'image'>('camera');
-  const [scanResult, setScanResult] = useState<QRScanResult | null>(null);
+  const [method, setMethod] = useState<'camera' | 'image'>('camera');
+  const [result, setResult] = useState<QRScanResult | null>(null);
 
-  const handleScanSuccess = (res: QRScanResult) => {
-    setScanResult(res);
+  const handleScanSuccess = (scanRes: QRScanResult) => {
+    setResult(scanRes);
   };
 
   const handleScanAgain = () => {
-    setScanResult(null);
+    setResult(null);
+  };
+
+  // Test triggers for scanner verification
+  const handleLoadTestSample = (sampleText: string) => {
+    const formatted = QRScannerService.formatScanResult(sampleText, 'image');
+    setResult(formatted);
   };
 
   const homepageSchema = generateWebsiteSchema();
@@ -37,289 +33,211 @@ export const HomePage: React.FC = () => {
     <>
       <SEOHead seo={SEO_CONFIG.home} structuredData={homepageSchema} />
 
-      <div className="w-full">
-        {/* Hero Section */}
-        <section className="pt-8 pb-4 sm:pt-10 sm:pb-6 px-4 sm:px-6 lg:px-8 text-center max-w-4xl mx-auto">
+      <div className="max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        {/* Page Header */}
+        <header className="text-center max-w-3xl lg:max-w-4xl mx-auto mb-8 sm:mb-10">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             QR Code Scanner
           </h1>
-          <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl sm:max-w-3xl mx-auto">
             The QR code scanner online lets you scan QR codes without any app. Upload an image or use your camera to scan a QR code.
           </p>
+        </header>
 
-          {/* Primary Action Switcher */}
-          <div className="mt-6 flex justify-center">
-            <div className="inline-flex p-1.5 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-inner">
-              <button
-                type="button"
-                id="hero-scan-tab"
-                onClick={() => {
-                  setActiveTab('scan');
-                  setScanResult(null);
-                }}
-                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer ${
-                  activeTab === 'scan'
-                    ? 'bg-blue-600 text-white shadow-sm'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                }`}
-              >
-                <Camera className="w-4 h-4" />
-                <span>Scan QR Code</span>
-              </button>
-
-              <button
-                type="button"
-                id="hero-create-tab"
-                onClick={() => setActiveTab('create')}
-                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer ${
-                  activeTab === 'create'
-                    ? 'bg-blue-600 text-white shadow-sm'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                }`}
-              >
-                <PlusCircle className="w-4 h-4" />
-                <span>Create QR Code</span>
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* Interactive Tool Area (Visually Dominant) */}
-        <section
-          id="tool-workbench-section"
-          className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-16"
-        >
-          {activeTab === 'scan' ? (
-            <div className="flex flex-col items-center">
-              {/* If a code was detected, display the result card */}
-              {scanResult ? (
-                <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl">
-                  <ScanResultCard result={scanResult} onScanAgain={handleScanAgain} />
-                </div>
-              ) : (
-                <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 lg:p-10 shadow-sm">
-                  {/* Scanner Sub-method Toggle */}
-                  <div className="flex items-center justify-center gap-3 mb-8">
-                    <button
-                      type="button"
-                      onClick={() => setScanMethod('camera')}
-                      className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer min-h-[44px] ${
-                        scanMethod === 'camera'
-                          ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-xs'
-                          : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-200'
-                      }`}
-                    >
-                      <Camera className="w-4 h-4" />
-                      <span>Use Camera</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => setScanMethod('image')}
-                      className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer min-h-[44px] ${
-                        scanMethod === 'image'
-                          ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-xs'
-                          : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-200'
-                      }`}
-                    >
-                      <Upload className="w-4 h-4" />
-                      <span>Upload Image</span>
-                    </button>
-                  </div>
-
-                  {/* Render Selected Scanning Method */}
-                  {scanMethod === 'camera' ? (
-                    <CameraScanner
-                      onScanSuccess={handleScanSuccess}
-                      onSwitchToUpload={() => setScanMethod('image')}
-                    />
-                  ) : (
-                    <ImageScanner onScanSuccess={handleScanSuccess} />
-                  )}
-                </div>
-              )}
+        {/* Scanner Card */}
+        <section aria-label="QR Code Scanner Online" className="flex flex-col items-center">
+          {result ? (
+            <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl">
+              <ScanResultCard result={result} onScanAgain={handleScanAgain} />
             </div>
           ) : (
-            <div>
-              <QRGeneratorForm />
+            <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl bg-[#F0EAD6] dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 lg:p-10 shadow-sm">
+              {/* Method Switcher */}
+              <div className="flex items-center justify-center gap-3 mb-8">
+                <button
+                  type="button"
+                  id="scan-tab-camera"
+                  onClick={() => setMethod('camera')}
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer min-h-[44px] ${
+                    method === 'camera'
+                      ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-xs'
+                      : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                  }`}
+                >
+                  <Camera className="w-4 h-4" />
+                  <span>Camera Scanner</span>
+                </button>
+
+                <button
+                  type="button"
+                  id="scan-tab-upload"
+                  onClick={() => setMethod('image')}
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer min-h-[44px] ${
+                    method === 'image'
+                      ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-xs'
+                      : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                  }`}
+                >
+                  <Upload className="w-4 h-4" />
+                  <span>Upload Image</span>
+                </button>
+              </div>
+
+              {/* Scanning Active Component */}
+              {method === 'camera' ? (
+                <CameraScanner
+                  onScanSuccess={handleScanSuccess}
+                  onSwitchToUpload={() => setMethod('image')}
+                />
+              ) : (
+                <ImageScanner onScanSuccess={handleScanSuccess} />
+              )}
+
+              {/* Test Samples Bar for Optical & Safety Validation */}
+              <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800">
+                <div className="flex items-center justify-between mb-2.5">
+                  <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                    Scanner Test Scenarios
+                  </span>
+                  <span className="text-[11px] text-slate-400">Click to verify security &amp; decoding</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    id="test-safe-url-btn"
+                    onClick={() => handleLoadTestSample('https://example.com/getting-started?ref=qr')}
+                    className="px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-950/40 transition cursor-pointer min-h-[38px]"
+                  >
+                    Safe Web URL
+                  </button>
+                  <button
+                    type="button"
+                    id="test-dangerous-scheme-btn"
+                    onClick={() => handleLoadTestSample('javascript:alert(document.domain)')}
+                    className="px-3 py-2 rounded-lg border border-rose-200 dark:border-rose-900/60 bg-rose-50/60 dark:bg-rose-950/30 text-xs font-medium text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900/50 transition cursor-pointer min-h-[38px]"
+                  >
+                    Dangerous Scheme (javascript:)
+                  </button>
+                  <button
+                    type="button"
+                    id="test-data-uri-btn"
+                    onClick={() => handleLoadTestSample('data:text/html,<script>alert("XSS")</script>')}
+                    className="px-2.5 py-1.5 rounded-lg border border-rose-200 dark:border-rose-900/60 bg-rose-50/60 dark:bg-rose-950/30 text-[11px] font-medium text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900/50 transition cursor-pointer min-h-[36px]"
+                  >
+                    Dangerous Data URI
+                  </button>
+                  <button
+                    type="button"
+                    id="test-wifi-btn"
+                    onClick={() => handleLoadTestSample('WIFI:T:WPA;S:StudioGuestWifi;P:SuperSecretPass2026;;')}
+                    className="px-2.5 py-1.5 rounded-lg border border-amber-200 dark:border-amber-900/60 bg-amber-50/60 dark:bg-amber-950/30 text-[11px] font-medium text-amber-700 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-900/50 transition cursor-pointer min-h-[36px]"
+                  >
+                    Wi-Fi Network
+                  </button>
+                  <button
+                    type="button"
+                    id="test-unicode-btn"
+                    onClick={() => handleLoadTestSample('こんにちは世界 🚀 Привет мир مرحبا بالعالم')}
+                    className="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-[11px] font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-750 transition cursor-pointer min-h-[36px]"
+                  >
+                    Unicode Text
+                  </button>
+                </div>
+              </div>
             </div>
           )}
         </section>
 
-        {/* Informational Guides Section */}
-        <section className="border-t border-slate-200/80 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30 py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="space-y-16">
-              {/* Feature Highlights Group */}
-              <div>
-              <div className="text-center max-w-2xl mx-auto mb-10">
-                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
-                  Core Privacy Standards & Capabilities
-                </h2>
-                <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-                  Built from the ground up for zero-knowledge privacy, high performance, and standards compliance.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400 mb-3">
-                    <Lock className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">
-                    Zero Server Uploads
-                  </h3>
-                </div>
-
-                <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400 mb-3">
-                    <ShieldCheck className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">
-                    Malicious Link Defense
-                  </h3>
-                </div>
-
-                <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-50 text-purple-600 dark:bg-purple-950/40 dark:text-purple-400 mb-3">
-                    <Download className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">
-                    PNG & Vector SVG
-                  </h3>
-                </div>
-
-                <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-amber-600 dark:bg-amber-950/40 dark:text-amber-400 mb-3">
-                    <Zap className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">
-                    Offline PWA Capable
-                  </h3>
-                </div>
-              </div>
-            </div>
-
-            {/* How-To Guides Group */}
+        {/* Detailed Semantic Instructions & Technical Guidance */}
+        <section aria-label="Scanner Instructions & Technical Guidelines" className="mt-14">
+          <div className="space-y-8">
             <div>
-              <div className="text-center max-w-2xl mx-auto mb-10">
-                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
-                  Step-by-Step Instructions
-                </h2>
-                <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-                  Easy instructions to quickly scan or create your QR codes.
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                How to Scan QR Codes Online
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Our web application provides two flexible methods to decode any QR code on desktop or mobile browsers.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-2.5 flex items-center gap-2">
+                  <Camera className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                  <span>Using Your Camera (Webcam or Mobile)</span>
+                </h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Click "Start Camera" to activate your webcam or mobile back camera. Grant temporary camera permissions when prompted by your browser. Point your camera at the QR code and align it within the square viewfinder guide.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-7 shadow-xs">
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">
-                    How to Scan a QR Code
-                  </h3>
-                  <ol className="space-y-3.5 text-xs text-slate-600 dark:text-slate-300">
-                    <li className="flex items-start gap-3">
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-700 font-bold dark:bg-blue-900/50 dark:text-blue-300">
-                        1
-                      </span>
-                      <div>
-                        <strong className="text-slate-900 dark:text-white">Choose your input:</strong>{' '}
-                        Click "Start Camera" to scan via webcam or phone camera, or select "Upload Image"
-                        to decode a photo from your files.
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-700 font-bold dark:bg-blue-900/50 dark:text-blue-300">
-                        2
-                      </span>
-                      <div>
-                        <strong className="text-slate-900 dark:text-white">Frame the code:</strong> Position
-                        the QR code squarely inside the viewfinder reticle. Ensure adequate lighting
-                        without strong glare.
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-700 font-bold dark:bg-blue-900/50 dark:text-blue-300">
-                        3
-                      </span>
-                      <div>
-                        <strong className="text-slate-900 dark:text-white">Inspect and interact:</strong>{' '}
-                        The decoded text or URL appears safely formatted. Verify the web address before
-                        clicking "Open Link" or copying to clipboard.
-                      </div>
-                    </li>
-                  </ol>
-                  <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                    <Link
-                      to="/scan"
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700"
-                    >
-                      <span>Go to full scanner workspace</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                    <Link
-                      to="/faq"
-                      className="text-xs text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
-                    >
-                      Scanner FAQ
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-7 shadow-xs">
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">
-                    How to Create a QR Code
-                  </h3>
-                  <ol className="space-y-3.5 text-xs text-slate-600 dark:text-slate-300">
-                    <li className="flex items-start gap-3">
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-700 font-bold dark:bg-blue-900/50 dark:text-blue-300">
-                        1
-                      </span>
-                      <div>
-                        <strong className="text-slate-900 dark:text-white">Select content type:</strong> Pick
-                        Website, Plain Text, Wi-Fi, Email, Phone, or SMS to open the corresponding input
-                        form.
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-700 font-bold dark:bg-blue-900/50 dark:text-blue-300">
-                        2
-                      </span>
-                      <div>
-                        <strong className="text-slate-900 dark:text-white">Customize styling:</strong>{' '}
-                        Adjust resolution, quiet zone margin, and foreground/background colors with our
-                        live contrast analyzer.
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-700 font-bold dark:bg-blue-900/50 dark:text-blue-300">
-                        3
-                      </span>
-                      <div>
-                        <strong className="text-slate-900 dark:text-white">Download and share:</strong> Click
-                        "Download PNG" for digital sharing or "Download SVG" for infinite-scale vector
-                        printing.
-                      </div>
-                    </li>
-                  </ol>
-                  <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                    <Link
-                      to="/create"
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700"
-                    >
-                      <span>Go to full generator workbench</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                    <Link
-                      to="/faq"
-                      className="text-xs text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
-                    >
-                      Generator FAQ
-                    </Link>
-                  </div>
-                </div>
+              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-xs">
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-2.5 flex items-center gap-2">
+                  <Upload className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                  <span>Uploading an Image File</span>
+                </h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Drag and drop or browse for an existing image from your photo library or disk. Supported formats include PNG, JPG, JPEG, and WEBP files up to 10 MB in size.
+                </p>
               </div>
             </div>
-          </div>
+
+            {/* Tips & Privacy Guidelines */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 p-6">
+                <h3 className="flex items-center gap-2 mb-3 text-slate-900 dark:text-white font-bold text-sm">
+                  <Lightbulb className="w-4 h-4 text-amber-500" />
+                  <span>Scanning Tips &amp; Optical Alignment</span>
+                </h3>
+                <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-400">
+                  <li>• Hold the camera steady about 6 to 10 inches away from the QR code.</li>
+                  <li>• Ensure even ambient lighting and avoid harsh glare on glossy screens.</li>
+                  <li>• Clean your smartphone camera lens to avoid fuzzy autofocus.</li>
+                  <li>• If a code is warped or small, take a close-up photo and use Image Upload.</li>
+                </ul>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 p-6">
+                <h3 className="flex items-center gap-2 mb-3 text-slate-900 dark:text-white font-bold text-sm">
+                  <ShieldCheck className="w-4 h-4 text-emerald-500" />
+                  <span>In-Browser Privacy &amp; Safe Navigation</span>
+                </h3>
+                <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-400">
+                  <li>• Zero data transmission: your video frames remain strictly in memory.</li>
+                  <li>• Active defense filters dangerous schemes (javascript:, vbscript:, data:).</li>
+                  <li>• Safe link opening requires explicit user confirmation with no auto-redirect.</li>
+                  <li>• Full hardware release guarantees camera indicators switch off instantly.</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Contextual Cross-Links */}
+            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                  Need to create a new QR code?
+                </h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">
+                  Generate high-resolution PNG or vector SVG codes for URLs, Wi-Fi networks, and contact details.
+                </p>
+              </div>
+              <div className="flex items-center gap-4 shrink-0">
+                <Link
+                  to="/qr-code-generator"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition"
+                >
+                  <span>Create QR Code</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+                <Link
+                  to="/faq"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-blue-600"
+                >
+                  <HelpCircle className="w-3.5 h-3.5" />
+                  <span>Scanner FAQ</span>
+                </Link>
+              </div>
+            </div>
           </div>
         </section>
       </div>

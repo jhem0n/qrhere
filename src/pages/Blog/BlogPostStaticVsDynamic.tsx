@@ -246,7 +246,7 @@ export const BlogPostStaticVsDynamic: React.FC = () => {
               If your content is permanent and you want a private, zero-cost barcode that never relies on
               an ongoing third-party service, you can{' '}
               <Link
-                to="/create"
+                to="/qr-code-generator"
                 className="font-semibold text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300 focus:outline-none focus:ring-1 focus:ring-blue-500 rounded"
               >
                 generate static QR
@@ -492,7 +492,7 @@ export const BlogPostStaticVsDynamic: React.FC = () => {
               <li>
                 <strong>Browser-Based Web Scanner:</strong> If you are on a laptop, desktop, tablet, or a smartphone camera that does not automatically decode barcodes, you can{' '}
                 <Link
-                  to="/scan"
+                  to="/"
                   className="font-semibold text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300 focus:outline-none focus:ring-1 focus:ring-blue-500 rounded"
                 >
                   scan QR code

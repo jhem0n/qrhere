@@ -128,14 +128,14 @@ export const AboutPage: React.FC = () => {
             </div>
             <div className="flex items-center gap-3 shrink-0">
               <Link
-                to="/scan"
+                to="/"
                 className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2 text-xs font-semibold text-white shadow-sm hover:bg-blue-700 transition"
               >
                 <span>Open Scanner</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <Link
-                to="/create"
+                to="/qr-code-generator"
                 className="inline-flex items-center gap-1.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 shadow-sm hover:text-blue-600 transition"
               >
                 <QrCode className="w-3.5 h-3.5" />

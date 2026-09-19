@@ -49,7 +49,7 @@ export const BlogPostVcardQrCode: React.FC = () => {
     {
       question: 'Can I customize colors and add a brand logo to my free vCard QR code?',
       answer:
-        'Yes. On QR Here (https://qrhere.online/create), you can customize pattern colors, adjust corner styles, and embed your company logo directly into the center of the QR code without registering an account or paying subscription fees.',
+        'Yes. On QR Here (https://qrhere.online/qr-code-generator), you can customize pattern colors, adjust corner styles, and embed your company logo directly into the center of the QR code without registering an account or paying subscription fees.',
     },
   ];
 
@@ -233,12 +233,12 @@ export const BlogPostVcardQrCode: React.FC = () => {
                 </div>
                 <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
                   Navigate to the{' '}
-                  <a
-                    href="https://qrhere.online/create"
+                  <Link
+                    to="/qr-code-generator"
                     className="font-semibold text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
                   >
                     QR Here QR Code Generator
-                  </a>{' '}
+                  </Link>{' '}
                   and select the <strong>V-card / Contact</strong> tab from the payload selector.
                 </p>
 
@@ -246,7 +246,7 @@ export const BlogPostVcardQrCode: React.FC = () => {
                 <figure className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 p-4">
                   <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2 flex items-center justify-between">
                     <span>UI Preview • Data Type Selector</span>
-                    <span className="text-blue-600 dark:text-blue-400 font-mono text-[10px]">qrhere.online/create</span>
+                    <span className="text-blue-600 dark:text-blue-400 font-mono text-[10px]">qrhere.online/qr-code-generator</span>
                   </div>
                   <div className="flex flex-wrap gap-1.5 p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
                     <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 opacity-60">
@@ -426,7 +426,11 @@ export const BlogPostVcardQrCode: React.FC = () => {
                 <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
                   Click <strong>Download SVG</strong> for infinite-resolution vector printing on physical
                   cards, badges, and stationery, or download a crisp <strong>PNG</strong> for digital email
-                  signatures and lock-screen wallpapers.
+                  signatures and lock-screen wallpapers. Before sending your cards to print, test your file with our{' '}
+                  <Link to="/" className="font-semibold text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300">
+                    online QR Code Scanner
+                  </Link>{' '}
+                  to confirm all contact details decode seamlessly.
                 </p>
 
                 {/* Screenshot UI Mockup 4 */}

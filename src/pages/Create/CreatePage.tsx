@@ -3,15 +3,23 @@ import { Link } from 'react-router-dom';
 import { PlusCircle, Shield, Layers, Sliders, ArrowRight, Camera, HelpCircle, CheckCircle2 } from 'lucide-react';
 import { SEOHead } from '../../components/common/SEOHead';
 import { Breadcrumbs } from '../../components/common/Breadcrumbs';
-import { SEO_CONFIG } from '../../config/seo.config';
+import { SEO_CONFIG, generateGeneratorAppSchema, generateBreadcrumbSchema } from '../../config/seo.config';
 import { QRGeneratorForm } from '../../components/generator/QRGeneratorForm';
 
 export const CreatePage: React.FC = () => {
-  const breadcrumbs = [{ name: 'Create QR Code', path: '/create' }];
+  const breadcrumbs = [{ name: 'QR Code Generator', path: '/qr-code-generator' }];
+
+  const generatorSchema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      generateGeneratorAppSchema(),
+      generateBreadcrumbSchema(breadcrumbs),
+    ],
+  };
 
   return (
     <>
-      <SEOHead seo={SEO_CONFIG.create} breadcrumbs={breadcrumbs} />
+      <SEOHead seo={SEO_CONFIG.generator} breadcrumbs={breadcrumbs} structuredData={generatorSchema} />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {/* Semantic Breadcrumbs Navigation */}
@@ -125,7 +133,7 @@ export const CreatePage: React.FC = () => {
             </div>
             <div className="flex items-center gap-4 shrink-0">
               <Link
-                to="/scan"
+                to="/"
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition"
               >
                 <Camera className="w-3.5 h-3.5" />

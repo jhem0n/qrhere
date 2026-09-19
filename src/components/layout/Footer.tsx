@@ -40,7 +40,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 text-xs">
               <li>
                 <Link
-                  to="/scan"
+                  to="/"
                   className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
                 >
                   Scan with Camera
@@ -48,7 +48,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
-                  to="/scan"
+                  to="/"
                   className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
                 >
                   Scan from Image File
@@ -56,7 +56,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
-                  to="/create"
+                  to="/qr-code-generator"
                   className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
                 >
                   Create Website QR Code
@@ -64,7 +64,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
-                  to="/create"
+                  to="/qr-code-generator"
                   className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
                 >
                   Create Wi-Fi QR Code

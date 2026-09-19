@@ -40,11 +40,7 @@ function seoFilesPlugin(): Plugin {
     <lastmod>${currentDate}</lastmod>
   </url>
   <url>
-    <loc>https://qrhere.online/scan</loc>
-    <lastmod>${currentDate}</lastmod>
-  </url>
-  <url>
-    <loc>https://qrhere.online/create</loc>
+    <loc>https://qrhere.online/qr-code-generator</loc>
     <lastmod>${currentDate}</lastmod>
   </url>
   <url>
@@ -97,13 +93,12 @@ Sitemap: https://qrhere.online/sitemap.xml
 
   const generateLlmsTxt = (domain: string) => `# QR Here
 
-> Online QR code scanner and generator. Scan with your camera or image files, and generate custom high-resolution QR codes completely in your browser.
+> The QR code scanner online lets you scan QR codes without any app. Upload an image or use your camera to scan a QR code. Also includes custom vector QR code generation completely in your browser.
 
 ## Core Tools
 
-- [QR Code Scanner](${domain}/scan): Scan QR codes directly with your device webcam or by uploading image files. Decoded 100% locally in your browser.
-- [QR Code Generator](${domain}/create): Create customized vector QR codes with colors, dots, corners, and embedded logos with SVG or PNG export.
-- [Homepage](${domain}/): Fast access to browser-based QR code scanning and creation.
+- [QR Code Scanner](${domain}/): Scan QR codes directly with your device webcam or by uploading image files. Decoded 100% locally in your browser with zero server uploads.
+- [QR Code Generator](${domain}/qr-code-generator): Create customized vector QR codes with colors, dots, corners, and embedded logos with SVG or PNG export.
 
 ## Support & Documentation
 
@@ -115,6 +110,12 @@ Sitemap: https://qrhere.online/sitemap.xml
 
 - [Privacy Policy](${domain}/privacy): Clear disclosure explaining our client-side zero-knowledge architecture with no server storage.
 - [Terms of Service](${domain}/terms): Usage conditions, license guidelines, and terms for using QR Here.
+
+## Articles & Guides
+
+- [QR Code Blog](${domain}/blog): Practical tutorials, technical comparisons, and guides on QR codes.
+- [Static vs Dynamic QR Code](${domain}/blog/static-vs-dynamic-qr-code): Comprehensive technical comparison between static and dynamic QR codes.
+- [How to Create a vCard QR Code](${domain}/blog/how-to-create-vcard-qr-code): Guide on generating digital business card QR codes for smartphone address books.
 `;
 
   return {
@@ -210,6 +211,36 @@ Sitemap: https://qrhere.online/sitemap.xml
             fs.mkdirSync(routeDir, { recursive: true });
           }
           fs.writeFileSync(path.join(routeDir, 'index.html'), routeHtml, 'utf-8');
+        }
+
+        // Emit static 301-equivalent redirect fallbacks for legacy URLs
+        const redirects = [
+          { folder: 'scan', destination: `${domain}/` },
+          { folder: 'create', destination: `${domain}/qr-code-generator` },
+          {
+            folder: 'blog/how-to-create-vcard-qr-code-digital-business-cards',
+            destination: `${domain}/blog/how-to-create-vcard-qr-code`,
+          },
+        ];
+        for (const redirect of redirects) {
+          const redirectDir = path.join(distDir, redirect.folder);
+          if (!fs.existsSync(redirectDir)) {
+            fs.mkdirSync(redirectDir, { recursive: true });
+          }
+          const redirectHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0;url=${redirect.destination}">
+  <link rel="canonical" href="${redirect.destination}">
+  <title>Redirecting...</title>
+  <script>window.location.replace("${redirect.destination}");</script>
+</head>
+<body>
+  <p>Redirecting to <a href="${redirect.destination}">${redirect.destination}</a>...</p>
+</body>
+</html>`;
+          fs.writeFileSync(path.join(redirectDir, 'index.html'), redirectHtml, 'utf-8');
         }
       }
     },

@@ -1,4 +1,31 @@
 {
+  "redirects": [
+    {
+      "source": "/create",
+      "destination": "/qr-code-generator",
+      "permanent": true
+    },
+    {
+      "source": "/create/(.*)",
+      "destination": "/qr-code-generator",
+      "permanent": true
+    },
+    {
+      "source": "/scan",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/scan/(.*)",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-create-vcard-qr-code-digital-business-cards",
+      "destination": "/blog/how-to-create-vcard-qr-code",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
