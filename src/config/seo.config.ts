@@ -127,6 +127,15 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
     canonicalPath: '/blog/how-to-create-vcard-qr-code',
     ogType: 'article',
   },
+  blogScanWithoutApp: {
+    title: 'How to Scan a QR Code Without an App | QR Here',
+    description:
+      'Learn how to scan QR codes on iPhone, Android, and PC without installing third-party apps. Step-by-step camera and browser scanner guide.',
+    keywords:
+      'how to scan qr code without app, scan qr code online, scan qr code from screenshot, camera qr scanner, scan qr code without downloading app, browser qr code scanner',
+    canonicalPath: '/blog/how-to-scan-qr-code-without-app',
+    ogType: 'article',
+  },
   notFound: {
     title: '404 - Page Not Found | QR Here',
     description: 'The requested page could not be found on QR Here.',

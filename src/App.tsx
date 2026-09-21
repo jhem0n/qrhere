@@ -13,6 +13,7 @@ import { TermsPage } from './pages/Terms/TermsPage';
 import { BlogIndexPage } from './pages/Blog/BlogIndexPage';
 import { BlogPostStaticVsDynamic } from './pages/Blog/BlogPostStaticVsDynamic';
 import { BlogPostVcardQrCode } from './pages/Blog/BlogPostVcardQrCode';
+import { BlogPostScanWithoutApp } from './pages/Blog/BlogPostScanWithoutApp';
 import { NotFoundPage } from './pages/NotFound/NotFoundPage';
 
 export default function App() {
@@ -35,6 +36,10 @@ export default function App() {
           <Route
             path="/blog/how-to-create-vcard-qr-code-digital-business-cards"
             element={<Navigate to="/blog/how-to-create-vcard-qr-code" replace />}
+          />
+          <Route
+            path="/blog/how-to-scan-qr-code-without-app"
+            element={<BlogPostScanWithoutApp />}
           />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />

@@ -21,6 +21,7 @@
 ## Articles & Guides
 
 - [QR Code Blog](https://qrhere.online/blog): Practical tutorials, technical comparisons, and guides on QR codes.
-- [Static vs Dynamic QR Code](https://qrhere.online/blog/static-vs-dynamic-qr-code): Comprehensive technical comparison between static and dynamic QR codes.
+- [How to Scan a QR Code Without an App](https://qrhere.online/blog/how-to-scan-qr-code-without-app): Step-by-step guide to scanning QR codes using your phone camera, web browser, or screenshots without installing third-party apps.
 - [How to Create a vCard QR Code](https://qrhere.online/blog/how-to-create-vcard-qr-code): Guide on generating digital business card QR codes for smartphone address books.
+- [Static vs Dynamic QR Code](https://qrhere.online/blog/static-vs-dynamic-qr-code): Comprehensive technical comparison between static and dynamic QR codes.
 

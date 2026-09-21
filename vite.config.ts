@@ -56,6 +56,10 @@ function seoFilesPlugin(): Plugin {
     <lastmod>${currentDate}</lastmod>
   </url>
   <url>
+    <loc>https://qrhere.online/blog/how-to-scan-qr-code-without-app</loc>
+    <lastmod>${currentDate}</lastmod>
+  </url>
+  <url>
     <loc>https://qrhere.online/faq</loc>
     <lastmod>${currentDate}</lastmod>
   </url>
@@ -114,8 +118,9 @@ Sitemap: https://qrhere.online/sitemap.xml
 ## Articles & Guides
 
 - [QR Code Blog](${domain}/blog): Practical tutorials, technical comparisons, and guides on QR codes.
-- [Static vs Dynamic QR Code](${domain}/blog/static-vs-dynamic-qr-code): Comprehensive technical comparison between static and dynamic QR codes.
+- [How to Scan a QR Code Without an App](${domain}/blog/how-to-scan-qr-code-without-app): Step-by-step guide to scanning QR codes using your phone camera, web browser, or screenshots without installing third-party apps.
 - [How to Create a vCard QR Code](${domain}/blog/how-to-create-vcard-qr-code): Guide on generating digital business card QR codes for smartphone address books.
+- [Static vs Dynamic QR Code](${domain}/blog/static-vs-dynamic-qr-code): Comprehensive technical comparison between static and dynamic QR codes.
 `;
 
   return {
