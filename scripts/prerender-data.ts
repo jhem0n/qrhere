@@ -345,55 +345,92 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
       { name: 'Blog', path: '/blog' },
     ],
     htmlContent: `
-      <section class="max-w-4xl mx-auto px-4 py-8">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
-          Blog
-        </h1>
-        <p class="text-base text-slate-600 max-w-2xl leading-relaxed mb-8">
-          Learn about QR codes, scanning, generation, static and dynamic QR codes, and practical tips with simple guides and tutorials.
-        </p>
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <h1 class="sr-only">Blog</h1>
 
-        <div class="space-y-6">
-          <article class="p-6 rounded-2xl border border-slate-200 bg-white">
-            <h2 class="text-xl font-bold text-slate-900 mb-2">
-              <a href="/blog/how-to-scan-qr-code-without-app" class="text-blue-600 underline">
-                How to Scan a QR Code Without Installing an App
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          <article class="flex flex-col rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+            <div class="w-full aspect-[16/9] bg-slate-100 flex flex-col items-center justify-center text-slate-400 border-b border-slate-200">
+              <span class="text-xs font-semibold uppercase tracking-wider">Featured Image</span>
+            </div>
+            <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+              <div>
+                <h2 class="text-2xl font-bold text-slate-900 mb-3">
+                  <a href="/blog/how-to-create-wifi-qr-code" class="text-blue-600 underline">
+                    How to Create a WiFi QR Code (Free, No App)
+                  </a>
+                </h2>
+                <p class="text-base text-slate-600 leading-relaxed mb-6">
+                  Stop reading your WiFi password out loud. Learn how to make a free WiFi QR code guests can scan to connect instantly — no app, no sign-up, no typing.
+                </p>
+              </div>
+              <a href="/blog/how-to-create-wifi-qr-code" class="inline-block px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-blue-600 self-start">
+                Read Article
               </a>
-            </h2>
-            <p class="text-sm text-slate-600 leading-relaxed mb-4">
-              You do not need to download an ad-filled scanner app from an app store. Here is how to scan QR codes using your iPhone, Android, or desktop computer, plus how to decode codes straight from screenshots.
-            </p>
-            <a href="/blog/how-to-scan-qr-code-without-app" class="inline-block px-4 py-2 rounded-xl text-sm font-semibold text-white bg-blue-600">
-              Read Article
-            </a>
+            </div>
           </article>
 
-          <article class="p-6 rounded-2xl border border-slate-200 bg-white">
-            <h2 class="text-xl font-bold text-slate-900 mb-2">
-              <a href="/blog/how-to-create-vcard-qr-code" class="text-blue-600 underline">
-                How to Create a vCard QR Code for Digital Business Cards
+          <article class="flex flex-col rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+            <div class="w-full aspect-[16/9] bg-slate-100 flex flex-col items-center justify-center text-slate-400 border-b border-slate-200">
+              <span class="text-xs font-semibold uppercase tracking-wider">Featured Image</span>
+            </div>
+            <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+              <div>
+                <h2 class="text-2xl font-bold text-slate-900 mb-3">
+                  <a href="/blog/how-to-scan-qr-code-without-app" class="text-blue-600 underline">
+                    How to Scan a QR Code Without Installing an App
+                  </a>
+                </h2>
+                <p class="text-base text-slate-600 leading-relaxed mb-6">
+                  You do not need to download an ad-filled scanner app from an app store. Here is how to scan QR codes using your iPhone, Android, or desktop computer, plus how to decode codes straight from screenshots.
+                </p>
+              </div>
+              <a href="/blog/how-to-scan-qr-code-without-app" class="inline-block px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-blue-600 self-start">
+                Read Article
               </a>
-            </h2>
-            <p class="text-sm text-slate-600 leading-relaxed mb-4">
-              Put your contact details directly into a QR code for your business card. Contacts can scan it with their standard camera and save your name, phone number, and email straight to their address book.
-            </p>
-            <a href="/blog/how-to-create-vcard-qr-code" class="inline-block px-4 py-2 rounded-xl text-sm font-semibold text-white bg-blue-600">
-              Read Article
-            </a>
+            </div>
           </article>
 
-          <article class="p-6 rounded-2xl border border-slate-200 bg-white">
-            <h2 class="text-xl font-bold text-slate-900 mb-2">
-              <a href="/blog/static-vs-dynamic-qr-code" class="text-blue-600 underline">
-                Static vs Dynamic QR Codes: What’s the Difference?
+          <article class="flex flex-col rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+            <div class="w-full aspect-[16/9] bg-slate-100 flex flex-col items-center justify-center text-slate-400 border-b border-slate-200">
+              <span class="text-xs font-semibold uppercase tracking-wider">Featured Image</span>
+            </div>
+            <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+              <div>
+                <h2 class="text-2xl font-bold text-slate-900 mb-3">
+                  <a href="/blog/how-to-create-vcard-qr-code" class="text-blue-600 underline">
+                    How to Create a vCard QR Code for Digital Business Cards
+                  </a>
+                </h2>
+                <p class="text-base text-slate-600 leading-relaxed mb-6">
+                  Put your contact details directly into a QR code for your business card. Contacts can scan it with their standard camera and save your name, phone number, and email straight to their address book.
+                </p>
+              </div>
+              <a href="/blog/how-to-create-vcard-qr-code" class="inline-block px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-blue-600 self-start">
+                Read Article
               </a>
-            </h2>
-            <p class="text-sm text-slate-600 leading-relaxed mb-4">
-              Learn how static and dynamic QR codes store data differently, why static codes never expire, and how to choose the right format for your flyers, business cards, or product packaging.
-            </p>
-            <a href="/blog/static-vs-dynamic-qr-code" class="inline-block px-4 py-2 rounded-xl text-sm font-semibold text-white bg-blue-600">
-              Read Article
-            </a>
+            </div>
+          </article>
+
+          <article class="flex flex-col rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+            <div class="w-full aspect-[16/9] bg-slate-100 overflow-hidden border-b border-slate-200">
+              <img src="/images/static-vs-dynamic-qr-code.jpg" onerror="this.src='/images/static-vs-dynamic-qr-code.svg'" alt="Static vs Dynamic QR Codes Infographic" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+              <div>
+                <h2 class="text-2xl font-bold text-slate-900 mb-3">
+                  <a href="/blog/static-vs-dynamic-qr-code" class="text-blue-600 underline">
+                    Static vs Dynamic QR Codes: What’s the Difference?
+                  </a>
+                </h2>
+                <p class="text-base text-slate-600 leading-relaxed mb-6">
+                  Learn how static and dynamic QR codes store data differently, why static codes never expire, and how to choose the right format for your flyers, business cards, or product packaging.
+                </p>
+              </div>
+              <a href="/blog/static-vs-dynamic-qr-code" class="inline-block px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-blue-600 self-start">
+                Read Article
+              </a>
+            </div>
           </article>
         </div>
       </section>
@@ -418,9 +455,23 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
         <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
           Static vs Dynamic QR Codes: What’s the Difference?
         </h1>
-        <p class="text-base text-slate-600 leading-relaxed mb-8">
+        <p class="text-base text-slate-600 leading-relaxed mb-6">
           Learn the difference between static and dynamic QR codes, how they work, their key benefits, limitations, and which type to use.
         </p>
+
+        <figure class="my-8 rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-sm">
+          <img
+            src="/images/static-vs-dynamic-qr-code.jpg"
+            onerror="this.src='/images/static-vs-dynamic-qr-code.svg'"
+            alt="Static vs Dynamic QR Codes: The Difference Revealed Infographic comparing permanence and privacy with flexibility and analytics"
+            class="w-full h-auto object-contain"
+            width="1200"
+            height="900"
+          />
+          <figcaption class="text-center text-xs text-slate-500 py-3 px-4 bg-slate-50 border-t border-slate-100">
+            Static QR codes encode data permanently with zero server reliance, while dynamic QR codes route through a redirection server for editable destinations and scan analytics.
+          </figcaption>
+        </figure>
 
         <section class="space-y-6 text-sm text-slate-700 leading-relaxed">
           <div>
@@ -526,6 +577,194 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
           <div>
             <h2 class="text-xl font-bold text-slate-900 mb-2">Creating QR Codes</h2>
             <p>If you need to make your own high-contrast, easily scannable QR code, use our free <a href="/qr-code-generator" class="text-blue-600 underline font-medium">QR code generator</a>.</p>
+          </div>
+        </section>
+      </article>
+    `,
+  },
+  {
+    path: '/qr-code-security',
+    folder: 'qr-code-security',
+    title: 'QR Code Security Guide: How to Scan QR Codes Safely | QR Here',
+    description:
+      'Learn how QR code phishing and quishing work, how to spot suspicious QR codes and URLs, and practical steps for safer QR code scanning.',
+    keywords:
+      'QR code security, QR code phishing, quishing, QR code scams, malicious QR codes, safe QR scanning, how to scan a QR code safely, QR code safety, QR code privacy, QR code scanner online, suspicious QR code, malicious QR code, QR phishing attacks',
+    heading: 'QR Code Security Guide: How to Scan QR Codes Safely',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      {
+        name: 'QR Code Security',
+        path: '/qr-code-security',
+      },
+    ],
+    htmlContent: `
+      <article class="max-w-4xl mx-auto px-4 py-8">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+          QR Code Security Guide: How to Scan QR Codes Safely
+        </h1>
+        <p class="text-base text-slate-600 leading-relaxed mb-6">
+          QR codes are convenient. You can use one to open a restaurant menu, pay for parking, join a Wi-Fi network, open a website, or get information from a poster. The problem is that a QR code does not tell you whether its destination is trustworthy. That is why QR code security is less about the square pattern itself and more about checking where the code takes you before you trust what you see.
+        </p>
+
+        <section class="space-y-6 text-sm text-slate-700 leading-relaxed">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">What is QR code phishing?</h2>
+            <p>QR code phishing is an attack that uses a QR code instead of, or alongside, a normal clickable link. The attacker creates a QR code pointing to a fraudulent website. The surrounding message may pretend to come from a bank, postal courier, employer, or government agency with the goal of harvesting credentials or stealing payments.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">What is quishing?</h2>
+            <p>Quishing is short for "QR code phishing." The malicious URL is hidden inside a QR code, which can make the attack harder to notice because users focus on the visual image rather than the destination link. The FBI has documented quishing campaigns where malicious QR codes embedded in phishing messages directed victims to fraudulent websites.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">How can a QR code hide a malicious URL?</h2>
+            <p>A QR code is simply machine-readable data. That data can be a web address, plain text, or custom URI scheme. When a QR code stores a URL, the physical image does not visually show whether it points to the genuine website or a deceptive spoofed domain. The safest habit is to inspect the decoded destination before opening it in your browser.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">How to inspect a QR destination</h2>
+            <p>Scanning a QR code does not mean you must immediately visit the resulting site. When your scanner decodes the payload, examine the domain carefully for misspelled brand names, abnormal top-level domains, unexpected subdomains, or suspicious URL paths. Remember that HTTPS only encrypts the connection; it does not prove that a website is trustworthy.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Fake QR-code stickers</h2>
+            <p>Scammers can print malicious QR code stickers and physically paste them over authentic codes on parking meters, restaurant tables, posters, and public transit kiosks. Before scanning a physical code, check whether an adhesive decal has been placed over an existing sign.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">QR codes in phishing emails and text messages</h2>
+            <p>Be skeptical when an unexpected QR code arrives via email or SMS with an urgent demand to verify an account or pay an overdue bill. Instead of scanning the code, open a browser and navigate directly to the company's verified website.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Dangerous URL schemes</h2>
+            <p>Not every QR code contains a standard web link. Codes can store dangerous URI schemes like javascript: or data: that can execute arbitrary script or embed malicious forms. Scanners must treat all decoded content as untrusted input and avoid executing code automatically.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">How to scan a QR code safely</h2>
+            <p>Scan only codes from sources you trust, preview the decoded URL before opening, verify domain spelling, question urgent demands for sensitive data, and keep your phone and browser software updated with the latest security patches.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Browser-based QR scanning</h2>
+            <p>You can use our free in-browser <a href="/" class="text-blue-600 underline font-medium">QR code scanner</a> to decode codes via your webcam or uploaded photos without installing third-party apps that bundle advertisements or trackers. Every frame is processed client-side with zero server uploads.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">QR code privacy</h2>
+            <p>QR codes can store private URLs, Wi-Fi credentials, contact cards, or account details. Think carefully before encoding sensitive data with a <a href="/qr-code-generator" class="text-blue-600 underline font-medium">QR code generator</a> or sharing codes publicly. Review our <a href="/privacy" class="text-blue-600 underline font-medium">Privacy Policy</a> to understand our zero-knowledge approach.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">What if you already scanned a suspicious QR code?</h2>
+            <p>If you scanned a suspicious code, close the browser tab immediately. If you submitted passwords, change them across all accounts right away and enable multi-factor authentication. If you entered card numbers, contact your bank to freeze the card.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">A simple QR code safety checklist</h2>
+            <p>Ask yourself: Did I expect this code? Do I trust its source? Does the URL match the genuine domain? Is the domain spelled correctly? Is there artificial urgency? If anything feels suspicious, navigate directly to the official website instead.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Final thoughts</h2>
+            <p>A QR scanner tells you what is encoded in a pattern. It cannot prove that the destination is trustworthy. That final check is always yours to make before entering information or completing payments.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Sources and further reading</h2>
+            <ul class="list-disc pl-5 space-y-1">
+              <li><a href="https://consumer.ftc.gov/consumer-alerts/2023/12/scammers-hide-harmful-links-qr-codes-steal-your-information" class="text-blue-600 underline">FTC: Scammers hide harmful links in QR codes to steal your information</a></li>
+              <li><a href="https://consumer.ftc.gov/consumer-alerts/2026/09/see-qr-code-parked-somewhere-dont-scan-ityet" class="text-blue-600 underline">FTC: See a QR code parked somewhere? Don't scan it...yet!</a></li>
+              <li><a href="https://www.fbi.gov/investigate/cyber/alerts/2025/unsolicited-packages-containing-qr-codes-used-to-initiate-fraud-schemes" class="text-blue-600 underline">FBI: Unsolicited Packages Containing QR Codes Used to Initiate Fraud Schemes</a></li>
+              <li><a href="https://www.fbi.gov/file-repository/cyber-alerts/north-korean-kimsuky-actors-leverage-malicious-qr.pdf" class="text-blue-600 underline">FBI: North Korean Kimsuky Actors Leverage Malicious QR Codes in Spearphishing Campaigns</a></li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Schemes/javascript" class="text-blue-600 underline">MDN Web Docs: javascript: URLs</a></li>
+            </ul>
+          </div>
+        </section>
+      </article>
+    `,
+  },
+  {
+    path: '/blog/how-to-create-wifi-qr-code',
+    folder: 'blog/how-to-create-wifi-qr-code',
+    title: 'How to Create a WiFi QR Code (Free, No App) | QR Here',
+    description:
+      'Stop reading your WiFi password out loud. Learn how to make a free WiFi QR code guests can scan to connect instantly — no app, no sign-up, no typing.',
+    keywords:
+      'wifi qr code, wifi qr code generator, how to create wifi qr code, qr code for wifi password, share wifi with qr code',
+    heading: 'How to Create a WiFi QR Code (Free, No App)',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog' },
+      { name: 'How to Create a WiFi QR Code', path: '/blog/how-to-create-wifi-qr-code' },
+    ],
+    htmlContent: `
+      <article class="max-w-4xl mx-auto px-4 py-8">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+          How to Create a WiFi QR Code (Free, No App)
+        </h1>
+        <p class="text-base text-slate-600 leading-relaxed mb-6">
+          A 2-minute guide to letting guests connect to your WiFi with one scan — no spelled-out passwords, no downloads.
+        </p>
+
+        <section class="space-y-6 text-sm text-slate-700 leading-relaxed">
+          <p>If you've ever had to spell out &ldquo;capital S, lowercase y, dollar sign, seven, three&rdquo; to a guest trying to join your WiFi, you already know why WiFi QR codes exist. Print one, stick it on the wall, and people connect by pointing their camera at it. No app, no typos, no repeating the password for the third time.</p>
+          <p>Here's exactly how to make one — for free, right in your browser.</p>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">What a WiFi QR code actually does</h2>
+            <p>A WiFi QR code isn't a link. It's a small text string encoded into the QR pattern, formatted like <code>WIFI:T:WPA;S:NetworkName;P:Password;;</code>. When a phone camera reads that format, it recognizes it instantly and offers a &ldquo;Join Network&rdquo; button — the password is typed in automatically, behind the scenes.</p>
+            <p>This works natively on iPhones (iOS 11 and later) and nearly all modern Android phones. No extra app needed on either end.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl border-l-4 border-blue-600 bg-slate-50">
+            <p class="font-semibold text-slate-900 mb-1">Skip the manual steps.</p>
+            <p class="mb-3">QR Here's generator builds a properly formatted WiFi QR code in seconds — entirely in your browser, nothing uploaded to a server.</p>
+            <a href="/qr-code-generator" class="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-xs">Create Your WiFi QR Code</a>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">How to create a WiFi QR code</h2>
+            <ol class="list-decimal pl-5 space-y-2">
+              <li><strong>Open the QR generator</strong> and select the WiFi option.</li>
+              <li><strong>Enter your network name (SSID)</strong> exactly as it appears on your router — it's case-sensitive.</li>
+              <li><strong>Add your password</strong> and choose the correct security type: WPA/WPA2 (most common), WPA3, or WEP for older routers. If your network has no password, select &ldquo;no encryption.&rdquo;</li>
+              <li><strong>Check &ldquo;hidden network&rdquo;</strong> only if your SSID doesn't broadcast publicly.</li>
+              <li><strong>Customize it (optional).</strong> Add your logo, adjust colors, or apply a frame so it fits your space.</li>
+              <li><strong>Download</strong> as SVG for sharp printing at any size, or PNG for digital use.</li>
+            </ol>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Where WiFi QR codes are genuinely useful</h2>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Airbnbs and guest rooms</strong> — leave it on a card by the bed instead of a sticky note.</li>
+              <li><strong>Cafes and restaurants</strong> — print it on the table or receipt.</li>
+              <li><strong>Offices</strong> — a laminated card at reception saves IT from repeating the guest password all day.</li>
+              <li><strong>Home</strong> — frame it near the router so family and friends stop asking.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Before you print it</h2>
+            <p>Test the code with two or three different phones first — don't assume it works just because it looks right. Keep a quiet white border around the code (no text or logos crowding the edges), and if you're adding a center logo, make sure your generator applies high error correction, or the code may fail to scan once printed.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">Is it safe to share your WiFi password this way?</h2>
+            <p>Yes, as long as the QR code was generated locally in your browser rather than sent to someone else's server. QR Here never uploads or stores what you type — the code is built entirely on your device, so your password never leaves your screen.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-3">Quick answers</h2>
+            <div class="space-y-3">
+              <p><strong>Does the WiFi QR code expire?</strong><br>No. It works for as long as the network name and password stay the same. Change your WiFi password, and you'll need a new code.</p>
+              <p><strong>Can I make one for a hidden network?</strong><br>Yes — just tick the hidden network option when generating it so scanners know to look for it.</p>
+              <p><strong>Will it work on older phones?</strong><br>Most phones from the last several years support it natively. Very old devices may need a separate QR scanner app to read the code, though they'll still connect fine once scanned.</p>
+            </div>
           </div>
         </section>
       </article>

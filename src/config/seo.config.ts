@@ -136,6 +136,24 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
     canonicalPath: '/blog/how-to-scan-qr-code-without-app',
     ogType: 'article',
   },
+  blogWifiQrCode: {
+    title: 'How to Create a WiFi QR Code (Free, No App) | QR Here',
+    description:
+      'Stop reading your WiFi password out loud. Learn how to make a free WiFi QR code guests can scan to connect instantly — no app, no sign-up, no typing.',
+    keywords:
+      'wifi qr code, wifi qr code generator, how to create wifi qr code, qr code for wifi password, share wifi with qr code',
+    canonicalPath: '/blog/how-to-create-wifi-qr-code',
+    ogType: 'article',
+  },
+  qrCodeSecurity: {
+    title: 'QR Code Security Guide: How to Scan QR Codes Safely | QR Here',
+    description:
+      'Learn how QR code phishing and quishing work, how to spot suspicious QR codes and URLs, and practical steps for safer QR code scanning.',
+    keywords:
+      'QR code security, QR code phishing, quishing, QR code scams, malicious QR codes, safe QR scanning, how to scan a QR code safely, QR code safety, QR code privacy, QR code scanner online, suspicious QR code, malicious QR code, QR phishing attacks',
+    canonicalPath: '/qr-code-security',
+    ogType: 'article',
+  },
   notFound: {
     title: '404 - Page Not Found | QR Here',
     description: 'The requested page could not be found on QR Here.',

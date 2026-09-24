@@ -33,9 +33,11 @@ const EXPECTED_ROUTES = [
   'https://qrhere.online/blog/static-vs-dynamic-qr-code',
   'https://qrhere.online/blog/how-to-create-vcard-qr-code',
   'https://qrhere.online/blog/how-to-scan-qr-code-without-app',
+  'https://qrhere.online/blog/how-to-create-wifi-qr-code',
   'https://qrhere.online/faq',
   'https://qrhere.online/about',
   'https://qrhere.online/contact',
+  'https://qrhere.online/qr-code-security',
   'https://qrhere.online/privacy',
   'https://qrhere.online/terms',
 ];

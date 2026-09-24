@@ -60,6 +60,10 @@ function seoFilesPlugin(): Plugin {
     <lastmod>${currentDate}</lastmod>
   </url>
   <url>
+    <loc>https://qrhere.online/blog/how-to-create-wifi-qr-code</loc>
+    <lastmod>${currentDate}</lastmod>
+  </url>
+  <url>
     <loc>https://qrhere.online/faq</loc>
     <lastmod>${currentDate}</lastmod>
   </url>
@@ -69,6 +73,10 @@ function seoFilesPlugin(): Plugin {
   </url>
   <url>
     <loc>https://qrhere.online/contact</loc>
+    <lastmod>${currentDate}</lastmod>
+  </url>
+  <url>
+    <loc>https://qrhere.online/qr-code-security</loc>
     <lastmod>${currentDate}</lastmod>
   </url>
   <url>
@@ -112,6 +120,7 @@ Sitemap: https://qrhere.online/sitemap.xml
 
 ## Legal & Policies
 
+- [QR Code Security Guide](${domain}/qr-code-security): Practical security guide covering quishing, fake stickers, phishing verification, and safe QR scanning habits.
 - [Privacy Policy](${domain}/privacy): Clear disclosure explaining our client-side zero-knowledge architecture with no server storage.
 - [Terms of Service](${domain}/terms): Usage conditions, license guidelines, and terms for using QR Here.
 

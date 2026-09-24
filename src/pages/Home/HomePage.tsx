@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Camera, Upload, Lightbulb, ShieldCheck, ArrowRight, HelpCircle } from 'lucide-react';
+import { Camera, Upload, ArrowRight, HelpCircle } from 'lucide-react';
 import { SEOHead } from '../../components/common/SEOHead';
 import { SEO_CONFIG, generateWebsiteSchema } from '../../config/seo.config';
 import { CameraScanner } from '../../components/scanner/CameraScanner';
@@ -179,35 +179,6 @@ export const HomePage: React.FC = () => {
                 <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                   Drag and drop or browse for an existing image from your photo library or disk. Supported formats include PNG, JPG, JPEG, and WEBP files up to 10 MB in size.
                 </p>
-              </div>
-            </div>
-
-            {/* Tips & Privacy Guidelines */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 p-6">
-                <h3 className="flex items-center gap-2 mb-3 text-slate-900 dark:text-white font-bold text-sm">
-                  <Lightbulb className="w-4 h-4 text-amber-500" />
-                  <span>Scanning Tips &amp; Optical Alignment</span>
-                </h3>
-                <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-400">
-                  <li>• Hold the camera steady about 6 to 10 inches away from the QR code.</li>
-                  <li>• Ensure even ambient lighting and avoid harsh glare on glossy screens.</li>
-                  <li>• Clean your smartphone camera lens to avoid fuzzy autofocus.</li>
-                  <li>• If a code is warped or small, take a close-up photo and use Image Upload.</li>
-                </ul>
-              </div>
-
-              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 p-6">
-                <h3 className="flex items-center gap-2 mb-3 text-slate-900 dark:text-white font-bold text-sm">
-                  <ShieldCheck className="w-4 h-4 text-emerald-500" />
-                  <span>In-Browser Privacy &amp; Safe Navigation</span>
-                </h3>
-                <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-400">
-                  <li>• Zero data transmission: your video frames remain strictly in memory.</li>
-                  <li>• Active defense filters dangerous schemes (javascript:, vbscript:, data:).</li>
-                  <li>• Safe link opening requires explicit user confirmation with no auto-redirect.</li>
-                  <li>• Full hardware release guarantees camera indicators switch off instantly.</li>
-                </ul>
               </div>
             </div>
 

@@ -81,14 +81,6 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 text-xs">
               <li>
                 <Link
-                  to="/blog"
-                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
-                >
-                  Blog & Guides
-                </Link>
-              </li>
-              <li>
-                <Link
                   to="/about"
                   className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
                 >
@@ -109,6 +101,14 @@ export const Footer: React.FC = () => {
                   className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
                 >
                   FAQ
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/qr-code-security"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
+                >
+                  QR Code Security
                 </Link>
               </li>
               <li>

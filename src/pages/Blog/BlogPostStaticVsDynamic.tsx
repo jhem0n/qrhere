@@ -118,6 +118,24 @@ export const BlogPostStaticVsDynamic: React.FC = () => {
           </p>
         </header>
 
+        {/* Featured Comparison Infographic */}
+        <figure className="my-8 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+          <img
+            src="/images/static-vs-dynamic-qr-code.jpg"
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).src = '/images/static-vs-dynamic-qr-code.svg';
+            }}
+            alt="Static vs Dynamic QR Codes: The Difference Revealed Infographic comparing permanence and privacy with flexibility and analytics"
+            className="w-full h-auto object-contain"
+            loading="eager"
+            width={1200}
+            height={900}
+          />
+          <figcaption className="text-center text-xs text-slate-500 dark:text-slate-400 py-3 px-4 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-800">
+            Static QR codes encode data permanently with zero server reliance, while dynamic QR codes route through a redirection server for editable destinations and scan analytics.
+          </figcaption>
+        </figure>
+
         <div className="text-slate-700 dark:text-slate-300 text-base leading-relaxed space-y-8">
           <section>
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">

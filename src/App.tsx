@@ -14,6 +14,8 @@ import { BlogIndexPage } from './pages/Blog/BlogIndexPage';
 import { BlogPostStaticVsDynamic } from './pages/Blog/BlogPostStaticVsDynamic';
 import { BlogPostVcardQrCode } from './pages/Blog/BlogPostVcardQrCode';
 import { BlogPostScanWithoutApp } from './pages/Blog/BlogPostScanWithoutApp';
+import { BlogPostWifiQrCode } from './pages/Blog/BlogPostWifiQrCode';
+import { QrCodeSecurityPage } from './pages/Security/QrCodeSecurityPage';
 import { NotFoundPage } from './pages/NotFound/NotFoundPage';
 
 export default function App() {
@@ -41,6 +43,11 @@ export default function App() {
             path="/blog/how-to-scan-qr-code-without-app"
             element={<BlogPostScanWithoutApp />}
           />
+          <Route
+            path="/blog/how-to-create-wifi-qr-code"
+            element={<BlogPostWifiQrCode />}
+          />
+          <Route path="/qr-code-security" element={<QrCodeSecurityPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/faq" element={<FAQPage />} />
