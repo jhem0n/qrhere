@@ -76,8 +76,15 @@ export const BlogIndexPage: React.FC = () => {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8 sm:py-10">
         <Breadcrumbs items={breadcrumbs} />
 
-        {/* Accessible Heading for Screen Readers & SEO */}
-        <h1 className="sr-only">Blog</h1>
+        {/* Page Header */}
+        <header className="mb-8 mt-2">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            QR Code Guides &amp; Tutorials
+          </h1>
+          <p className="mt-2 text-base text-slate-600 dark:text-slate-400 max-w-2xl">
+            Practical walkthroughs, scanning guides, and technical advice for creating and scanning QR codes.
+          </p>
+        </header>
 
         {/* 2 Articles per row Grid Layout */}
         <section aria-label="Latest Articles" className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 mt-6 sm:mt-8">

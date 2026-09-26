@@ -35,7 +35,13 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
 
     // Standard meta tags
     setMeta('name', 'description', seo.description);
-    setMeta('name', 'keywords', seo.keywords);
+    
+    // Explicitly remove keywords meta tag if present (per modern SEO best practices)
+    const existingKeywords = document.querySelector('meta[name="keywords"]');
+    if (existingKeywords) {
+      existingKeywords.remove();
+    }
+
     setMeta(
       'name',
       'robots',

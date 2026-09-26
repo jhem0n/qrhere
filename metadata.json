@@ -1,6 +1,6 @@
 {
   "name": "QR Here",
-  "description": "The QR code scanner online lets you scan QR codes without any app. Upload an image or use your camera to scan a QR code.",
+  "description": "Scan QR codes online with your camera or an uploaded image. QR Here lets you scan here directly in your browser without installing an app.",
   "requestFramePermissions": [
     "camera"
   ],

@@ -240,7 +240,15 @@ export const BlogPostScanWithoutApp: React.FC = () => {
             </ul>
             <p>
               Your phone native camera and clean browser tools provide a faster, safer, and ad-free
-              experience.
+              experience. To learn more about identifying suspicious codes and protecting your data,
+              read our{' '}
+              <Link
+                to="/qr-code-security"
+                className="font-semibold text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
+              >
+                QR code security guide
+              </Link>
+              .
             </p>
           </section>
 

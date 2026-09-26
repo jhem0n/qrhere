@@ -119,11 +119,11 @@ export const ImageScanner: React.FC<ImageScannerProps> = ({ onScanSuccess }) => 
             </div>
 
             <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight">
-              Upload QR Code Image
+              Scan QR Code from Image
             </h3>
 
             <p className="mt-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-sm">
-              Drag and drop your QR code image here, or{' '}
+              Drag and drop an image or screenshot to scan here, or{' '}
               <span className="text-blue-600 dark:text-blue-400 font-semibold underline">
                 browse files
               </span>

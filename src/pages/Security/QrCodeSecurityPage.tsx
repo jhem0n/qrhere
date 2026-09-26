@@ -436,6 +436,70 @@ export const QrCodeSecurityPage: React.FC = () => {
 
           <section className="space-y-4 pt-6 border-t border-slate-200 dark:border-slate-800">
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+              Safe Scanning Tools &amp; Related Resources
+            </h2>
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              Practice safe QR scanning and explore our free in-browser tools:
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+              <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1">
+                    Safe QR Scanner
+                  </h3>
+                  <p className="text-xs text-slate-600 dark:text-slate-400">
+                    Inspect and verify decoded URLs before visiting with our free{' '}
+                    <Link
+                      to="/"
+                      className="font-medium text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
+                    >
+                      QR code scanner
+                    </Link>
+                    .
+                  </p>
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1">
+                    Create Safe QR Codes
+                  </h3>
+                  <p className="text-xs text-slate-600 dark:text-slate-400">
+                    Make clean, direct QR codes with no redirect intermediaries using our{' '}
+                    <Link
+                      to="/qr-code-generator"
+                      className="font-medium text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
+                    >
+                      QR code generator
+                    </Link>
+                    .
+                  </p>
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1">
+                    Client-Side Privacy
+                  </h3>
+                  <p className="text-xs text-slate-600 dark:text-slate-400">
+                    Learn about our zero-retention architecture in our{' '}
+                    <Link
+                      to="/privacy"
+                      className="font-medium text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
+                    >
+                      Privacy Policy
+                    </Link>
+                    .
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="space-y-4 pt-6 border-t border-slate-200 dark:border-slate-800">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
               Sources and further reading
             </h2>
             <p className="text-sm text-slate-600 dark:text-slate-400">

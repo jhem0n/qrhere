@@ -31,7 +31,7 @@ export const CreatePage: React.FC = () => {
             QR Code Generator
           </h1>
           <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-            Create custom QR codes with logos, frames, and colors. Download your QR code as SVG or PNG.
+            Create custom QR codes online with logos, colors, and frames. Our free QR code generator lets you make a QR code for links, Wi-Fi networks, and contact cards, and download high-resolution vector SVG or PNG files.
           </p>
         </header>
 
@@ -125,10 +125,10 @@ export const CreatePage: React.FC = () => {
           <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
               <h3 className="text-sm font-bold text-slate-900 dark:text-white">
-                Want to test your printed code?
+                Need to scan a QR code instead?
               </h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">
-                Verify readability instantly using our camera scanner or upload an image sample.
+                Use our free QR code scanner to read codes with your camera or an uploaded image.
               </p>
             </div>
             <div className="flex items-center gap-4 shrink-0">
@@ -137,7 +137,7 @@ export const CreatePage: React.FC = () => {
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition"
               >
                 <Camera className="w-3.5 h-3.5" />
-                <span>Open Scanner</span>
+                <span>QR Code Scanner</span>
               </Link>
               <Link
                 to="/faq"

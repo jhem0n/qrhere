@@ -265,8 +265,11 @@ export const BlogPostWifiQrCode: React.FC = () => {
                   Will it work on older phones?
                 </p>
                 <p className="text-slate-600 dark:text-slate-400 text-sm">
-                  Most phones from the last several years support it natively. Very old devices may need
-                  a separate QR scanner app to read the code, though they will still connect fine once scanned.
+                  Most phones from the last several years support it natively. Older devices can also use our free{' '}
+                  <Link to="/" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">
+                    QR code scanner
+                  </Link>{' '}
+                  directly in their web browser without installing any software.
                 </p>
               </div>
             </div>
