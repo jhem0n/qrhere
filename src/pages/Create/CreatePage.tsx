@@ -4,7 +4,8 @@ import { PlusCircle, Shield, Layers, Sliders, ArrowRight, Camera, HelpCircle, Ch
 import { SEOHead } from '../../components/common/SEOHead';
 import { Breadcrumbs } from '../../components/common/Breadcrumbs';
 import { SEO_CONFIG, generateGeneratorAppSchema, generateBreadcrumbSchema } from '../../config/seo.config';
-import { QRGeneratorForm } from '../../components/generator/QRGeneratorForm';
+import { MasterGenerator } from '../../components/generator/MasterGenerator';
+import { QR_TYPES } from '../../data/qrTypes';
 
 export const CreatePage: React.FC = () => {
   const breadcrumbs = [{ name: 'QR Code Generator', path: '/qr-code-generator' }];
@@ -35,9 +36,9 @@ export const CreatePage: React.FC = () => {
           </p>
         </header>
 
-        {/* Generator Form Section */}
-        <section aria-label="QR Code Generator Form" className="my-6">
-          <QRGeneratorForm />
+        {/* Generator Workbench Section */}
+        <section aria-label="QR Code Generator Studio" className="my-6">
+          <MasterGenerator initialTypeId="url" />
         </section>
 
         {/* Engineering & Design Guidance */}
@@ -120,6 +121,45 @@ export const CreatePage: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* All 14 Dedicated QR Code Formats */}
+          <section aria-label="Explore All QR Code Types" className="space-y-4">
+            <div>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                All 14 Specialized QR Code Generators
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">
+                Each format encodes standard protocols recognized natively by iOS Camera, Android Google Lens, and QR reader apps without third-party software.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {QR_TYPES.map((type) => (
+                <Link
+                  key={type.id}
+                  to={`/${type.slug}`}
+                  className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-400 dark:hover:border-blue-500 shadow-xs transition group flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <span className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
+                        {type.name}
+                      </span>
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
+                        {type.badge}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                      {type.intro}
+                    </p>
+                  </div>
+                  <div className="mt-3 pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] font-semibold text-blue-600 dark:text-blue-400">
+                    <span>Create {type.shortName} QR</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
 
           {/* Contextual Cross-Links */}
           <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">

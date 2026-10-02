@@ -20,9 +20,9 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
   {
     path: '/qr-code-generator',
     folder: 'qr-code-generator',
-    title: 'QR Code Generator | QR Here',
+    title: 'QR Code Generator – Free Custom QR Codes | QR Here',
     description:
-      'Create custom QR codes with logos, frames, and colors. Download your QR code as SVG or PNG.',
+      'Create custom QR codes with logos, colors, and frames for free. Download vector SVG or high-resolution PNG in your browser without an app.',
     keywords:
       'QR code generator, create QR code, QR code generator with logo, custom QR code maker, vector QR code SVG, high resolution QR code PNG, Wi-Fi QR code generator, QR Here',
     heading: 'QR Code Generator',
@@ -82,9 +82,9 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
   {
     path: '/about',
     folder: 'about',
-    title: 'About Us | QR Here',
+    title: 'About QR Here – Private In-Browser QR Tools',
     description:
-      'Learn how QR Here operates entirely in your browser using modern client-side algorithms to ensure total privacy and zero data harvesting.',
+      'Learn how QR Here works entirely in your browser with client-side algorithms, zero server uploads, and total privacy for scanning and creating QR codes.',
     keywords:
       'about QR Here, private QR scanner, client side QR code, browser QR decoding, zero knowledge scanner',
     heading: 'About QR Here',
@@ -138,9 +138,9 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
   {
     path: '/contact',
     folder: 'contact',
-    title: 'Contact Us | QR Here',
+    title: 'Contact Us – Support & Feedback | QR Here',
     description:
-      'Contact the QR Here maintainer for technical support, feedback, bug reports, or feature requests regarding our online QR tools.',
+      'Get in touch with QR Here for support, feature suggestions, or feedback. We are here to help with your QR code scanning and generation needs.',
     keywords: 'contact QR Here, QR code email, QR Here feedback, jhem0n',
     heading: 'Contact',
     breadcrumbs: [
@@ -186,9 +186,9 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
   {
     path: '/faq',
     folder: 'faq',
-    title: 'Frequently Asked Questions | QR Here',
+    title: 'FAQ – QR Code Scanning & Creation Questions | QR Here',
     description:
-      'Clear answers to common questions about scanning with camera or image upload, generating Wi-Fi QR codes, error correction, and privacy safety.',
+      'Find answers to common questions about scanning with camera or image upload, creating custom QR codes, Wi-Fi codes, error correction, and privacy.',
     keywords:
       'QR code FAQ, how to scan QR code, how to create QR code, QR code security, safe QR scanning, Wi-Fi QR code help',
     heading: 'Frequently Asked Questions',
@@ -243,9 +243,9 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
   {
     path: '/privacy',
     folder: 'privacy',
-    title: 'Privacy Policy | QR Here',
+    title: 'Privacy Policy – Zero Data Collection | QR Here',
     description:
-      'Our strict privacy policy. Learn how all QR decoding and generation executes locally in your browser with zero data retention and zero tracking.',
+      'Read our privacy policy. All QR code scanning and generation runs client-side in your browser with zero data logging, zero tracking, and no server uploads.',
     keywords:
       'QR scanner privacy policy, no data collection, private scanner, client side security, zero tracking',
     heading: 'Privacy Policy',
@@ -289,9 +289,9 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
   {
     path: '/terms',
     folder: 'terms',
-    title: 'Terms of Service | QR Here',
+    title: 'Terms of Service – Usage Guidelines | QR Here',
     description:
-      'Terms of service, usage guidelines, and open standard disclaimers for using the QR Here web application.',
+      'Read our terms of service, usage rules, and guidelines for using the QR Here online scanner and QR code generator.',
     keywords: 'terms of service, user agreement, disclaimer, terms of use',
     heading: 'Terms of Service',
     breadcrumbs: [
@@ -334,9 +334,9 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
   {
     path: '/blog',
     folder: 'blog',
-    title: 'QR Code Blog: Guides, Tips & Tutorials | QR Here',
+    title: 'QR Code Blog – Guides, Tips & Tutorials | QR Here',
     description:
-      'Learn about QR codes, scanning, generation, static and dynamic QR codes, and practical tips with simple guides and tutorials.',
+      'Practical guides, tutorials, and tips for scanning and creating QR codes. Learn about static vs dynamic codes, vCards, Wi-Fi codes, and safety.',
     keywords:
       'QR code blog, static vs dynamic QR code, QR code tutorials, QR code guides, QR scanner tips, QR generator guide',
     heading: 'Blog',
@@ -346,7 +346,7 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
     ],
     htmlContent: `
       <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-        <h1 class="sr-only">Blog</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight text-center mb-8">QR Code Guides &amp; Tutorials</h1>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           <article class="flex flex-col rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
@@ -439,9 +439,9 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
   {
     path: '/blog/static-vs-dynamic-qr-code',
     folder: 'blog/static-vs-dynamic-qr-code',
-    title: 'Static vs Dynamic QR Code: What’s the Difference? | QR Here',
+    title: "Static vs Dynamic QR Code – What's the Difference?",
     description:
-      'Learn the difference between static and dynamic QR codes, how they work, their key benefits, limitations, and which type to use.',
+      'Learn the difference between static and dynamic QR codes, how they work, key benefits and limits, and how to choose the right one for your needs.',
     keywords:
       'static vs dynamic QR code, static QR code, dynamic QR code, static QR, dynamic QR, editable QR code, QR code generator, QR code scanner, QR code tracking, QR code analytics',
     heading: 'Static vs Dynamic QR Codes: What’s the Difference?',
@@ -495,9 +495,9 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
   {
     path: '/blog/how-to-create-vcard-qr-code',
     folder: 'blog/how-to-create-vcard-qr-code',
-    title: 'vCard QR Code Generator Free: Create Digital Cards | QR Here',
+    title: 'Free vCard QR Code Generator for Business Cards | QR Here',
     description:
-      'Create digital business card QR codes using a vCard QR code generator free online. Enable instant address book saves with zero apps required. Generate yours now!',
+      'Create a free vCard QR code for your business card. Let contacts save your details directly to their phone address book with a single camera scan.',
     keywords:
       'vcard qr code generator free, digital business card qr code, contact qr code generator, free vcard qr code maker, vcard qr code, digital business cards',
     heading: 'How to Create a vCard QR Code for Digital Business Cards',
@@ -542,7 +542,7 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
     folder: 'blog/how-to-scan-qr-code-without-app',
     title: 'How to Scan a QR Code Without an App | QR Here',
     description:
-      'Learn how to scan QR codes on iPhone, Android, and PC without installing third-party apps. Step-by-step camera and browser scanner guide.',
+      'Learn how to scan QR codes on iPhone, Android, and PC without downloading apps. Step-by-step camera, browser, and screenshot scanning guide.',
     keywords:
       'how to scan qr code without app, scan qr code online, scan qr code from screenshot, camera qr scanner, scan qr code without downloading app, browser qr code scanner',
     heading: 'How to Scan a QR Code Without Installing an App',
@@ -585,9 +585,9 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
   {
     path: '/qr-code-security',
     folder: 'qr-code-security',
-    title: 'QR Code Security Guide: How to Scan QR Codes Safely | QR Here',
+    title: 'QR Code Security Guide – Scan Codes Safely | QR Here',
     description:
-      'Learn how QR code phishing and quishing work, how to spot suspicious QR codes and URLs, and practical steps for safer QR code scanning.',
+      'Learn how QR code phishing and quishing work, how to spot suspicious links, and practical steps to scan QR codes safely without exposing your device.',
     keywords:
       'QR code security, QR code phishing, quishing, QR code scams, malicious QR codes, safe QR scanning, how to scan a QR code safely, QR code safety, QR code privacy, QR code scanner online, suspicious QR code, malicious QR code, QR phishing attacks',
     heading: 'QR Code Security Guide: How to Scan QR Codes Safely',
@@ -690,9 +690,9 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
   {
     path: '/blog/how-to-create-wifi-qr-code',
     folder: 'blog/how-to-create-wifi-qr-code',
-    title: 'How to Create a WiFi QR Code (Free, No App) | QR Here',
+    title: 'How to Create a WiFi QR Code for Free | QR Here',
     description:
-      'Stop reading your WiFi password out loud. Learn how to make a free WiFi QR code guests can scan to connect instantly — no app, no sign-up, no typing.',
+      'Make a free Wi-Fi QR code so guests can join your network instantly with one camera scan. No app, no passwords to spell out, and no sign-up required.',
     keywords:
       'wifi qr code, wifi qr code generator, how to create wifi qr code, qr code for wifi password, share wifi with qr code',
     heading: 'How to Create a WiFi QR Code (Free, No App)',

@@ -1,4 +1,6 @@
 import { APP_CONFIG, getSiteUrl } from './app.config';
+import { SCANNER_KEYWORDS_STRING } from '../data/scannerKeywords';
+import { GENERATOR_KEYWORDS_STRING } from '../data/generatorKeywords';
 
 export interface RouteSEO {
   title: string;
@@ -21,108 +23,112 @@ export interface FAQItemSchema {
 
 export const SEO_CONFIG: Record<string, RouteSEO> = {
   home: {
-    title: 'QR Code Scanner Online — Scan QR Codes from Camera or Image | QR Here',
+    title: 'QR Code Scanner Online – Free, No App Needed | QR Here',
     description:
-      'Scan QR codes online with your camera or an uploaded image. QR Here lets you scan here directly in your browser without installing an app.',
+      'Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.',
+    keywords: SCANNER_KEYWORDS_STRING,
     canonicalPath: '/',
     ogType: 'website',
   },
   generator: {
-    title: 'Free QR Code Generator — Create Custom QR Codes Online | QR Here',
+    title: 'QR Code Generator – Free Custom QR Codes | QR Here',
     description:
-      'Create custom QR codes online with logos, colors, and frames. Generate high-resolution PNG or vector SVG QR codes for free in your browser.',
+      'Create custom QR codes with logos, colors, and frames for free. Download vector SVG or high-resolution PNG in your browser without an app.',
+    keywords: GENERATOR_KEYWORDS_STRING,
     canonicalPath: '/qr-code-generator',
     ogType: 'website',
   },
   // Legacy route aliases for backward compatibility in config lookups
   scan: {
-    title: 'QR Code Scanner Online — Scan QR Codes from Camera or Image | QR Here',
+    title: 'QR Code Scanner Online – Free, No App Needed | QR Here',
     description:
-      'Scan QR codes online with your camera or an uploaded image. QR Here lets you scan here directly in your browser without installing an app.',
+      'Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.',
+    keywords: SCANNER_KEYWORDS_STRING,
     canonicalPath: '/',
     ogType: 'website',
   },
   create: {
-    title: 'Free QR Code Generator — Create Custom QR Codes Online | QR Here',
+    title: 'QR Code Generator – Free Custom QR Codes | QR Here',
     description:
-      'Create custom QR codes online with logos, colors, and frames. Generate high-resolution PNG or vector SVG QR codes for free in your browser.',
+      'Create custom QR codes with logos, colors, and frames for free. Download vector SVG or high-resolution PNG in your browser without an app.',
+    keywords: GENERATOR_KEYWORDS_STRING,
     canonicalPath: '/qr-code-generator',
     ogType: 'website',
   },
   about: {
-    title: 'About Us — Private In-Browser QR Tools | QR Here',
+    title: 'About QR Here – Private In-Browser QR Tools',
     description:
-      'Learn how QR Here operates in your browser using client-side algorithms to provide fast, private QR code scanning and generation.',
+      'Learn how QR Here works entirely in your browser with client-side algorithms, zero server uploads, and total privacy for scanning and creating QR codes.',
     canonicalPath: '/about',
     ogType: 'website',
   },
   contact: {
-    title: 'Contact Us | QR Here',
+    title: 'Contact Us – Support & Feedback | QR Here',
     description:
-      'Contact the QR Here maintainer for technical support, feedback, bug reports, or feature requests regarding our online QR tools.',
+      'Get in touch with QR Here for support, feature suggestions, or feedback. We are here to help with your QR code scanning and generation needs.',
     canonicalPath: '/contact',
     ogType: 'website',
   },
   faq: {
-    title: 'Frequently Asked Questions — QR Scanning & Creation | QR Here',
+    title: 'FAQ – QR Code Scanning & Creation Questions | QR Here',
     description:
-      'Clear answers to common questions about scanning with camera or image upload, generating custom QR codes, error correction, and privacy.',
+      'Find answers to common questions about scanning with camera or image upload, creating custom QR codes, Wi-Fi codes, error correction, and privacy.',
     canonicalPath: '/faq',
     ogType: 'website',
   },
   privacy: {
-    title: 'Privacy Policy | QR Here',
+    title: 'Privacy Policy – Zero Data Collection | QR Here',
     description:
-      'Our privacy policy. Learn how all QR decoding and generation executes locally in your browser with zero data retention and zero tracking.',
+      'Read our privacy policy. All QR code scanning and generation runs client-side in your browser with zero data logging, zero tracking, and no server uploads.',
     canonicalPath: '/privacy',
     ogType: 'website',
   },
   terms: {
-    title: 'Terms of Service | QR Here',
+    title: 'Terms of Service – Usage Guidelines | QR Here',
     description:
-      'Terms of service, usage guidelines, and open standard disclaimers for using the QR Here web application.',
+      'Read our terms of service, usage rules, and guidelines for using the QR Here online scanner and QR code generator.',
     canonicalPath: '/terms',
     ogType: 'website',
   },
   blog: {
-    title: 'QR Code Blog: Guides, Tips & Tutorials | QR Here',
+    title: 'QR Code Blog – Guides, Tips & Tutorials | QR Here',
     description:
-      'Learn about QR codes, scanning, generation, static and dynamic QR codes, and practical tips with simple guides and tutorials.',
+      'Practical guides, tutorials, and tips for scanning and creating QR codes. Learn about static vs dynamic codes, vCards, Wi-Fi codes, and safety.',
     canonicalPath: '/blog',
     ogType: 'website',
   },
   blogStaticVsDynamic: {
-    title: 'Static vs Dynamic QR Code: What’s the Difference? | QR Here',
+    title: "Static vs Dynamic QR Code – What's the Difference?",
     description:
-      'Learn the difference between static and dynamic QR codes, how they work, their key benefits, limitations, and which type to use.',
+      'Learn the difference between static and dynamic QR codes, how they work, key benefits and limits, and how to choose the right one for your needs.',
     canonicalPath: '/blog/static-vs-dynamic-qr-code',
     ogType: 'article',
   },
   blogVcardBusinessCards: {
-    title: 'vCard QR Code Generator Free: Create Digital Cards | QR Here',
+    title: 'Free vCard QR Code Generator for Business Cards | QR Here',
     description:
-      'Create digital business card QR codes using a vCard QR code generator free online. Enable instant address book saves with zero apps required. Generate yours now!',
+      'Create a free vCard QR code for your business card. Let contacts save your details directly to their phone address book with a single camera scan.',
     canonicalPath: '/blog/how-to-create-vcard-qr-code',
     ogType: 'article',
   },
   blogScanWithoutApp: {
     title: 'How to Scan a QR Code Without an App | QR Here',
     description:
-      'Learn how to scan QR codes on iPhone, Android, and PC without installing third-party apps. Step-by-step camera and browser scanner guide.',
+      'Learn how to scan QR codes on iPhone, Android, and PC without downloading apps. Step-by-step camera, browser, and screenshot scanning guide.',
     canonicalPath: '/blog/how-to-scan-qr-code-without-app',
     ogType: 'article',
   },
   blogWifiQrCode: {
-    title: 'How to Create a WiFi QR Code (Free, No App) | QR Here',
+    title: 'How to Create a WiFi QR Code for Free | QR Here',
     description:
-      'Stop reading your WiFi password out loud. Learn how to make a free WiFi QR code guests can scan to connect instantly — no app, no sign-up, no typing.',
+      'Make a free Wi-Fi QR code so guests can join your network instantly with one camera scan. No app, no passwords to spell out, and no sign-up required.',
     canonicalPath: '/blog/how-to-create-wifi-qr-code',
     ogType: 'article',
   },
   qrCodeSecurity: {
-    title: 'QR Code Security Guide: How to Scan QR Codes Safely | QR Here',
+    title: 'QR Code Security Guide – Scan Codes Safely | QR Here',
     description:
-      'Learn how QR code phishing and quishing work, how to spot suspicious QR codes and URLs, and practical steps for safer QR code scanning.',
+      'Learn how QR code phishing and quishing work, how to spot suspicious links, and practical steps to scan QR codes safely without exposing your device.',
     canonicalPath: '/qr-code-security',
     ogType: 'article',
   },
@@ -134,6 +140,42 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
     noIndex: true,
   },
 };
+
+/**
+ * Common Homepage FAQs used for visible content and JSON-LD structured data
+ */
+export const HOMEPAGE_FAQS: FAQItemSchema[] = [
+  {
+    question: 'Is QR Here free?',
+    answer:
+      'Yes, QR Here is 100% free to use. There are no subscriptions, hidden fees, scan limits, or watermarks.',
+  },
+  {
+    question: 'Does it work on iPhone and Android?',
+    answer:
+      'Yes. QR Here works seamlessly on iPhones, iPads, Android smartphones, tablets, Windows PCs, and Macs using any modern web browser.',
+  },
+  {
+    question: 'Do you store my camera feed or images?',
+    answer:
+      'No. All scanning and decoding runs completely in your web browser. Your camera feed and uploaded images never leave your device and are never sent to or stored on any server.',
+  },
+  {
+    question: 'Do I need to install an app or sign up?',
+    answer:
+      'No installation or account registration is required. You can scan or create QR codes immediately directly in your browser without entering an email or password.',
+  },
+  {
+    question: 'Which image formats are supported?',
+    answer:
+      'You can upload QR code images and screenshots in PNG, JPG, and WEBP formats up to 10 MB in file size.',
+  },
+  {
+    question: 'How do I create my own QR code?',
+    answer:
+      'You can generate your own custom QR code using our free QR code generator. Choose from options like website links, Wi-Fi networks, contact cards, and plain text, customize colors, and download as SVG or PNG.',
+  },
+];
 
 /**
  * Generates Schema.org WebSite entity
@@ -156,11 +198,11 @@ export function generateWebApplicationSchema(siteUrl: string = getSiteUrl()) {
   return {
     '@type': 'WebApplication',
     '@id': `${siteUrl}/#webapp`,
-    name: `${APP_CONFIG.name} - QR Code Scanner`,
+    name: 'QR Here',
     url: siteUrl,
     description:
-      'Scan QR codes online with your camera or an uploaded image. QR Here lets you scan here directly in your browser without installing an app.',
-    applicationCategory: 'UtilityApplication',
+      'Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.',
+    applicationCategory: 'UtilitiesApplication',
     operatingSystem: 'Any',
     browserRequirements: 'Requires JavaScript. Requires HTML5 Canvas or WebAssembly support.',
     softwareVersion: APP_CONFIG.version,
@@ -170,12 +212,11 @@ export function generateWebApplicationSchema(siteUrl: string = getSiteUrl()) {
       priceCurrency: 'USD',
     },
     featureList: [
-      'Live Camera QR Code Scanning with Instant Autofocus',
-      'High-Speed Image File QR Code Decoding (PNG, JPG, WEBP)',
-      'Custom QR Code Vector Generator (SVG and PNG)',
-      'Wi-Fi Network, Contact, and URL Presets',
-      '100% In-Browser Privacy Protection with Zero Server Uploads',
-      'Automated Malicious URL Scheme Filtering',
+      'Live Camera QR Code Scanning in Browser',
+      'Image and Screenshot QR Code Decoding (PNG, JPG, WEBP)',
+      'Custom Vector QR Code Generator (SVG and PNG)',
+      'Wi-Fi, vCard Contact, SMS, and URL Presets',
+      '100% Client-Side In-Browser Decoding with Zero Server Storage',
     ],
   };
 }

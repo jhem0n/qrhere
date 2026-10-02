@@ -1,6 +1,33 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      /* Ensure window.fetch has a setter in sandboxed/getter-only iframe environments */
+      (function() {
+        try {
+          if (typeof window !== 'undefined') {
+            var origFetch = window.fetch;
+            var currentFetch = origFetch ? origFetch.bind(window) : null;
+            try {
+              Object.defineProperty(window, 'fetch', {
+                get: function() { return currentFetch; },
+                set: function(fn) { currentFetch = fn; },
+                configurable: true,
+                enumerable: true
+              });
+            } catch (_) {
+              try {
+                Object.defineProperty(window, 'fetch', {
+                  value: origFetch,
+                  writable: true,
+                  configurable: true
+                });
+              } catch (__) {}
+            }
+          }
+        } catch (_) {}
+      })();
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJDCL6XYYB"></script>
     <script>
@@ -22,11 +49,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     
     <!-- Title & SEO Meta synchronized with metadata.json -->
-    <title>QR Code Scanner Online — Scan QR Codes from Camera or Image | QR Here</title>
+    <title>QR Code Scanner Online – Free, No App Needed | QR Here</title>
     <meta
       name="description"
-      content="Scan QR codes online with your camera or an uploaded image. QR Here lets you scan here directly in your browser without installing an app."
+      content="Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed."
     />
+    <meta name="keywords" content="scan here, qr code here, scan qr here, scan here!, scan here qr code, scane here, scan barcode here, scan here to learn more, how to scan without scanner, scan here to get started, do you need an app to scan qr codes, qr scanner online, scan qr code without app, i need to scan a qr code, how to scan a qr code online,qr code, qc barcode, cr code, qr qr code, quark code, quirky code, qr coder, qr c0de, qwerty code, qr tags, qr code and scanner, qr code scanner, qr qr scanner, qr scanner scanner, scan with qr code, scan qr scanner, barcode scanner, scan to qr code, qr scanner, sçan qr code, get qr code, qr code reader, reader barcode, qr scanner online, obtain a qr code, scan by barcode, scanner and barcode, scan and barcode, qr and barcode, qr barcode, code scanner, scan code scanner, scan at code, scan and code, scannable code, qr code decoder, que r code, qr code for website address, my qr code, web scan, qr code for website, qr code to a website, qr site, qr code what is, scanner web, qr code what is qr, qr code for websites, barcode code, web qr code scanner, qr code qr, website qr code scanner, web qr scanner, qr website, qr address, scanner qr web, web qr code, website qr scanner, qr code site, scan qr web, site qr code, qr code for address, qr code qr scanner, simple qr code, qrcode online, sq code, qr code online, qr code marker, qr code a, qr scanner on phone, web qr, a qr code, qr reader scanner, scan me qr code, 1r code, this is a qr code, personal qr, personal qr code, qr code for download, the qr code, a code scanner, qr codes pro, qr code pro, qrcode pro, qr code activation, qr page, qr chip, qr quote, working qr code, qrco, send qr code, enter your qr code content, get qr code for website, qr ads, get a qr code for a website, qr label, barcode scanner for web, 2 d code, qr code com, qr code g, easy qr code, qr g, web qr reader, barcode scanner for qr codes, real qr code, qr code for, que are code, qr code program, qr code id, qr code new, change qr code, reader qr, new qr code, qr html, barcode for website, qr code that links to website, qr code link to website, code qr code, qr symbol, barcode web, a qr code scanner, to scan the qr code, qr code and, and qr code, barcode website, qr number, qr code to link to website, number qr code, digital qr code, barcode coding, qr marker, qr code file, give me a qr code, to qr code, qr file, to qrcode, qr code to, qr code name, to scan a qr code, sr code, scanner qr barcode, qr code generic, qr code entry, manual qr code, qr_code, qr code enter, qr code tool, qr form, qr code qr code, need qr code, qr campaign, website to scan qr code, short qr code, barcode scanner for, qr code what is it, qr code manager, with qr code, qr code for references, www qr code, web qr qr code scanner, scener code, http qr, qr code for scanning, qr scanner for, qr c9de, qr code from website, need a qr code, qr code c, qr code page, qr code is, qr code i, a qr reader, i qr code, this qr code, cipher scanner, qr code in, qr cod3, in qr code, scanner ean, q3 code, qr to web, do qr code, scanner qr code scanner, for qr code, code to qr code, qr cod3 scanner, give me qr code, qr web scanner, qr code of, qr c9de scanner, code to qr, qr code it, scan qr code on web, qr code on, sensor barcode, q4 code, qr hunt, qr scanner on this phone, scan qr code for, scan qr code how, i scan qr code, qr code qr code qr code, code scanner qr code scanner, ir code scanner, www qr code scanner, qr code scanner qr code scanner, qr scanner qr scanner, scanner qr scanner, qr code scan qr code, scan code qr code, it qr code, qr code to qr code, web code scanner, www barcode scanner, web scanner qr, qr code where is it, qr code be, qr code from, about qr code scanner, qr code scanner on, give me a qr code scanner, qr code about, on qr code scanner, qr scanner in, this is the qr code, scan web qr code, qr to code, code scan qr code, quad code scanner, www to qr code, qr code scan code, qr code is a, qr code scanner a, qr code scanner is a, qr code scan how to, scanner code scanner, qr code with, qr and scanner, qr code www, qr code an, qr code is what, qr code scanner for, qr scan qr code, on qr code, at qr code, qr code &, scan qr code site, code qr code scanner, for qr code scanning, give me a qr scanner, scan and qr code, scan by qr code, a qr code is, scan in qr code, qr c0de scanner, on qr scanner, qr number scanner, qr scanner on, at code scanner, an qr code, www com qr code scanner, qr to scan, code to scan qr code, by qr code, qr chord, scan qr code in, flash code scanner, crq code, get qr scanner, scan qr code scan qr code, scan website qr code, scan code for, scan qr code on, qr scanner scan, from where to scan qr code, qr scanner payment, qr scanner location, qr scanner information, qr scanner in phone, qr scanner buy, qr scan scanner, qr ma, qr kodlari, qr coe3, qr codes are, qr code copyright, qr cod3e, qr board scanner, get code from qr code, detector qr code, code qr a scanner, by scanning the qr code, barcode to qr, apa itu barcode scanner, any qr scanner, qr code to code, use qr scanner, qr code scanner what is it, to scan code, scan barcode itu apa, scan qr cod3, qr scanner site, scan qr quote, scan to code, scànner qr code, the qr reader, scan here, qr code here, scan qr here, scan here!, scan here qr code, scane here, scan barcode here, scan here to learn more, how to scan without scanner, scan here to get started, do you need an app to scan qr codes, qr scanner online, scan qr code without app, i need to scan a qr code, how to scan a qr code online" />
     <meta name="author" content="QR Here" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <link rel="canonical" href="https://qrhere.online/" />
@@ -35,23 +63,27 @@
     <meta property="og:site_name" content="QR Here" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://qrhere.online/" />
-    <meta property="og:title" content="QR Code Scanner Online — Scan QR Codes from Camera or Image | QR Here" />
+    <meta property="og:title" content="QR Code Scanner Online – Free, No App Needed | QR Here" />
     <meta
       property="og:description"
-      content="Scan QR codes online with your camera or an uploaded image. QR Here lets you scan here directly in your browser without installing an app."
+      content="Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed."
     />
-    <meta property="og:image" content="/icon.svg" />
-    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:image" content="https://qrhere.online/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="QR Here – Free QR Code Scanner and Generator" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="QR Code Scanner Online — Scan QR Codes from Camera or Image | QR Here" />
+    <meta name="twitter:title" content="QR Code Scanner Online – Free, No App Needed | QR Here" />
     <meta
       name="twitter:description"
-      content="Scan QR codes online with your camera or an uploaded image. QR Here lets you scan here directly in your browser without installing an app."
+      content="Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed."
     />
-    <meta name="twitter:image" content="/icon.svg" />
+    <meta name="twitter:image" content="https://qrhere.online/og-image.png" />
+    <meta name="twitter:image:alt" content="QR Here – Free QR Code Scanner and Generator" />
 
     <!-- PWA & Mobile Icons -->
     <link rel="icon" type="image/svg+xml" href="/icon.svg" />
@@ -62,6 +94,99 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="QR Here" />
+
+    <!-- Schema.org JSON-LD Structured Data for Homepage (WebApplication & FAQPage) -->
+    <script id="json-ld-schema" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://qrhere.online/#website",
+          "url": "https://qrhere.online/",
+          "name": "QR Here",
+          "description": "Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.",
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebApplication",
+          "@id": "https://qrhere.online/#webapp",
+          "name": "QR Here",
+          "url": "https://qrhere.online/",
+          "description": "Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.",
+          "applicationCategory": "UtilitiesApplication",
+          "operatingSystem": "Any",
+          "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas or WebAssembly support.",
+          "softwareVersion": "1.0.0",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "Live Camera QR Code Scanning in Browser",
+            "Image and Screenshot QR Code Decoding (PNG, JPG, WEBP)",
+            "Custom Vector QR Code Generator (SVG and PNG)",
+            "Wi-Fi, vCard Contact, SMS, and URL Presets",
+            "100% Client-Side In-Browser Decoding with Zero Server Storage"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is QR Here free?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, QR Here is 100% free to use. There are no subscriptions, hidden fees, scan limits, or watermarks."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does it work on iPhone and Android?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. QR Here works seamlessly on iPhones, iPads, Android smartphones, tablets, Windows PCs, and Macs using any modern web browser."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you store my camera feed or images?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. All scanning and decoding runs completely in your web browser. Your camera feed and uploaded images never leave your device and are never sent to or stored on any server."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need to install an app or sign up?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No installation or account registration is required. You can scan or create QR codes immediately directly in your browser without entering an email or password."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Which image formats are supported?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can upload QR code images and screenshots in PNG, JPG, and WEBP formats up to 10 MB in file size."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I create my own QR code?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can generate your own custom QR code using our free QR code generator. Choose from options like website links, Wi-Fi networks, contact cards, and plain text, customize colors, and download as SVG or PNG."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body class="bg-white text-slate-900 antialiased selection:bg-blue-600 selection:text-white dark:bg-slate-950 dark:text-slate-100">
     <div id="root">
@@ -87,37 +212,90 @@
               QR Code Scanner
             </h1>
             <p class="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-              Scan QR codes online with your camera or an uploaded image. QR Here lets you scan here directly in your browser without installing an app.
+              Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.
             </p>
             <div class="mt-6 flex justify-center gap-4">
               <a href="/" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold bg-blue-600 text-white shadow-sm">
-                Scan QR Code
+                QR Code Scanner
               </a>
               <a href="/qr-code-generator" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border border-slate-300 dark:border-slate-700">
-                Create QR Code
+                QR Code Generator
               </a>
             </div>
           </section>
 
-          <section class="max-w-4xl mx-auto px-4 py-8 space-y-6 text-sm text-slate-700 dark:text-slate-300">
-            <h2 class="text-xl font-bold text-slate-900 dark:text-white">
-              Fast, Private In-Browser QR Code Scanning
-            </h2>
-            <p>
-              QR Here provides browser-based QR scanning and generation without requiring mobile app installations, browser extensions, or account registrations. Every operation runs strictly on your device using client-side algorithms, guaranteeing that your camera feed and images remain private.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
-              <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800">
-                <h3 class="font-bold text-slate-900 dark:text-white mb-2">Camera Scanning</h3>
-                <p class="text-xs text-slate-600 dark:text-slate-400">
-                  Scan codes using your webcam or mobile camera. Live video stream frames are decoded in memory with autofocus and instant URL safety checks.
+          <section class="max-w-4xl mx-auto px-4 py-8 space-y-12 text-sm text-slate-700 dark:text-slate-300">
+            <div>
+              <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+                How to scan a QR code online
+              </h2>
+              <ol class="space-y-3 list-decimal pl-5">
+                <li><strong>Open the page and allow camera access:</strong> Open QR Here in any browser and grant camera permissions, or switch to image upload.</li>
+                <li><strong>Point the camera or upload an image:</strong> Align your code in the camera frame, or drop a screenshot or image file directly into the scanner.</li>
+                <li><strong>Open or copy the result:</strong> View the decoded text or link instantly, copy to your clipboard, or open the web link safely.</li>
+              </ol>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+                <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Camera scanning</h2>
+                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Scan QR codes live using your phone camera or computer webcam. Video frames are decoded in memory directly on your device with complete privacy.
                 </p>
               </div>
-              <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800">
-                <h3 class="font-bold text-slate-900 dark:text-white mb-2">Image File Upload</h3>
-                <p class="text-xs text-slate-600 dark:text-slate-400">
-                  Upload screenshot or image files in PNG, JPG, or WEBP formats. The image is parsed via HTML5 Canvas with multi-pass binarization.
+              <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+                <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Image upload</h2>
+                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Upload screenshot or image files in PNG, JPG, or WEBP formats up to 10 MB. The image is parsed via HTML5 Canvas with client-side decoding.
                 </p>
+              </div>
+            </div>
+
+            <div>
+              <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">What you can scan</h2>
+              <ul class="list-disc pl-5 space-y-1 text-slate-600 dark:text-slate-400">
+                <li>Website links (URLs)</li>
+                <li>Wi-Fi network details and passwords</li>
+                <li>Contact cards (vCard and MeCard)</li>
+                <li>Payment and ticket codes</li>
+                <li>Plain text messages and notes</li>
+              </ul>
+            </div>
+
+            <div class="p-6 rounded-2xl border border-blue-200/80 dark:border-blue-900/60 bg-blue-50/50 dark:bg-blue-950/20">
+              <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Is it safe?</h2>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                Yes. QR Here operates completely inside your web browser using client-side processing, so your camera feed and uploaded photos never leave your device. We do not store your scans or track your activity. To learn more about identifying suspicious codes and avoiding quishing scams, check out our <a href="/qr-code-security" class="text-blue-600 underline font-semibold">QR code security guide</a>.
+              </p>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Frequently asked questions</h2>
+              <div class="space-y-4">
+                <div>
+                  <h3 class="font-bold text-slate-900 dark:text-white">Is QR Here free?</h3>
+                  <p class="text-xs text-slate-600 dark:text-slate-400">Yes, QR Here is 100% free to use. There are no subscriptions, hidden fees, scan limits, or watermarks.</p>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 dark:text-white">Does it work on iPhone and Android?</h3>
+                  <p class="text-xs text-slate-600 dark:text-slate-400">Yes. QR Here works seamlessly on iPhones, iPads, Android smartphones, tablets, Windows PCs, and Macs using any modern web browser.</p>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 dark:text-white">Do you store my camera feed or images?</h3>
+                  <p class="text-xs text-slate-600 dark:text-slate-400">No. All scanning and decoding runs completely in your web browser. Your camera feed and uploaded images never leave your device and are never sent to or stored on any server.</p>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 dark:text-white">Do I need to install an app or sign up?</h3>
+                  <p class="text-xs text-slate-600 dark:text-slate-400">No installation or account registration is required. You can scan or create QR codes immediately directly in your browser without entering an email or password.</p>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 dark:text-white">Which image formats are supported?</h3>
+                  <p class="text-xs text-slate-600 dark:text-slate-400">You can upload QR code images and screenshots in PNG, JPG, and WEBP formats up to 10 MB in file size.</p>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 dark:text-white">How do I create my own QR code?</h3>
+                  <p class="text-xs text-slate-600 dark:text-slate-400">You can generate your own custom QR code using our free <a href="/qr-code-generator" class="text-blue-600 underline font-semibold">QR code generator</a>. Choose from options like website links, Wi-Fi networks, contact cards, and plain text, customize colors, and download as SVG or PNG.</p>
+                </div>
               </div>
             </div>
           </section>

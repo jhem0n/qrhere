@@ -12,9 +12,9 @@ export const Footer: React.FC = () => {
       className="w-full border-t border-slate-200/80 bg-slate-50 dark:border-slate-800 dark:bg-slate-950 transition-colors mt-auto"
     >
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand Col */}
-          <div className="md:col-span-2 space-y-3">
+          <div className="lg:col-span-2 space-y-3">
             <Link to="/" className="inline-flex items-center gap-2 font-bold text-slate-900 dark:text-white">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white">
                 <QrCode className="h-4 w-4" />
@@ -30,6 +30,79 @@ export const Footer: React.FC = () => {
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>Zero-Knowledge • Client-Side Only</span>
             </div>
+          </div>
+
+          {/* QR Code Formats */}
+          <div>
+            <h3 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
+              QR Generators
+            </h3>
+            <ul className="space-y-2 text-xs">
+              <li>
+                <Link
+                  to="/qr-code-generator-wifi"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
+                >
+                  WiFi QR Code
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/qr-code-generator-vcard"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
+                >
+                  vCard Business Card
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/qr-code-generator-url"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
+                >
+                  Website Link (URL)
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/qr-code-generator-whatsapp"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
+                >
+                  WhatsApp QR Code
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/qr-code-generator-phone"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
+                >
+                  Phone Number QR
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/qr-code-generator-location"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
+                >
+                  Location &amp; Map Pin
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/qr-code-generator-event"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
+                >
+                  Calendar Event QR
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/qr-code-generator"
+                  className="text-blue-600 hover:underline dark:text-blue-400 font-medium transition"
+                >
+                  All 14 Formats →
+                </Link>
+              </li>
+            </ul>
           </div>
 
           {/* Tools Links */}
@@ -51,7 +124,7 @@ export const Footer: React.FC = () => {
                   to="/"
                   className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
                 >
-                  Scan QR Code from Image
+                  Scan QR from Image
                 </Link>
               </li>
               <li>

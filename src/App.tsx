@@ -17,6 +17,9 @@ import { BlogPostScanWithoutApp } from './pages/Blog/BlogPostScanWithoutApp';
 import { BlogPostWifiQrCode } from './pages/Blog/BlogPostWifiQrCode';
 import { QrCodeSecurityPage } from './pages/Security/QrCodeSecurityPage';
 import { NotFoundPage } from './pages/NotFound/NotFoundPage';
+import { ScanPage } from './pages/Scan/ScanPage';
+import { TypePageTemplate } from './components/generator/TypePageTemplate';
+import { QR_TYPES } from './data/qrTypes';
 
 export default function App() {
   return (
@@ -28,7 +31,14 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/qr-code-generator" element={<CreatePage />} />
           <Route path="/create" element={<Navigate to="/qr-code-generator" replace />} />
-          <Route path="/scan" element={<Navigate to="/" replace />} />
+          <Route path="/scan" element={<ScanPage />} />
+          {QR_TYPES.map((typeDef) => (
+            <Route
+              key={typeDef.slug}
+              path={`/${typeDef.slug}`}
+              element={<TypePageTemplate typeDef={typeDef} />}
+            />
+          ))}
           <Route path="/blog" element={<BlogIndexPage />} />
           <Route path="/blog/static-vs-dynamic-qr-code" element={<BlogPostStaticVsDynamic />} />
           <Route

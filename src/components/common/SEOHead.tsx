@@ -36,10 +36,14 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     // Standard meta tags
     setMeta('name', 'description', seo.description);
     
-    // Explicitly remove keywords meta tag if present (per modern SEO best practices)
-    const existingKeywords = document.querySelector('meta[name="keywords"]');
-    if (existingKeywords) {
-      existingKeywords.remove();
+    // Support keywords meta tag when provided
+    if (seo.keywords) {
+      setMeta('name', 'keywords', seo.keywords);
+    } else {
+      const existingKeywords = document.querySelector('meta[name="keywords"]');
+      if (existingKeywords) {
+        existingKeywords.remove();
+      }
     }
 
     setMeta(
@@ -73,17 +77,19 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     setMeta('property', 'og:description', seo.description);
     setMeta('property', 'og:type', seo.ogType || 'website');
     setMeta('property', 'og:url', fullCanonical);
-    setMeta('property', 'og:image', `${siteUrl}/icon.svg`);
-    setMeta('property', 'og:image:type', 'image/svg+xml');
-    setMeta('property', 'og:image:alt', `${APP_CONFIG.name} - Free Online QR Code Scanner & Generator`);
+    setMeta('property', 'og:image', `${siteUrl}/og-image.png`);
+    setMeta('property', 'og:image:type', 'image/png');
+    setMeta('property', 'og:image:width', '1200');
+    setMeta('property', 'og:image:height', '630');
+    setMeta('property', 'og:image:alt', 'QR Here – Free QR Code Scanner and Generator');
     setMeta('property', 'og:locale', 'en_US');
 
     // Twitter / X Meta Tags
     setMeta('name', 'twitter:card', 'summary_large_image');
     setMeta('name', 'twitter:title', seo.title);
     setMeta('name', 'twitter:description', seo.description);
-    setMeta('name', 'twitter:image', `${siteUrl}/icon.svg`);
-    setMeta('name', 'twitter:image:alt', `${APP_CONFIG.name} - Free Online QR Code Scanner & Generator`);
+    setMeta('name', 'twitter:image', `${siteUrl}/og-image.png`);
+    setMeta('name', 'twitter:image:alt', 'QR Here – Free QR Code Scanner and Generator');
 
     // Structured data injection
     let finalSchema: object;
