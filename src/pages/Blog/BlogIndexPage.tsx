@@ -19,15 +19,27 @@ interface BlogPostSummary {
 
 const BLOG_POSTS: BlogPostSummary[] = [
   {
-    slug: '/blog/how-to-create-wifi-qr-code',
-    title: 'How to Create a WiFi QR Code (Free, No App)',
+    slug: '/blog/qr-code-error-correction-explained',
+    title: 'QR Code Error Correction Levels Explained: When to Use Which',
     excerpt:
-      'Stop reading your WiFi password out loud. Learn how to make a free WiFi QR code guests can scan to connect instantly — no app, no sign-up, no typing.',
-    date: 'September 24, 2026',
-    isoDate: '2026-09-24',
-    readingTime: '2 min read',
-    category: 'Tutorial',
-    imageUrl: '', // Empty placeholder ready for future upload
+      'Ever wondered how a QR code scans even when scratched or covered with a logo? Learn what Levels L, M, Q, and H mean in plain English and how to pick the right one.',
+    date: 'October 2, 2026',
+    isoDate: '2026-10-02',
+    readingTime: '5 min read',
+    category: 'Design Guide',
+    imageUrl: '/images/qr-code-error-correction.svg',
+    featured: true,
+  },
+  {
+    slug: '/blog/how-to-create-wifi-qr-code',
+    title: 'How to Create a WiFi QR Code (Step-by-Step Guide)',
+    excerpt:
+      'Stop reading your Wi-Fi password out loud. Learn how to make a free Wi-Fi QR code your guests and customers can scan to connect in seconds with their phone camera.',
+    date: 'October 2, 2026',
+    isoDate: '2026-10-02',
+    readingTime: '5 min read',
+    category: 'Guide',
+    imageUrl: '/images/how-to-create-wifi-qr-code.svg',
     featured: true,
   },
   {
@@ -39,7 +51,7 @@ const BLOG_POSTS: BlogPostSummary[] = [
     isoDate: '2026-09-20',
     readingTime: '4 min read',
     category: 'Tutorial',
-    imageUrl: '', // Empty placeholder ready for future upload
+    imageUrl: '/images/how-to-scan-qr-code-without-app.svg',
     featured: true,
   },
   {
@@ -51,16 +63,16 @@ const BLOG_POSTS: BlogPostSummary[] = [
     isoDate: '2026-09-18',
     readingTime: '4 min read',
     category: 'Guide',
-    imageUrl: '', // Empty placeholder ready for future upload
+    imageUrl: '/images/how-to-create-vcard-qr-code.svg',
   },
   {
     slug: '/blog/static-vs-dynamic-qr-code',
     title: 'Static vs Dynamic QR Codes: What’s the Difference?',
     excerpt:
-      'Learn how static and dynamic QR codes store data differently, why static codes never expire, and how to choose the right format for your flyers, business cards, or product packaging.',
+      'A straightforward, jargon-free breakdown of static vs dynamic QR codes. Learn which one you need for business cards, Wi-Fi, flyers, and products.',
     date: 'September 17, 2026',
     isoDate: '2026-09-17',
-    readingTime: '5 min read',
+    readingTime: '4 min read',
     category: 'Comparison',
     imageUrl: '/images/static-vs-dynamic-qr-code.jpg',
   },
@@ -122,13 +134,6 @@ export const BlogIndexPage: React.FC = () => {
                     </span>
                   </div>
                 )}
-
-                {/* Floating Category Tag */}
-                <div className="absolute top-4 left-4">
-                  <span className="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold text-blue-700 dark:text-blue-300 bg-white/95 dark:bg-slate-900/95 backdrop-blur shadow-sm border border-slate-200/80 dark:border-slate-700/80">
-                    {post.category}
-                  </span>
-                </div>
               </Link>
 
               {/* Box Content Body */}
@@ -174,6 +179,58 @@ export const BlogIndexPage: React.FC = () => {
               </div>
             </article>
           ))}
+        </section>
+
+        {/* Foundational Technical Guides Section */}
+        <section aria-label="Reference Guides" className="mt-16 pt-12 border-t border-slate-200 dark:border-slate-800">
+          <div className="mb-6">
+            <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              Foundational Reference Guides
+            </h2>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+              In-depth research on optical scanning physics, vector resolution, and counter-phishing defenses.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Link
+              to="/qr-code-size-and-print-guide"
+              className="group p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-amber-400/80 dark:hover:border-amber-500/80 hover:shadow-lg transition-all"
+            >
+              <span className="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2.5 py-1 rounded-md">
+                Print Engineering
+              </span>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-3 mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                QR Code Size, Ratio &amp; Print Quality Standards
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                The definitive 10:1 distance-to-size formula, quiet zone rules, dot gain mitigation, and SVG vector specifications for high-volume commercial printing.
+              </p>
+              <div className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-600 dark:text-amber-400">
+                <span>Explore Print Guide</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </div>
+            </Link>
+
+            <Link
+              to="/qr-code-security"
+              className="group p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-emerald-400/80 dark:hover:border-emerald-500/80 hover:shadow-lg transition-all"
+            >
+              <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-md">
+                Cybersecurity
+              </span>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-3 mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                QR Code Security: Quishing, Phishing &amp; Tampering
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                How malicious actors exploit QR codes to bypass enterprise email gateways, credential harvesting tactics, and technical inspection strategies.
+              </p>
+              <div className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                <span>Read Security Guide</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </div>
+            </Link>
+          </div>
         </section>
       </div>
     </>

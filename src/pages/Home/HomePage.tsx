@@ -7,7 +7,6 @@ import { CameraScanner } from '../../components/scanner/CameraScanner';
 import { ImageScanner } from '../../components/scanner/ImageScanner';
 import { ScanResultCard } from '../../components/qr/ScanResultCard';
 import { QRScanResult } from '../../types/qr.types';
-import { QRScannerService } from '../../services/qr/scanner.service';
 
 export const HomePage: React.FC = () => {
   const [method, setMethod] = useState<'camera' | 'image'>('camera');
@@ -19,12 +18,6 @@ export const HomePage: React.FC = () => {
 
   const handleScanAgain = () => {
     setResult(null);
-  };
-
-  // Test triggers for scanner verification
-  const handleLoadTestSample = (sampleText: string) => {
-    const formatted = QRScannerService.formatScanResult(sampleText, 'image');
-    setResult(formatted);
   };
 
   const homepageSchema = generateWebsiteSchema([generateFAQSchema(HOMEPAGE_FAQS)]);
@@ -92,104 +85,76 @@ export const HomePage: React.FC = () => {
               ) : (
                 <ImageScanner onScanSuccess={handleScanSuccess} />
               )}
-
-              {/* Test Samples Bar for Validation */}
-              <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800">
-                <div className="flex items-center justify-between mb-2.5">
-                  <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                    Scanner Test Scenarios
-                  </span>
-                  <span className="text-[11px] text-slate-400">Click to verify decoding</span>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <button
-                    type="button"
-                    id="test-safe-url-btn"
-                    onClick={() => handleLoadTestSample('https://example.com/getting-started?ref=qr')}
-                    className="px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-950/40 transition cursor-pointer min-h-[38px]"
-                  >
-                    Safe Web URL
-                  </button>
-                  <button
-                    type="button"
-                    id="test-dangerous-scheme-btn"
-                    onClick={() => handleLoadTestSample('javascript:alert(document.domain)')}
-                    className="px-3 py-2 rounded-lg border border-rose-200 dark:border-rose-900/60 bg-rose-50/60 dark:bg-rose-950/30 text-xs font-medium text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900/50 transition cursor-pointer min-h-[38px]"
-                  >
-                    Dangerous Scheme (javascript:)
-                  </button>
-                  <button
-                    type="button"
-                    id="test-data-uri-btn"
-                    onClick={() => handleLoadTestSample('data:text/html,<script>alert("XSS")</script>')}
-                    className="px-2.5 py-1.5 rounded-lg border border-rose-200 dark:border-rose-900/60 bg-rose-50/60 dark:bg-rose-950/30 text-[11px] font-medium text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900/50 transition cursor-pointer min-h-[36px]"
-                  >
-                    Dangerous Data URI
-                  </button>
-                  <button
-                    type="button"
-                    id="test-wifi-btn"
-                    onClick={() => handleLoadTestSample('WIFI:T:WPA;S:StudioGuestWifi;P:SuperSecretPass2026;;')}
-                    className="px-2.5 py-1.5 rounded-lg border border-amber-200 dark:border-amber-900/60 bg-amber-50/60 dark:bg-amber-950/30 text-[11px] font-medium text-amber-700 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-900/50 transition cursor-pointer min-h-[36px]"
-                  >
-                    Wi-Fi Network
-                  </button>
-                  <button
-                    type="button"
-                    id="test-unicode-btn"
-                    onClick={() => handleLoadTestSample('こんにちは世界 🚀 Привет мир مرحبا بالعالم')}
-                    className="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-[11px] font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-750 transition cursor-pointer min-h-[36px]"
-                  >
-                    Unicode Text
-                  </button>
-                </div>
-              </div>
             </div>
           )}
         </section>
 
         {/* Homepage Educational Content Sections (All H2s below the scanner tool) */}
-        <div className="mt-16 sm:mt-20 space-y-14 sm:space-y-16 max-w-4xl mx-auto">
+        <div className="mt-16 sm:mt-20 space-y-14 sm:space-y-16 max-w-5xl lg:max-w-6xl mx-auto">
           {/* Section: How to scan a QR code online */}
           <section aria-labelledby="heading-how-to-scan">
-            <h2 id="heading-how-to-scan" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
-              How to scan a QR code online
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs flex flex-col justify-start">
-                <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 font-bold flex items-center justify-center text-sm mb-4">
-                  1
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+              {/* Left Column: How to scan content & 3 steps */}
+              <div className="lg:col-span-7 flex flex-col justify-center">
+                <h2 id="heading-how-to-scan" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
+                  How to scan a QR code online
+                </h2>
+
+                <div className="space-y-4">
+                  <div className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs flex items-start gap-4">
+                    <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 font-bold flex items-center justify-center text-sm shrink-0">
+                      1
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1.5">
+                        Open the page and allow camera access
+                      </h3>
+                      <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Open QR Here in any browser and allow camera permissions, or switch to the image upload tab if you have a saved picture.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs flex items-start gap-4">
+                    <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 font-bold flex items-center justify-center text-sm shrink-0">
+                      2
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1.5">
+                        Point the camera or upload an image
+                      </h3>
+                      <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Hold your QR code steadily in front of your camera, or drag and drop a screenshot or photo directly into the upload area.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs flex items-start gap-4">
+                    <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 font-bold flex items-center justify-center text-sm shrink-0">
+                      3
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1.5">
+                        Open or copy the result
+                      </h3>
+                      <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Your code decodes in milliseconds. Preview the link safely, copy the text to your clipboard, or open the destination.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  Open the page and allow camera access
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Open QR Here in any browser and allow camera permissions, or switch to the image upload tab if you have a saved picture.
-                </p>
               </div>
 
-              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs flex flex-col justify-start">
-                <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 font-bold flex items-center justify-center text-sm mb-4">
-                  2
+              {/* Right Column: Image */}
+              <div className="lg:col-span-5 flex items-center justify-center">
+                <div className="relative w-full max-w-md lg:max-w-none aspect-4/5 sm:aspect-3/4 lg:aspect-4/5 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-800/60 shadow-sm">
+                  <img
+                    src="/images/qr-code-scan.jpg"
+                    alt="How to scan a QR code online"
+                    className="w-full h-full object-cover rounded-3xl"
+                    loading="lazy"
+                  />
                 </div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  Point the camera or upload an image
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Hold your QR code steadily in front of your camera, or drag and drop a screenshot or photo directly into the upload area.
-                </p>
-              </div>
-
-              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs flex flex-col justify-start">
-                <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 font-bold flex items-center justify-center text-sm mb-4">
-                  3
-                </div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  Open or copy the result
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Your code decodes in milliseconds. Preview the link safely, copy the text to your clipboard, or open the destination.
-                </p>
               </div>
             </div>
           </section>
@@ -219,35 +184,52 @@ export const HomePage: React.FC = () => {
 
           {/* Section: What you can scan */}
           <section aria-labelledby="heading-what-you-can-scan">
-            <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
-              <h2 id="heading-what-you-can-scan" className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                What you can scan
-              </h2>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mb-6">
-                QR Here automatically detects and formats standard QR code payloads, including:
-              </p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-sm text-slate-700 dark:text-slate-300">
-                <li className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                  <span><strong>Website links (URLs):</strong> Open websites, social pages, and online resources.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                  <span><strong>Wi-Fi details:</strong> View network names (SSID) and passwords to connect quickly.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                  <span><strong>Contact cards:</strong> Read vCard contact information with phone, email, and name.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                  <span><strong>Payment and ticket codes:</strong> Inspect event passes, boarding passes, and invoices.</span>
-                </li>
-                <li className="flex items-start gap-2.5 sm:col-span-2">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                  <span><strong>Plain text:</strong> Decode alphanumeric messages, serial numbers, and notes.</span>
-                </li>
-              </ul>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+              {/* Left Column: Image - Unboxed presentation */}
+              <div className="lg:col-span-7 flex items-center justify-center">
+                <div className="w-full flex items-center justify-center">
+                  <img
+                    src="/images/qr-type.png"
+                    alt="What you can scan - QR code types"
+                    width={1500}
+                    height={800}
+                    className="w-full h-auto object-contain rounded-2xl"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+
+              {/* Right Column: What you can scan content - Unboxed */}
+              <div className="lg:col-span-5 flex flex-col justify-center">
+                <h2 id="heading-what-you-can-scan" className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                  What you can scan
+                </h2>
+                <p className="text-sm text-slate-600 dark:text-slate-400 mb-5 leading-relaxed">
+                  QR Here automatically detects and formats standard QR code payloads, including:
+                </p>
+                <ul className="space-y-3.5 text-sm text-slate-700 dark:text-slate-300">
+                  <li className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                    <span><strong>Website links (URLs):</strong> Open websites, social pages, and online resources.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                    <span><strong>Wi-Fi details:</strong> View network names (SSID) and passwords to connect quickly.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                    <span><strong>Contact cards:</strong> Read vCard contact information with phone, email, and name.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                    <span><strong>Payment and ticket codes:</strong> Inspect event passes, boarding passes, and invoices.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                    <span><strong>Plain text:</strong> Decode alphanumeric messages, serial numbers, and notes.</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </section>
 
@@ -352,7 +334,8 @@ export const HomePage: React.FC = () => {
             </div>
             <Link
               to="/qr-code-generator"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue-600 text-white text-sm font-semibold hover:bg-blue-500 transition shrink-0"
+              onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' })}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue-600 text-white text-sm font-semibold hover:bg-blue-500 transition shrink-0 shadow-sm"
             >
               <span>QR code generator</span>
               <ArrowRight className="w-4 h-4" />

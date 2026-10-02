@@ -64,6 +64,10 @@ function seoFilesPlugin(): Plugin {
     <lastmod>${currentDate}</lastmod>
   </url>
   <url>
+    <loc>https://qrhere.online/blog/qr-code-error-correction-explained</loc>
+    <lastmod>${currentDate}</lastmod>
+  </url>
+  <url>
     <loc>https://qrhere.online/faq</loc>
     <lastmod>${currentDate}</lastmod>
   </url>
@@ -77,6 +81,10 @@ function seoFilesPlugin(): Plugin {
   </url>
   <url>
     <loc>https://qrhere.online/qr-code-security</loc>
+    <lastmod>${currentDate}</lastmod>
+  </url>
+  <url>
+    <loc>https://qrhere.online/qr-code-size-and-print-guide</loc>
     <lastmod>${currentDate}</lastmod>
   </url>
   <url>
@@ -127,6 +135,8 @@ Sitemap: https://qrhere.online/sitemap.xml
 ## Articles & Guides
 
 - [QR Code Blog](${domain}/blog): Practical tutorials, technical comparisons, and guides on QR codes.
+- [QR Code Size and Print Guide](${domain}/qr-code-size-and-print-guide): Definitive engineering guide on the 10:1 distance-to-size formula, quiet zone rules, and SVG vector resolution for physical printing.
+- [QR Code Error Correction Explained](${domain}/blog/qr-code-error-correction-explained): Technical explanation of Reed-Solomon error correction levels L, M, Q, and H, logo embedding mechanics, and density trade-offs.
 - [How to Scan a QR Code Without an App](${domain}/blog/how-to-scan-qr-code-without-app): Step-by-step guide to scanning QR codes using your phone camera, web browser, or screenshots without installing third-party apps.
 - [How to Create a vCard QR Code](${domain}/blog/how-to-create-vcard-qr-code): Guide on generating digital business card QR codes for smartphone address books.
 - [Static vs Dynamic QR Code](${domain}/blog/static-vs-dynamic-qr-code): Comprehensive technical comparison between static and dynamic QR codes.
@@ -179,10 +189,10 @@ Sitemap: https://qrhere.online/sitemap.xml
             /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/i,
             `<meta name="description" content="${route.description}" />`
           );
-          // Replace keywords
+          // Strip any residual keywords tag to ensure no keyword stuffing
           routeHtml = routeHtml.replace(
-            /<meta\s+name="keywords"\s+content="[^"]*"\s*\/?>/i,
-            `<meta name="keywords" content="${route.keywords}" />`
+            /<meta\s+name="keywords"\s+content="[^"]*"\s*\/?>\s*/i,
+            ''
           );
           // Replace canonical
           routeHtml = routeHtml.replace(

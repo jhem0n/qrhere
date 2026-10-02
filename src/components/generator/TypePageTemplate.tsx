@@ -39,7 +39,6 @@ export const TypePageTemplate: React.FC<TypePageTemplateProps> = ({ typeDef }) =
   const seoData = {
     title: typeDef.title,
     description: typeDef.metaDescription,
-    keywords: typeDef.keywords?.join(', '),
     canonicalPath,
     ogType: 'website' as const,
   };

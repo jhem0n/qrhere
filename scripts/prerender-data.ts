@@ -750,7 +750,7 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
 
           <div>
             <h2 class="text-xl font-bold text-slate-900 mb-2">Before you print it</h2>
-            <p>Test the code with two or three different phones first — don't assume it works just because it looks right. Keep a quiet white border around the code (no text or logos crowding the edges), and if you're adding a center logo, make sure your generator applies high error correction, or the code may fail to scan once printed.</p>
+            <p>Test the code with two or three different phones first — don't assume it works just because it looks right. Keep a quiet white border around the code (no text or logos crowding the edges), and if you're adding a center logo, make sure your generator applies high error correction, or the code may fail to scan once printed. Consult our <a href="/qr-code-size-and-print-guide" class="text-blue-600 underline font-medium">QR Code Size and Print Guide</a> for exact physical dimensions.</p>
           </div>
 
           <div>
@@ -763,8 +763,94 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
             <div class="space-y-3">
               <p><strong>Does the WiFi QR code expire?</strong><br>No. It works for as long as the network name and password stay the same. Change your WiFi password, and you'll need a new code.</p>
               <p><strong>Can I make one for a hidden network?</strong><br>Yes — just tick the hidden network option when generating it so scanners know to look for it.</p>
-              <p><strong>Will it work on older phones?</strong><br>Most phones from the last several years support it natively. Very old devices may need a separate QR scanner app to read the code, though they'll still connect fine once scanned.</p>
+              <p><strong>Will it work on older phones?</strong><br>Most phones from the last several years support it natively. Very old devices can also use our free in-browser <a href="/" class="text-blue-600 underline">QR scanner</a>.</p>
             </div>
+          </div>
+        </section>
+      </article>
+    `,
+  },
+  {
+    path: '/qr-code-size-and-print-guide',
+    folder: 'qr-code-size-and-print-guide',
+    title: 'QR Code Size and Print Guide: Standards & Resolution | QR Here',
+    description:
+      'The definitive guide to QR code printing sizes, the 10:1 distance ratio, minimum quiet zones, and vector SVG requirements for commercial print production.',
+    keywords:
+      'qr code size, qr code print size, minimum qr code size, qr code distance ratio, print qr code vector svg, qr code resolution dpi, qr code quiet zone',
+    heading: 'QR Code Size, Ratio & Print Quality Standards',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'QR Code Print Guide', path: '/qr-code-size-and-print-guide' },
+    ],
+    htmlContent: `
+      <article class="max-w-4xl mx-auto px-4 py-8">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+          QR Code Size, Ratio &amp; Print Quality Standards
+        </h1>
+        <p class="text-base text-slate-600 leading-relaxed mb-6">
+          The definitive engineering guide to QR code physical dimensions, the 10:1 scanning ratio, error correction overhead, and commercial print preparation.
+        </p>
+        <section class="space-y-6 text-sm text-slate-700 leading-relaxed">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">1. The 10:1 Distance-to-Size Formula</h2>
+            <p>The standard optical rule is <strong>QR Width = Scan Distance ÷ 10</strong>. For example, a restaurant menu scanned from 30 cm requires at least a 3 cm width. A billboard scanned from 15 meters requires a 1.5-meter QR code.</p>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">2. Minimum Absolute Dimensions</h2>
+            <p>Never print a QR code smaller than <strong>20 mm x 20 mm (0.8 x 0.8 inches)</strong>. For dense payloads such as vCards or Wi-Fi credentials, the minimum size increases to <strong>35 mm x 35 mm (1.4 inches)</strong>.</p>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">3. The 4-Module Quiet Zone</h2>
+            <p>ISO/IEC 18004 specifies a mandatory blank margin of at least 4 module widths around all four edges of the symbol with zero graphics or background patterns.</p>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">4. SVG Vectors vs 300+ DPI Raster</h2>
+            <p>Always prioritize scalable vector graphics (<a href="/qr-code-generator" class="text-blue-600 underline">SVG</a>) for print workflows to ensure mathematically infinite sharpness with zero pixelation.</p>
+          </div>
+        </section>
+      </article>
+    `,
+  },
+  {
+    path: '/blog/qr-code-error-correction-explained',
+    folder: 'blog/qr-code-error-correction-explained',
+    title: 'QR Code Error Correction Explained: Levels L, M, Q, H & When to Use Which | QR Here',
+    description:
+      'Understand Reed-Solomon error correction in QR codes. Learn the practical trade-offs between Levels L, M, Q, and H, logo embedding limits, and print durability.',
+    keywords:
+      'qr code error correction, reed solomon error correction, qr code level l m q h, qr code with logo error correction, qr code damage recovery',
+    heading: 'Common QR Code Error Correction Levels Explained: When to Use Which',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog' },
+      { name: 'QR Code Error Correction Explained', path: '/blog/qr-code-error-correction-explained' },
+    ],
+    htmlContent: `
+      <article class="max-w-4xl mx-auto px-4 py-8">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+          Common QR Code Error Correction Levels Explained: When to Use Which
+        </h1>
+        <p class="text-base text-slate-600 leading-relaxed mb-6">
+          Discover the mathematical principles of Reed-Solomon error correction in ISO/IEC 18004 symbols. Learn how Levels L, M, Q, and H recover torn, stained, or logo-covered data.
+        </p>
+        <section class="space-y-6 text-sm text-slate-700 leading-relaxed">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">1. The Four Error Correction Levels</h2>
+            <ul class="list-disc pl-5 space-y-1">
+              <li><strong>Level L (Low):</strong> ~7% codeword recovery. Maximum data capacity; ideal for dense payloads and screen displays.</li>
+              <li><strong>Level M (Medium):</strong> ~15% codeword recovery. The standard default for retail packaging and marketing.</li>
+              <li><strong>Level Q (Quartile):</strong> ~25% codeword recovery. Built for industrial manufacturing and corrugated shipping cartons.</li>
+              <li><strong>Level H (High):</strong> ~30% codeword recovery. Mandatory for embedding custom logos or outdoor exposure.</li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">2. Why Logos Require Level H</h2>
+            <p>Placing an emblem in the center intentionally destroys data modules. The decoder treats the graphic as damaged codewords, utilizing the ~30% recovery margin to reconstruct the missing information.</p>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">3. The Density Trade-off</h2>
+            <p>Higher error correction increases the matrix version. If physical print dimensions remain constant, individual modules become smaller and more difficult for budget cameras to resolve.</p>
           </div>
         </section>
       </article>

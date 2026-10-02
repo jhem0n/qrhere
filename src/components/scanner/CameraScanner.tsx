@@ -204,11 +204,6 @@ export const CameraScanner: React.FC<CameraScannerProps> = ({
             Scan here with your camera or webcam directly in your browser.
           </p>
 
-          {/* Privacy Guarantee Badge */}
-          <div className="mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-xs text-emerald-700 dark:text-emerald-400 font-medium border border-emerald-200/60 dark:border-emerald-900/40">
-            <span>🔒 Privacy protected: Video never leaves your device</span>
-          </div>
-
           <button
             type="button"
             id="start-camera-btn"

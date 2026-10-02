@@ -36,14 +36,10 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     // Standard meta tags
     setMeta('name', 'description', seo.description);
     
-    // Support keywords meta tag when provided
-    if (seo.keywords) {
-      setMeta('name', 'keywords', seo.keywords);
-    } else {
-      const existingKeywords = document.querySelector('meta[name="keywords"]');
-      if (existingKeywords) {
-        existingKeywords.remove();
-      }
+    // Always remove any legacy meta keywords tag if found in DOM
+    const existingKeywords = document.querySelector('meta[name="keywords"]');
+    if (existingKeywords) {
+      existingKeywords.remove();
     }
 
     setMeta(
@@ -114,7 +110,6 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   }, [
     seo.title,
     seo.description,
-    seo.keywords,
     seo.canonicalPath,
     seo.ogType,
     seo.noIndex,

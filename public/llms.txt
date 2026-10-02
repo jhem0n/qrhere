@@ -22,6 +22,8 @@
 ## Articles & Guides
 
 - [QR Code Blog](https://qrhere.online/blog): Practical tutorials, technical comparisons, and guides on QR codes.
+- [QR Code Size and Print Guide](https://qrhere.online/qr-code-size-and-print-guide): Definitive engineering guide on the 10:1 distance-to-size formula, quiet zone rules, and SVG vector resolution for physical printing.
+- [QR Code Error Correction Explained](https://qrhere.online/blog/qr-code-error-correction-explained): Technical explanation of Reed-Solomon error correction levels L, M, Q, and H, logo embedding mechanics, and density trade-offs.
 - [How to Scan a QR Code Without an App](https://qrhere.online/blog/how-to-scan-qr-code-without-app): Step-by-step guide to scanning QR codes using your phone camera, web browser, or screenshots without installing third-party apps.
 - [How to Create a WiFi QR Code](https://qrhere.online/blog/how-to-create-wifi-qr-code): A 2-minute guide to letting guests connect to your WiFi with one scan — no spelled-out passwords, no downloads.
 - [How to Create a vCard QR Code](https://qrhere.online/blog/how-to-create-vcard-qr-code): Guide on generating digital business card QR codes for smartphone address books.

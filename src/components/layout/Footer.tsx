@@ -186,6 +186,14 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
+                  to="/qr-code-size-and-print-guide"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
+                >
+                  Size &amp; Print Guide
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/privacy"
                   className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
                 >

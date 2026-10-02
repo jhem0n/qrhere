@@ -1,11 +1,8 @@
 import { APP_CONFIG, getSiteUrl } from './app.config';
-import { SCANNER_KEYWORDS_STRING } from '../data/scannerKeywords';
-import { GENERATOR_KEYWORDS_STRING } from '../data/generatorKeywords';
 
 export interface RouteSEO {
   title: string;
   description: string;
-  keywords?: string;
   canonicalPath: string;
   ogType?: 'website' | 'article';
   noIndex?: boolean;
@@ -26,32 +23,35 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
     title: 'QR Code Scanner Online – Free, No App Needed | QR Here',
     description:
       'Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.',
-    keywords: SCANNER_KEYWORDS_STRING,
     canonicalPath: '/',
     ogType: 'website',
   },
   generator: {
-    title: 'QR Code Generator – Free Custom QR Codes | QR Here',
+    title: 'QR Code Generator – Create Custom QR Codes | QR Here',
     description:
       'Create custom QR codes with logos, colors, and frames for free. Download vector SVG or high-resolution PNG in your browser without an app.',
-    keywords: GENERATOR_KEYWORDS_STRING,
     canonicalPath: '/qr-code-generator',
     ogType: 'website',
+  },
+  printGuide: {
+    title: 'QR Code Size and Printing Guide | QR Here',
+    description:
+      'Learn recommended QR code print sizes, viewing distance ratios, quiet zone rules, and vector SVG specifications for reliable scanning.',
+    canonicalPath: '/qr-code-size-and-print-guide',
+    ogType: 'article',
   },
   // Legacy route aliases for backward compatibility in config lookups
   scan: {
     title: 'QR Code Scanner Online – Free, No App Needed | QR Here',
     description:
       'Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.',
-    keywords: SCANNER_KEYWORDS_STRING,
     canonicalPath: '/',
     ogType: 'website',
   },
   create: {
-    title: 'QR Code Generator – Free Custom QR Codes | QR Here',
+    title: 'QR Code Generator – Create Custom QR Codes | QR Here',
     description:
       'Create custom QR codes with logos, colors, and frames for free. Download vector SVG or high-resolution PNG in your browser without an app.',
-    keywords: GENERATOR_KEYWORDS_STRING,
     canonicalPath: '/qr-code-generator',
     ogType: 'website',
   },
@@ -123,6 +123,13 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
     description:
       'Make a free Wi-Fi QR code so guests can join your network instantly with one camera scan. No app, no passwords to spell out, and no sign-up required.',
     canonicalPath: '/blog/how-to-create-wifi-qr-code',
+    ogType: 'article',
+  },
+  blogErrorCorrection: {
+    title: 'QR Code Error Correction Explained: Levels L, M, Q, H & When to Use Which | QR Here',
+    description:
+      'Understand Reed-Solomon error correction in QR codes. Learn the practical trade-offs between Levels L, M, Q, and H, logo embedding limits, and print durability.',
+    canonicalPath: '/blog/qr-code-error-correction-explained',
     ogType: 'article',
   },
   qrCodeSecurity: {
