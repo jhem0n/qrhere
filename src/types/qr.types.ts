@@ -29,6 +29,7 @@ export interface QRScanResult {
   isBiDiSpoof?: boolean;
   timestamp: number;
   source: 'camera' | 'image';
+  barcodeFormat?: string;
 }
 
 export interface CameraDevice {

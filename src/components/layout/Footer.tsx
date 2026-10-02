@@ -108,7 +108,7 @@ export const Footer: React.FC = () => {
           {/* Tools Links */}
           <div>
             <h3 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
-              QR Tools
+              Scanning Tools
             </h3>
             <ul className="space-y-2 text-xs">
               <li>
@@ -117,6 +117,14 @@ export const Footer: React.FC = () => {
                   className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
                 >
                   QR Code Scanner
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/barcode-scanner"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
+                >
+                  Barcode Scanner Online
                 </Link>
               </li>
               <li>

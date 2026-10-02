@@ -40,6 +40,13 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
     canonicalPath: '/qr-code-size-and-print-guide',
     ogType: 'article',
   },
+  barcodeScanner: {
+    title: 'Barcode Scanner Online – Free, No App Needed | QR Here',
+    description:
+      'Scan barcodes online using your camera or image upload. Free web-based barcode reader supporting UPC, EAN, Code 128, and more.',
+    canonicalPath: '/barcode-scanner',
+    ogType: 'website',
+  },
   // Legacy route aliases for backward compatibility in config lookups
   scan: {
     title: 'QR Code Scanner Online – Free, No App Needed | QR Here',

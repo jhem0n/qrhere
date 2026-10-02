@@ -25,7 +25,8 @@ export const Header: React.FC = () => {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { to: '/qr-code-generator', label: 'Create' },
+    { to: '/qr-code-generator', label: 'Generate QR Code' },
+    { to: '/barcode-scanner', label: 'Barcode Scanner' },
     { to: '/blog', label: 'Blog' },
     { to: '/about', label: 'About' },
     { to: '/contact', label: 'Contact' },

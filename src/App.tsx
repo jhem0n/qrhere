@@ -17,6 +17,7 @@ import { BlogPostVcardQrCode } from './pages/Blog/BlogPostVcardQrCode';
 import { BlogPostScanWithoutApp } from './pages/Blog/BlogPostScanWithoutApp';
 import { BlogPostWifiQrCode } from './pages/Blog/BlogPostWifiQrCode';
 import { BlogPostErrorCorrection } from './pages/Blog/BlogPostErrorCorrection';
+import { BarcodeScannerPage } from './pages/Barcode/BarcodeScannerPage';
 import { QrCodeSecurityPage } from './pages/Security/QrCodeSecurityPage';
 import { QrCodePrintGuidePage } from './pages/Guide/QrCodePrintGuidePage';
 import { NotFoundPage } from './pages/NotFound/NotFoundPage';
@@ -32,6 +33,8 @@ export default function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/barcode-scanner" element={<BarcodeScannerPage />} />
+          <Route path="/barcode-scanner-online" element={<Navigate to="/barcode-scanner" replace />} />
           <Route path="/qr-code-generator" element={<CreatePage />} />
           <Route path="/create" element={<Navigate to="/qr-code-generator" replace />} />
           <Route path="/scan" element={<Navigate to="/" replace />} />

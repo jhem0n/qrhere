@@ -28,6 +28,7 @@ console.log(`Found ${urls.length} URLs in sitemap:`, urls);
 
 const EXPECTED_ROUTES = [
   'https://qrhere.online/',
+  'https://qrhere.online/barcode-scanner',
   'https://qrhere.online/qr-code-generator',
   'https://qrhere.online/qr-code-generator-url',
   'https://qrhere.online/qr-code-generator-text',
