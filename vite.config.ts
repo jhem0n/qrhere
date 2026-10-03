@@ -175,7 +175,19 @@ Sitemap: https://qrhere.online/sitemap.xml
       const indexPath = path.join(distDir, 'index.html');
       if (fs.existsSync(indexPath)) {
         const domain = resolveDomain();
-        const baseHtml = fs.readFileSync(indexPath, 'utf-8');
+        let baseHtml = fs.readFileSync(indexPath, 'utf-8');
+
+        // Safe HTML minification helper to optimize text-to-HTML ratio and eliminate empty space
+        const minifyHtml = (html: string): string => {
+          return html
+            .replace(/<!--(?!\[if)[\s\S]*?-->/g, '') // strip comments
+            .replace(/\s+/g, ' ') // collapse multi-spaces
+            .replace(/>\s+</g, '><') // collapse whitespace between tags
+            .trim();
+        };
+
+        // Minify homepage dist/index.html as well
+        fs.writeFileSync(indexPath, minifyHtml(baseHtml), 'utf-8');
 
         for (const route of STATIC_ROUTES) {
           let routeHtml = baseHtml;
@@ -224,17 +236,61 @@ Sitemap: https://qrhere.online/sitemap.xml
             /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>/i,
             `<meta name="twitter:description" content="${route.description}" />`
           );
+
+          // Replace Schema.org JSON-LD with route-specific structured data (replaces 3.9KB homepage schema)
+          const schemaObj = route.structuredData || {
+            '@context': 'https://schema.org',
+            '@graph': [
+              {
+                '@type': 'WebPage',
+                name: route.heading || route.title,
+                url: `${domain}${route.path}`,
+                description: route.description,
+              },
+              ...(route.breadcrumbs && route.breadcrumbs.length > 0
+                ? [
+                    {
+                      '@type': 'BreadcrumbList',
+                      itemListElement: route.breadcrumbs.map((b, idx) => ({
+                        '@type': 'ListItem',
+                        position: idx + 1,
+                        name: b.name,
+                        item: `${domain}${b.path}`,
+                      })),
+                    },
+                  ]
+                : []),
+            ],
+          };
+          routeHtml = routeHtml.replace(
+            /<script id="json-ld-schema"[^>]*>[\s\S]*?<\/script>/i,
+            `<script id="json-ld-schema" type="application/ld+json">${JSON.stringify(schemaObj)}</script>`
+          );
+
           // Replace <main class="flex-1">...</main> inside #root
           routeHtml = routeHtml.replace(
             /<main class="flex-1">[\s\S]*?<\/main>/i,
             `<main class="flex-1">${route.htmlContent}</main>`
           );
 
+          const finalHtml = minifyHtml(routeHtml);
+
+          // Write dist/${route.folder}/index.html
           const routeDir = path.join(distDir, route.folder);
           if (!fs.existsSync(routeDir)) {
             fs.mkdirSync(routeDir, { recursive: true });
           }
-          fs.writeFileSync(path.join(routeDir, 'index.html'), routeHtml, 'utf-8');
+          fs.writeFileSync(path.join(routeDir, 'index.html'), finalHtml, 'utf-8');
+
+          // Write dist/${route.folder}.html for cleanUrls direct file serving
+          if (route.folder) {
+            const cleanHtmlPath = path.join(distDir, `${route.folder}.html`);
+            const parentDir = path.dirname(cleanHtmlPath);
+            if (!fs.existsSync(parentDir)) {
+              fs.mkdirSync(parentDir, { recursive: true });
+            }
+            fs.writeFileSync(cleanHtmlPath, finalHtml, 'utf-8');
+          }
         }
 
         // Emit static 301-equivalent redirect fallbacks for legacy URLs

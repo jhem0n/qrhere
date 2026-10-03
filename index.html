@@ -1,40 +1,13 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <script>
-      /* Ensure window.fetch has a setter in sandboxed/getter-only iframe environments */
-      (function() {
-        try {
-          if (typeof window !== 'undefined') {
-            var origFetch = window.fetch;
-            var currentFetch = origFetch ? origFetch.bind(window) : null;
-            try {
-              Object.defineProperty(window, 'fetch', {
-                get: function() { return currentFetch; },
-                set: function(fn) { currentFetch = fn; },
-                configurable: true,
-                enumerable: true
-              });
-            } catch (_) {
-              try {
-                Object.defineProperty(window, 'fetch', {
-                  value: origFetch,
-                  writable: true,
-                  configurable: true
-                });
-              } catch (__) {}
-            }
-          }
-        } catch (_) {}
-      })();
-    </script>
+    <script>try{var _f=window.fetch;Object.defineProperty(window,"fetch",{get:function(){return _f},set:function(v){_f=v},configurable:true,enumerable:true})}catch(_){}</script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJDCL6XYYB"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-LJDCL6XYYB');
     </script>
 
@@ -95,97 +68,7 @@
     <meta name="apple-mobile-web-app-title" content="QR Here" />
 
     <!-- Schema.org JSON-LD Structured Data for Homepage (WebApplication & FAQPage) -->
-    <script id="json-ld-schema" type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebSite",
-          "@id": "https://qrhere.online/#website",
-          "url": "https://qrhere.online/",
-          "name": "QR Here",
-          "description": "Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.",
-          "inLanguage": "en-US"
-        },
-        {
-          "@type": "WebApplication",
-          "@id": "https://qrhere.online/#webapp",
-          "name": "QR Here",
-          "url": "https://qrhere.online/",
-          "description": "Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.",
-          "applicationCategory": "UtilitiesApplication",
-          "operatingSystem": "Any",
-          "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas or WebAssembly support.",
-          "softwareVersion": "1.0.0",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-          },
-          "featureList": [
-            "Live Camera QR Code Scanning in Browser",
-            "Image and Screenshot QR Code Decoding (PNG, JPG, WEBP)",
-            "Custom Vector QR Code Generator (SVG and PNG)",
-            "Wi-Fi, vCard Contact, SMS, and URL Presets",
-            "100% Client-Side In-Browser Decoding with Zero Server Storage"
-          ]
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Is QR Here free?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes, QR Here is 100% free to use. There are no subscriptions, hidden fees, scan limits, or watermarks."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Does it work on iPhone and Android?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. QR Here works seamlessly on iPhones, iPads, Android smartphones, tablets, Windows PCs, and Macs using any modern web browser."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Do you store my camera feed or images?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. All scanning and decoding runs completely in your web browser. Your camera feed and uploaded images never leave your device and are never sent to or stored on any server."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Do I need to install an app or sign up?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No installation or account registration is required. You can scan or create QR codes immediately directly in your browser without entering an email or password."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Which image formats are supported?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "You can upload QR code images and screenshots in PNG, JPG, and WEBP formats up to 10 MB in file size."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How do I create my own QR code?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "You can generate your own custom QR code using our free QR code generator. Choose from options like website links, Wi-Fi networks, contact cards, and plain text, customize colors, and download as SVG or PNG."
-              }
-            }
-          ]
-        }
-      ]
-    }
-    </script>
+    <script id="json-ld-schema" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://qrhere.online/#website","url":"https://qrhere.online/","name":"QR Here","description":"Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.","inLanguage":"en-US"},{"@type":"WebApplication","@id":"https://qrhere.online/#webapp","name":"QR Here","url":"https://qrhere.online/","description":"Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is QR Here free?","acceptedAnswer":{"@type":"Answer","text":"Yes, QR Here is 100% free to use. There are no subscriptions, hidden fees, scan limits, or watermarks."}},{"@type":"Question","name":"Does it work on iPhone and Android?","acceptedAnswer":{"@type":"Answer","text":"Yes. QR Here works seamlessly on iPhones, iPads, Android smartphones, tablets, Windows PCs, and Macs using any modern web browser."}},{"@type":"Question","name":"Do you store my camera feed or images?","acceptedAnswer":{"@type":"Answer","text":"No. All scanning and decoding runs completely in your web browser. Your camera feed and uploaded images never leave your device and are never sent to or stored on any server."}},{"@type":"Question","name":"Do I need to install an app or sign up?","acceptedAnswer":{"@type":"Answer","text":"No installation or account registration is required. You can scan or create QR codes immediately directly in your browser without entering an email or password."}},{"@type":"Question","name":"Which image formats are supported?","acceptedAnswer":{"@type":"Answer","text":"You can upload QR code images and screenshots in PNG, JPG, and WEBP formats up to 10 MB in file size."}},{"@type":"Question","name":"How do I create my own QR code?","acceptedAnswer":{"@type":"Answer","text":"You can generate your own custom QR code using our free QR code generator. Choose from options like website links, Wi-Fi networks, contact cards, and plain text, customize colors, and download as SVG or PNG."}}]}]}</script>
   </head>
   <body class="bg-white text-slate-900 antialiased selection:bg-blue-600 selection:text-white dark:bg-slate-950 dark:text-slate-100">
     <div id="root">

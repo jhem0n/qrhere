@@ -1,9 +1,11 @@
 /**
  * Static route definitions and semantic HTML for crawler-friendly prerendering.
- * These are emitted as static HTML files during `vite build` so crawlers with
- * JavaScript disabled immediately receive full semantic HTML, H1 headings,
- * complete text, and internal navigation links.
+ * These are emitted as static HTML files during `vite build` so search engine
+ * crawlers receive full semantic HTML, H1 headings, complete text, and internal
+ * navigation links with high text-to-HTML ratio and zero DOM bloat.
  */
+
+import { QR_TYPES } from '../src/data/qrTypes';
 
 export interface StaticRouteConfig {
   path: string;
@@ -13,72 +15,1277 @@ export interface StaticRouteConfig {
   keywords: string;
   heading: string;
   breadcrumbs: { name: string; path: string }[];
+  structuredData?: object;
   htmlContent: string;
 }
 
-export const STATIC_ROUTES: StaticRouteConfig[] = [
+const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
+  // 1. QR Code Generator Hub
   {
     path: '/qr-code-generator',
     folder: 'qr-code-generator',
-    title: 'QR Code Generator – Free Custom QR Codes | QR Here',
+    title: 'Free QR Code Generator – Create Custom QR Codes Online | QR Here',
     description:
-      'Create custom QR codes with logos, colors, and frames for free. Download vector SVG or high-resolution PNG in your browser without an app.',
+      'Create custom QR codes with logos, colors, frames, and error correction for free. Download vector SVG, high-resolution PNG, or PDF print sheets in your browser.',
     keywords:
-      'QR code generator, create QR code, QR code generator with logo, custom QR code maker, vector QR code SVG, high resolution QR code PNG, Wi-Fi QR code generator, QR Here',
-    heading: 'QR Code Generator',
+      'free QR code generator, create QR code, QR code maker, custom QR code generator with logo, free QR code creator, vector QR code SVG, high resolution QR code PNG, Wi-Fi QR code generator, vCard QR code business cards, static QR code maker, QR Here',
+    heading: 'Free QR Code Generator',
     breadcrumbs: [
       { name: 'Home', path: '/' },
       { name: 'QR Code Generator', path: '/qr-code-generator' },
     ],
     htmlContent: `
-      <section class="max-w-4xl mx-auto px-4 py-8">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight text-center mb-4">
-          QR Code Generator
-        </h1>
-        <p class="text-base text-slate-600 max-w-2xl mx-auto text-center leading-relaxed mb-8">
-          Create custom QR codes with logos, frames, and colors. Download your QR code as SVG or PNG.
-        </p>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
-          <div class="p-5 rounded-2xl border border-slate-200 bg-slate-50">
-            <h2 class="text-base font-bold text-slate-900 mb-2">14 Supported Data Types</h2>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Generate codes for Website URLs, Wi-Fi network credentials, vCard contacts, Email messages, SMS, Telephone numbers, and Geolocation coordinates.
-            </p>
-          </div>
-          <div class="p-5 rounded-2xl border border-slate-200 bg-slate-50">
-            <h2 class="text-base font-bold text-slate-900 mb-2">Design Customization</h2>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Customize dots, corner squares, center icons, and color palettes with automated WCAG contrast validation to prevent unreadable codes.
-            </p>
-          </div>
-          <div class="p-5 rounded-2xl border border-slate-200 bg-slate-50">
-            <h2 class="text-base font-bold text-slate-900 mb-2">Vector & High-Res Export</h2>
-            <p class="text-xs text-slate-600 leading-relaxed">
-              Export in scalable vector SVG format for crisp print production at billboard scale, or download clean raster PNG up to 1024x1024 pixels.
-            </p>
-          </div>
-        </div>
-
-        <div class="p-6 rounded-2xl border border-blue-100 bg-blue-50/50 my-6">
-          <h2 class="text-base font-bold text-blue-950 mb-2">Scan & Test Your QR Codes</h2>
-          <p class="text-sm text-blue-900/80 mb-4">
-            Always verify your newly generated QR codes before printing or distributing them.
+      <section class="max-w-4xl mx-auto px-4 py-8 space-y-12 text-slate-800 leading-relaxed">
+        <header class="text-center space-y-3">
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+            Free QR Code Generator
+          </h1>
+          <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            Create custom QR codes online with logos, colors, frames, and error correction. Turn any link, Wi-Fi network, vCard contact, or text into a permanent, scannable QR code and download free high-resolution vector SVG or PNG files.
           </p>
-          <a href="/" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-blue-600 text-white shadow-sm hover:bg-blue-700">
-            Open QR Scanner
-          </a>
-        </div>
+        </header>
 
-        <div class="border-t border-slate-200 pt-6 mt-8 text-sm text-slate-600 space-y-4">
-          <h2 class="text-lg font-bold text-slate-900">Printing Tips & Error Correction</h2>
-          <p>
-            When embedding a center logo, select high error correction (Level Q or H) to preserve scan integrity. Check our <a href="/faq" class="text-blue-600 underline">Frequently Asked Questions</a> for recommended print dimensions, or review our <a href="/terms" class="text-blue-600 underline">Terms of Service</a> for usage guidelines.
+        <section class="space-y-4">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            What is a QR Code?
+          </h2>
+          <p class="text-base text-slate-600 leading-relaxed">
+            The full form of QR is Quick Response, and it is a two-dimensional barcode with small square codes. They can store information that can be decoded by scanning them. Businesses use QR codes to connect offline users to online content.
           </p>
+          <p class="text-base text-slate-600 leading-relaxed">
+            QR codes can be scanned with smartphones that have QR code scanning. Also, they can be scanned to retrieve the information using an <a href="/" class="text-blue-600 font-semibold underline">online QR code scanner</a>. When someone scans a QR code, the code opens the content linked to it.
+          </p>
+        </section>
+
+        <section class="space-y-8">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              How to Create a QR Code?
+            </h2>
+            <p class="mt-2 text-base text-slate-600 leading-relaxed">
+              Our QR code creator makes creating QR codes very easy. No technical skills are required. Just follow these steps to create a QR code with our tool:
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Step 1: Choose a Type</h3>
+              <p class="text-base text-slate-600 leading-relaxed mt-1">
+                Once you open our QR code generator, you will see different types of codes you can generate. Start by selecting the type of QR code you want to create (such as URL, vCard, Text, Email, SMS, WiFi, WhatsApp, Phone, Location, or Event Card).
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Step 2: Enter Your Data</h3>
+              <p class="text-base text-slate-600 leading-relaxed mt-1">
+                After choosing the type, the tool will ask you to input the data. Inputs vary with the type of code you selected to create. Fill in the required fields with your information, such as your website link, network credentials, or contact details.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Step 3: Customize If Needed</h3>
+              <p class="text-base text-slate-600 leading-relaxed mt-1">
+                Our QR code maker lets you customize the code before generating and downloading it. You can customize the following before generating a QR code:
+              </p>
+              <ul class="list-disc pl-6 space-y-1 text-base text-slate-600 mt-2">
+                <li>Frame styles with call-to-action text</li>
+                <li>Shape and color of dots and corner eyes</li>
+                <li>Background colors, gradients, and transparency</li>
+                <li>Center logo size and knockout padding</li>
+                <li>Error correction level (L, M, Q, H)</li>
+                <li>Export sizes and resolutions</li>
+              </ul>
+              <p class="text-sm text-slate-500 italic mt-1">
+                This step is optional, but customization helps your QR code align with your brand.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Step 4: Download or Copy</h3>
+              <p class="text-base text-slate-600 leading-relaxed mt-1">
+                When you enter data or customize the tool, changes appear in real time, and your QR code generates automatically. You can see the code in the output box. Once done, choose a file type (PNG, JPG, WebP, PDF, or SVG) and click the download button. You can also copy the code directly or copy the SVG code.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-8">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              Design Custom QRs With Our Online QR Generator
+            </h2>
+            <p class="mt-2 text-base text-slate-600 leading-relaxed">
+              What sets our QR code generator apart is that you can create custom-designed QR codes. Here are the customization features that you can use for free:
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-xl font-bold text-slate-900">1. Frame</h3>
+              <p class="text-base text-slate-600 leading-relaxed">
+                Choose from multiple ready-made frame styles to make your QR code stand out. Once a frame is selected, you can add your own call to action text (such as "SCAN ME" or "CONNECT"), change the frame and text colors to match your brand, and enable a single color or transparent background.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900">2. Shape and Color</h3>
+              <p class="text-base text-slate-600 leading-relaxed">
+                You can choose from multiple shape styles for the code pattern and other elements. Customize the main code pattern (square, rounded, dots, classy patterns), outer eye style, inner eye style, and distinct body and corner eye colors.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900">3. Background</h3>
+              <p class="text-base text-slate-600 leading-relaxed">
+                Set a single background color, apply a gradient, or switch to a transparent background so the code blends cleanly into any design, brochure, or product packaging.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900">4. Logo</h3>
+              <p class="text-base text-slate-600 leading-relaxed">
+                Add a logo to the center of your QR code. Choose from popular platform icons available on the generator (WhatsApp, Instagram, LinkedIn, TikTok, YouTube, PayPal, Bitcoin) or upload your own custom PNG or SVG logo with adjustable size and background knockout padding.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900">5. Level</h3>
+              <p class="text-base text-slate-600 leading-relaxed">
+                Choose the error correction level based on how you plan to use your QR code: Level L (7% recovery), Level M (15% recovery, recommended default), Level Q (25% recovery), or Level H (30% recovery, best when adding a logo or printing for outdoor signs).
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900">6. Size</h3>
+              <p class="text-base text-slate-600 leading-relaxed">
+                Generate QR codes in multiple sizes from 50 × 50 px up to 2048 × 2048 px ultra-high definition, or download scalable vector SVG for infinite resolution with zero loss in print quality.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-6">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            Features of Our QR Code Generator
+          </h2>
+          <ul class="list-disc pl-6 space-y-2 text-base text-slate-600 leading-relaxed">
+            <li>100% free to use with unlimited scans and zero watermarks</li>
+            <li>No sign-up or account registration required</li>
+            <li>Supports 14 distinct QR code data types</li>
+            <li>Custom frame styles with editable call-to-action text</li>
+            <li>Full shape, dot pattern, and color customization</li>
+            <li>Adjustable center logo size with white knockout padding</li>
+            <li>Multiple error correction levels (L, M, Q, H)</li>
+            <li>Free download &amp; copy available (PNG, SVG, PDF print sheet)</li>
+            <li>Automated contrast checking for guaranteed optical scannability</li>
+            <li>100% client-side privacy with zero server storage</li>
+          </ul>
+        </section>
+      </section>
+    `,
+  },
+
+  // 2. Contact Page
+  {
+    path: '/contact',
+    folder: 'contact',
+    title: 'Contact Us – Support & Feedback | QR Here',
+    description:
+      'Get in touch with QR Here for support, feature suggestions, or feedback. We are here to help with your QR code scanning and generation needs.',
+    keywords: 'contact QR Here, QR code email, QR Here feedback, bug report, jhem0n',
+    heading: 'Contact QR Here',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Contact', path: '/contact' },
+    ],
+    htmlContent: `
+      <section class="max-w-4xl mx-auto px-4 py-8 space-y-10 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Contact QR Here
+          </h1>
+          <p class="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed">
+            Have a question, feedback, or need technical assistance? We welcome inquiries from users, developers, and organizations using QR Here for private scanning and custom QR code generation.
+          </p>
+        </header>
+
+        <div class="space-y-8 text-base text-slate-700">
+          <section class="space-y-2">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">General Questions</h2>
+            <p>
+              For everyday inquiries about how QR Here works, browser compatibility, camera access permissions, or creating custom QR codes for print and web, feel free to send an email. Before reaching out, you might also find instant answers in our <a href="/faq" class="text-blue-600 font-semibold underline">Frequently Asked Questions</a>.
+            </p>
+          </section>
+
+          <section class="space-y-2">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Bug Reports</h2>
+            <p>
+              If you experience an issue decoding a particular barcode format, encountering camera feed glitches on specific mobile devices, or exporting SVG vector graphics, please let us know. Providing your operating system, browser version, and a brief description of the steps to reproduce helps diagnose the problem quickly.
+            </p>
+          </section>
+
+          <section class="space-y-2">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Security Reports</h2>
+            <p>
+              We take security and user privacy seriously. All scanning and decoding operates strictly client-side within the browser sandbox with zero cloud storage. If you identify a potential security issue, dependency vulnerability, or client-side sanitization gap, please report it via email for responsible review. You can also read our <a href="/qr-code-security" class="text-blue-600 font-semibold underline">QR Code Security Guide</a> for safe scanning advice.
+            </p>
+          </section>
+
+          <section class="space-y-2">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Feature Suggestions &amp; Project Feedback</h2>
+            <p>
+              Suggestions for new QR code formats, additional frame styling options, custom color palettes, or performance optimizations are always welcome. Feedback from print shops, educators, designers, and regular users directly drives future updates.
+            </p>
+          </section>
+
+          <section class="space-y-2 p-6 rounded-2xl border border-blue-200 bg-blue-50/50">
+            <h2 class="text-xl font-bold text-slate-900">Email</h2>
+            <p>You can contact the developer directly at:</p>
+            <p class="pt-1">
+              <a href="mailto:qrhereonline@gmail.com" class="text-lg font-bold text-blue-600 underline">
+                qrhereonline@gmail.com
+              </a>
+            </p>
+          </section>
+
+          <section class="space-y-2 p-6 rounded-2xl border border-slate-200 bg-white">
+            <h2 class="text-xl font-bold text-slate-900">GitHub Project</h2>
+            <p>Explore source repositories, issue trackers, and open-source contributions on GitHub:</p>
+            <p class="pt-1">
+              <a href="https://github.com/jhem0n" target="_blank" rel="noopener noreferrer" class="text-base font-bold text-blue-600 underline">
+                github.com/jhem0n
+              </a>
+            </p>
+          </section>
+
+          <div class="pt-6 border-t border-slate-200">
+            <h2 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">
+              Quick Resources &amp; Documentation
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <a href="/faq" class="p-3 rounded-xl border border-slate-200 text-slate-700 hover:text-blue-600">
+                <span class="font-bold block text-sm mb-1">Frequently Asked Questions</span>
+                <span class="text-slate-500">Camera permissions, offline scanning, and generator options</span>
+              </a>
+              <a href="/privacy" class="p-3 rounded-xl border border-slate-200 text-slate-700 hover:text-blue-600">
+                <span class="font-bold block text-sm mb-1">Privacy Policy</span>
+                <span class="text-slate-500">Zero-knowledge client-side architecture and data handling</span>
+              </a>
+              <a href="/terms" class="p-3 rounded-xl border border-slate-200 text-slate-700 hover:text-blue-600">
+                <span class="font-bold block text-sm mb-1">Terms of Service</span>
+                <span class="text-slate-500">Permitted usage guidelines, licensing, and disclaimer</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
     `,
   },
+
+  // 3. Blog Index
+  {
+    path: '/blog',
+    folder: 'blog',
+    title: 'QR Code Blog – Guides, Tips & Tutorials | QR Here',
+    description:
+      'Practical guides, tutorials, and tips for scanning and creating QR codes. Learn about static vs dynamic codes, vCards, Wi-Fi codes, and safety.',
+    keywords:
+      'QR code blog, static vs dynamic QR code, QR code tutorials, QR code guides, QR scanner tips, QR generator guide',
+    heading: 'QR Code Guides & Tutorials',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog' },
+    ],
+    htmlContent: `
+      <section class="max-w-5xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
+        <header class="mb-6">
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            QR Code Guides &amp; Tutorials
+          </h1>
+          <p class="mt-2 text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed">
+            Practical walkthroughs, scanning guides, and technical advice for creating and scanning QR codes safely and reliably.
+          </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <article class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col justify-between space-y-4">
+            <div>
+              <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Comparison Guide</span>
+              <h2 class="text-xl font-bold text-slate-900 mt-1">
+                <a href="/blog/static-vs-dynamic-qr-code" class="hover:text-blue-600 underline">
+                  Static vs Dynamic QR Codes: What's the Difference?
+                </a>
+              </h2>
+              <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                A straightforward, jargon-free breakdown of static vs dynamic QR codes. Learn how static codes encode data permanently with zero server reliance and why they never expire.
+              </p>
+            </div>
+            <div class="text-xs text-slate-500 pt-2 border-t border-slate-100 flex items-center justify-between">
+              <span>Updated October 2026</span>
+              <span>4 min read</span>
+            </div>
+          </article>
+
+          <article class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col justify-between space-y-4">
+            <div>
+              <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Business Cards</span>
+              <h2 class="text-xl font-bold text-slate-900 mt-1">
+                <a href="/blog/how-to-create-vcard-qr-code" class="hover:text-blue-600 underline">
+                  How to Create a vCard QR Code for Digital Business Cards
+                </a>
+              </h2>
+              <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                Put your contact details directly into a QR code for your business card. Contacts can scan it with their standard camera and save your name, phone number, and email straight to their address book.
+              </p>
+            </div>
+            <div class="text-xs text-slate-500 pt-2 border-t border-slate-100 flex items-center justify-between">
+              <span>Updated October 2026</span>
+              <span>4 min read</span>
+            </div>
+          </article>
+
+          <article class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col justify-between space-y-4">
+            <div>
+              <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Scanning Guide</span>
+              <h2 class="text-xl font-bold text-slate-900 mt-1">
+                <a href="/blog/how-to-scan-qr-code-without-app" class="hover:text-blue-600 underline">
+                  How to Scan a QR Code Without Installing an App
+                </a>
+              </h2>
+              <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                You do not need to download an ad-filled scanner app from an app store. Learn how to scan QR codes on iPhone, Android, or desktop computers using your built-in camera or a private browser scanner.
+              </p>
+            </div>
+            <div class="text-xs text-slate-500 pt-2 border-t border-slate-100 flex items-center justify-between">
+              <span>Updated October 2026</span>
+              <span>4 min read</span>
+            </div>
+          </article>
+
+          <article class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col justify-between space-y-4">
+            <div>
+              <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Wi-Fi Guide</span>
+              <h2 class="text-xl font-bold text-slate-900 mt-1">
+                <a href="/blog/how-to-create-wifi-qr-code" class="hover:text-blue-600 underline">
+                  How to Create a WiFi QR Code (Free, No App)
+                </a>
+              </h2>
+              <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                Stop reading your Wi-Fi password out loud. Learn how to make a free Wi-Fi QR code guests can scan to connect instantly without apps, typing, or sign-up.
+              </p>
+            </div>
+            <div class="text-xs text-slate-500 pt-2 border-t border-slate-100 flex items-center justify-between">
+              <span>Updated October 2026</span>
+              <span>5 min read</span>
+            </div>
+          </article>
+
+          <article class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col justify-between space-y-4 md:col-span-2">
+            <div>
+              <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Technical Deep Dive</span>
+              <h2 class="text-xl font-bold text-slate-900 mt-1">
+                <a href="/blog/qr-code-error-correction-explained" class="hover:text-blue-600 underline">
+                  QR Code Error Correction Explained: Levels L, M, Q, H &amp; When to Use Which
+                </a>
+              </h2>
+              <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                Understand Reed-Solomon error correction in QR codes. Learn the practical trade-offs between Levels L, M, Q, and H, logo embedding limits, and print durability.
+              </p>
+            </div>
+            <div class="text-xs text-slate-500 pt-2 border-t border-slate-100 flex items-center justify-between">
+              <span>Updated October 2026</span>
+              <span>5 min read</span>
+            </div>
+          </article>
+        </div>
+      </section>
+    `,
+  },
+
+  // 4. Static vs Dynamic QR Code Article
+  {
+    path: '/blog/static-vs-dynamic-qr-code',
+    folder: 'blog/static-vs-dynamic-qr-code',
+    title: "Static vs Dynamic QR Code – What's the Difference?",
+    description:
+      'Learn the difference between static and dynamic QR codes, how they work, key benefits and limits, and how to choose the right one for your needs.',
+    keywords:
+      'static vs dynamic QR code, static QR code, dynamic QR code, static QR, dynamic QR, editable QR code, QR code generator, QR code scanner',
+    heading: "Static vs Dynamic QR Codes: What's the Difference?",
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog' },
+      { name: 'Static vs Dynamic QR Code', path: '/blog/static-vs-dynamic-qr-code' },
+    ],
+    htmlContent: `
+      <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Quick Comparison • 4 min read</span>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">
+            Static vs Dynamic QR Codes: What's the Difference?
+          </h1>
+          <p class="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed">
+            A simple, clear guide comparing static and dynamic QR codes. Learn which one you need for business cards, Wi-Fi, flyers, and products.
+          </p>
+        </header>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">The 30-Second Summary</h2>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+            <p class="font-bold text-slate-900 text-base">Static QR Code = Permanent &amp; Free Forever</p>
+            <p class="text-slate-600 text-sm">
+              Your website link, Wi-Fi password, or contact card is encoded directly into the pattern of squares. It works offline, never expires, and requires no account or subscription. But once printed, you cannot change where it points.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+            <p class="font-bold text-slate-900 text-base">Dynamic QR Code = Editable &amp; Trackable (Usually Paid)</p>
+            <p class="text-slate-600 text-sm">
+              The code points to a short redirect URL managed by a third-party company. You can change the destination later and see scan counts. However, if the provider raises prices, cancels your account, or shuts down, your printed QR code stops working completely.
+            </p>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">Quick Comparison: Static vs. Dynamic</h2>
+          <div class="overflow-x-auto rounded-xl border border-slate-200">
+            <table class="min-w-full divide-y divide-slate-200 text-left text-sm">
+              <thead class="bg-slate-50 font-semibold text-slate-900">
+                <tr>
+                  <th class="p-3">Feature</th>
+                  <th class="p-3 text-blue-600">Static QR Code</th>
+                  <th class="p-3">Dynamic QR Code</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 bg-white">
+                <tr>
+                  <td class="p-3 font-medium text-slate-900">Cost</td>
+                  <td class="p-3 font-semibold text-emerald-600">100% Free Forever</td>
+                  <td class="p-3 text-slate-600">Often $10–$40/month</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-medium text-slate-900">Expiration Date</td>
+                  <td class="p-3 font-semibold text-emerald-600">Never expires</td>
+                  <td class="p-3 text-slate-600">Stops working if unpaid</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-medium text-slate-900">Editable after printing</td>
+                  <td class="p-3 text-slate-600">No (permanent)</td>
+                  <td class="p-3 text-blue-600 font-semibold">Yes</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-medium text-slate-900">Privacy &amp; Security</td>
+                  <td class="p-3 font-semibold text-emerald-600">Direct &amp; Private</td>
+                  <td class="p-3 text-slate-600">Tracks user data &amp; IPs</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-medium text-slate-900">Third-Party Risk</td>
+                  <td class="p-3 font-semibold text-emerald-600">Zero risk</td>
+                  <td class="p-3 text-slate-600">High (depends on host)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">Which One Should You Choose?</h2>
+          <div class="space-y-3">
+            <h3 class="font-bold text-slate-900 text-lg">Choose a Static QR Code if:</h3>
+            <ul class="list-disc pl-5 space-y-1 text-slate-600">
+              <li>You are sharing your <strong>Wi-Fi network</strong> with guests.</li>
+              <li>You are putting your contact card (<strong>vCard</strong>) on printed business cards.</li>
+              <li>You are linking to your primary website or a permanent social profile.</li>
+              <li>You want zero monthly fees and peace of mind that your code will work in 5 years.</li>
+            </ul>
+          </div>
+
+          <div class="space-y-3 pt-2">
+            <h3 class="font-bold text-slate-900 text-lg">Choose a Dynamic QR Code only if:</h3>
+            <ul class="list-disc pl-5 space-y-1 text-slate-600">
+              <li>You are running expensive billboard or magazine ads and need scan analytics.</li>
+              <li>You print packaging on 50,000 product boxes and know the URL will change next season.</li>
+            </ul>
+          </div>
+
+          <p class="text-sm bg-slate-50 p-4 rounded-xl border border-slate-200 text-slate-600">
+            <strong>Smart Hack:</strong> If you want an editable link without paying monthly fees, create a static QR code pointing to a URL on your own domain (like <code>yourbrand.com/deal</code>). Whenever you want to change the destination, simply set up a free 301 redirect on your own website.
+          </p>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+          <h2 class="text-2xl font-bold text-slate-900">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">Do static QR codes ever expire?</h3>
+              <p class="text-slate-600 mt-1">No. Static QR codes never expire. The destination is stored permanently in the black-and-white pattern. As long as your website is active, the code works forever.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">Can I change the link of a static QR code after printing?</h3>
+              <p class="text-slate-600 mt-1">No. Because the URL is baked into the squares, you cannot edit it. If you need to update where it goes, you must print a new code or set up a redirect on your own website.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">Are static QR codes really 100% free?</h3>
+              <p class="text-slate-600 mt-1">Yes. With QR Here, creating static QR codes for links, Wi-Fi, vCards, or text is completely free with no subscriptions, accounts, or scan limits.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">Which type is safer for privacy?</h3>
+              <p class="text-slate-600 mt-1">Static QR codes are far more private. When someone scans a static code, their phone opens the link directly without routing through any tracking company or logging their IP address.</p>
+            </div>
+          </div>
+        </section>
+      </article>
+    `,
+  },
+
+  // 5. vCard Business Card Article
+  {
+    path: '/blog/how-to-create-vcard-qr-code',
+    folder: 'blog/how-to-create-vcard-qr-code',
+    title: 'Free vCard QR Code Generator for Business Cards | QR Here',
+    description:
+      'Create a free vCard QR code for your business card. Let contacts save your details directly to their phone address book with a single camera scan.',
+    keywords:
+      'vcard qr code generator free, digital business card qr code, contact qr code generator, free vcard qr code maker, vcard qr code, digital business cards',
+    heading: 'How to Create a vCard QR Code for Digital Business Cards',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog' },
+      { name: 'vCard QR Code for Digital Business Cards', path: '/blog/how-to-create-vcard-qr-code' },
+    ],
+    htmlContent: `
+      <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Step-by-Step Guide • 4 min read</span>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">
+            How to Create a vCard QR Code for Digital Business Cards
+          </h1>
+          <p class="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed">
+            Instead of forcing someone to manually type your 10-digit number, name, and email into their phone, they simply point their camera at your card and tap "Add to Contacts". Everything fills in automatically.
+          </p>
+        </header>
+
+        <section class="space-y-6">
+          <h2 class="text-2xl font-bold text-slate-900">How to Create Your vCard Code (Step by Step)</h2>
+          <div class="space-y-4">
+            <div>
+              <h3 class="text-xl font-bold text-slate-900">1. Open the QR Here vCard Generator</h3>
+              <p class="text-slate-600 mt-1">
+                Head over to the <a href="/qr-code-generator-vcard" class="text-blue-600 font-semibold underline">vCard QR Code Generator</a>. It runs completely in your browser, so your private contact info is never saved on external servers.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900">2. Enter essential contact details</h3>
+              <p class="text-slate-600 mt-1">Fill in only what people actually need:</p>
+              <ul class="list-disc pl-5 space-y-1 text-slate-600 mt-1">
+                <li><strong>Full Name:</strong> First and last name.</li>
+                <li><strong>Company &amp; Title:</strong> Helps people remember where they met you.</li>
+                <li><strong>Phone Number:</strong> Include the country code for international clients.</li>
+                <li><strong>Email &amp; Website:</strong> Your primary business email and portfolio or LinkedIn link.</li>
+              </ul>
+              <p class="text-sm italic text-slate-500 mt-1">
+                Pro Tip: Keep it concise. Packing 10 fields makes the QR pattern extremely dense and harder for budget cameras to focus on.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900">3. Select Error Correction Level M or Q</h3>
+              <p class="text-slate-600 mt-1">
+                We recommend Medium (Level M) or Quartile (Level Q). This ensures that even if your card gets slightly scuffed in someone’s pocket or wallet, their phone can still scan it without issues.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900">4. Download vector SVG for print</h3>
+              <p class="text-slate-600 mt-1">
+                Always choose Download SVG when sending your design to a print shop or adding it to Canva or Photoshop. Vector SVGs remain sharp at any print size. For digital badges or email footers, a high-resolution PNG works great.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+          <h2 class="text-2xl font-bold text-slate-900">3 Golden Rules for Printing Business Cards</h2>
+          <div class="space-y-3">
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <p class="font-bold text-slate-900">1. Minimum Size: 1.2 × 1.2 inches (30 × 30 mm)</p>
+              <p class="text-slate-600 text-sm mt-1">Never print a vCard code smaller than 1.2 inches. Because it holds more data than a simple link, shrinking it further makes the squares too tiny.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <p class="font-bold text-slate-900">2. High Contrast Only</p>
+              <p class="text-slate-600 text-sm mt-1">Always use dark ink on a light background. Avoid light gray or pastel colors on white cardstock.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <p class="font-bold text-slate-900">3. Leave Empty Space Around the Edges</p>
+              <p class="text-slate-600 text-sm mt-1">Keep a small buffer of blank space (the quiet zone) around the QR code so text and graphics don't crowd the barcode corners.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+          <h2 class="text-2xl font-bold text-slate-900">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">Do people need an app to scan my vCard QR code?</h3>
+              <p class="text-slate-600 mt-1">No. Both iPhones and Android phones recognize vCard QR codes directly through their standard camera app. When scanned, a contact card immediately appears with a button to save to their address book.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">Can I add my logo and brand colors?</h3>
+              <p class="text-slate-600 mt-1">Yes. With QR Here, you can customize the code colors and upload your company logo into the center without paying for a subscription.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">Can I change my phone number or email after printing?</h3>
+              <p class="text-slate-600 mt-1">Standard vCard QR codes are static and permanent. Your contact details are stored directly in the pattern of squares. If your phone number changes later, you will need to print a new code. Only include stable details.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">What is the recommended print size for a vCard QR code?</h3>
+              <p class="text-slate-600 mt-1">Print your vCard QR code at least 1.2 × 1.2 inches (30 × 30 mm). Because contact cards contain more data than simple URLs, printing too small makes it harder for budget phone cameras to focus.</p>
+            </div>
+          </div>
+        </section>
+      </article>
+    `,
+  },
+
+  // 6. Scan Without App Article
+  {
+    path: '/blog/how-to-scan-qr-code-without-app',
+    folder: 'blog/how-to-scan-qr-code-without-app',
+    title: 'How to Scan a QR Code Without an App | QR Here',
+    description:
+      'Learn how to scan QR codes on iPhone, Android, and PC without downloading apps. Step-by-step camera, browser, and screenshot scanning guide.',
+    keywords:
+      'how to scan qr code without app, scan qr code online, scan qr code from screenshot, camera qr scanner, scan qr code without downloading app, browser qr code scanner',
+    heading: 'How to Scan a QR Code Without Installing an App',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog' },
+      { name: 'How to Scan a QR Code Without an App', path: '/blog/how-to-scan-qr-code-without-app' },
+    ],
+    htmlContent: `
+      <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Quick Guide • 4 min read</span>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">
+            How to Scan a QR Code Without Installing an App
+          </h1>
+          <p class="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed">
+            You do not need to download an ad-filled scanner app from an app store. Your iPhone or Android camera already has scanning built in, and you can scan from webcams or uploaded screenshots directly in your browser.
+          </p>
+        </header>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">1. Scan in Your Browser with QR Here (Phone, PC &amp; Mac)</h2>
+          <p class="text-slate-600">
+            The easiest and most versatile way to scan a QR code is directly in your web browser with our free <a href="/" class="text-blue-600 font-semibold underline">QR Here Scanner</a>. It runs 100% on your device with no app store downloads and zero data uploaded to servers.
+          </p>
+          <div class="p-5 rounded-2xl bg-blue-50/70 border border-blue-200 space-y-3">
+            <h3 class="font-bold text-slate-900 text-lg">Two Quick Ways to Scan on QR Here:</h3>
+            <p><strong>Option A: Live Camera or Webcam:</strong> Open QR Here in Chrome, Safari, Edge, or Firefox. Click Start Camera and allow camera access. Hold the code in front of your camera. Your link appears instantly.</p>
+            <p><strong>Option B: From an Image or Screenshot:</strong> Take a screenshot or photo of the QR code. Switch to the Upload Image tab on QR Here. Drag and drop the file or tap to select it. The code is decoded in milliseconds.</p>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">2. Use the Built-In Camera on iPhone or iPad</h2>
+          <p class="text-slate-600">
+            Apple has built-in QR scanning right inside the standard camera:
+          </p>
+          <ol class="list-decimal pl-5 space-y-1.5 text-slate-600">
+            <li>Open the default <strong>Camera</strong> app.</li>
+            <li>Point your phone steadily at the QR code (no need to press the shutter button).</li>
+            <li>A yellow link banner will appear below the code. Tap it to visit the page.</li>
+          </ol>
+          <p class="text-sm text-slate-500 bg-slate-50 p-3 rounded-xl border border-slate-200">
+            <strong>Quick Tip:</strong> If your iPhone does not detect the code, open Settings &gt; Camera and verify that Scan QR Codes is turned on.
+          </p>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">3. Use the Built-In Camera on Android</h2>
+          <p class="text-slate-600">
+            Almost every modern Android phone (Samsung, Google Pixel, Motorola, Xiaomi) scans QR codes out of the box:
+          </p>
+          <ol class="list-decimal pl-5 space-y-1.5 text-slate-600">
+            <li>Open your phone's default <strong>Camera</strong> app.</li>
+            <li>Hold it steady facing the QR code.</li>
+            <li>Tap the pop-up link bubble to open it.</li>
+          </ol>
+          <p class="text-sm text-slate-500 bg-slate-50 p-3 rounded-xl border border-slate-200">
+            <strong>Alternative:</strong> If your camera app does not react, swipe down from the top of your screen to open Quick Settings and tap the Scan QR code tile, or tap the Google Lens icon in your search bar.
+          </p>
+        </section>
+
+        <section class="space-y-4 pt-2">
+          <h2 class="text-2xl font-bold text-slate-900">Why You Should Avoid Third-Party App Store Scanners</h2>
+          <p class="text-slate-600">
+            When you search "QR scanner" in the App Store or Google Play, you will see hundreds of utility apps. Here is why you should skip them:
+          </p>
+          <ul class="list-disc pl-5 space-y-2 text-slate-600">
+            <li><strong>Annoying Video Ads:</strong> Most free scanner apps force you to watch unskippable 30-second ads before showing your link.</li>
+            <li><strong>Subscription Traps:</strong> Many apps trick users into weekly or monthly subscriptions for a feature your phone already does for free.</li>
+            <li><strong>Data Tracking:</strong> Third-party scanner apps often log your location, device ID, and every URL you scan to sell to advertisers.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+          <h2 class="text-2xl font-bold text-slate-900">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">Do I need an app to scan a QR code?</h3>
+              <p class="text-slate-600 mt-1">No. You can scan QR codes using your standard iPhone or Android camera app, or directly inside your web browser using QR Here. You never need to download a separate scanner app.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">Can I scan a QR code from a photo or screenshot?</h3>
+              <p class="text-slate-600 mt-1">Yes. With the QR Here web scanner, simply select the "Upload Image" tab and choose your screenshot or photo. It decodes the code instantly right inside your browser.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">How do I scan a QR code on a computer?</h3>
+              <p class="text-slate-600 mt-1">Open the QR Here homepage on your laptop or desktop. You can either use your webcam to scan a physical code or upload an image file of the code to decode it immediately.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">Is it safe to use app store QR scanner apps?</h3>
+              <p class="text-slate-600 mt-1">Most free QR scanner apps on app stores are filled with invasive tracking, battery-draining video ads, and subscription traps. Using your built-in camera or a private browser scanner like QR Here is much safer.</p>
+            </div>
+          </div>
+        </section>
+      </article>
+    `,
+  },
+
+  // 7. QR Code Size and Print Guide
+  {
+    path: '/qr-code-size-and-print-guide',
+    folder: 'qr-code-size-and-print-guide',
+    title: 'QR Code Size and Printing Guide | QR Here',
+    description:
+      'Learn recommended QR code print sizes, viewing distance ratios, quiet zone rules, and vector SVG specifications for reliable scanning.',
+    keywords:
+      'QR code print size, QR code size guide, QR code printing, QR code scanning distance, quiet zone, vector QR code SVG, print resolution DPI',
+    heading: 'QR Code Size and Printing Guide',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'QR Code Size & Print Guide', path: '/qr-code-size-and-print-guide' },
+    ],
+    htmlContent: `
+      <article class="max-w-4xl mx-auto px-4 py-8 space-y-10 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Print Engineering Guide • 7 min read</span>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">
+            QR Code Size and Printing Guide: Formulas, DPI &amp; Specifications
+          </h1>
+          <p class="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed">
+            A comprehensive, practical reference for graphic designers, print operators, and business owners. Learn exact scanning distance ratios, quiet zone tolerances, contrast thresholds, and vector SVG specifications to ensure every printed code scans on the first attempt.
+          </p>
+        </header>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">The 10:1 Scanning Distance Ratio</h2>
+          <p class="text-slate-600">
+            When a smartphone camera focuses on a physical QR code, optical sensors must resolve the individual dark and light modules that encode your data. The single most important factor determining whether a code scans cleanly is the ratio between <strong>scanning distance</strong> and the <strong>width of the QR code</strong>.
+          </p>
+          <p class="text-slate-600">
+            The industry-standard rule of thumb is <strong>10:1</strong>: for every 10 units of distance from which you anticipate users will scan, the printed QR code pattern should be at least 1 unit wide.
+          </p>
+          <div class="p-4 rounded-xl bg-blue-50 border border-blue-200 font-mono text-sm text-blue-900">
+            Minimum Width = Anticipated Scanning Distance ÷ 10
+          </div>
+          <p class="text-slate-600">
+            For example, if you place a QR code on an eye-level store window where pedestrians will stand approximately 2 meters (78 inches) away, the code should be printed at least 20 cm (7.8 inches) wide.
+          </p>
+
+          <div class="overflow-x-auto rounded-xl border border-slate-200 my-4">
+            <table class="min-w-full divide-y divide-slate-200 text-left text-xs sm:text-sm">
+              <thead class="bg-slate-50 font-bold text-slate-900">
+                <tr>
+                  <th class="p-3">Physical Application</th>
+                  <th class="p-3">Typical Scan Distance</th>
+                  <th class="p-3 text-blue-600">Min. Size (Width × Height)</th>
+                  <th class="p-3">Recommended ECC</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 bg-white">
+                <tr>
+                  <td class="p-3 font-medium">Business Cards &amp; Badges</td>
+                  <td class="p-3 text-slate-600">10–25 cm (4–10 in)</td>
+                  <td class="p-3 font-semibold text-blue-600">2.5 × 2.5 cm (1.0 × 1.0 in)</td>
+                  <td class="p-3 text-slate-600">Medium (M) or Quartile (Q)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-medium">Restaurant Menus &amp; Table Tents</td>
+                  <td class="p-3 text-slate-600">30–50 cm (12–20 in)</td>
+                  <td class="p-3 font-semibold text-blue-600">4.0 × 4.0 cm (1.6 × 1.6 in)</td>
+                  <td class="p-3 text-slate-600">Medium (M)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-medium">Flyers, Brochures &amp; Catalogs</td>
+                  <td class="p-3 text-slate-600">30–60 cm (1–2 ft)</td>
+                  <td class="p-3 font-semibold text-blue-600">3.5 × 3.5 cm (1.4 × 1.4 in)</td>
+                  <td class="p-3 text-slate-600">Medium (M)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-medium">Posters, Standees &amp; Windows</td>
+                  <td class="p-3 text-slate-600">1.0–2.0 m (3–6.5 ft)</td>
+                  <td class="p-3 font-semibold text-blue-600">10 × 10 cm (4.0 × 4.0 in)</td>
+                  <td class="p-3 text-slate-600">Quartile (Q) or High (H)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-medium">Trade Show Booth Backdrops</td>
+                  <td class="p-3 text-slate-600">2.0–4.0 m (6.5–13 ft)</td>
+                  <td class="p-3 font-semibold text-blue-600">30 × 30 cm (12 × 12 in)</td>
+                  <td class="p-3 text-slate-600">High (H)</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-medium">Outdoor Billboards &amp; Fleet Graphics</td>
+                  <td class="p-3 text-slate-600">5.0–15 m (16–50 ft)</td>
+                  <td class="p-3 font-semibold text-blue-600">60–150 cm (24–60 in)</td>
+                  <td class="p-3 text-slate-600">High (H)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">The Quiet Zone: Non-Negotiable Margin Space</h2>
+          <p class="text-slate-600">
+            According to the ISO/IEC 18004 standard, every QR code requires a <strong>quiet zone</strong>—a completely blank, solid margin surrounding all four sides of the matrix pattern. Optical barcode decoders use this blank perimeter to calculate the bounding coordinates of the finder squares. If graphics, background photographs, text, or card borders encroach directly into the quiet zone, scanners cannot isolate the grid, and recognition fails completely.
+          </p>
+          <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200">
+            <p class="font-bold text-emerald-900">Standard Quiet Zone Specification:</p>
+            <p class="text-sm text-emerald-800 mt-1">Keep a margin of at least <strong>4 modules (blocks)</strong> of solid background color around all four sides. Always give the code breathing room.</p>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">Contrast Thresholds and Color Polarity</h2>
+          <p class="text-slate-600">
+            Smartphone cameras convert color images into grayscale pixel arrays before computing binary bit values. To distinguish between 0 and 1, the camera lens needs high optical contrast.
+          </p>
+          <ul class="list-disc pl-5 space-y-2 text-slate-600">
+            <li><strong>Minimum 4.5:1 Contrast Ratio:</strong> Always maintain a high contrast ratio between your foreground dot color and the background. Avoid pastel colors, pale grays, or light yellow dots on white cardstock.</li>
+            <li><strong>Dark on Light is the Safest:</strong> Standard QR algorithms expect dark modules placed over a lighter background. While some modern operating systems can read inverted codes, budget sensors often fail.</li>
+            <li><strong>Beware of Reflective Gloss &amp; Foil:</strong> Printing metallic gold foil or high-gloss UV varnish creates extreme directional glare. Stick with matte or satin finishes for consistent optical recognition.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">Vector SVG vs. Raster PNG for Printing</h2>
+          <p class="text-slate-600">
+            When preparing designs for print, your choice of export format determines whether your code prints crisp or blurry:
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-purple-50 border border-purple-200">
+              <p class="font-bold text-purple-950">SVG (Scalable Vector Graphics) - Always for Print</p>
+              <p class="text-xs text-purple-900 mt-1">Vector mathematical paths that scale to any size without loss in resolution. Sharp on business cards and billboard vinyl alike.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <p class="font-bold text-slate-900">PNG (Raster Image) - For Screen &amp; Web</p>
+              <p class="text-xs text-slate-600 mt-1">Pixel grids suitable for digital displays, email footers, and web banners. At small sizes, zooming in causes pixelation.</p>
+            </div>
+          </div>
+        </section>
+      </article>
+    `,
+  },
+
+  // 8. Privacy Policy
+  {
+    path: '/privacy',
+    folder: 'privacy',
+    title: 'Privacy Policy – Zero Data Collection | QR Here',
+    description:
+      'Read our privacy policy. All QR code scanning and generation runs client-side in your browser with zero data logging, zero tracking, and no server uploads.',
+    keywords:
+      'QR scanner privacy policy, no data collection, private scanner, client side security, zero tracking',
+    heading: 'Privacy Policy',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Privacy Policy', path: '/privacy' },
+    ],
+    htmlContent: `
+      <section class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
+            Zero-Knowledge Architecture
+          </span>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-3">
+            Privacy Policy
+          </h1>
+          <p class="text-xs text-slate-500 mt-1">
+            Last Updated: September 15, 2026 • Effective Date: September 15, 2026
+          </p>
+        </header>
+
+        <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-2 text-sm text-emerald-950">
+          <p class="font-bold">At a Glance: Our Privacy Commitments</p>
+          <ul class="list-disc pl-5 space-y-1 text-emerald-900 text-xs">
+            <li>Zero server uploads for camera feeds or photos</li>
+            <li>QR code content is never tracked or logged</li>
+            <li>No permanent databases or cookies for tracking</li>
+            <li>100% in-browser JavaScript execution</li>
+          </ul>
+        </div>
+
+        <div class="space-y-6 text-sm text-slate-700 leading-relaxed">
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">1. Introduction</h2>
+            <p>
+              Welcome to QR Here ("we", "our", or "the Service"), operated by QR Here. We believe that everyday utility tools should respect user privacy by design. This Privacy Policy explains how our website operates, what data is processed, and our strict zero-knowledge architecture.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">2. Client-Side Processing Architecture</h2>
+            <p>
+              When you use QR Here to scan a QR code with your camera or generate a new custom code, all processing occurs directly in your web browser memory sandbox. We use JavaScript and WebAssembly to parse and render codes locally. Your video frames, photos, and generated payloads are never uploaded, stored, or processed on any remote server.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">3. Information We Do Not Collect</h2>
+            <p>
+              Because our architecture is completely client-side: we do not collect or store your camera video feed; we do not store uploaded image files or screenshots; we do not log or store QR code payload data (such as scanned URLs, Wi-Fi passwords, contact cards, or text notes); and we do not maintain user accounts or require registration.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">4. Data Generated via In-Browser QR Generation</h2>
+            <p>
+              When you create a custom QR code using our generator, the text, link, Wi-Fi password, or vCard details you enter remain entirely in your browser memory. Vector SVGs and PNG image files are synthesized locally using HTML5 Canvas and mathematical algorithms. No copy of your generated QR code is retained by us.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">5. Camera and Media Permissions</h2>
+            <p>
+              To scan physical QR codes using your device webcam or mobile camera, your browser will ask for camera permission via the standard MediaDevices API. This permission is controlled entirely by your browser. We only request camera access when you explicitly activate the camera scanner. The video stream is processed frame-by-frame in volatile device memory and released when scanning stops.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">6. Web Analytics and Advertising</h2>
+            <p>
+              We use lightweight web analytics (Google Analytics 4) to monitor aggregate website traffic, device types, and pageviews. Analytics do not track or record your scanned QR codes, image contents, or generated payloads. Google AdSense auto ads may serve contextual advertisements in compliance with standard Google privacy guidelines.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">7. Data Security &amp; Storage</h2>
+            <p>
+              Because we do not operate databases storing user payloads or images, there is no centralized database vulnerable to data breaches. Your data remains in your control on your personal device at all times.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">8. Updates to This Policy</h2>
+            <p>
+              We may update this Privacy Policy from time to time to reflect improvements or changes in web standards. The latest revision date will always be displayed at the top of this page. If you have questions about our privacy practices, please contact us at <a href="mailto:qrhereonline@gmail.com" class="text-blue-600 underline">qrhereonline@gmail.com</a>.
+            </p>
+          </section>
+        </div>
+      </section>
+    `,
+  },
+
+  // 9. Terms of Service
+  {
+    path: '/terms',
+    folder: 'terms',
+    title: 'Terms of Service – Usage Guidelines | QR Here',
+    description:
+      'Read our terms of service, usage rules, and guidelines for using the QR Here online scanner and QR code generator.',
+    keywords: 'terms of service, user agreement, disclaimer, terms of use',
+    heading: 'Terms of Service',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Terms of Service', path: '/terms' },
+    ],
+    htmlContent: `
+      <section class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <span class="text-xs font-semibold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full">
+            Legal Agreement
+          </span>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-3">
+            Terms of Service
+          </h1>
+          <p class="text-xs text-slate-500 mt-1">
+            Last Updated: September 15, 2026 • Effective Date: September 15, 2026
+          </p>
+        </header>
+
+        <div class="space-y-6 text-sm text-slate-700 leading-relaxed">
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">1. Agreement to Terms</h2>
+            <p>
+              By accessing or using QR Here ("the Service"), operated by QR Here, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please discontinue using the service immediately.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">2. Permitted Use</h2>
+            <p>
+              You may use QR Here for personal, educational, and lawful commercial purposes. You may create QR codes for website URLs, Wi-Fi networks, contact information, and text, and download generated SVG, PNG, or PDF files without restriction or royalties.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">3. Prohibited Content and Quishing</h2>
+            <p>
+              You agree not to use the Service to generate QR codes that link to phishing sites, malware distributions, deceptive payment scams, or illegal material (commonly known as "quishing"). We reserve the right to block malicious domains from our scanning interface to protect users.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">4. Intellectual Property &amp; User Content</h2>
+            <p>
+              You retain all rights and ownership to the content, links, and data you encode into QR codes using our tool. The QR code format itself is an open standard invented by Denso Wave. The QR Here website design, branding, and source code are the intellectual property of QR Here.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">5. Warranty Disclaimer</h2>
+            <p>
+              The Service is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, whether express or implied. While we strive for high scannability and contrast accuracy, you are responsible for testing all QR codes before mass printing or commercial distribution.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">6. Limitation of Liability</h2>
+            <p>
+              To the fullest extent permitted by applicable law, QR Here shall not be liable for any direct, indirect, incidental, or consequential damages resulting from the use or inability to use the Service, including misprinted materials, unreadable physical barcodes, or third-party links accessed through scanned codes.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">7. Third-Party Links &amp; Content</h2>
+            <p>
+              When using our scanner, decoded URLs point to third-party websites outside our control. We are not responsible for the content, privacy policies, or practices of any external sites you visit after scanning a QR code.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">8. Changes to Terms</h2>
+            <p>
+              We reserve the right to revise these Terms of Service at any time. Any changes will be posted on this page with an updated effective date. For legal inquiries or support, contact us at <a href="mailto:qrhereonline@gmail.com" class="text-blue-600 underline">qrhereonline@gmail.com</a>.
+            </p>
+          </section>
+        </div>
+      </section>
+    `,
+  },
+
+  // 10. Wi-Fi QR Code Guide
+  {
+    path: '/blog/how-to-create-wifi-qr-code',
+    folder: 'blog/how-to-create-wifi-qr-code',
+    title: 'How to Create a WiFi QR Code for Free | QR Here',
+    description:
+      'Make a free Wi-Fi QR code so guests can join your network instantly with one camera scan. No app, no passwords to spell out, and no sign-up required.',
+    keywords:
+      'wifi qr code, wifi qr code generator, how to create wifi qr code, qr code for wifi password, share wifi with qr code',
+    heading: 'How to Create a WiFi QR Code (Free, No App)',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog' },
+      { name: 'How to Create a WiFi QR Code', path: '/blog/how-to-create-wifi-qr-code' },
+    ],
+    htmlContent: `
+      <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Step-by-Step Guide • 5 min read</span>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">
+            How to Create a WiFi QR Code (Free, No App)
+          </h1>
+          <p class="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed">
+            A quick phone camera scan connects any phone to your Wi-Fi automatically. Stop reading your Wi-Fi password out loud—make a permanent static code in under two minutes.
+          </p>
+        </header>
+
+        <section class="space-y-4">
+          <p>
+            Whenever friends come over or customers visit your café, one question always comes up: <em>"What is the Wi-Fi password?"</em>
+          </p>
+          <p>
+            Spelling out a 16-character password with random capital letters, numbers, and symbols is frustrating for everyone. A Wi-Fi QR code solves this completely. When someone points their phone camera at the code, a banner pops up saying "Join Network". One tap, and they are online.
+          </p>
+        </section>
+
+        <section class="space-y-6">
+          <h2 class="text-2xl font-bold text-slate-900">How to Make a Wi-Fi QR Code in 3 Simple Steps</h2>
+          <div class="space-y-4">
+            <div>
+              <h3 class="text-xl font-bold text-slate-900">1. Find your Wi-Fi details</h3>
+              <p class="text-slate-600 mt-1">
+                Before creating the code, gather your network name (SSID), password, and security encryption type (typically WPA/WPA2/WPA3).
+              </p>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-slate-900">2. Enter credentials in the QR generator</h3>
+              <p class="text-slate-600 mt-1">
+                Open the <a href="/qr-code-generator-wifi" class="text-blue-600 font-semibold underline">Wi-Fi QR Code Generator</a> and enter your exact SSID and password. If your network is hidden, check the "Hidden Network" box.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-slate-900">3. Download as SVG or PNG</h3>
+              <p class="text-slate-600 mt-1">
+                Download the vector SVG file for sharp printing on tabletop tents, fridge magnets, or framed posters.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+          <h2 class="text-2xl font-bold text-slate-900">Frequently Asked Questions</h2>
+          <div class="space-y-3">
+            <div>
+              <h3 class="font-bold text-slate-900">Does a Wi-Fi QR code expire?</h3>
+              <p class="text-slate-600 text-sm mt-0.5">No. As long as your router's SSID and password remain unchanged, the static QR code will work permanently.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900">Do guests need an app to scan it?</h3>
+              <p class="text-slate-600 text-sm mt-0.5">No extra app is required. Native camera apps on both iOS and Android detect Wi-Fi QR codes automatically.</p>
+            </div>
+          </div>
+        </section>
+      </article>
+    `,
+  },
+
+  // 11. Error Correction Explained
+  {
+    path: '/blog/qr-code-error-correction-explained',
+    folder: 'blog/qr-code-error-correction-explained',
+    title: 'QR Code Error Correction Explained: Levels L, M, Q, H | QR Here',
+    description:
+      'Understand Reed-Solomon error correction in QR codes. Learn the practical trade-offs between Levels L, M, Q, and H, logo embedding limits, and print durability.',
+    keywords:
+      'qr code error correction, error correction level, reed solomon, level l m q h, qr code logo, scannable qr code',
+    heading: 'QR Code Error Correction Levels Explained',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog' },
+      { name: 'QR Code Error Correction Explained', path: '/blog/qr-code-error-correction-explained' },
+    ],
+    htmlContent: `
+      <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Technical Deep Dive • 5 min read</span>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">
+            QR Code Error Correction Explained: Levels L, M, Q, H &amp; When to Use Which
+          </h1>
+          <p class="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed">
+            Ever wondered how a QR code still scans even when wrinkled, smudged, or covered with a center logo? Learn how Reed-Solomon mathematical recovery data works.
+          </p>
+        </header>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">What is Error Correction?</h2>
+          <p class="text-slate-600">
+            Reed-Solomon error correction is a mathematical error-correcting code invented in 1960. It adds redundant backup data bytes into the QR matrix. If part of the barcode is obscured or damaged, the scanner uses these backup formulas to reconstruct the missing information.
+          </p>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">The 4 Error Correction Levels</h2>
+          <div class="overflow-x-auto rounded-xl border border-slate-200">
+            <table class="min-w-full divide-y divide-slate-200 text-left text-sm">
+              <thead class="bg-slate-50 font-bold text-slate-900">
+                <tr>
+                  <th class="p-3">Level</th>
+                  <th class="p-3">Recovery Capacity</th>
+                  <th class="p-3">Grid Density</th>
+                  <th class="p-3">Best Used For</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 bg-white">
+                <tr>
+                  <td class="p-3 font-bold text-blue-600">Level L (Low)</td>
+                  <td class="p-3">~7%</td>
+                  <td class="p-3">Lowest (larger dots)</td>
+                  <td class="p-3 text-slate-600">Clean digital screens, plain text, fastest scanning</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-emerald-600">Level M (Medium)</td>
+                  <td class="p-3">~15%</td>
+                  <td class="p-3">Moderate</td>
+                  <td class="p-3 text-slate-600">Standard flyers, restaurant menus, catalogs without logos</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-amber-600">Level Q (Quartile)</td>
+                  <td class="p-3">~25%</td>
+                  <td class="p-3">High</td>
+                  <td class="p-3 text-slate-600">Business cards, curved surfaces, textured papers</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-purple-600">Level H (High)</td>
+                  <td class="p-3">~30%</td>
+                  <td class="p-3">Highest (smallest dots)</td>
+                  <td class="p-3 text-slate-600">Codes with embedded center logos and outdoor signage</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+          <h2 class="text-2xl font-bold text-slate-900">Why Logos Require Level H</h2>
+          <p class="text-slate-600">
+            Placing a logo in the center physically covers up data modules. With Level H selected, 30% of the symbol consists of backup recovery formulas. The scanner mathematically ignores the covered modules and reads the code reliably.
+          </p>
+        </section>
+      </article>
+    `,
+  },
+
+  // 12. Security Guide
+  {
+    path: '/qr-code-security',
+    folder: 'qr-code-security',
+    title: 'QR Code Security Guide – Scan Codes Safely | QR Here',
+    description:
+      'Learn how QR code phishing and quishing work, how to spot suspicious links, and practical steps to scan QR codes safely without exposing your device.',
+    keywords:
+      'QR code security, QR code phishing, quishing, QR code scams, malicious QR codes, safe QR scanning',
+    heading: 'QR Code Security Guide: How to Scan QR Codes Safely',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'QR Code Security', path: '/qr-code-security' },
+    ],
+    htmlContent: `
+      <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Educational Security Guide</span>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">
+            QR Code Security Guide: How to Scan QR Codes Safely
+          </h1>
+          <p class="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed">
+            QR codes are convenient for opening menus, paying parking meters, and accessing websites. But because the destination link is visually encoded, you cannot judge trustworthiness from the square pattern alone.
+          </p>
+        </header>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">What is QR Code Phishing (Quishing)?</h2>
+          <p class="text-slate-600">
+            "Quishing" is phishing carried out through a QR code instead of a traditional text hyperlink. Scammers create QR codes pointing to fraudulent replica websites to steal login credentials, financial information, or personal identities.
+          </p>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">How to Protect Yourself Before Opening Links</h2>
+          <ul class="list-disc pl-5 space-y-2 text-slate-600">
+            <li><strong>Inspect the Preview URL:</strong> Look closely at the domain name in your camera preview before tapping to open it. Check for misspelled brand names or odd subdomains.</li>
+            <li><strong>Check for Physical Tampering:</strong> Scammers sometimes paste stickers over legitimate QR codes on parking meters and payment kiosks. If a code feels like a raised decal, inspect it carefully.</li>
+            <li><strong>Never Download Direct Executables:</strong> QR codes should open secure web pages, not prompt you to download unknown application files or security profiles.</li>
+            <li><strong>Use In-Browser Verification:</strong> Use our free <a href="/" class="text-blue-600 font-semibold underline">online QR code scanner</a> to preview the decoded payload safely on your screen without opening external links automatically.</li>
+          </ul>
+        </section>
+      </article>
+    `,
+  },
+
+  // 13. About Page
   {
     path: '/about',
     folder: 'about',
@@ -93,96 +1300,43 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
       { name: 'About', path: '/about' },
     ],
     htmlContent: `
-      <section class="max-w-4xl mx-auto px-4 py-8">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight text-center mb-4">
-          About QR Here
-        </h1>
-        <p class="text-base text-slate-600 max-w-2xl mx-auto text-center leading-relaxed mb-8">
-          QR Here is a lightweight, zero-knowledge web application built to make QR scanning and generation fast, private, and universally accessible without app installations.
-        </p>
+      <section class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            About QR Here
+          </h1>
+          <p class="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed">
+            A fast, privacy-first QR code scanner and generator that runs directly in your web browser with zero cloud uploads, no account registration, and no software to install.
+          </p>
+        </header>
 
-        <div class="space-y-6 text-sm text-slate-700 leading-relaxed my-8">
-          <div>
+        <div class="space-y-6 text-sm text-slate-700 leading-relaxed">
+          <section>
             <h2 class="text-xl font-bold text-slate-900 mb-2">Our Privacy Philosophy</h2>
             <p>
               Every year, millions of users download mobile scanner apps riddled with intrusive tracking, advertising identifiers, and unnecessary system permissions. QR Here was created as a transparent, client-side alternative. All image parsing and vector rendering happens entirely within your web browser's memory sandbox.
             </p>
-          </div>
+          </section>
 
-          <div>
+          <section>
             <h2 class="text-xl font-bold text-slate-900 mb-2">Zero-Knowledge Architecture</h2>
             <p>
               When you point your camera at a QR code or upload a photo, your images are never sent across the network to our servers or third-party storage buckets. Video stream frames are consumed by an HTML5 canvas element, decoded via WebAssembly and JavaScript, and immediately released.
             </p>
-          </div>
+          </section>
 
-          <div>
+          <section>
             <h2 class="text-xl font-bold text-slate-900 mb-2">Built with Open Standards</h2>
             <p>
               QR Here utilizes standard web APIs (MediaDevices, Canvas, WebAssembly) and open-source decoding libraries. The QR code format itself is an open ISO/IEC 18004 standard originally created by Denso Wave.
             </p>
-          </div>
-        </div>
-
-        <div class="border-t border-slate-200 pt-6 mt-8 flex flex-wrap gap-4 text-sm">
-          <a href="/" class="text-blue-600 font-semibold underline">Online Scanner</a>
-          <a href="/qr-code-generator" class="text-blue-600 font-semibold underline">QR Generator</a>
-          <a href="/faq" class="text-blue-600 font-semibold underline">FAQ</a>
-          <a href="/privacy" class="text-blue-600 font-semibold underline">Privacy Policy</a>
-          <a href="/terms" class="text-blue-600 font-semibold underline">Terms of Service</a>
-          <a href="/contact" class="text-blue-600 font-semibold underline">Contact Us</a>
+          </section>
         </div>
       </section>
     `,
   },
-  {
-    path: '/contact',
-    folder: 'contact',
-    title: 'Contact Us – Support & Feedback | QR Here',
-    description:
-      'Get in touch with QR Here for support, feature suggestions, or feedback. We are here to help with your QR code scanning and generation needs.',
-    keywords: 'contact QR Here, QR code email, QR Here feedback, jhem0n',
-    heading: 'Contact',
-    breadcrumbs: [
-      { name: 'Home', path: '/' },
-      { name: 'Contact', path: '/contact' },
-    ],
-    htmlContent: `
-      <section class="max-w-3xl mx-auto px-4 py-8 text-center">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-6">
-          Contact
-        </h1>
-        <div class="space-y-4 text-base sm:text-lg text-slate-700 max-w-xl mx-auto leading-relaxed mb-8">
-          <p>
-            For any question or request you can mail me at [ <a href="mailto:qrhereonline@gmail.com" class="text-blue-600 font-medium underline">qrhereonline at gmail.com</a> ]
-          </p>
-          <p>
-            Check out my other projects on <a href="https://github.com/jhem0n" target="_blank" rel="noopener noreferrer" class="text-blue-600 font-medium underline">GitHub</a>
-          </p>
-        </div>
 
-        <div class="mt-10 pt-8 border-t border-slate-200 text-left max-w-xl mx-auto">
-          <h2 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4 text-center">
-            Quick Resources & Self-Service
-          </h2>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-            <a href="/faq" class="p-3 rounded-xl border border-slate-200 flex flex-col items-center text-center gap-1.5 text-slate-700 hover:text-blue-600">
-              <span class="font-semibold">FAQ</span>
-              <span class="text-[11px] text-slate-500">Common questions & help</span>
-            </a>
-            <a href="/privacy" class="p-3 rounded-xl border border-slate-200 flex flex-col items-center text-center gap-1.5 text-slate-700 hover:text-blue-600">
-              <span class="font-semibold">Privacy Policy</span>
-              <span class="text-[11px] text-slate-500">Zero-knowledge details</span>
-            </a>
-            <a href="/terms" class="p-3 rounded-xl border border-slate-200 flex flex-col items-center text-center gap-1.5 text-slate-700 hover:text-blue-600">
-              <span class="font-semibold">Terms of Service</span>
-              <span class="text-[11px] text-slate-500">Permitted use guidelines</span>
-            </a>
-          </div>
-        </div>
-      </section>
-    `,
-  },
+  // 14. FAQ Page
   {
     path: '/faq',
     folder: 'faq',
@@ -197,15 +1351,17 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
       { name: 'FAQ', path: '/faq' },
     ],
     htmlContent: `
-      <section class="max-w-4xl mx-auto px-4 py-8">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight text-center mb-4">
-          Frequently Asked Questions
-        </h1>
-        <p class="text-base text-slate-600 max-w-2xl mx-auto text-center leading-relaxed mb-8">
-          Answers to common questions regarding scanning with webcam or image files, custom generator options, and privacy protections.
-        </p>
+      <section class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Frequently Asked Questions
+          </h1>
+          <p class="mt-2 text-base text-slate-600 max-w-2xl leading-relaxed">
+            Answers to common questions regarding scanning with webcam or image files, custom generator options, and privacy protections.
+          </p>
+        </header>
 
-        <div class="space-y-6 text-sm text-slate-700 leading-relaxed my-8">
+        <div class="space-y-6 text-sm text-slate-700 leading-relaxed">
           <div class="p-5 rounded-2xl border border-slate-200 bg-slate-50">
             <h2 class="text-base font-bold text-slate-900 mb-2">How does the camera scanner work?</h2>
             <p>The scanner requests temporary camera access via your browser's MediaDevices API. Video frames are streamed to an in-memory HTML5 video element and decoded in real time without sending data over the internet.</p>
@@ -231,629 +1387,160 @@ export const STATIC_ROUTES: StaticRouteConfig[] = [
             <p>Navigate to the Generator page, select the "Wi-Fi" preset, enter your network SSID and password, and download the QR code. Guests can scan it with their camera to join automatically.</p>
           </div>
         </div>
-
-        <div class="border-t border-slate-200 pt-6 mt-8 flex flex-wrap gap-4 text-sm">
-          <a href="/" class="text-blue-600 font-semibold underline">Try Camera Scanner</a>
-          <a href="/qr-code-generator" class="text-blue-600 font-semibold underline">Generate QR Code</a>
-          <a href="/contact" class="text-blue-600 font-semibold underline">Contact Support</a>
-        </div>
       </section>
     `,
   },
+
+  // 15. Barcode Scanner Online
   {
-    path: '/privacy',
-    folder: 'privacy',
-    title: 'Privacy Policy – Zero Data Collection | QR Here',
+    path: '/barcode-scanner',
+    folder: 'barcode-scanner',
+    title: 'Barcode Scanner Online – Free, No App Needed | QR Here',
     description:
-      'Read our privacy policy. All QR code scanning and generation runs client-side in your browser with zero data logging, zero tracking, and no server uploads.',
+      'Scan barcodes online using your camera or image upload. Free web-based barcode reader supporting UPC, EAN, Code 128, and more.',
     keywords:
-      'QR scanner privacy policy, no data collection, private scanner, client side security, zero tracking',
-    heading: 'Privacy Policy',
+      'barcode scanner online, online barcode reader, scan barcode with camera, barcode scanner free, UPC scanner, EAN scanner',
+    heading: 'Online Barcode Scanner',
     breadcrumbs: [
       { name: 'Home', path: '/' },
-      { name: 'Privacy Policy', path: '/privacy' },
+      { name: 'Barcode Scanner', path: '/barcode-scanner' },
     ],
     htmlContent: `
-      <section class="max-w-4xl mx-auto px-4 py-8">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
-          Privacy Policy
-        </h1>
-        <p class="text-xs text-slate-500 mb-8">
-          Last Updated: September 16, 2026 • Zero-Knowledge Architecture
-        </p>
+      <section class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Online Barcode Scanner
+          </h1>
+          <p class="mt-2 text-base text-slate-600 max-w-2xl leading-relaxed">
+            Scan 1D and 2D barcodes directly in your web browser. Free, client-side, and private with no application installation needed.
+          </p>
+        </header>
 
         <div class="space-y-6 text-sm text-slate-700 leading-relaxed">
-          <div>
-            <h2 class="text-lg font-bold text-slate-900 mb-2">1. Introduction</h2>
-            <p>Welcome to QR Here ("we", "our", or "the Service"), operated by QR Here. We believe utility tools should respect user privacy by default. This policy details our in-browser, client-side processing architecture.</p>
-          </div>
-
-          <div>
-            <h2 class="text-lg font-bold text-slate-900 mb-2">2. Client-Side QR Processing</h2>
-            <p>When you use QR Here, all camera streams and uploaded image files are processed strictly on your device. Video frames and uploaded images are never transmitted across the network, stored on servers, or shared with third parties.</p>
-          </div>
-
-          <div>
-            <h2 class="text-lg font-bold text-slate-900 mb-2">3. Zero Data Retention</h2>
-            <p>We do not store decoded payloads, Wi-Fi credentials, contact cards, or camera frames. Once decoding finishes, all memory buffers are cleared by the browser garbage collector.</p>
-          </div>
-
-          <div>
-            <h2 class="text-lg font-bold text-slate-900 mb-2">4. Related Policies</h2>
-            <p>Please review our <a href="/terms" class="text-blue-600 underline font-medium">Terms of Service</a> for acceptable use rules, or reach out via our <a href="/contact" class="text-blue-600 underline font-medium">Contact Page</a> if you have any questions.</p>
-          </div>
-        </div>
-      </section>
-    `,
-  },
-  {
-    path: '/terms',
-    folder: 'terms',
-    title: 'Terms of Service – Usage Guidelines | QR Here',
-    description:
-      'Read our terms of service, usage rules, and guidelines for using the QR Here online scanner and QR code generator.',
-    keywords: 'terms of service, user agreement, disclaimer, terms of use',
-    heading: 'Terms of Service',
-    breadcrumbs: [
-      { name: 'Home', path: '/' },
-      { name: 'Terms of Service', path: '/terms' },
-    ],
-    htmlContent: `
-      <section class="max-w-4xl mx-auto px-4 py-8">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
-          Terms of Service
-        </h1>
-        <p class="text-xs text-slate-500 mb-8">
-          Last Updated: September 16, 2026 • Legal Agreement
-        </p>
-
-        <div class="space-y-6 text-sm text-slate-700 leading-relaxed">
-          <div>
-            <h2 class="text-lg font-bold text-slate-900 mb-2">1. Agreement to Terms</h2>
-            <p>By accessing or using QR Here ("the Service"), operated by QR Here, you agree to be bound by these Terms of Service. If you do not agree, please discontinue use immediately.</p>
-          </div>
-
-          <div>
-            <h2 class="text-lg font-bold text-slate-900 mb-2">2. Permitted Use</h2>
-            <p>You may use this tool for personal, educational, and lawful commercial purposes. You agree not to use the service to generate QR codes linking to malicious software, phishing pages, or fraudulent activities.</p>
-          </div>
-
-          <div>
-            <h2 class="text-lg font-bold text-slate-900 mb-2">3. Intellectual Property</h2>
-            <p>The QR Here interface and codebase are property of QR Here. The QR code format is an open standard created by Denso Wave. You retain full ownership of any content you create or scan.</p>
-          </div>
-
-          <div>
-            <h2 class="text-lg font-bold text-slate-900 mb-2">4. Privacy & Contact</h2>
-            <p>Our client-side zero-knowledge architecture is described in our <a href="/privacy" class="text-blue-600 underline font-medium">Privacy Policy</a>. For questions, visit our <a href="/contact" class="text-blue-600 underline font-medium">Contact Page</a>.</p>
-          </div>
-        </div>
-      </section>
-    `,
-  },
-  {
-    path: '/blog',
-    folder: 'blog',
-    title: 'QR Code Blog – Guides, Tips & Tutorials | QR Here',
-    description:
-      'Practical guides, tutorials, and tips for scanning and creating QR codes. Learn about static vs dynamic codes, vCards, Wi-Fi codes, and safety.',
-    keywords:
-      'QR code blog, static vs dynamic QR code, QR code tutorials, QR code guides, QR scanner tips, QR generator guide',
-    heading: 'Blog',
-    breadcrumbs: [
-      { name: 'Home', path: '/' },
-      { name: 'Blog', path: '/blog' },
-    ],
-    htmlContent: `
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight text-center mb-8">QR Code Guides &amp; Tutorials</h1>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          <article class="flex flex-col rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
-            <div class="w-full aspect-[16/9] bg-slate-100 flex flex-col items-center justify-center text-slate-400 border-b border-slate-200">
-              <span class="text-xs font-semibold uppercase tracking-wider">Featured Image</span>
-            </div>
-            <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-              <div>
-                <h2 class="text-2xl font-bold text-slate-900 mb-3">
-                  <a href="/blog/how-to-create-wifi-qr-code" class="text-blue-600 underline">
-                    How to Create a WiFi QR Code (Free, No App)
-                  </a>
-                </h2>
-                <p class="text-base text-slate-600 leading-relaxed mb-6">
-                  Stop reading your WiFi password out loud. Learn how to make a free WiFi QR code guests can scan to connect instantly — no app, no sign-up, no typing.
-                </p>
-              </div>
-              <a href="/blog/how-to-create-wifi-qr-code" class="inline-block px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-blue-600 self-start">
-                Read Article
-              </a>
-            </div>
-          </article>
-
-          <article class="flex flex-col rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
-            <div class="w-full aspect-[16/9] bg-slate-100 flex flex-col items-center justify-center text-slate-400 border-b border-slate-200">
-              <span class="text-xs font-semibold uppercase tracking-wider">Featured Image</span>
-            </div>
-            <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-              <div>
-                <h2 class="text-2xl font-bold text-slate-900 mb-3">
-                  <a href="/blog/how-to-scan-qr-code-without-app" class="text-blue-600 underline">
-                    How to Scan a QR Code Without Installing an App
-                  </a>
-                </h2>
-                <p class="text-base text-slate-600 leading-relaxed mb-6">
-                  You do not need to download an ad-filled scanner app from an app store. Here is how to scan QR codes using your iPhone, Android, or desktop computer, plus how to decode codes straight from screenshots.
-                </p>
-              </div>
-              <a href="/blog/how-to-scan-qr-code-without-app" class="inline-block px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-blue-600 self-start">
-                Read Article
-              </a>
-            </div>
-          </article>
-
-          <article class="flex flex-col rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
-            <div class="w-full aspect-[16/9] bg-slate-100 flex flex-col items-center justify-center text-slate-400 border-b border-slate-200">
-              <span class="text-xs font-semibold uppercase tracking-wider">Featured Image</span>
-            </div>
-            <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-              <div>
-                <h2 class="text-2xl font-bold text-slate-900 mb-3">
-                  <a href="/blog/how-to-create-vcard-qr-code" class="text-blue-600 underline">
-                    How to Create a vCard QR Code for Digital Business Cards
-                  </a>
-                </h2>
-                <p class="text-base text-slate-600 leading-relaxed mb-6">
-                  Put your contact details directly into a QR code for your business card. Contacts can scan it with their standard camera and save your name, phone number, and email straight to their address book.
-                </p>
-              </div>
-              <a href="/blog/how-to-create-vcard-qr-code" class="inline-block px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-blue-600 self-start">
-                Read Article
-              </a>
-            </div>
-          </article>
-
-          <article class="flex flex-col rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
-            <div class="w-full aspect-[16/9] bg-slate-100 overflow-hidden border-b border-slate-200">
-              <img src="/images/static-vs-dynamic-qr-code.jpg" onerror="this.src='/images/static-vs-dynamic-qr-code.svg'" alt="Static vs Dynamic QR Codes Infographic" class="w-full h-full object-cover" />
-            </div>
-            <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-              <div>
-                <h2 class="text-2xl font-bold text-slate-900 mb-3">
-                  <a href="/blog/static-vs-dynamic-qr-code" class="text-blue-600 underline">
-                    Static vs Dynamic QR Codes: What’s the Difference?
-                  </a>
-                </h2>
-                <p class="text-base text-slate-600 leading-relaxed mb-6">
-                  Learn how static and dynamic QR codes store data differently, why static codes never expire, and how to choose the right format for your flyers, business cards, or product packaging.
-                </p>
-              </div>
-              <a href="/blog/static-vs-dynamic-qr-code" class="inline-block px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-blue-600 self-start">
-                Read Article
-              </a>
-            </div>
-          </article>
-        </div>
-      </section>
-    `,
-  },
-  {
-    path: '/blog/static-vs-dynamic-qr-code',
-    folder: 'blog/static-vs-dynamic-qr-code',
-    title: "Static vs Dynamic QR Code – What's the Difference?",
-    description:
-      'Learn the difference between static and dynamic QR codes, how they work, key benefits and limits, and how to choose the right one for your needs.',
-    keywords:
-      'static vs dynamic QR code, static QR code, dynamic QR code, static QR, dynamic QR, editable QR code, QR code generator, QR code scanner, QR code tracking, QR code analytics',
-    heading: 'Static vs Dynamic QR Codes: What’s the Difference?',
-    breadcrumbs: [
-      { name: 'Home', path: '/' },
-      { name: 'Blog', path: '/blog' },
-      { name: 'Static vs Dynamic QR Code', path: '/blog/static-vs-dynamic-qr-code' },
-    ],
-    htmlContent: `
-      <article class="max-w-4xl mx-auto px-4 py-8">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
-          Static vs Dynamic QR Codes: What’s the Difference?
-        </h1>
-        <p class="text-base text-slate-600 leading-relaxed mb-6">
-          Learn the difference between static and dynamic QR codes, how they work, their key benefits, limitations, and which type to use.
-        </p>
-
-        <figure class="my-8 rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-sm">
-          <img
-            src="/images/static-vs-dynamic-qr-code.jpg"
-            onerror="this.src='/images/static-vs-dynamic-qr-code.svg'"
-            alt="Static vs Dynamic QR Codes: The Difference Revealed Infographic comparing permanence and privacy with flexibility and analytics"
-            class="w-full h-auto object-contain"
-            width="1200"
-            height="900"
-          />
-          <figcaption class="text-center text-xs text-slate-500 py-3 px-4 bg-slate-50 border-t border-slate-100">
-            Static QR codes encode data permanently with zero server reliance, while dynamic QR codes route through a redirection server for editable destinations and scan analytics.
-          </figcaption>
-        </figure>
-
-        <section class="space-y-6 text-sm text-slate-700 leading-relaxed">
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">What Is a Static QR Code?</h2>
-            <p>A static QR code encodes its information directly into the pattern of black and white squares. Because the data is etched into the code itself, changing the information requires generating a new QR code. You can <a href="/qr-code-generator" class="text-blue-600 underline font-medium">generate static QR</a> codes for websites, Wi-Fi networks, and contact info.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">What Is a Dynamic QR Code?</h2>
-            <p>A dynamic QR code encodes an intermediary redirect URL, allowing the final destination to be modified at any time without replacing the printed barcode.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">How to Scan a QR Code</h2>
-            <p>You can use your mobile camera or <a href="/" class="text-blue-600 underline font-medium">scan QR code</a> tools directly online using your webcam or photo uploads.</p>
-          </div>
-        </section>
-      </article>
-    `,
-  },
-  {
-    path: '/blog/how-to-create-vcard-qr-code',
-    folder: 'blog/how-to-create-vcard-qr-code',
-    title: 'Free vCard QR Code Generator for Business Cards | QR Here',
-    description:
-      'Create a free vCard QR code for your business card. Let contacts save your details directly to their phone address book with a single camera scan.',
-    keywords:
-      'vcard qr code generator free, digital business card qr code, contact qr code generator, free vcard qr code maker, vcard qr code, digital business cards',
-    heading: 'How to Create a vCard QR Code for Digital Business Cards',
-    breadcrumbs: [
-      { name: 'Home', path: '/' },
-      { name: 'Blog', path: '/blog' },
-      {
-        name: 'vCard QR Code for Digital Business Cards',
-        path: '/blog/how-to-create-vcard-qr-code',
-      },
-    ],
-    htmlContent: `
-      <article class="max-w-4xl mx-auto px-4 py-8">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
-          How to Create a vCard QR Code for Digital Business Cards
-        </h1>
-        <p class="text-base text-slate-600 leading-relaxed mb-8">
-          A vCard QR code instantly shares your contact details directly to a smartphone native address book with a single camera scan. Using a browser-based free tool eliminates manual contact entry and ensures your contacts save your information error-free without downloading any third-party app.
-        </p>
-
-        <section class="space-y-6 text-sm text-slate-700 leading-relaxed">
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">Why Use a vCard QR Code on a Business Card?</h2>
-            <p>Paper cards get lost easily. Scanning a vCard QR code automatically inputs your name, phone number, company, and email into their phone contacts list in seconds.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">How to Create Your Code Step by Step</h2>
-            <p>Go to the <a href="/qr-code-generator" class="text-blue-600 underline font-medium">QR Code Generator</a>, choose V-card, enter your details, choose error correction level M, and download in vector SVG or high-resolution PNG.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">Testing Your Code</h2>
-            <p>Always test your code with our <a href="/" class="text-blue-600 underline font-medium">online QR scanner</a> or phone camera before mass printing.</p>
-          </div>
-        </section>
-      </article>
-    `,
-  },
-  {
-    path: '/blog/how-to-scan-qr-code-without-app',
-    folder: 'blog/how-to-scan-qr-code-without-app',
-    title: 'How to Scan a QR Code Without an App | QR Here',
-    description:
-      'Learn how to scan QR codes on iPhone, Android, and PC without downloading apps. Step-by-step camera, browser, and screenshot scanning guide.',
-    keywords:
-      'how to scan qr code without app, scan qr code online, scan qr code from screenshot, camera qr scanner, scan qr code without downloading app, browser qr code scanner',
-    heading: 'How to Scan a QR Code Without Installing an App',
-    breadcrumbs: [
-      { name: 'Home', path: '/' },
-      { name: 'Blog', path: '/blog' },
-      {
-        name: 'How to Scan a QR Code Without an App',
-        path: '/blog/how-to-scan-qr-code-without-app',
-      },
-    ],
-    htmlContent: `
-      <article class="max-w-4xl mx-auto px-4 py-8">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
-          How to Scan a QR Code Without Installing an App
-        </h1>
-        <p class="text-base text-slate-600 leading-relaxed mb-8">
-          You do not need to download an ad-filled scanner app from an app store. Your iPhone or Android camera already has scanning built in, and you can scan from webcams or uploaded screenshots directly in your browser.
-        </p>
-
-        <section class="space-y-6 text-sm text-slate-700 leading-relaxed">
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">Scanning With Your Built-In Phone Camera</h2>
-            <p>Simply open your default Camera app on iOS or Android and point it steadily at the QR code. A banner notification pops up with the decoded link.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">Scanning in Your Browser or From Screenshots</h2>
-            <p>Use our free <a href="/" class="text-blue-600 underline font-medium">online QR code scanner</a> to decode codes via your webcam or by uploading a photo or screenshot directly from your camera roll or desktop.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">Creating QR Codes</h2>
-            <p>If you need to make your own high-contrast, easily scannable QR code, use our free <a href="/qr-code-generator" class="text-blue-600 underline font-medium">QR code generator</a>.</p>
-          </div>
-        </section>
-      </article>
-    `,
-  },
-  {
-    path: '/qr-code-security',
-    folder: 'qr-code-security',
-    title: 'QR Code Security Guide – Scan Codes Safely | QR Here',
-    description:
-      'Learn how QR code phishing and quishing work, how to spot suspicious links, and practical steps to scan QR codes safely without exposing your device.',
-    keywords:
-      'QR code security, QR code phishing, quishing, QR code scams, malicious QR codes, safe QR scanning, how to scan a QR code safely, QR code safety, QR code privacy, QR code scanner online, suspicious QR code, malicious QR code, QR phishing attacks',
-    heading: 'QR Code Security Guide: How to Scan QR Codes Safely',
-    breadcrumbs: [
-      { name: 'Home', path: '/' },
-      {
-        name: 'QR Code Security',
-        path: '/qr-code-security',
-      },
-    ],
-    htmlContent: `
-      <article class="max-w-4xl mx-auto px-4 py-8">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
-          QR Code Security Guide: How to Scan QR Codes Safely
-        </h1>
-        <p class="text-base text-slate-600 leading-relaxed mb-6">
-          QR codes are convenient. You can use one to open a restaurant menu, pay for parking, join a Wi-Fi network, open a website, or get information from a poster. The problem is that a QR code does not tell you whether its destination is trustworthy. That is why QR code security is less about the square pattern itself and more about checking where the code takes you before you trust what you see.
-        </p>
-
-        <section class="space-y-6 text-sm text-slate-700 leading-relaxed">
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">What is QR code phishing?</h2>
-            <p>QR code phishing is an attack that uses a QR code instead of, or alongside, a normal clickable link. The attacker creates a QR code pointing to a fraudulent website. The surrounding message may pretend to come from a bank, postal courier, employer, or government agency with the goal of harvesting credentials or stealing payments.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">What is quishing?</h2>
-            <p>Quishing is short for "QR code phishing." The malicious URL is hidden inside a QR code, which can make the attack harder to notice because users focus on the visual image rather than the destination link. The FBI has documented quishing campaigns where malicious QR codes embedded in phishing messages directed victims to fraudulent websites.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">How can a QR code hide a malicious URL?</h2>
-            <p>A QR code is simply machine-readable data. That data can be a web address, plain text, or custom URI scheme. When a QR code stores a URL, the physical image does not visually show whether it points to the genuine website or a deceptive spoofed domain. The safest habit is to inspect the decoded destination before opening it in your browser.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">How to inspect a QR destination</h2>
-            <p>Scanning a QR code does not mean you must immediately visit the resulting site. When your scanner decodes the payload, examine the domain carefully for misspelled brand names, abnormal top-level domains, unexpected subdomains, or suspicious URL paths. Remember that HTTPS only encrypts the connection; it does not prove that a website is trustworthy.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">Fake QR-code stickers</h2>
-            <p>Scammers can print malicious QR code stickers and physically paste them over authentic codes on parking meters, restaurant tables, posters, and public transit kiosks. Before scanning a physical code, check whether an adhesive decal has been placed over an existing sign.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">QR codes in phishing emails and text messages</h2>
-            <p>Be skeptical when an unexpected QR code arrives via email or SMS with an urgent demand to verify an account or pay an overdue bill. Instead of scanning the code, open a browser and navigate directly to the company's verified website.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">Dangerous URL schemes</h2>
-            <p>Not every QR code contains a standard web link. Codes can store dangerous URI schemes like javascript: or data: that can execute arbitrary script or embed malicious forms. Scanners must treat all decoded content as untrusted input and avoid executing code automatically.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">How to scan a QR code safely</h2>
-            <p>Scan only codes from sources you trust, preview the decoded URL before opening, verify domain spelling, question urgent demands for sensitive data, and keep your phone and browser software updated with the latest security patches.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">Browser-based QR scanning</h2>
-            <p>You can use our free in-browser <a href="/" class="text-blue-600 underline font-medium">QR code scanner</a> to decode codes via your webcam or uploaded photos without installing third-party apps that bundle advertisements or trackers. Every frame is processed client-side with zero server uploads.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">QR code privacy</h2>
-            <p>QR codes can store private URLs, Wi-Fi credentials, contact cards, or account details. Think carefully before encoding sensitive data with a <a href="/qr-code-generator" class="text-blue-600 underline font-medium">QR code generator</a> or sharing codes publicly. Review our <a href="/privacy" class="text-blue-600 underline font-medium">Privacy Policy</a> to understand our zero-knowledge approach.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">What if you already scanned a suspicious QR code?</h2>
-            <p>If you scanned a suspicious code, close the browser tab immediately. If you submitted passwords, change them across all accounts right away and enable multi-factor authentication. If you entered card numbers, contact your bank to freeze the card.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">A simple QR code safety checklist</h2>
-            <p>Ask yourself: Did I expect this code? Do I trust its source? Does the URL match the genuine domain? Is the domain spelled correctly? Is there artificial urgency? If anything feels suspicious, navigate directly to the official website instead.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">Final thoughts</h2>
-            <p>A QR scanner tells you what is encoded in a pattern. It cannot prove that the destination is trustworthy. That final check is always yours to make before entering information or completing payments.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">Sources and further reading</h2>
-            <ul class="list-disc pl-5 space-y-1">
-              <li><a href="https://consumer.ftc.gov/consumer-alerts/2023/12/scammers-hide-harmful-links-qr-codes-steal-your-information" class="text-blue-600 underline">FTC: Scammers hide harmful links in QR codes to steal your information</a></li>
-              <li><a href="https://consumer.ftc.gov/consumer-alerts/2026/09/see-qr-code-parked-somewhere-dont-scan-ityet" class="text-blue-600 underline">FTC: See a QR code parked somewhere? Don't scan it...yet!</a></li>
-              <li><a href="https://www.fbi.gov/investigate/cyber/alerts/2025/unsolicited-packages-containing-qr-codes-used-to-initiate-fraud-schemes" class="text-blue-600 underline">FBI: Unsolicited Packages Containing QR Codes Used to Initiate Fraud Schemes</a></li>
-              <li><a href="https://www.fbi.gov/file-repository/cyber-alerts/north-korean-kimsuky-actors-leverage-malicious-qr.pdf" class="text-blue-600 underline">FBI: North Korean Kimsuky Actors Leverage Malicious QR Codes in Spearphishing Campaigns</a></li>
-              <li><a href="https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Schemes/javascript" class="text-blue-600 underline">MDN Web Docs: javascript: URLs</a></li>
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">Supported Formats</h2>
+            <p>Our online barcode scanner supports both linear (1D) and matrix (2D) formats:</p>
+            <ul class="list-disc pl-5 space-y-1 text-slate-600 mt-2">
+              <li><strong>EAN-13 &amp; EAN-8:</strong> Standard retail barcodes across Europe and worldwide.</li>
+              <li><strong>UPC-A &amp; UPC-E:</strong> Standard retail product barcodes in North America.</li>
+              <li><strong>Code 128 &amp; Code 39:</strong> High-density industrial, packaging, and shipping barcodes.</li>
+              <li><strong>ITF (Interleaved 2 of 5):</strong> Warehouse carton and logistics barcodes.</li>
+              <li><strong>QR Code &amp; Data Matrix:</strong> High-density 2D barcodes for websites and logistics.</li>
             </ul>
-          </div>
-        </section>
-      </article>
-    `,
-  },
-  {
-    path: '/blog/how-to-create-wifi-qr-code',
-    folder: 'blog/how-to-create-wifi-qr-code',
-    title: 'How to Create a WiFi QR Code for Free | QR Here',
-    description:
-      'Make a free Wi-Fi QR code so guests can join your network instantly with one camera scan. No app, no passwords to spell out, and no sign-up required.',
-    keywords:
-      'wifi qr code, wifi qr code generator, how to create wifi qr code, qr code for wifi password, share wifi with qr code',
-    heading: 'How to Create a WiFi QR Code (Free, No App)',
-    breadcrumbs: [
-      { name: 'Home', path: '/' },
-      { name: 'Blog', path: '/blog' },
-      { name: 'How to Create a WiFi QR Code', path: '/blog/how-to-create-wifi-qr-code' },
-    ],
-    htmlContent: `
-      <article class="max-w-4xl mx-auto px-4 py-8">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
-          How to Create a WiFi QR Code (Free, No App)
-        </h1>
-        <p class="text-base text-slate-600 leading-relaxed mb-6">
-          A 2-minute guide to letting guests connect to your WiFi with one scan — no spelled-out passwords, no downloads.
-        </p>
+          </section>
 
-        <section class="space-y-6 text-sm text-slate-700 leading-relaxed">
-          <p>If you've ever had to spell out &ldquo;capital S, lowercase y, dollar sign, seven, three&rdquo; to a guest trying to join your WiFi, you already know why WiFi QR codes exist. Print one, stick it on the wall, and people connect by pointing their camera at it. No app, no typos, no repeating the password for the third time.</p>
-          <p>Here's exactly how to make one — for free, right in your browser.</p>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">What a WiFi QR code actually does</h2>
-            <p>A WiFi QR code isn't a link. It's a small text string encoded into the QR pattern, formatted like <code>WIFI:T:WPA;S:NetworkName;P:Password;;</code>. When a phone camera reads that format, it recognizes it instantly and offers a &ldquo;Join Network&rdquo; button — the password is typed in automatically, behind the scenes.</p>
-            <p>This works natively on iPhones (iOS 11 and later) and nearly all modern Android phones. No extra app needed on either end.</p>
-          </div>
-
-          <div class="p-5 rounded-2xl border-l-4 border-blue-600 bg-slate-50">
-            <p class="font-semibold text-slate-900 mb-1">Skip the manual steps.</p>
-            <p class="mb-3">QR Here's generator builds a properly formatted WiFi QR code in seconds — entirely in your browser, nothing uploaded to a server.</p>
-            <a href="/qr-code-generator" class="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-xs">Create Your WiFi QR Code</a>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">How to create a WiFi QR code</h2>
-            <ol class="list-decimal pl-5 space-y-2">
-              <li><strong>Open the QR generator</strong> and select the WiFi option.</li>
-              <li><strong>Enter your network name (SSID)</strong> exactly as it appears on your router — it's case-sensitive.</li>
-              <li><strong>Add your password</strong> and choose the correct security type: WPA/WPA2 (most common), WPA3, or WEP for older routers. If your network has no password, select &ldquo;no encryption.&rdquo;</li>
-              <li><strong>Check &ldquo;hidden network&rdquo;</strong> only if your SSID doesn't broadcast publicly.</li>
-              <li><strong>Customize it (optional).</strong> Add your logo, adjust colors, or apply a frame so it fits your space.</li>
-              <li><strong>Download</strong> as SVG for sharp printing at any size, or PNG for digital use.</li>
+          <section>
+            <h2 class="text-lg font-bold text-slate-900 mb-2">How to Scan Online</h2>
+            <ol class="list-decimal pl-5 space-y-1.5 text-slate-600">
+              <li>Click <strong>Start Camera</strong> and allow access to your smartphone camera or webcam.</li>
+              <li>Hold the barcode steadily within the guide box.</li>
+              <li>The decoded digits or text will instantly appear on your screen for easy copying.</li>
             </ol>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">Where WiFi QR codes are genuinely useful</h2>
-            <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Airbnbs and guest rooms</strong> — leave it on a card by the bed instead of a sticky note.</li>
-              <li><strong>Cafes and restaurants</strong> — print it on the table or receipt.</li>
-              <li><strong>Offices</strong> — a laminated card at reception saves IT from repeating the guest password all day.</li>
-              <li><strong>Home</strong> — frame it near the router so family and friends stop asking.</li>
-            </ul>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">Before you print it</h2>
-            <p>Test the code with two or three different phones first — don't assume it works just because it looks right. Keep a quiet white border around the code (no text or logos crowding the edges), and if you're adding a center logo, make sure your generator applies high error correction, or the code may fail to scan once printed. Consult our <a href="/qr-code-size-and-print-guide" class="text-blue-600 underline font-medium">QR Code Size and Print Guide</a> for exact physical dimensions.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">Is it safe to share your WiFi password this way?</h2>
-            <p>Yes, as long as the QR code was generated locally in your browser rather than sent to someone else's server. QR Here never uploads or stores what you type — the code is built entirely on your device, so your password never leaves your screen.</p>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-3">Quick answers</h2>
-            <div class="space-y-3">
-              <p><strong>Does the WiFi QR code expire?</strong><br>No. It works for as long as the network name and password stay the same. Change your WiFi password, and you'll need a new code.</p>
-              <p><strong>Can I make one for a hidden network?</strong><br>Yes — just tick the hidden network option when generating it so scanners know to look for it.</p>
-              <p><strong>Will it work on older phones?</strong><br>Most phones from the last several years support it natively. Very old devices can also use our free in-browser <a href="/" class="text-blue-600 underline">QR scanner</a>.</p>
-            </div>
-          </div>
-        </section>
-      </article>
+          </section>
+        </div>
+      </section>
     `,
   },
-  {
-    path: '/qr-code-size-and-print-guide',
-    folder: 'qr-code-size-and-print-guide',
-    title: 'QR Code Size and Print Guide: Standards & Resolution | QR Here',
-    description:
-      'The definitive guide to QR code printing sizes, the 10:1 distance ratio, minimum quiet zones, and vector SVG requirements for commercial print production.',
-    keywords:
-      'qr code size, qr code print size, minimum qr code size, qr code distance ratio, print qr code vector svg, qr code resolution dpi, qr code quiet zone',
-    heading: 'QR Code Size, Ratio & Print Quality Standards',
+];
+
+// Dynamically generate static routes for all 14 QR Types from `QR_TYPES`
+const QR_TYPE_STATIC_ROUTES: StaticRouteConfig[] = QR_TYPES.map((typeDef) => {
+  return {
+    path: `/${typeDef.slug}`,
+    folder: typeDef.slug,
+    title: typeDef.title,
+    description: typeDef.metaDescription,
+    keywords: typeDef.keywords.join(', '),
+    heading: typeDef.h1,
     breadcrumbs: [
       { name: 'Home', path: '/' },
-      { name: 'QR Code Print Guide', path: '/qr-code-size-and-print-guide' },
+      { name: typeDef.h1, path: `/${typeDef.slug}` },
     ],
     htmlContent: `
-      <article class="max-w-4xl mx-auto px-4 py-8">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
-          QR Code Size, Ratio &amp; Print Quality Standards
-        </h1>
-        <p class="text-base text-slate-600 leading-relaxed mb-6">
-          The definitive engineering guide to QR code physical dimensions, the 10:1 scanning ratio, error correction overhead, and commercial print preparation.
-        </p>
-        <section class="space-y-6 text-sm text-slate-700 leading-relaxed">
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">1. The 10:1 Distance-to-Size Formula</h2>
-            <p>The standard optical rule is <strong>QR Width = Scan Distance ÷ 10</strong>. For example, a restaurant menu scanned from 30 cm requires at least a 3 cm width. A billboard scanned from 15 meters requires a 1.5-meter QR code.</p>
-          </div>
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">2. Minimum Absolute Dimensions</h2>
-            <p>Never print a QR code smaller than <strong>20 mm x 20 mm (0.8 x 0.8 inches)</strong>. For dense payloads such as vCards or Wi-Fi credentials, the minimum size increases to <strong>35 mm x 35 mm (1.4 inches)</strong>.</p>
-          </div>
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">3. The 4-Module Quiet Zone</h2>
-            <p>ISO/IEC 18004 specifies a mandatory blank margin of at least 4 module widths around all four edges of the symbol with zero graphics or background patterns.</p>
-          </div>
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">4. SVG Vectors vs 300+ DPI Raster</h2>
-            <p>Always prioritize scalable vector graphics (<a href="/qr-code-generator" class="text-blue-600 underline">SVG</a>) for print workflows to ensure mathematically infinite sharpness with zero pixelation.</p>
-          </div>
-        </section>
-      </article>
-    `,
-  },
-  {
-    path: '/blog/qr-code-error-correction-explained',
-    folder: 'blog/qr-code-error-correction-explained',
-    title: 'QR Code Error Correction Explained: Levels L, M, Q, H & When to Use Which | QR Here',
-    description:
-      'Understand Reed-Solomon error correction in QR codes. Learn the practical trade-offs between Levels L, M, Q, and H, logo embedding limits, and print durability.',
-    keywords:
-      'qr code error correction, reed solomon error correction, qr code level l m q h, qr code with logo error correction, qr code damage recovery',
-    heading: 'Common QR Code Error Correction Levels Explained: When to Use Which',
-    breadcrumbs: [
-      { name: 'Home', path: '/' },
-      { name: 'Blog', path: '/blog' },
-      { name: 'QR Code Error Correction Explained', path: '/blog/qr-code-error-correction-explained' },
-    ],
-    htmlContent: `
-      <article class="max-w-4xl mx-auto px-4 py-8">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
-          Common QR Code Error Correction Levels Explained: When to Use Which
-        </h1>
-        <p class="text-base text-slate-600 leading-relaxed mb-6">
-          Discover the mathematical principles of Reed-Solomon error correction in ISO/IEC 18004 symbols. Learn how Levels L, M, Q, and H recover torn, stained, or logo-covered data.
-        </p>
-        <section class="space-y-6 text-sm text-slate-700 leading-relaxed">
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">1. The Four Error Correction Levels</h2>
-            <ul class="list-disc pl-5 space-y-1">
-              <li><strong>Level L (Low):</strong> ~7% codeword recovery. Maximum data capacity; ideal for dense payloads and screen displays.</li>
-              <li><strong>Level M (Medium):</strong> ~15% codeword recovery. The standard default for retail packaging and marketing.</li>
-              <li><strong>Level Q (Quartile):</strong> ~25% codeword recovery. Built for industrial manufacturing and corrugated shipping cartons.</li>
-              <li><strong>Level H (High):</strong> ~30% codeword recovery. Mandatory for embedding custom logos or outdoor exposure.</li>
-            </ul>
-          </div>
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">2. Why Logos Require Level H</h2>
-            <p>Placing an emblem in the center intentionally destroys data modules. The decoder treats the graphic as damaged codewords, utilizing the ~30% recovery margin to reconstruct the missing information.</p>
-          </div>
-          <div>
-            <h2 class="text-xl font-bold text-slate-900 mb-2">3. The Density Trade-off</h2>
-            <p>Higher error correction increases the matrix version. If physical print dimensions remain constant, individual modules become smaller and more difficult for budget cameras to resolve.</p>
+      <section class="max-w-4xl mx-auto px-4 py-8 space-y-10 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            ${typeDef.h1}
+          </h1>
+          <p class="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed">
+            ${typeDef.intro}
+          </p>
+        </header>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">
+            How to create a ${typeDef.name} in 3 simple steps
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            ${typeDef.steps
+              .map(
+                (step, idx) => `
+              <div class="p-4 rounded-xl border border-slate-200 bg-white">
+                <span class="font-bold text-blue-600 block text-xs uppercase tracking-wider mb-1">Step ${idx + 1}</span>
+                <h3 class="font-bold text-slate-900 text-sm mb-1">${step.title}</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">${step.desc}</p>
+              </div>
+            `
+              )
+              .join('')}
           </div>
         </section>
-      </article>
+
+        <section class="space-y-3 p-5 rounded-2xl bg-blue-50/60 border border-blue-200">
+          <h2 class="text-xl font-bold text-slate-900">What happens when someone scans it?</h2>
+          <p class="text-sm text-slate-700 leading-relaxed">${typeDef.whatHappensWhenScanned}</p>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">Popular use cases for ${typeDef.name}</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            ${typeDef.useCases
+              .map(
+                (uc) => `
+              <div class="p-3.5 rounded-xl border border-slate-200 bg-white">
+                <h3 class="font-bold text-slate-900 text-xs mb-1">${uc.title}</h3>
+                <p class="text-[11px] text-slate-600 leading-relaxed">${uc.desc}</p>
+              </div>
+            `
+              )
+              .join('')}
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">Tips for best results with ${typeDef.shortName} QR codes</h2>
+          <ul class="list-disc pl-5 space-y-1.5 text-sm text-slate-700">
+            ${typeDef.bestPractices
+              .map(
+                (bp) => `
+              <li><strong>${bp.title}:</strong> ${bp.desc}</li>
+            `
+              )
+              .join('')}
+          </ul>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+          <h2 class="text-2xl font-bold text-slate-900">Frequently Asked Questions</h2>
+          <div class="space-y-3">
+            ${typeDef.faqs
+              .map(
+                (faq) => `
+              <div class="pb-3 border-b border-slate-100 last:border-b-0">
+                <h3 class="font-bold text-slate-900 text-sm mb-1">${faq.question}</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">${faq.answer}</p>
+              </div>
+            `
+              )
+              .join('')}
+          </div>
+        </section>
+      </section>
     `,
-  },
+  };
+});
+
+export const STATIC_ROUTES: StaticRouteConfig[] = [
+  ...BASE_STATIC_ROUTES,
+  ...QR_TYPE_STATIC_ROUTES,
 ];
