@@ -28,8 +28,11 @@ export interface QRTypeDefinition {
   buildPayload: (data: Record<string, any>) => string;
   validate: (data: Record<string, any>) => { valid: boolean; message?: string };
   whatHappensWhenScanned: string;
+  stepsHeading?: string;
   steps: { title: string; desc: string }[];
+  useCasesHeading?: string;
   useCases: { title: string; desc: string }[];
+  tipsHeading?: string;
   bestPractices: { title: string; desc: string }[];
   faqs: { question: string; answer: string }[];
   relatedTypes: string[];
@@ -58,7 +61,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
     ],
     h1: 'URL QR Code Generator',
     promise: 'Free · No sign-up · Static codes that never expire',
-    intro: 'Turn any website link into a permanent, custom QR code. Add your brand colors and center logo, then download crisp vector SVG or high-resolution PNG files for print or digital sharing.',
+    intro: 'Turn any website link into a QR code in seconds. Static codes that don\'t expire, no sign-up needed. Download as PNG or SVG.',
     fields: [
       {
         name: 'url',
@@ -91,11 +94,13 @@ export const QR_TYPES: QRTypeDefinition[] = [
       return { valid: true };
     },
     whatHappensWhenScanned: 'When anyone points their smartphone camera at this QR code, an instant banner appears with your website domain. One tap opens the exact webpage directly in their mobile browser.',
+    stepsHeading: 'How to create a QR code for a URL',
     steps: [
       { title: 'Paste your URL', desc: 'Enter any website address, blog post, portfolio, or landing page link.' },
       { title: 'Customize design', desc: 'Pick custom colors, eye patterns, and embed your brand logo with auto-knockout.' },
       { title: 'Download in high res', desc: 'Export scalable vector SVG for crisp printing or high-res PNG for web sharing.' },
     ],
+    useCasesHeading: 'Popular use cases for URL QR Codes',
     useCases: [
       { title: 'Restaurant Menus', desc: 'Place on dining tables so customers view digital contactless menus instantly.' },
       { title: 'Flyers & Posters', desc: 'Drive street traffic directly to event ticket sales, promotions, or signup forms.' },
@@ -104,6 +109,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
       { title: 'Storefront Windows', desc: 'Allow passersby to browse your online inventory even when physical doors are closed.' },
       { title: 'Retail Receipts', desc: 'Encourage repeat purchases with QR codes linking to discount codes or feedback forms.' },
     ],
+    tipsHeading: 'Tips for Make best URL QR codes',
     bestPractices: [
       { title: 'Keep URLs concise', desc: 'Shorter URLs create simpler, less dense QR modules that scan faster from farther away.' },
       { title: 'Ensure high contrast', desc: 'Maintain at least a 4:1 contrast ratio between your dark code dots and the background.' },
@@ -140,7 +146,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
     ],
     h1: 'Text QR Code Generator',
     promise: 'Free · No sign-up · Works 100% offline',
-    intro: 'Encode raw text, instructions, serial numbers, passwords, or encrypted tokens into a QR code. The text displays directly on the scanner screen without requiring an internet connection.',
+    intro: 'Paste a note, message, or snippet and get a scannable QR code instantly. Perfect for sharing short info offline. Free PNG download.',
     fields: [
       {
         name: 'text',
@@ -169,11 +175,13 @@ export const QR_TYPES: QRTypeDefinition[] = [
       return { valid: true };
     },
     whatHappensWhenScanned: 'The scanner decodes the message instantly and displays the text on the phone screen with an option to copy to clipboard or search the web.',
+    stepsHeading: 'How to create a QR code for Text',
     steps: [
       { title: 'Type or paste text', desc: 'Input your message, note, verification token, or alphanumeric code.' },
       { title: 'Check data density', desc: 'Watch the real-time capacity indicator to ensure the code remains easy to scan.' },
       { title: 'Download your code', desc: 'Download high-resolution vector SVG or transparent PNG files.' },
     ],
+    useCasesHeading: 'Popular use cases for Text QR Codes',
     useCases: [
       { title: 'Inventory & Asset Tracking', desc: 'Label warehouse bins, machinery, and parts with serial numbers and specs.' },
       { title: 'Classroom & Scavenger Hunts', desc: 'Leave clues and educational quiz questions hidden behind scannable text codes.' },
@@ -182,6 +190,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
       { title: 'Offline Instructions', desc: 'Provide equipment operating instructions that work in remote areas with zero cell signal.' },
       { title: 'Conference Badges', desc: 'Encode attendee identification numbers or emergency contact instructions.' },
     ],
+    tipsHeading: 'Tips for Make best Text QR codes',
     bestPractices: [
       { title: 'Keep it concise', desc: 'Fewer characters yield bigger QR blocks, making the code much easier to scan.' },
       { title: 'Check character counts', desc: 'Aim for under 500 characters when printing on small surfaces like labels.' },
@@ -217,7 +226,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
     ],
     h1: 'WiFi QR Code Generator',
     promise: 'Free · No sign-up · 100% client-side security',
-    intro: 'Stop reading complex Wi-Fi passwords out loud. Generate a secure Wi-Fi QR code so guests, customers, and visitors can join your wireless network instantly with a single smartphone camera scan.',
+    intro: 'Create a WiFi QR code in seconds. Guests scan and connect, so you never have to spell out your password again. Free, no sign-up.',
     fields: [
       {
         name: 'ssid',
@@ -286,11 +295,13 @@ export const QR_TYPES: QRTypeDefinition[] = [
       return { valid: true };
     },
     whatHappensWhenScanned: 'The phone camera reads the Wi-Fi credentials and prompts: "Join network [Your Network]?". Tapping "Join" connects the smartphone automatically without typing any password.',
+    stepsHeading: 'How to create a QR code for Wi-Fi',
     steps: [
       { title: 'Enter network SSID & password', desc: 'Type your Wi-Fi name and password exactly as configured on your router.' },
       { title: 'Customize appearance', desc: 'Apply a friendly frame like "Join Wi-Fi" and choose your brand colors.' },
       { title: 'Print and display', desc: 'Print on cardstock, frame it near the counter, or stick it on your guest room table.' },
     ],
+    useCasesHeading: 'Popular use cases for Wi-Fi QR Codes',
     useCases: [
       { title: 'Coffee Shops & Cafes', desc: 'Eliminate staff interruptions from customers constantly asking for the Wi-Fi code.' },
       { title: 'Airbnbs & Vacation Rentals', desc: 'Place on the nightstand or welcome fridge so travelers connect the moment they arrive.' },
@@ -299,6 +310,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
       { title: 'Offices & Conference Rooms', desc: 'Let visiting clients connect quickly during presentations without IT assistance.' },
       { title: 'Events & Trade Shows', desc: 'Provide reliable attendee internet access with large signage at check-in desks.' },
     ],
+    tipsHeading: 'Tips for Make best WI-Fi QR codes',
     bestPractices: [
       { title: 'Double-check SSID spelling', desc: 'Wi-Fi names are case-sensitive; ensure exact capitalization matches your router.' },
       { title: 'Use a Guest Network', desc: 'Keep your smart home devices and private computers secure on an isolated guest SSID.' },
@@ -334,7 +346,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
     ],
     h1: 'vCard QR Code Generator',
     promise: 'Free · No sign-up · Standard vCard 3.0 format',
-    intro: 'Turn your contact details into a digital business card. When scanned with a smartphone camera, contacts can save your full name, phone number, email, company, and website directly to their address book in one tap.',
+    intro: 'Create a vCard QR code so people can save your name, number, and email to their contacts with one scan. Free and printable.',
     fields: [
       { name: 'firstName', label: 'First Name', type: 'text', placeholder: 'Jane', required: true, defaultValue: '' },
       { name: 'lastName', label: 'Last Name', type: 'text', placeholder: 'Doe', required: true, defaultValue: '' },
@@ -410,11 +422,13 @@ export const QR_TYPES: QRTypeDefinition[] = [
       return { valid: true };
     },
     whatHappensWhenScanned: 'The phone camera recognizes the vCard format immediately and prompts: "Add to Contacts". One tap opens the contact screen with name, phone, email, and company pre-filled and ready to save.',
+    stepsHeading: 'How to create a QR code for vCard',
     steps: [
       { title: 'Fill in your details', desc: 'Enter your name, job title, phone numbers, email address, and company website.' },
       { title: 'Add your logo or picture', desc: 'Embed your company logo in the center and choose professional brand colors.' },
       { title: 'Print on business cards', desc: 'Download vector SVG to give your graphic designer or print shop for sharp cards.' },
     ],
+    useCasesHeading: 'Popular use cases for vCard QR Codes',
     useCases: [
       { title: 'Physical Business Cards', desc: 'Add to the back of paper cards so contacts can save your details without manual typing.' },
       { title: 'Conference Badges', desc: 'Let fellow attendees and exhibitors capture your contact info during quick networking.' },
@@ -423,6 +437,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
       { title: 'Trade Show Booths', desc: 'Display on table runners and banners so booth visitors can take your info with them.' },
       { title: 'Storefront Badges', desc: 'Help freelance clients and local contractors save your direct contact line quickly.' },
     ],
+    tipsHeading: 'Tips for Make best vCard QR codes',
     bestPractices: [
       { title: 'Keep optional fields modest', desc: 'Only include essential fields so the QR code remains clean and quick to scan.' },
       { title: 'Print minimum 2.5 x 2.5 cm', desc: 'vCard codes store more data; ensure the printed code is at least 1 inch square.' },
@@ -458,7 +473,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
     ],
     h1: 'WhatsApp QR Code Generator',
     promise: 'Free · No sign-up · Direct chat link',
-    intro: 'Create a WhatsApp QR code that launches a direct conversation with your phone number. Add an optional pre-filled greeting message so customers can reach out without saving your contact first.',
+    intro: 'Make a WhatsApp QR code that opens a chat with your number, with an optional pre-filled message. Great for shops and support. Free.',
     fields: [
       {
         name: 'countryCode',
@@ -516,11 +531,13 @@ export const QR_TYPES: QRTypeDefinition[] = [
       return { valid: true };
     },
     whatHappensWhenScanned: 'The phone camera displays a WhatsApp link. One tap opens WhatsApp with a new chat addressed to your number, with your pre-written welcome message already typed and ready to hit send.',
+    stepsHeading: 'How to create a QR code for WhatsApp',
     steps: [
       { title: 'Enter country code & number', desc: 'Select your country code and type your active WhatsApp phone number.' },
       { title: 'Add a welcome message', desc: 'Create a pre-filled greeting so customers know how to kick off the conversation.' },
       { title: 'Download with WhatsApp logo', desc: 'Choose the WhatsApp green palette and embed the official WhatsApp icon.' },
     ],
+    useCasesHeading: 'Popular use cases for WhatsApp QR Codes',
     useCases: [
       { title: 'Customer Support Desk', desc: 'Place on your website and invoices so clients get fast, personal support via chat.' },
       { title: 'Restaurant Reservations', desc: 'Let guests send quick reservation requests without waiting on busy phone lines.' },
@@ -529,6 +546,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
       { title: 'E-commerce Delivery Help', desc: 'Include in package boxes for immediate assistance with returns or sizing.' },
       { title: 'Local Service Quotes', desc: 'Contractors can receive job photos and quote requests straight to their phone.' },
     ],
+    tipsHeading: 'Tips for Make best WhatsApp QR codes',
     bestPractices: [
       { title: 'Do not include + or spaces in number', desc: 'The wa.me protocol strictly requires clean digits with country code.' },
       { title: 'Keep greeting messages friendly', desc: 'A clear opening prompt makes it effortless for new customers to tap send.' },
@@ -564,7 +582,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
     ],
     h1: 'Email QR Code Generator',
     promise: 'Free · No sign-up · Standard mailto protocol',
-    intro: 'Create an email QR code that opens the user’s default mail app with your recipient address, subject line, and body message pre-filled. Perfect for support, inquiries, and RSVP confirmations.',
+    intro: 'Create an email QR code that opens a new message with the recipient, subject, and text already filled in. Free, fast, no sign-up.',
     fields: [
       { name: 'email', label: 'Recipient Email Address', type: 'email', placeholder: 'support@example.com', required: true, defaultValue: '' },
       { name: 'subject', label: 'Subject Line', type: 'text', placeholder: 'Product Inquiry / Support Request', defaultValue: '' },
@@ -596,11 +614,13 @@ export const QR_TYPES: QRTypeDefinition[] = [
       return { valid: true };
     },
     whatHappensWhenScanned: 'The phone camera opens the user’s email client (Apple Mail, Gmail, Outlook) with the recipient, subject line, and body text pre-populated and ready for the user to review and send.',
+    stepsHeading: 'How to create a QR code for Email',
     steps: [
       { title: 'Enter email details', desc: 'Specify recipient address, subject line, and default template text.' },
       { title: 'Style with colors', desc: 'Select matching brand colors and embed an envelope mail icon.' },
       { title: 'Export for print', desc: 'Download in SVG or PNG format to add to flyers, brochures, or packaging.' },
     ],
+    useCasesHeading: 'Popular use cases for Email QR Codes',
     useCases: [
       { title: 'Customer Feedback', desc: 'Print on receipts with subject "Feedback: Store #102" for easy customer reviews.' },
       { title: 'Job Application Signs', desc: 'Let candidates quickly send an email inquiry with subject "Resume - Sales Role".' },
@@ -609,6 +629,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
       { title: 'Direct Helpdesk Access', desc: 'Add to hardware manuals for direct access to Tier-1 technical support.' },
       { title: 'Press & Media Contact', desc: 'Include on media kits so journalists can request interviews instantly.' },
     ],
+    tipsHeading: 'Tips for Make best Email QR codes',
     bestPractices: [
       { title: 'Use clear subject lines', desc: 'A descriptive subject makes it easy to organize incoming emails with mailbox filters.' },
       { title: 'Keep the body concise', desc: 'Short pre-filled messages maintain smaller, more scannable QR matrix patterns.' },
@@ -644,7 +665,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
     ],
     h1: 'Phone Number QR Code Generator',
     promise: 'Free · No sign-up · Instant dialer launch',
-    intro: 'Create a phone call QR code that opens the smartphone dialer with your number ready to call. Perfect for emergency hotlines, customer service desks, and roadside service flyers.',
+    intro: 'Generate a phone number QR code that dials your number the moment it\'s scanned. Ideal for flyers, shop windows, and business cards.',
     fields: [
       {
         name: 'countryCode',
@@ -684,11 +705,13 @@ export const QR_TYPES: QRTypeDefinition[] = [
       return { valid: true };
     },
     whatHappensWhenScanned: 'The phone camera detects the tel: protocol and prompts: "Call [Phone Number]". Tapping the prompt opens the native dialer with the number dialed and waiting for the user to press Call.',
+    stepsHeading: 'How to create a QR code for Phone Numbers',
     steps: [
       { title: 'Select country & number', desc: 'Pick your country dial code and type your phone number.' },
       { title: 'Customize style', desc: 'Apply a phone handset icon and choose a callout frame.' },
       { title: 'Print on signs', desc: 'Export high-res files to put on vehicles, signs, or business cards.' },
     ],
+    useCasesHeading: 'Popular use cases for Phone Number QR Codes',
     useCases: [
       { title: 'Emergency Hotlines', desc: 'Display in public facilities and job sites for quick emergency access.' },
       { title: 'Towing & Roadside Assistance', desc: 'Place on parking lot signs so stranded drivers can call immediately.' },
@@ -697,6 +720,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
       { title: 'Service Fleet Vehicles', desc: 'Add to company vans so potential clients can call while on the road.' },
       { title: 'Real Estate Yard Signs', desc: 'Allow interested buyers to contact the listing agent while standing outside.' },
     ],
+    tipsHeading: 'Tips for Make best Phone QR codes',
     bestPractices: [
       { title: 'Always include country code', desc: 'Ensures the number dials correctly even if the caller has an international SIM.' },
       { title: 'Ensure high phone line availability', desc: 'Make sure your phone line is staffed during hours where printed codes are visible.' },
@@ -732,7 +756,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
     ],
     h1: 'SMS QR Code Generator',
     promise: 'Free · No sign-up · Standard SMSTO format',
-    intro: 'Create an SMS QR code that opens the phone’s messaging app with your phone number and pre-written message ready to send. Great for automated SMS opt-ins, contest entries, and support inquiries.',
+    intro: 'Create an SMS QR code that opens a text message with your number and message ready to send. Great for sign-ups, offers, and feedback.',
     fields: [
       {
         name: 'countryCode',
@@ -783,11 +807,13 @@ export const QR_TYPES: QRTypeDefinition[] = [
       return { valid: true };
     },
     whatHappensWhenScanned: 'The phone camera opens the native Messages app with the recipient number in the "To" field and your text pre-populated in the message bubble, ready for one-tap sending.',
+    stepsHeading: 'How to create a QR code for SMS',
     steps: [
       { title: 'Enter phone & message', desc: 'Input the recipient mobile number and optional keyword or message.' },
       { title: 'Customize frame', desc: 'Add a "Text Us" or "Scan to SMS" call-to-action banner.' },
       { title: 'Download & deploy', desc: 'Download high-res PNG or vector SVG files.' },
     ],
+    useCasesHeading: 'Popular use cases for SMS QR Codes',
     useCases: [
       { title: 'SMS Marketing Opt-Ins', desc: 'Invite customers to scan and text "JOIN" for exclusive discount codes.' },
       { title: 'Contest & Sweepstake Entries', desc: 'Collect event entries by having attendees text a contest keyword.' },
@@ -796,6 +822,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
       { title: 'Donations & Giving Campaigns', desc: 'Allow supporters to quickly text campaign keywords to charity hotlines.' },
       { title: 'Security Verification', desc: 'Provide an easy way for remote workers to text verification check-ins.' },
     ],
+    tipsHeading: 'Tips for Make best SMS QR codes',
     bestPractices: [
       { title: 'Use short keywords', desc: 'Keep opt-in keywords concise (e.g. VIP, SAVE, DEMO) for clean code matrices.' },
       { title: 'Disclose standard SMS rates', desc: 'If using for commercial opt-ins, include a "Msg & data rates may apply" notice.' },
@@ -831,7 +858,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
     ],
     h1: 'Location QR Code Generator',
     promise: 'Free · No sign-up · Direct map navigation',
-    intro: 'Share an exact physical location with a QR code. When scanned, it opens Google Maps or Apple Maps directly to your coordinates, ready to start turn-by-turn driving or walking directions.',
+    intro: 'Turn any address or map pin into a location QR code. One scan opens it in their maps app for instant directions. Free to create.',
     fields: [
       { name: 'latitude', label: 'Latitude', type: 'number', placeholder: '37.7749', required: true, defaultValue: '' },
       { name: 'longitude', label: 'Longitude', type: 'number', placeholder: '-122.4194', required: true, defaultValue: '' },
@@ -881,11 +908,13 @@ export const QR_TYPES: QRTypeDefinition[] = [
       return { valid: true };
     },
     whatHappensWhenScanned: 'The phone camera recognizes the GPS coordinates and opens Google Maps or Apple Maps with a pin dropped on your exact spot, ready to guide turn-by-turn directions.',
+    stepsHeading: 'How to create a QR code for Location',
     steps: [
       { title: 'Find your coordinates', desc: 'Right-click your location on Google Maps or use your GPS coordinates.' },
       { title: 'Add label & customize', desc: 'Name your venue and pick a map pin icon with custom brand colors.' },
       { title: 'Print on invitations', desc: 'Add to event invitations, brochures, and directional wayfinding signs.' },
     ],
+    useCasesHeading: 'Popular use cases for Location QR Codes',
     useCases: [
       { title: 'Wedding & Party Invitations', desc: 'Guide guests effortlessly to remote countryside venues, farms, or beaches.' },
       { title: 'Real Estate Open Houses', desc: 'Ensure buyers navigate straight to the front driveway without getting lost.' },
@@ -894,6 +923,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
       { title: 'Parking Lot Entrances', desc: 'Direct concert or stadium attendees to the designated parking gate.' },
       { title: 'Historic Monuments', desc: 'Tour guides and landmarks can mark exact points of historical interest.' },
     ],
+    tipsHeading: 'Tips for Make best Location QR codes',
     bestPractices: [
       { title: 'Test the pin on Google Maps', desc: 'Paste the coordinates into maps to verify the pin drops at the correct door.' },
       { title: 'Use the Google Maps link format', desc: 'The https:// maps link is universally compatible with every smartphone model.' },
@@ -929,7 +959,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
     ],
     h1: 'Event QR Code Generator',
     promise: 'Free · No sign-up · Universal iCalendar format',
-    intro: 'Create a calendar event QR code that lets attendees add your seminar, wedding, concert, or webinar directly into Apple Calendar, Google Calendar, or Outlook with one scan.',
+    intro: 'Make an event QR code with date, time, and venue. Guests scan once and save it to their calendar. Perfect for invitations and posters.',
     fields: [
       { name: 'title', label: 'Event Title', type: 'text', placeholder: 'Annual Summer Gala 2026', required: true, defaultValue: '' },
       { name: 'startDate', label: 'Start Date & Time', type: 'datetime-local', required: true, defaultValue: '' },
@@ -1003,11 +1033,13 @@ export const QR_TYPES: QRTypeDefinition[] = [
       return { valid: true };
     },
     whatHappensWhenScanned: 'The smartphone reads the iCalendar event and prompts: "Add to Calendar". Tapping opens the user’s default calendar with title, date, time, location, and description pre-loaded.',
+    stepsHeading: 'How to create a QR code for Calendar Events',
     steps: [
       { title: 'Set date, time & details', desc: 'Enter your event name, start and end times, and venue address.' },
       { title: 'Pick an event theme', desc: 'Choose stylish calendar icons and color palettes matching your invitation.' },
       { title: 'Print on flyers & invites', desc: 'Export scalable vector SVG for print production or PNG for digital invites.' },
     ],
+    useCasesHeading: 'Popular use cases for Event QR Codes',
     useCases: [
       { title: 'Wedding Invitations', desc: 'Ensure guests save your ceremony and reception times without manual calendar entry.' },
       { title: 'Concerts & Festivals', desc: 'Add to promotional posters so fans save tour dates right as they walk by.' },
@@ -1016,6 +1048,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
       { title: 'Product Launches & Webinars', desc: 'Boost live stream attendance by saving the exact launch countdown in calendars.' },
       { title: 'Community Fundraisers', desc: 'Place on neighborhood banners to maximize volunteer turnout.' },
     ],
+    tipsHeading: 'Tips for Make best Event QR codes',
     bestPractices: [
       { title: 'Always set end times', desc: 'Setting an end time blocks out the full duration in attendee calendars.' },
       { title: 'Include full address in location', desc: 'Allows mobile calendars to trigger automatic travel time notifications.' },
@@ -1051,7 +1084,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
     ],
     h1: 'PayPal QR Code Generator',
     promise: 'Free · No sign-up · Secure PayPal.Me link',
-    intro: 'Create a PayPal QR code using your official PayPal.Me link. Customers and supporters can scan to send payments, tip staff, or pay invoices directly with credit card or PayPal balance.',
+    intro: 'Create a PayPal QR code from your PayPal.Me link so customers can pay or tip you in seconds. Free, printable, and easy to use.',
     fields: [
       { name: 'username', label: 'PayPal.Me Username', type: 'text', placeholder: 'yourusername', required: true, defaultValue: '' },
       { name: 'amount', label: 'Preset Amount (optional)', type: 'number', placeholder: '25.00' },
@@ -1098,11 +1131,13 @@ export const QR_TYPES: QRTypeDefinition[] = [
       return { valid: true };
     },
     whatHappensWhenScanned: 'The phone camera opens your secure PayPal.Me checkout page. The user logs in to PayPal or uses a debit/credit card to complete payment in seconds.',
+    stepsHeading: 'How to create a QR code for PayPal',
     steps: [
       { title: 'Enter PayPal.Me username', desc: 'Input your public PayPal.Me handle without spaces or @ symbols.' },
       { title: 'Specify optional amount', desc: 'Lock in a fixed product price or leave blank to let the customer enter any amount.' },
       { title: 'Download & collect payments', desc: 'Display at checkout counters, restaurant tip jars, or market stalls.' },
     ],
+    useCasesHeading: 'Popular use cases for PayPal QR Codes',
     useCases: [
       { title: 'Farmer’s Markets & Stalls', desc: 'Accept cashless payments without renting expensive merchant card terminals.' },
       { title: 'Tip Jars & Performers', desc: 'Enable quick digital tips for musicians, baristas, valets, and tour guides.' },
@@ -1111,6 +1146,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
       { title: 'Club Dues & Sports Teams', desc: 'Collect tournament registration and jersey fees effortlessly from players.' },
       { title: 'Art & Craft Fairs', desc: 'Place next to each piece of artwork so shoppers can pay immediately.' },
     ],
+    tipsHeading: 'Tips for Make best PayPal QR codes',
     bestPractices: [
       { title: 'Double-check your username', desc: 'Always test-scan the code to verify your PayPal profile loads before printing.' },
       { title: 'Leave amount blank for flexible tips', desc: 'Leaving the amount field empty gives customers total freedom on payment size.' },
@@ -1146,7 +1182,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
     ],
     h1: 'Bitcoin QR Code Generator',
     promise: 'Free · No sign-up · BIP-21 standard compliant',
-    intro: 'Generate a Bitcoin wallet QR code using the BIP-21 URI standard. Encode your wallet address, an optional BTC request amount, label, and message so crypto wallets can scan and send error-free.',
+    intro: 'Generate a Bitcoin QR code from your wallet address, with an optional amount. Always double-check the address before sharing.',
     fields: [
       { name: 'address', label: 'Bitcoin Wallet Address', type: 'text', placeholder: 'bc1q... or 1... or 3...', required: true, defaultValue: '' },
       { name: 'amount', label: 'Amount in BTC (optional)', type: 'number', placeholder: '0.005' },
@@ -1188,11 +1224,13 @@ export const QR_TYPES: QRTypeDefinition[] = [
       return { valid: true };
     },
     whatHappensWhenScanned: 'Crypto wallet apps (Trust Wallet, BlueWallet, Coinbase, Exodus) recognize the BIP-21 URI and populate the destination address, amount in BTC, and memo automatically.',
+    stepsHeading: 'How to create a QR code for Bitcoin',
     steps: [
       { title: 'Paste your BTC address', desc: 'Enter your SegWit, Taproot, or Legacy Bitcoin receiving address.' },
       { title: 'Add optional amount', desc: 'Specify requested BTC value and merchant memo.' },
       { title: 'Double check & print', desc: 'Verify the address visually, then export high-resolution vector SVG or PNG.' },
     ],
+    useCasesHeading: 'Popular use cases for Bitcoin QR Codes',
     useCases: [
       { title: 'Crypto Merchant Checkouts', desc: 'Accept Bitcoin directly at retail checkout registers without middleman fees.' },
       { title: 'Donation Pages & Livestreams', desc: 'Display on YouTube or Twitch streams for direct cryptocurrency tips.' },
@@ -1201,6 +1239,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
       { title: 'Conferences & Meetups', desc: 'Collect attendee registration fees in native Bitcoin.' },
       { title: 'Peer-to-Peer Splitting', desc: 'Split dinner tabs and travel costs with friends using mobile wallets.' },
     ],
+    tipsHeading: 'Tips for Make best Bitcoin QR codes',
     bestPractices: [
       { title: 'Verify address characters', desc: 'Always compare the first and last 6 characters of the generated code with your wallet.' },
       { title: 'Use high error correction', desc: 'Set Error Correction to Level Q or H to prevent scanner misreads on paper.' },
@@ -1236,7 +1275,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
     ],
     h1: 'Skype QR Code Generator',
     promise: 'Free · No sign-up · Direct Skype launcher',
-    intro: 'Create a Skype QR code that launches a direct Skype chat or audio/video call with your username. Ideal for customer service desks, virtual office hours, and remote interviews.',
+    intro: 'Create a Skype QR code that opens a chat or call with your username. Handy for business cards, websites, and email signatures.',
     fields: [
       { name: 'username', label: 'Skype Name / Username', type: 'text', placeholder: 'live:your_skype_id', required: true, defaultValue: '' },
       {
@@ -1271,11 +1310,13 @@ export const QR_TYPES: QRTypeDefinition[] = [
       return { valid: true };
     },
     whatHappensWhenScanned: 'The phone camera detects the skype: protocol and launches the Skype app directly into a chat window or audio/video call connection with your profile.',
+    stepsHeading: 'How to create a QR code for Skype',
     steps: [
       { title: 'Enter your Skype username', desc: 'Type your Skype name or live ID.' },
       { title: 'Choose chat or call', desc: 'Select whether the code should open a chat or initiate a direct call.' },
       { title: 'Download & share', desc: 'Export high-res files to add to websites, email footers, or printed badges.' },
     ],
+    useCasesHeading: 'Popular use cases for Skype QR Codes',
     useCases: [
       { title: 'Virtual Office Hours', desc: 'Professors and tutors can allow students to join drop-in consultation chats.' },
       { title: 'International Customer Support', desc: 'Provide free worldwide voice calling options without international telephone toll charges.' },
@@ -1284,6 +1325,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
       { title: 'Corporate Contact Directories', desc: 'Place on intranet directories and desk cards for internal peer communication.' },
       { title: 'Consultancy Service Lines', desc: 'Give clients direct access to their assigned financial or legal adviser.' },
     ],
+    tipsHeading: 'Tips for Make best Skype QR codes',
     bestPractices: [
       { title: 'Check your Skype privacy settings', desc: 'Ensure your Skype account allows incoming calls and messages from anyone.' },
       { title: 'Use official Skype branding', desc: 'Apply the recognizable Skype blue palette and logo preset.' },
@@ -1319,7 +1361,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
     ],
     h1: 'Zoom Meeting QR Code Generator',
     promise: 'Free · No sign-up · 1-click meeting join',
-    intro: 'Create a Zoom QR code that joins your conference or webinar in one scan. Attendees scan with their phone or tablet to open the Zoom app with meeting ID and passcode pre-filled.',
+    intro: 'Turn your Zoom meeting link into a QR code. Attendees scan to join on their phone, no typing needed. Great for classes and events.',
     fields: [
       { name: 'meetingId', label: 'Zoom Meeting ID', type: 'text', placeholder: '123 4567 8901 (digits only)', required: true, defaultValue: '' },
       { name: 'passcode', label: 'Meeting Passcode / Password (optional)', type: 'text', placeholder: 'Enter passcode if required', defaultValue: '' },
@@ -1349,11 +1391,13 @@ export const QR_TYPES: QRTypeDefinition[] = [
       return { valid: true };
     },
     whatHappensWhenScanned: 'The phone camera opens the official Zoom join link. Tapping opens the Zoom app directly into your waiting room or meeting without requiring manual ID entry.',
+    stepsHeading: 'How to create a QR code for Zoom',
     steps: [
       { title: 'Enter Meeting ID & Passcode', desc: 'Paste your 9–11 digit Zoom meeting ID and optional password.' },
       { title: 'Style with Zoom blue', desc: 'Apply Zoom brand colors and embed the video meeting icon.' },
       { title: 'Share with attendees', desc: 'Embed on slide decks, event flyers, calendar invitations, or emails.' },
     ],
+    useCasesHeading: 'Popular use cases for Zoom QR Codes',
     useCases: [
       { title: 'Classroom & Online Lectures', desc: 'Students can scan a printed syllabus to jump straight into morning virtual class.' },
       { title: 'Webinars & Townhalls', desc: 'Include on promotional flyers so attendees can join with one phone tap.' },
@@ -1362,6 +1406,7 @@ export const QR_TYPES: QRTypeDefinition[] = [
       { title: 'Support & Onboarding Calls', desc: 'Provide a direct link in confirmation emails for quick virtual consultations.' },
       { title: 'Community Meetups', desc: 'Help remote members join local club gatherings virtually.' },
     ],
+    tipsHeading: 'Tips for Make best Zoom QR codes',
     bestPractices: [
       { title: 'Include passcode in the code', desc: 'Embedding the passcode ensures attendees do not get stuck on password prompts.' },
       { title: 'Use Recurring Meeting IDs', desc: 'Use a persistent personal meeting ID if printing physical signs that will stay up for months.' },

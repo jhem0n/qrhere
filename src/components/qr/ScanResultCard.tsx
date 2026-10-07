@@ -18,12 +18,32 @@ import {
   Globe,
 } from 'lucide-react';
 import { QRScanResult } from '../../types/qr.types';
-import { QRGeneratorService } from '../../services/qr/generator.service';
-import { parseWifiQR } from '../../utils/qr/presets';
+import { parseWifiQR, parseWhatsAppQR } from '../../utils/qr/presets';
 
 interface ScanResultCardProps {
   result: QRScanResult;
   onScanAgain: () => void;
+}
+
+async function copyTextToClipboard(text: string): Promise<boolean> {
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.opacity = '0';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    const successful = document.execCommand('copy');
+    document.body.removeChild(textArea);
+    return successful;
+  } catch {
+    return false;
+  }
 }
 
 export const ScanResultCard: React.FC<ScanResultCardProps> = ({ result, onScanAgain }) => {
@@ -32,7 +52,7 @@ export const ScanResultCard: React.FC<ScanResultCardProps> = ({ result, onScanAg
 
   // Copy result with visual feedback
   const handleCopy = async () => {
-    const success = await QRGeneratorService.copyText(result.rawText);
+    const success = await copyTextToClipboard(result.rawText);
     if (success) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -40,6 +60,7 @@ export const ScanResultCard: React.FC<ScanResultCardProps> = ({ result, onScanAg
   };
 
   const wifiInfo = result.type === 'wifi' ? parseWifiQR(result.rawText) : null;
+  const whatsappInfo = parseWhatsAppQR(result.rawText);
   const isDangerousOrBlocked = !result.isSafeUrl && (result.warning !== undefined || result.type === 'url');
 
   return (
@@ -226,10 +247,50 @@ export const ScanResultCard: React.FC<ScanResultCardProps> = ({ result, onScanAg
         </div>
       )}
 
+      {/* Specialized WhatsApp Details Panel if applicable */}
+      {whatsappInfo && (
+        <div className="mt-4 rounded-2xl border border-emerald-200/80 bg-emerald-50/40 p-4 text-xs dark:border-emerald-900/40 dark:bg-emerald-950/10 space-y-2">
+          <div className="flex items-center gap-2 font-bold text-emerald-900 dark:text-emerald-200">
+            <MessageSquare className="w-4 h-4 text-emerald-600" />
+            <span>WhatsApp Chat Link Detected</span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-slate-700 dark:text-slate-300">
+            {whatsappInfo.phone && (
+              <div>
+                <span className="text-slate-500 dark:text-slate-400">Phone Number: </span>
+                <span className="font-semibold font-mono">+{whatsappInfo.phone}</span>
+              </div>
+            )}
+            {whatsappInfo.message && (
+              <div className="col-span-full">
+                <span className="text-slate-500 dark:text-slate-400">Pre-filled Message: </span>
+                <span className="font-medium italic">"{whatsappInfo.message}"</span>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Action Buttons: Copy Result, Safe Open Link, Scan Again */}
       <div className="mt-5 flex flex-wrap items-center gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
-        {/* Safe Open Link: ONLY rendered if isSafeUrl is TRUE and protocol is HTTP/HTTPS */}
-        {result.isSafeUrl && result.parsedUrl && (
+        {/* WhatsApp direct launch button */}
+        {whatsappInfo && (
+          <a
+            href={whatsappInfo.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            id="whatsapp-open-btn"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 transition cursor-pointer min-h-[44px]"
+            title="Open WhatsApp chat in a new tab"
+          >
+            <MessageSquare className="w-3.5 h-3.5" />
+            <span>Open in WhatsApp</span>
+            <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+          </a>
+        )}
+
+        {/* Safe Open Link: ONLY rendered if isSafeUrl is TRUE and protocol is HTTP/HTTPS (and not already WhatsApp) */}
+        {result.isSafeUrl && result.parsedUrl && !whatsappInfo && (
           <a
             href={result.parsedUrl}
             target="_blank"

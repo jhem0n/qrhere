@@ -103,6 +103,23 @@ export const BlogPostVcardQrCode: React.FC = () => {
           </h1>
         </header>
 
+        {/* Featured Visual */}
+        <figure className="mb-10 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-slate-950">
+          <img
+            src="/images/howtocreatevcardqr.jpg"
+            alt="How to create a vCard QR code for digital business cards"
+            title="How to Create a vCard QR Code for Digital Business Cards"
+            className="w-full h-auto object-cover"
+            width={1200}
+            height={670}
+            loading="eager"
+            decoding="async"
+          />
+          <figcaption className="p-3 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 bg-slate-900/60">
+            A single scan saves your contact card and phone number straight to smartphone address books.
+          </figcaption>
+        </figure>
+
         {/* Main Content Body */}
         <div className="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed space-y-8">
           <p>

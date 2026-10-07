@@ -104,14 +104,13 @@ export const BlogPostStaticVsDynamic: React.FC = () => {
         <figure className="my-8 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
           <img
             src="/images/static-vs-dynamic-qr-code.jpg"
-            onError={(e) => {
-              (e.currentTarget as HTMLImageElement).src = '/images/static-vs-dynamic-qr-code.svg';
-            }}
             alt="Static vs Dynamic QR Codes: Simple comparison showing permanent offline codes vs server redirects"
+            title="Static vs Dynamic QR Codes: Simple comparison showing permanent offline codes vs server redirects"
             className="w-full h-auto object-contain"
             loading="eager"
-            width={1200}
-            height={900}
+            decoding="async"
+            width={960}
+            height={717}
           />
           <figcaption className="text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 py-3 px-4 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-800">
             Static codes encode data permanently with zero server reliance. Dynamic codes route through a redirect server.

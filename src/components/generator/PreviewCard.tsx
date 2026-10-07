@@ -208,6 +208,38 @@ export const PreviewCard: React.FC<PreviewCardProps> = ({
         </button>
       </div>
 
+      {/* Share and Copy Image Buttons */}
+      <div className="grid grid-cols-2 gap-3">
+        <button
+          type="button"
+          onClick={handleCopyImage}
+          className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/80 hover:bg-slate-50 dark:hover:bg-slate-700/80 text-slate-800 dark:text-slate-200 font-semibold text-sm shadow-xs hover:border-slate-300 dark:hover:border-slate-700 active:scale-95 transition cursor-pointer min-h-[44px]"
+          title="Copy QR image to clipboard"
+        >
+          {copiedImage ? (
+            <>
+              <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <span className="text-emerald-600 dark:text-emerald-400">Image Copied!</span>
+            </>
+          ) : (
+            <>
+              <Copy className="w-4 h-4 text-slate-500 dark:text-slate-400" />
+              <span>Copy Image</span>
+            </>
+          )}
+        </button>
+
+        <button
+          type="button"
+          onClick={handleShare}
+          className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/80 hover:bg-slate-50 dark:hover:bg-slate-700/80 text-slate-800 dark:text-slate-200 font-semibold text-sm shadow-xs hover:border-slate-300 dark:hover:border-slate-700 active:scale-95 transition cursor-pointer min-h-[44px]"
+          title="Share QR Code"
+        >
+          <Share2 className="w-4 h-4 text-slate-500 dark:text-slate-400" />
+          <span>Share</span>
+        </button>
+      </div>
+
       {/* More Export Options Toolbar */}
       <div className="pt-2 border-t border-slate-100 dark:border-slate-800 space-y-2">
         <button

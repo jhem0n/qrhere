@@ -106,12 +106,14 @@ export const BlogPostErrorCorrection: React.FC = () => {
         {/* Featured Visual */}
         <figure className="mb-10 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-slate-950">
           <img
-            src="/images/qr-code-error-correction.svg"
+            src="/images/errorcorrection.jpg"
             alt="Infographic showing how QR code error correction recovers damaged, dirty, or logo-covered codes"
+            title="QR Code Error Correction Levels Explained"
             className="w-full h-auto object-cover"
-            width="1200"
-            height="630"
+            width={1200}
+            height={670}
             loading="eager"
+            decoding="async"
           />
           <figcaption className="p-3 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 bg-slate-900/60">
             Error correction adds backup data to keep QR codes readable through dirt, scratches, or center logos.

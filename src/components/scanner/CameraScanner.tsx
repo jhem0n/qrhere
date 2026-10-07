@@ -113,6 +113,7 @@ export const CameraScanner: React.FC<CameraScannerProps> = ({
     setStatus('requesting');
 
     try {
+      const preloadPromise = QRScannerService.preloadEngine();
       const targetDeviceId = overrideDeviceId || selectedDeviceId || undefined;
       const stream = await cameraService.startCamera({
         deviceId: targetDeviceId,
@@ -135,6 +136,8 @@ export const CameraScanner: React.FC<CameraScannerProps> = ({
       } catch (playErr) {
         console.warn('Camera video play warning:', playErr);
       }
+
+      await preloadPromise;
 
       setStatus('active');
       setHasTorch(cameraService.hasTorchCapability());

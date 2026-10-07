@@ -1,28 +1,57 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+    <!-- Resource Hints & Preconnects for critical CDNs and scripts -->
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
     <script>try{var _f=window.fetch;Object.defineProperty(window,"fetch",{get:function(){return _f},set:function(v){_f=v},configurable:true,enumerable:true})}catch(_){}</script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJDCL6XYYB"></script>
+
+    <!-- Analytics DataLayer and Non-Blocking Script Initializer -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-LJDCL6XYYB');
+
+      // Defer third-party non-critical scripts until idle to eliminate TBT & protect LCP
+      function loadDeferredScripts() {
+        if (!document.getElementById('gtag-script')) {
+          var ga = document.createElement('script');
+          ga.id = 'gtag-script';
+          ga.async = true;
+          ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-LJDCL6XYYB';
+          document.head.appendChild(ga);
+        }
+        if (!document.getElementById('google-adsense-auto-ads')) {
+          var ad = document.createElement('script');
+          ad.id = 'google-adsense-auto-ads';
+          ad.async = true;
+          ad.crossOrigin = 'anonymous';
+          ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6935522846608744';
+          document.head.appendChild(ad);
+        }
+      }
+      if (document.readyState === 'complete') {
+        loadDeferredScripts();
+      } else {
+        window.addEventListener('load', function() {
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadDeferredScripts, { timeout: 1200 });
+          } else {
+            setTimeout(loadDeferredScripts, 400);
+          }
+        });
+      }
     </script>
-
-    <!-- Google AdSense Auto Ads -->
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6935522846608744"
-      crossorigin="anonymous"
-    ></script>
-
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     
     <!-- Title & SEO Meta synchronized with metadata.json -->
-    <title>QR Code Scanner Online – Free, No App Needed | QR Here</title>
+    <title>Scan Here QR Code – Free QR Reader Online | QR Here</title>
     <meta
       name="description"
       content="Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed."
@@ -35,7 +64,7 @@
     <meta property="og:site_name" content="QR Here" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://qrhere.online/" />
-    <meta property="og:title" content="QR Code Scanner Online – Free, No App Needed | QR Here" />
+    <meta property="og:title" content="Scan Here QR Code – Free QR Reader Online | QR Here" />
     <meta
       property="og:description"
       content="Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed."
@@ -49,7 +78,7 @@
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="QR Code Scanner Online – Free, No App Needed | QR Here" />
+    <meta name="twitter:title" content="Scan Here QR Code – Free QR Reader Online | QR Here" />
     <meta
       name="twitter:description"
       content="Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed."
@@ -68,7 +97,7 @@
     <meta name="apple-mobile-web-app-title" content="QR Here" />
 
     <!-- Schema.org JSON-LD Structured Data for Homepage (WebApplication & FAQPage) -->
-    <script id="json-ld-schema" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://qrhere.online/#website","url":"https://qrhere.online/","name":"QR Here","description":"Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.","inLanguage":"en-US"},{"@type":"WebApplication","@id":"https://qrhere.online/#webapp","name":"QR Here","url":"https://qrhere.online/","description":"Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is QR Here free?","acceptedAnswer":{"@type":"Answer","text":"Yes, QR Here is 100% free to use. There are no subscriptions, hidden fees, scan limits, or watermarks."}},{"@type":"Question","name":"Does it work on iPhone and Android?","acceptedAnswer":{"@type":"Answer","text":"Yes. QR Here works seamlessly on iPhones, iPads, Android smartphones, tablets, Windows PCs, and Macs using any modern web browser."}},{"@type":"Question","name":"Do you store my camera feed or images?","acceptedAnswer":{"@type":"Answer","text":"No. All scanning and decoding runs completely in your web browser. Your camera feed and uploaded images never leave your device and are never sent to or stored on any server."}},{"@type":"Question","name":"Do I need to install an app or sign up?","acceptedAnswer":{"@type":"Answer","text":"No installation or account registration is required. You can scan or create QR codes immediately directly in your browser without entering an email or password."}},{"@type":"Question","name":"Which image formats are supported?","acceptedAnswer":{"@type":"Answer","text":"You can upload QR code images and screenshots in PNG, JPG, and WEBP formats up to 10 MB in file size."}},{"@type":"Question","name":"How do I create my own QR code?","acceptedAnswer":{"@type":"Answer","text":"You can generate your own custom QR code using our free QR code generator. Choose from options like website links, Wi-Fi networks, contact cards, and plain text, customize colors, and download as SVG or PNG."}}]}]}</script>
+    <script id="json-ld-schema" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://qrhere.online/#website","url":"https://qrhere.online/","name":"QR Here","description":"Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.","inLanguage":"en-US"},{"@type":"WebApplication","@id":"https://qrhere.online/#webapp","name":"QR Here","url":"https://qrhere.online/","description":"Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does \"scan here\" mean?","acceptedAnswer":{"@type":"Answer","text":"It is an instruction to point your phone camera at the QR code to open what it contains."}},{"@type":"Question","name":"Can I scan a Wi-Fi or WhatsApp QR code online?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use your camera or upload a screenshot, and the details or link appear before you open anything."}},{"@type":"Question","name":"Is QR Here free?","acceptedAnswer":{"@type":"Answer","text":"Yes, QR Here is 100% free to use. There are no subscriptions, hidden fees, scan limits, or watermarks."}},{"@type":"Question","name":"Does it work on iPhone and Android?","acceptedAnswer":{"@type":"Answer","text":"Yes. QR Here works seamlessly on iPhones, iPads, Android smartphones, tablets, Windows PCs, and Macs using any modern web browser."}},{"@type":"Question","name":"Do you store my camera feed or images?","acceptedAnswer":{"@type":"Answer","text":"No. All scanning and decoding runs completely in your web browser. Your camera feed and uploaded images never leave your device and are never sent to or stored on any server."}},{"@type":"Question","name":"Do I need to install an app or sign up?","acceptedAnswer":{"@type":"Answer","text":"No installation or account registration is required. You can scan or create QR codes immediately directly in your browser without entering an email or password."}},{"@type":"Question","name":"Which image formats are supported?","acceptedAnswer":{"@type":"Answer","text":"You can upload QR code images and screenshots in PNG, JPG, and WEBP formats up to 10 MB in file size."}},{"@type":"Question","name":"How do I create my own QR code?","acceptedAnswer":{"@type":"Answer","text":"You can generate your own custom QR code using our free QR code generator. Choose from options like website links, Wi-Fi networks, contact cards, and plain text, customize colors, and download as SVG or PNG."}}]}]}</script>
   </head>
   <body class="bg-white text-slate-900 antialiased selection:bg-blue-600 selection:text-white dark:bg-slate-950 dark:text-slate-100">
     <div id="root">
@@ -91,7 +120,7 @@
         <main class="flex-1">
           <section class="pt-8 pb-6 px-4 text-center max-w-4xl mx-auto">
             <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-              QR Code Scanner
+              Scan here QR Code
             </h1>
             <p class="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
               Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.
@@ -136,12 +165,34 @@
             <div>
               <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">What you can scan</h2>
               <ul class="list-disc pl-5 space-y-1 text-slate-600 dark:text-slate-400">
-                <li>Website links (URLs)</li>
-                <li>Wi-Fi network details and passwords</li>
+                <li>Website links (URLs) scanner</li>
+                <li>Wi-Fi QR code scanner</li>
+                <li>WhatsApp chat links</li>
+                <li>Location and map links</li>
                 <li>Contact cards (vCard and MeCard)</li>
                 <li>Payment and ticket codes</li>
                 <li>Plain text messages and notes</li>
               </ul>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">What Does "Scan Here" on a QR Code Mean?</h2>
+              <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                "Please scan here" is a prompt printed next to a QR code. It tells you to open your phone camera, point it at the code, and tap the link that appears. With QR Here you can do the same from your browser, with no app. Here are the most common prompts and what they open:
+              </p>
+              <ul class="list-disc pl-5 space-y-1 text-slate-600 dark:text-slate-400 mb-4">
+                <li><strong>Scan here to pay:</strong> Opens a payment page or wallet. Check the link carefully before you pay.</li>
+                <li><strong>Scan here to learn more:</strong> Opens a website, menu, brochure, or product page.</li>
+                <li><strong>Scan here for location:</strong> Opens a map pin with directions.</li>
+                <li><strong>Scan here to join:</strong> Connects you to a Wi-Fi network, meeting, or event.</li>
+                <li><strong>Scan here to contact us:</strong> Opens WhatsApp, a phone call, SMS, email, or a contact card.</li>
+              </ul>
+              <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+                Need a <a href="/scan-wifi-qr-code" class="text-blue-600 underline font-semibold">WiFi QR code scanner</a>? Scan a Wi-Fi code to see the network name and password. Need a <a href="/scan-whatsapp-qr-code" class="text-blue-600 underline font-semibold">WhatsApp QR code scanner</a>? Scan the code to see the chat link before you open it. Both work with your camera or an image upload.
+              </p>
+              <p class="text-sm text-slate-600 dark:text-slate-400">
+                Want to make your own "scan here" code? Try our <a href="/qr-code-generator" class="text-blue-600 underline font-semibold">QR code generator</a>.
+              </p>
             </div>
 
             <div class="p-6 rounded-2xl border border-blue-200/80 dark:border-blue-900/60 bg-blue-50/50 dark:bg-blue-950/20">
@@ -154,6 +205,14 @@
             <div>
               <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Frequently asked questions</h2>
               <div class="space-y-4">
+                <div>
+                  <h3 class="font-bold text-slate-900 dark:text-white">What does "scan here" mean?</h3>
+                  <p class="text-xs text-slate-600 dark:text-slate-400">It is an instruction to point your phone camera at the QR code to open what it contains.</p>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 dark:text-white">Can I scan a Wi-Fi or WhatsApp QR code online?</h3>
+                  <p class="text-xs text-slate-600 dark:text-slate-400">Yes. Use your camera or upload a screenshot, and the details or link appear before you open anything.</p>
+                </div>
                 <div>
                   <h3 class="font-bold text-slate-900 dark:text-white">Is QR Here free?</h3>
                   <p class="text-xs text-slate-600 dark:text-slate-400">Yes, QR Here is 100% free to use. There are no subscriptions, hidden fees, scan limits, or watermarks.</p>

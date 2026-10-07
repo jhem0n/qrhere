@@ -28,7 +28,7 @@ export const CreatePage: React.FC = () => {
         {/* Page Header */}
         <header className="text-center max-w-3xl mx-auto mb-8">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Free QR Code Generator
+            Online Best Free QR Code Generator
           </h1>
           <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
             Create custom QR codes online with logos, colors, frames, and error correction. Turn any link, Wi-Fi network, vCard contact, or text into a permanent, scannable QR code and download free high-resolution vector SVG or PNG files.

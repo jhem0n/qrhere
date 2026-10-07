@@ -29,6 +29,8 @@ console.log(`Found ${urls.length} URLs in sitemap:`, urls);
 const EXPECTED_ROUTES = [
   'https://qrhere.online/',
   'https://qrhere.online/barcode-scanner',
+  'https://qrhere.online/scan-wifi-qr-code',
+  'https://qrhere.online/scan-whatsapp-qr-code',
   'https://qrhere.online/qr-code-generator',
   'https://qrhere.online/qr-code-generator-url',
   'https://qrhere.online/qr-code-generator-text',
@@ -50,6 +52,9 @@ const EXPECTED_ROUTES = [
   'https://qrhere.online/blog/how-to-scan-qr-code-without-app',
   'https://qrhere.online/blog/how-to-create-wifi-qr-code',
   'https://qrhere.online/blog/qr-code-error-correction-explained',
+  'https://qrhere.online/blog/scan-qr-code-from-screenshot',
+  'https://qrhere.online/blog/qr-code-history',
+  'https://qrhere.online/blog/how-does-a-qr-code-work',
   'https://qrhere.online/faq',
   'https://qrhere.online/about',
   'https://qrhere.online/contact',

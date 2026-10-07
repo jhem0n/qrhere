@@ -50,10 +50,10 @@ export const BarcodeScannerPage: React.FC = () => {
         {/* Page Header - H1 above the box */}
         <header className="text-center max-w-3xl mx-auto mb-8 sm:mb-10 mt-2">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Barcode Scanner
+            Online Barcode Reader
           </h1>
           <p className="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
-            Scan any barcode free with your camera or an image upload. Private, runs in your browser, no app or signup needed.
+            Scan any barcode free with your camera or an image upload. Scan 1D barcodes (UPC, EAN, Code 128) or 2D barcodes (QR, Data Matrix).
           </p>
         </header>
 

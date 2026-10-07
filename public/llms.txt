@@ -28,4 +28,6 @@
 - [How to Create a WiFi QR Code](https://qrhere.online/blog/how-to-create-wifi-qr-code): A 2-minute guide to letting guests connect to your WiFi with one scan — no spelled-out passwords, no downloads.
 - [How to Create a vCard QR Code](https://qrhere.online/blog/how-to-create-vcard-qr-code): Guide on generating digital business card QR codes for smartphone address books.
 - [Static vs Dynamic QR Code](https://qrhere.online/blog/static-vs-dynamic-qr-code): Comprehensive technical comparison between static and dynamic QR codes.
+- [Scan QR Code From Screenshot](https://qrhere.online/blog/scan-qr-code-from-screenshot): Guide to scanning QR codes directly on your own phone from screenshots or saved images without needing a second device.
+- [QR Code History](https://qrhere.online/blog/qr-code-history): The full story of who invented the QR code at Denso in 1994, why it was given away open-source, and how it took over the world.
 

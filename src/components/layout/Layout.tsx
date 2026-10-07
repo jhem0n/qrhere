@@ -25,7 +25,15 @@ export const Layout: React.FC = () => {
       {/* Main Page Content */}
       <main id="main-content" className="flex-1 w-full flex flex-col focus:outline-none" tabIndex={-1}>
         <ErrorBoundary>
-          <Outlet />
+          <React.Suspense
+            fallback={
+              <div className="min-h-[50vh] flex items-center justify-center" aria-busy="true">
+                <div className="w-8 h-8 rounded-full border-2 border-blue-600 border-t-transparent animate-spin" />
+              </div>
+            }
+          >
+            <Outlet />
+          </React.Suspense>
         </ErrorBoundary>
       </main>
 

@@ -99,3 +99,59 @@ export function formatSmsQR(options: SmsOptions): string {
 export function formatTelQR(phone: string): string {
   return `tel:${phone.trim()}`;
 }
+
+export interface WhatsAppOptions {
+  phone: string;
+  message?: string;
+  url: string;
+}
+
+/**
+ * Parses WhatsApp QR codes or links (wa.me, api.whatsapp.com, or whatsapp://)
+ */
+export function parseWhatsAppQR(rawText: string): WhatsAppOptions | null {
+  if (!rawText) return null;
+  const trimmed = rawText.trim();
+
+  // Pattern 1: wa.me/<phone>?text=<message>
+  const waMeMatch = trimmed.match(/^(?:https?:\/\/)?wa\.me\/(\+?\d+)(?:\/?\?(.*))?$/i);
+  if (waMeMatch) {
+    const phone = waMeMatch[1].replace(/^\+/, '');
+    const qs = waMeMatch[2] || '';
+    const params = new URLSearchParams(qs);
+    const message = params.get('text') || '';
+    return {
+      phone,
+      message,
+      url: trimmed.startsWith('http') ? trimmed : `https://${trimmed}`,
+    };
+  }
+
+  // Pattern 2: api.whatsapp.com/send?phone=<phone>&text=<message>
+  const apiWaMatch = trimmed.match(/^(?:https?:\/\/)?api\.whatsapp\.com\/send\?(.*)$/i);
+  if (apiWaMatch) {
+    const params = new URLSearchParams(apiWaMatch[1]);
+    const phone = (params.get('phone') || '').replace(/[^\d]/g, '');
+    const message = params.get('text') || '';
+    return {
+      phone,
+      message,
+      url: trimmed.startsWith('http') ? trimmed : `https://${trimmed}`,
+    };
+  }
+
+  // Pattern 3: whatsapp://send?phone=<phone>&text=<message>
+  const schemeMatch = trimmed.match(/^whatsapp:\/\/send\?(.*)$/i);
+  if (schemeMatch) {
+    const params = new URLSearchParams(schemeMatch[1]);
+    const phone = (params.get('phone') || '').replace(/[^\d]/g, '');
+    const message = params.get('text') || '';
+    return {
+      phone,
+      message,
+      url: `https://wa.me/${phone}${message ? `?text=${encodeURIComponent(message)}` : ''}`,
+    };
+  }
+
+  return null;
+}

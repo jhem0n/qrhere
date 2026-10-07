@@ -21,6 +21,18 @@ export const FAQPage: React.FC = () => {
   const faqItems: FAQItem[] = [
     {
       category: 'Scanning',
+      question: 'What does "scan here" mean?',
+      answer:
+        'It is an instruction to point your phone camera at the QR code to open what it contains.',
+    },
+    {
+      category: 'Scanning',
+      question: 'Can I scan a Wi-Fi or WhatsApp QR code online?',
+      answer:
+        'Yes. Use your camera or upload a screenshot, and the details or link appear before you open anything.',
+    },
+    {
+      category: 'Scanning',
       question: 'What is a QR code and how does it store information?',
       answer:
         'A QR (Quick Response) code is a two-dimensional matrix barcode invented by Denso Wave in 1994. It encodes data using patterns of dark and light squares. Unlike traditional 1D barcodes that hold around 20 numeric characters, a QR code can store up to 7,089 numbers or 4,296 alphanumeric characters, including complex URLs and binary data.',

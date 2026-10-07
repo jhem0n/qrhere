@@ -1,5 +1,3 @@
-import jsQR from 'jsqr';
-import { BrowserQRCodeReader } from '@zxing/browser';
 import { QRScanResult } from '../../types/qr.types';
 import { analyzeQRContent } from '../../utils/security/url';
 import { validateImageFile, safeRevokeObjectURL } from '../../utils/security/file';
@@ -10,18 +8,40 @@ export interface DecodedPayload {
   points?: { x: number; y: number }[];
 }
 
+let jsQRInstance: any = null;
+let jsQRLoadingPromise: Promise<any> | null = null;
+let zxingReaderInstance: any = null;
+let zxingLoadingPromise: Promise<any> | null = null;
+
 /**
  * High-performance, dual-engine QR Scanner Service
  * 100% client-side decoding with zero data uploads.
+ * Engines are dynamically loaded on-demand to maintain minimal initial bundle footprint.
  */
 export class QRScannerService {
-  private static zxingReader: BrowserQRCodeReader | null = null;
-
-  private static getZXingReader(): BrowserQRCodeReader {
-    if (!this.zxingReader) {
-      this.zxingReader = new BrowserQRCodeReader();
+  /**
+   * Preloads jsQR in the background when user initiates scanning or upload
+   */
+  public static async preloadEngine(): Promise<void> {
+    if (jsQRInstance) return;
+    if (!jsQRLoadingPromise) {
+      jsQRLoadingPromise = import('jsqr').then((m) => {
+        jsQRInstance = m.default || m;
+        return jsQRInstance;
+      });
     }
-    return this.zxingReader;
+    await jsQRLoadingPromise;
+  }
+
+  private static async getZXingReader(): Promise<any> {
+    if (zxingReaderInstance) return zxingReaderInstance;
+    if (!zxingLoadingPromise) {
+      zxingLoadingPromise = import('@zxing/browser').then((m) => {
+        zxingReaderInstance = new m.BrowserQRCodeReader();
+        return zxingReaderInstance;
+      });
+    }
+    return zxingLoadingPromise;
   }
 
   /**
@@ -40,6 +60,12 @@ export class QRScannerService {
     const height = video.videoHeight;
     if (width === 0 || height === 0) return null;
 
+    if (!jsQRInstance) {
+      // Trigger lazy load if not already started
+      this.preloadEngine();
+      return null;
+    }
+
     canvas.width = width;
     canvas.height = height;
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
@@ -49,7 +75,7 @@ export class QRScannerService {
     const imageData = ctx.getImageData(0, 0, width, height);
 
     // Primary engine: jsQR (ultra fast pixel scan)
-    const code = jsQR(imageData.data, imageData.width, imageData.height, {
+    const code = jsQRInstance(imageData.data, imageData.width, imageData.height, {
       inversionAttempts: 'attemptBoth',
     });
 
@@ -81,6 +107,9 @@ export class QRScannerService {
     if (!validation.valid) {
       throw new Error(validation.error || 'The uploaded file is not a valid image.');
     }
+
+    // Ensure primary decoder engine is loaded
+    await this.preloadEngine();
 
     let objectUrl: string | null = null;
 
@@ -130,18 +159,20 @@ export class QRScannerService {
 
       // Engine 1: jsQR
       let decodedText: string | null = null;
-      const code = jsQR(imageData.data, imageData.width, imageData.height, {
-        inversionAttempts: 'attemptBoth',
-      });
+      if (jsQRInstance) {
+        const code = jsQRInstance(imageData.data, imageData.width, imageData.height, {
+          inversionAttempts: 'attemptBoth',
+        });
 
-      if (code && code.data) {
-        decodedText = code.data;
+        if (code && code.data) {
+          decodedText = code.data;
+        }
       }
 
       // Engine 2 fallback: ZXing Browser reader if jsQR didn't catch it
       if (!decodedText) {
         try {
-          const zxing = this.getZXingReader();
+          const zxing = await this.getZXingReader();
           // Decode directly from downscaled canvas to protect against memory spikes
           const result = await zxing.decodeFromCanvas(canvas);
           if (result && result.getText()) {

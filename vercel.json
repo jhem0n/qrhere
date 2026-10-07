@@ -3,6 +3,21 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index.php",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/create",
       "destination": "/qr-code-generator",
       "permanent": true
@@ -26,6 +41,35 @@
       "source": "/blog/how-to-create-vcard-qr-code-digital-business-cards",
       "destination": "/blog/how-to-create-vcard-qr-code",
       "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/icon.svg",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
     }
   ],
   "rewrites": [

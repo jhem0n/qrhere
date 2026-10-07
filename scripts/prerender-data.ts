@@ -29,7 +29,7 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
       'Create custom QR codes with logos, colors, frames, and error correction for free. Download vector SVG, high-resolution PNG, or PDF print sheets in your browser.',
     keywords:
       'free QR code generator, create QR code, QR code maker, custom QR code generator with logo, free QR code creator, vector QR code SVG, high resolution QR code PNG, Wi-Fi QR code generator, vCard QR code business cards, static QR code maker, QR Here',
-    heading: 'Free QR Code Generator',
+    heading: 'Online Best Free QR Code Generator',
     breadcrumbs: [
       { name: 'Home', path: '/' },
       { name: 'QR Code Generator', path: '/qr-code-generator' },
@@ -38,7 +38,7 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
       <section class="max-w-4xl mx-auto px-4 py-8 space-y-12 text-slate-800 leading-relaxed">
         <header class="text-center space-y-3">
           <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Free QR Code Generator
+            Online Best Free QR Code Generator
           </h1>
           <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
             Create custom QR codes online with logos, colors, frames, and error correction. Turn any link, Wi-Fi network, vCard contact, or text into a permanent, scannable QR code and download free high-resolution vector SVG or PNG files.
@@ -1400,7 +1400,7 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
       'Scan barcodes online using your camera or image upload. Free web-based barcode reader supporting UPC, EAN, Code 128, and more.',
     keywords:
       'barcode scanner online, online barcode reader, scan barcode with camera, barcode scanner free, UPC scanner, EAN scanner',
-    heading: 'Online Barcode Scanner',
+    heading: 'Online Barcode Reader',
     breadcrumbs: [
       { name: 'Home', path: '/' },
       { name: 'Barcode Scanner', path: '/barcode-scanner' },
@@ -1409,7 +1409,7 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
       <section class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
         <header class="border-b border-slate-200 pb-6 mb-6">
           <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Online Barcode Scanner
+            Online Barcode Reader
           </h1>
           <p class="mt-2 text-base text-slate-600 max-w-2xl leading-relaxed">
             Scan 1D and 2D barcodes directly in your web browser. Free, client-side, and private with no application installation needed.
@@ -1439,6 +1439,432 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
           </section>
         </div>
       </section>
+    `,
+  },
+
+  // 16. WiFi QR Code Scanner
+  {
+    path: '/scan-wifi-qr-code',
+    folder: 'scan-wifi-qr-code',
+    title: 'Scan WiFi QR code here - to join network',
+    description:
+      'scan here wifi qr code to see password or join wifi network by one click',
+    keywords:
+      'wifi qr code scanner, scan wifi qr code here, scan wifi qr code, qr code wifi password, connect to wifi with qr code, see wifi password qr code',
+    heading: 'Scan WiFi QR code here - to join network',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'WiFi QR Code Scanner', path: '/scan-wifi-qr-code' },
+    ],
+    htmlContent: `
+      <section class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Scan WiFi QR code here - to join network
+          </h1>
+          <p class="mt-2 text-base text-slate-600 max-w-2xl leading-relaxed">
+            Scan any Wi-Fi QR code with your camera or an image upload. View the network name (SSID), security type, and plain-text password instantly to join networks with one click.
+          </p>
+        </header>
+
+        <div class="space-y-6 text-sm text-slate-700 leading-relaxed">
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">How Our WiFi QR Code Scanner Works</h2>
+            <p>
+              When you scan a Wi-Fi QR code with our wifi qr code scanner, the code decodes entirely inside your web browser. It instantly extracts:
+            </p>
+            <ul class="list-disc pl-5 space-y-1 text-slate-600 mt-2">
+              <li><strong>Network Name (SSID):</strong> The exact name of the Wi-Fi hotspot.</li>
+              <li><strong>Security Encryption:</strong> WPA, WPA2, WPA3, WEP, or open network.</li>
+              <li><strong>Network Password:</strong> View the hidden password in plain text or copy it with one click.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">How to Scan a Wi-Fi QR Code</h2>
+            <ol class="list-decimal pl-5 space-y-1.5 text-slate-600">
+              <li>Point your smartphone or laptop camera at the Wi-Fi QR code, or upload a photo or screenshot.</li>
+              <li>The network details and password will appear immediately on screen.</li>
+              <li>Tap to connect directly or copy the password to paste into your Wi-Fi settings.</li>
+            </ol>
+          </section>
+        </div>
+      </section>
+    `,
+  },
+
+  // 17. WhatsApp QR Code Scanner
+  {
+    path: '/scan-whatsapp-qr-code',
+    folder: 'scan-whatsapp-qr-code',
+    title: 'Scan WhatsApp QR Code - to start chat',
+    description:
+      'scan here WhatsApp qr code to join chat or see phone number instant by one click',
+    keywords:
+      'whatsapp qr code scanner, scan whatsapp qr code, scan here whatsapp qr code, whatsapp qr code chat, wa.me scanner, whatsapp qr code reader',
+    heading: 'Scan WhatsApp QR Code - to start chat',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'WhatsApp QR Code Scanner', path: '/scan-whatsapp-qr-code' },
+    ],
+    htmlContent: `
+      <section class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Scan WhatsApp QR Code - to start chat
+          </h1>
+          <p class="mt-2 text-base text-slate-600 max-w-2xl leading-relaxed">
+            Scan any WhatsApp QR code with your camera or an image upload. View the contact phone number and pre-filled message before starting the chat with one click.
+          </p>
+        </header>
+
+        <div class="space-y-6 text-sm text-slate-700 leading-relaxed">
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">How Our WhatsApp QR Code Scanner Works</h2>
+            <p>
+              Our whatsapp qr code scanner reads wa.me links, WhatsApp chat codes, and contact barcodes directly in your web browser. You can:
+            </p>
+            <ul class="list-disc pl-5 space-y-1 text-slate-600 mt-2">
+              <li><strong>Preview the Phone Number:</strong> View the international phone number without saving it to your phone contacts.</li>
+              <li><strong>Read Pre-filled Messages:</strong> See greeting text or inquiries attached to the code before opening.</li>
+              <li><strong>Start Chat Instantly:</strong> Tap "Open in WhatsApp" to launch the chat in WhatsApp or WhatsApp Web.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-slate-900 mb-2">How to Scan a WhatsApp QR Code</h2>
+            <ol class="list-decimal pl-5 space-y-1.5 text-slate-600">
+              <li>Open the camera tab to scan live, or switch to upload image to scan a screenshot or picture.</li>
+              <li>The chat link, phone number, and message will appear immediately.</li>
+              <li>Tap to launch WhatsApp directly or copy the link safely to your clipboard.</li>
+            </ol>
+          </section>
+        </div>
+      </section>
+    `,
+  },
+
+  // 18. Scan QR Code from Screenshot Guide
+  {
+    path: '/blog/scan-qr-code-from-screenshot',
+    folder: 'blog/scan-qr-code-from-screenshot',
+    title: 'How to Scan a QR Code on Your Own Phone (Screenshot Guide)',
+    description:
+      'Got a QR code as a screenshot or image? Learn how to scan it on iPhone, Android and PC, why it sometimes fails, and how to fix it. No second phone needed.',
+    keywords:
+      'scan qr code from screenshot, scan qr code from image, scan qr code on the same phone, scan qr code on your own screen, scan qr code from photo gallery, qr code scanner upload image',
+    heading: 'How to Scan a QR Code on Your Own Phone (From a Screenshot or Image)',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog' },
+      { name: 'Scan QR Code From Screenshot', path: '/blog/scan-qr-code-from-screenshot' },
+    ],
+    htmlContent: `
+      <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Screenshot Guide • 4 min read</span>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">
+            How to Scan a QR Code on Your Own Phone (From a Screenshot or Image)
+          </h1>
+          <p class="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed">
+            Someone sends you a QR code on WhatsApp. Maybe it's a Wi-Fi code from a friend, a ticket for an event, or a payment code from a shop. You open it, look at it, and then it hits you: the code is on the same phone you're supposed to scan it with.
+          </p>
+        </header>
+
+        <section class="space-y-4">
+          <p>You can't point a camera at your own screen. Well, you can, but it won't go anywhere.</p>
+          <p>The good news is that you don't need a second phone. If the QR code is a screenshot or an image on your device, you can scan it straight from there. This guide shows you how on iPhone, Android and a computer, and what to do when it refuses to work.</p>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">Can you scan a QR code that's already on your phone?</h2>
+          <p>Yes. A QR code is just a picture of a pattern. It doesn't matter if your camera is looking at it on a poster, or your phone is reading it from a saved image. What matters is that the picture is clear enough to read.</p>
+          <p>The only thing that changes is the tool. The normal camera app is built to look at the real world, so on most phones it can't read a saved image. You'll use your photo app, Google Lens, or an online scanner instead.</p>
+          <p class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm">
+            <strong>First step:</strong> if the code is on your screen right now, take a screenshot. Then follow the steps below.
+          </p>
+        </section>
+
+        <section class="space-y-6">
+          <h2 class="text-2xl font-bold text-slate-900">How to scan a QR code from a screenshot on iPhone</h2>
+          <div class="space-y-2">
+            <h3 class="text-xl font-bold text-slate-900">Method 1: Use the Photos app</h3>
+            <ol class="list-decimal pl-6 space-y-1 text-slate-600">
+              <li>Open the screenshot in the Photos app.</li>
+              <li>Wait a second. On recent iPhones, the code is usually picked up automatically and a small button or link shows up.</li>
+              <li>If nothing shows, press and hold on the QR code itself.</li>
+              <li>Tap the link or action that appears.</li>
+            </ol>
+            <p class="text-xs text-slate-500">Menus look a little different from one iOS version to another, and older iPhones may not offer this at all. If yours doesn't, jump to the online scanner method below.</p>
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-xl font-bold text-slate-900">Method 2: Use an online scanner</h3>
+            <p class="text-slate-600">Open a browser-based scanner like <a href="/" class="text-blue-600 font-semibold underline">QR Here</a>, choose the image upload option, and pick the screenshot from your photos. It reads the code and shows you the text or link. It works on any iPhone with a modern browser, and it's handy when the Photos trick doesn't respond.</p>
+          </div>
+        </section>
+
+        <section class="space-y-6">
+          <h2 class="text-2xl font-bold text-slate-900">How to scan a QR code from an image on Android</h2>
+          <div class="space-y-2">
+            <h3 class="text-xl font-bold text-slate-900">Method 1: Google Photos with Google Lens</h3>
+            <ol class="list-decimal pl-6 space-y-1 text-slate-600">
+              <li>Open the image in Google Photos.</li>
+              <li>Tap the Lens icon at the bottom of the screen.</li>
+              <li>Lens finds the code and shows you what's inside. Tap the result to open it.</li>
+            </ol>
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-xl font-bold text-slate-900">Method 2: Circle to Search</h3>
+            <p class="text-slate-600">Some newer Android phones have Circle to Search. If your phone has it, you can hold the home button or navigation bar while the QR code is on screen, then circle it. You don't even need to take a screenshot. If you don't see this option on your phone, don't worry, Method 1 does the same job.</p>
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-xl font-bold text-slate-900">Method 3: Your Gallery app</h3>
+            <p class="text-slate-600">Some phone brands add QR detection to their own gallery app. Open the image and see if a link or scan button appears. It's worth a quick try before you install anything.</p>
+          </div>
+        </section>
+
+        <section class="space-y-6">
+          <h2 class="text-2xl font-bold text-slate-900">How to scan a QR code from an image on a computer</h2>
+          <p class="text-slate-600">Laptops and desktops don't have a camera app that reads QR codes the way phones do, but you still have two easy options.</p>
+          <div class="space-y-2">
+            <h3 class="text-xl font-bold text-slate-900">Use an online QR code scanner</h3>
+            <p class="text-slate-600">Save the image to your computer, open an online scanner, and upload it. On <a href="/" class="text-blue-600 font-semibold underline">QR Here</a>, you can drop in a PNG, JPG or WEBP file up to 10 MB. The scanning happens inside your browser, so the image isn't sent to a server.</p>
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-xl font-bold text-slate-900">Use Google Lens in Chrome</h3>
+            <p class="text-slate-600">Right-click the image in Chrome and choose the option to search it with Google Lens. If the image is a QR code, Lens shows the link it contains. This is quick when the code is sitting on a web page.</p>
+          </div>
+        </section>
+
+        <section class="space-y-6">
+          <h2 class="text-2xl font-bold text-slate-900">Why your QR code screenshot won't scan</h2>
+          <p class="text-slate-600">If a scan fails, it's almost never your phone's fault. It's usually the image. Here are the usual suspects.</p>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">The code is cropped</h3>
+            <p class="text-slate-600 text-sm">A scanner needs to see the whole code, including a bit of empty space around it. If one edge is cut off, or you caught half of a chat bubble in the screenshot, it can fail. Retake the screenshot and leave a small margin.</p>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">The image is blurry or tiny</h3>
+            <p class="text-slate-600 text-sm">Pictures that were forwarded through several chats get squashed each time. Ask the sender for the original file, or take a fresh screenshot straight from the source. Avoid taking a photo of a screen if you can use a screenshot instead.</p>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">The colours are inverted or low contrast</h3>
+            <p class="text-slate-600 text-sm">Standard QR codes are dark on a light background. A light code on a dark background, or a code in pale colours, can confuse some scanners. Try a different scanner, or ask for a normal black and white version.</p>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">The code itself is broken</h3>
+            <p class="text-slate-600 text-sm">Sometimes the scan works but the link leads nowhere. That means the QR code is fine and the destination is dead or expired. Only the person who made the code can fix that.</p>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">Is it safe to scan a QR code from a screenshot?</h2>
+          <p class="text-slate-600">Scanning is safe. What you open afterwards is the part to think about.</p>
+          <p class="text-slate-600">A screenshot can come from anyone, and fake QR codes sent in messages are a real way people get tricked into visiting bad websites. Before you tap a result, read the web address. If it looks strange, has odd spelling, or doesn't match who supposedly sent it, don't open it. Be extra careful with anything that asks for a password, a card number, or a payment you weren't expecting.</p>
+          <p class="text-slate-600">For codes that hold a Wi-Fi password or contact details, look at what the scan shows you first, and only then decide whether to connect or save it. Our <a href="/qr-code-security" class="text-blue-600 font-semibold underline">QR code security guide</a> has a longer checklist.</p>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+          <h2 class="text-2xl font-bold text-slate-900">Quick answers</h2>
+          <div class="space-y-3">
+            <div>
+              <h3 class="font-bold text-slate-900">Can I scan a QR code from a screenshot?</h3>
+              <p class="text-slate-600 text-sm mt-0.5">Yes. Open the screenshot in your Photos app or Google Lens, or upload it to an online scanner.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900">How do I scan a QR code on the same phone?</h3>
+              <p class="text-slate-600 text-sm mt-0.5">Take a screenshot of the code, then scan it from your photo app, Google Lens, or a browser-based scanner. Your regular camera app usually can't read it from the screen.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900">Do I need to install an app to scan a QR code from an image?</h3>
+              <p class="text-slate-600 text-sm mt-0.5">Usually not. Recent iPhones and Android phones have built-in options, and an online scanner works in any browser with nothing to install.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900">Why does my QR code image say "no QR code found"?</h3>
+              <p class="text-slate-600 text-sm mt-0.5">The image is probably cropped, blurry or low in contrast. Take a clean, full screenshot and try again.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+          <h2 class="text-2xl font-bold text-slate-900">Final thoughts</h2>
+          <p class="text-slate-600">Getting a QR code on the same phone you want to scan it with is one of those small annoyances that feels bigger than it is. Take a screenshot, open it in the right tool, and you're done in under a minute.</p>
+          <p class="text-slate-600">If your phone's built-in option doesn't cooperate, try the free scanner on our <a href="/" class="text-blue-600 font-semibold underline">homepage</a>. Upload the image, see what's inside, and open it only if it looks right. And if you need to make a QR code of your own, our <a href="/qr-code-generator" class="text-blue-600 font-semibold underline">generator</a> takes about the same amount of time.</p>
+        </section>
+      </article>
+    `,
+  },
+
+  // 19. QR Code History Article
+  {
+    path: '/blog/qr-code-history',
+    folder: 'blog/qr-code-history',
+    title: 'QR Code History: Who Invented It and How It Took Over',
+    description:
+      'The real story of the QR code: why a car factory invented it in 1994, why it was given away, and how phones and 2020 made it part of daily life.',
+    keywords:
+      'qr code history, who invented the qr code, when was the qr code invented, why was the qr code invented, qr code timeline, history of qr code, qr code invention story',
+    heading: 'QR Code History: Who Invented It, Why, and How It Took Over',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog' },
+      { name: 'QR Code History', path: '/blog/qr-code-history' },
+    ],
+    htmlContent: `
+      <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Invention Story • 6 min read</span>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">
+            QR Code History: Who Invented It, Why, and How It Took Over
+          </h1>
+          <p class="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed">
+            You've probably scanned a QR code this week. A menu, a Wi-Fi password, a payment at a small shop. It takes two seconds and nobody stops to think about it.
+          </p>
+        </header>
+
+        <section class="space-y-4">
+          <p class="text-slate-600">But that little square has a stranger backstory than you'd guess. It wasn't made for restaurants, phones, or marketing. It was made so a car parts factory could stop wasting time on barcodes.</p>
+          <p class="text-slate-600">Here's the whole story in plain language, from a factory floor in Japan to the phone in your pocket.</p>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">The problem that led to the QR code</h2>
+          <p class="text-slate-600">Before QR codes, factories used normal barcodes, the striped kind you still see on groceries. They're good at one thing: holding a short number.</p>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">Barcodes couldn't hold enough</h3>
+            <p class="text-slate-600 text-sm">A regular barcode carries only a short string of characters, and it can't store Japanese Kanji at all. For a car supplier that needed to track lots of details about each part, that was a real limit. Workers sometimes had to scan several barcodes on a single item, one after another.</p>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">Factories needed speed and toughness</h3>
+            <p class="text-slate-600 text-sm">Barcodes also have to be scanned in a straight line, facing the right way. On a busy production line, parts get dirty, scratched and turned around. The company wanted one code that held more, read faster, and still worked when it wasn't perfectly clean or lined up.</p>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">Who invented the QR code?</h2>
+          <p class="text-slate-600">The QR code was developed in 1994 at Denso, a Toyota group company. The unit that built it later became its own company, Denso Wave, in 2001. The engineer who led the work was Masahiro Hara.</p>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">Masahiro Hara and a small team</h3>
+            <p class="text-slate-600 text-sm">Hara led a small development team. Accounts differ a little on the exact timeline, but the project took roughly a year and a half to two years from idea to finished code.</p>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">The Go board idea</h3>
+            <p class="text-slate-600 text-sm">By Hara's own account, the idea came to him during lunch breaks playing Go, the board game with black and white stones on a grid. A grid made him wonder why data had to sit in a single line. A square could hold information across rows and columns, and that is how a code can carry so much more.</p>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">Those three squares in the corners</h3>
+            <p class="text-slate-600 text-sm">The harder part was helping a scanner find the code instantly. The team looked for a pattern that almost never appears in normal printing and settled on a dark, light, dark, light, dark sequence in a 1:1:3:1:1 ratio. They placed it in three corners.</p>
+            <p class="text-slate-600 text-sm">Those are the big squares you see on every QR code. When a scanner spots them, it knows where the code is and how it's turned, so it can read from any angle. The name says it all: QR stands for Quick Response.</p>
+            <p class="text-slate-600 text-sm">The finished code could hold thousands of characters, up to 7,089 digits in the largest version. It also has built-in error correction. At the highest level, a code can still be read with roughly 30 percent of it damaged, which is why you can put a logo in the middle of one.</p>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">Why the inventors gave it away</h2>
+          <p class="text-slate-600">Here is the part that explains why QR codes are everywhere. Denso owns the patent. But it decided not to enforce it.</p>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">An open design on purpose</h3>
+            <p class="text-slate-600 text-sm">Denso Wave published the specification and let anyone make and read QR codes without paying a licence fee. The company has said it wanted the code to be used as widely as possible. Anyone could build a scanner or a generator, and soon many did. (Note: the name "QR Code" remains a registered trademark of Denso Wave).</p>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">Becoming an official standard</h3>
+            <p class="text-slate-600 text-sm">The code was approved as an industry standard by the AIM in 1997. In June 2000 it was published as the international standard ISO/IEC 18004. A published standard meant software makers and printer makers around the world could support it with confidence.</p>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">How QR codes got onto phones</h2>
+          <p class="text-slate-600">For about eight years, QR codes stayed mostly in factories and logistics. Then cameras arrived on phones.</p>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">Japan goes first</h3>
+            <p class="text-slate-600 text-sm">In August 2002, Sharp released the J-SH09, widely recognised as the first mobile phone that could read QR codes. Other Japanese brands followed. People started pointing their phones at squares in magazines and on products to open websites.</p>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">The app problem</h3>
+            <p class="text-slate-600 text-sm">Outside Japan, things moved slowly. To scan a code, you had to find and download a separate scanner app, open it, and aim it correctly. For most people that was too much work for a link they could type in. QR codes stayed a curiosity in many countries.</p>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">The camera finally learned to read them</h3>
+            <p class="text-slate-600 text-sm">That changed in 2017, when Apple added QR code scanning to the iPhone camera with iOS 11. Android phones followed with built-in scanning through the camera and Google Lens. Once you could just open the camera and point it, the biggest obstacle was gone.</p>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">QR codes and money</h2>
+          <p class="text-slate-600">While much of the world was ignoring QR codes, some countries were building payments around them.</p>
+          <p class="text-slate-600">In China, Alipay and WeChat Pay made scanning a code the normal way to pay, from big stores to street stalls. Other countries built their own systems, such as UPI in India, QRIS in Indonesia, and SGQR in Singapore.</p>
+          <p class="text-slate-600">It's a use the original team never planned for. A tool built to track car parts became a way to buy lunch.</p>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">How 2020 changed everything</h2>
+          <p class="text-slate-600">Then came the pandemic. Suddenly nobody wanted to touch shared menus, paper forms or tickets.</p>
+          <p class="text-slate-600">Restaurants moved menus onto QR codes. Governments and venues used them for check-ins and contact tracing. Vaccination and health certificates were checked with a scan. Event tickets moved onto phone screens.</p>
+          <p class="text-slate-600">A lot of people learned to scan a code simply because they had to. And when restrictions ended, many businesses kept using them, because they were cheap, quick and easy to change. That's the year QR codes went from "occasionally seen" to "normal".</p>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">QR code timeline at a glance</h2>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <ul class="space-y-2 text-sm text-slate-700">
+              <li><strong>1987:</strong> Code 49, one of the earlier 2D barcodes, appears. The QR code was not the first 2D code.</li>
+              <li><strong>1994:</strong> The QR code is developed at Denso in Japan, led by Masahiro Hara.</li>
+              <li><strong>1997:</strong> Approved as an AIM industry standard.</li>
+              <li><strong>June 2000:</strong> Published as the ISO/IEC 18004 international standard.</li>
+              <li><strong>2001:</strong> Denso Wave becomes its own company.</li>
+              <li><strong>2002:</strong> Sharp's J-SH09 becomes the first phone with QR code reading.</li>
+              <li><strong>2017:</strong> iOS 11 adds QR scanning to the iPhone camera.</li>
+              <li><strong>2020:</strong> The pandemic pushes QR codes into everyday life worldwide.</li>
+              <li><strong>End of 2027:</strong> GS1's industry goal for shop checkouts to read 2D codes.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">Where QR codes are headed</h2>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">What GS1 Sunrise 2027 really means</h3>
+            <p class="text-slate-600 text-sm">You may read that barcodes will disappear by 2027. That's not quite right. GS1, the group that runs barcode standards for products, has an industry goal called Sunrise 2027. The aim is for shop checkouts to be able to read certain 2D codes, including QR codes that carry a product's GS1 information, alongside the old barcodes by the end of 2027.</p>
+            <p class="text-slate-600 text-sm">It is an industry goal, not a law, and the old barcodes won't vanish overnight. For a while, packages are likely to carry both. The attraction is that a QR code can hold the product number plus extras like ingredients or expiry details through a web link.</p>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">The downside: fake codes</h3>
+            <p class="text-slate-600 text-sm">Because QR codes are easy to make and print, scammers use them too. A sticker placed over a real code, or a code sent in a message, can lead to a fake site. The simple habit is to read the address your phone shows before you tap it. We've written a short guide on this: <a href="/qr-code-security" class="text-blue-600 font-semibold underline">QR code security guide</a>. You can also read our guide on <a href="/blog/scan-qr-code-from-screenshot" class="text-blue-600 font-semibold underline">scanning QR codes from screenshots</a>.</p>
+          </div>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+          <h2 class="text-2xl font-bold text-slate-900">Common questions about QR code history</h2>
+          <div class="space-y-3">
+            <div>
+              <h3 class="font-bold text-slate-900">When was the QR code invented?</h3>
+              <p class="text-slate-600 text-sm mt-0.5">In 1994, at Denso in Japan. Development took roughly a year and a half to two years before that.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900">Who invented the QR code?</h3>
+              <p class="text-slate-600 text-sm mt-0.5">Masahiro Hara, an engineer at Denso (now Denso Wave), led the team that developed it.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900">What does QR stand for?</h3>
+              <p class="text-slate-600 text-sm mt-0.5">Quick Response. The code was designed so scanners could read it fast, from any angle.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900">Is the QR code free to use?</h3>
+              <p class="text-slate-600 text-sm mt-0.5">Yes, anyone can create and scan QR codes for free. Denso Wave holds the patent but chose not to enforce it, though "QR Code" remains its registered trademark.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900">Was the QR code the first 2D barcode?</h3>
+              <p class="text-slate-600 text-sm mt-0.5">No. Earlier 2D codes existed, such as Code 49 in 1987. The QR code became the best known because it was fast, held a lot of data, and was free to use.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+          <h2 class="text-2xl font-bold text-slate-900">Final thoughts</h2>
+          <p class="text-slate-600">The QR code's story is a good reminder that useful ideas often start small. It began as a fix for a slow factory line. It spread because its makers let everyone use it, and it took off once phone cameras caught up.</p>
+          <p class="text-slate-600">If you want to try one yourself, you can scan any code on our <a href="/" class="text-blue-600 font-semibold underline">free scanner</a> or make your own with the <a href="/qr-code-generator" class="text-blue-600 font-semibold underline">QR code generator</a>. It takes less time than reading this post did.</p>
+        </section>
+      </article>
     `,
   },
 ];

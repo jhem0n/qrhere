@@ -11,7 +11,7 @@ import { QRTypeDefinition, QR_TYPES } from '../../data/qrTypes';
 import { MasterGenerator } from './MasterGenerator';
 import { SEOHead } from '../common/SEOHead';
 import { Breadcrumbs } from '../common/Breadcrumbs';
-import { generateWebApplicationSchema, generateBreadcrumbSchema, generateFAQSchema } from '../../config/seo.config';
+import { SEO_CONFIG, generateWebApplicationSchema, generateBreadcrumbSchema, generateFAQSchema } from '../../config/seo.config';
 import { getSiteUrl } from '../../config/app.config';
 
 interface TypePageTemplateProps {
@@ -36,11 +36,13 @@ export const TypePageTemplate: React.FC<TypePageTemplateProps> = ({ typeDef }) =
     ],
   };
 
+  const camelKey = `generator${typeDef.id.charAt(0).toUpperCase() + typeDef.id.slice(1)}`;
+  const configSeo = SEO_CONFIG[camelKey] || SEO_CONFIG[typeDef.id] || SEO_CONFIG[typeDef.slug];
   const seoData = {
-    title: typeDef.title,
-    description: typeDef.metaDescription,
-    canonicalPath,
-    ogType: 'website' as const,
+    title: configSeo?.title || typeDef.title,
+    description: configSeo?.description || typeDef.metaDescription,
+    canonicalPath: configSeo?.canonicalPath || canonicalPath,
+    ogType: (configSeo?.ogType || 'website') as 'website' | 'article',
   };
 
   // Find related types
@@ -74,7 +76,7 @@ export const TypePageTemplate: React.FC<TypePageTemplateProps> = ({ typeDef }) =
           {/* Section 1: How to create in 3 steps */}
           <section aria-labelledby="steps-heading">
             <h2 id="steps-heading" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
-              How to create a {typeDef.name} in 3 simple steps
+              {typeDef.stepsHeading || `How to create a QR code for ${typeDef.shortName}`}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {typeDef.steps.map((st, idx) => (
@@ -93,23 +95,36 @@ export const TypePageTemplate: React.FC<TypePageTemplateProps> = ({ typeDef }) =
             </div>
           </section>
 
-          {/* Section 2: What happens when someone scans it */}
+          {/* Section 2: What happens when someone scans it - Unboxed layout */}
           <section aria-labelledby="scan-experience-heading">
-            <div className="p-6 sm:p-8 rounded-2xl border border-blue-200/80 dark:border-blue-900/60 bg-blue-50/50 dark:bg-blue-950/20 shadow-xs">
-              <h2 id="scan-experience-heading" className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
-                <Eye className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                <span>What happens when someone scans it?</span>
-              </h2>
-              <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-                {typeDef.whatHappensWhenScanned}
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 items-center">
+              <div className="md:col-span-7 flex flex-col justify-center">
+                <h2 id="scan-experience-heading" className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2.5">
+                  <Eye className="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0" />
+                  <span>What happens when someone scans it?</span>
+                </h2>
+                <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+                  {typeDef.whatHappensWhenScanned}
+                </p>
+              </div>
+              <div className="md:col-span-5 flex items-center justify-center">
+                <img
+                  src="/images/qrcodegen.jpg"
+                  alt={`What happens when someone scans a ${typeDef.shortName} QR code`}
+                  title={`What happens when someone scans a ${typeDef.shortName} QR code`}
+                  width={600}
+                  height={450}
+                  className="w-full h-auto object-contain rounded-2xl"
+                  loading="lazy"
+                />
+              </div>
             </div>
           </section>
 
           {/* Section 3: Use cases */}
           <section aria-labelledby="usecases-heading">
             <h2 id="usecases-heading" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
-              Popular use cases for {typeDef.name}
+              {typeDef.useCasesHeading || `Popular use cases for ${typeDef.shortName} QR Codes`}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
               {typeDef.useCases.map((uc, i) => (
@@ -130,7 +145,7 @@ export const TypePageTemplate: React.FC<TypePageTemplateProps> = ({ typeDef }) =
           {/* Section 4: Tips for best results */}
           <section aria-labelledby="tips-heading">
             <h2 id="tips-heading" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
-              Tips for best results with {typeDef.shortName} QR codes
+              {typeDef.tipsHeading || `Tips for making the best ${typeDef.shortName} QR codes`}
             </h2>
             <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs space-y-4">
               {typeDef.bestPractices.map((bp, i) => (

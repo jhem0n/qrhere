@@ -74,20 +74,35 @@ export const GeneratorGuide: React.FC = () => {
       </section>
 
       {/* SECTION 2: What is a QR Code? */}
-      <section className="space-y-4">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          What is a QR Code?
-        </h2>
-        <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-          The full form of QR is Quick Response, and it is a two-dimensional barcode with small square codes. They can store information that can be decoded by scanning them. Businesses use QR codes to connect offline users to online content.
-        </p>
-        <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-          QR codes can be scanned with smartphones that have QR code scanning. Also, they can be scanned to retrieve the information using an{' '}
-          <Link to="/" className="text-blue-600 dark:text-blue-400 font-semibold underline hover:text-blue-700">
-            online QR code scanner
-          </Link>
-          . When someone scans a QR code, the code opens the content linked to it.
-        </p>
+      <section>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          <div className="md:col-span-7 space-y-4">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              What is a QR Code?
+            </h2>
+            <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              The full form of QR is Quick Response, and it is a two-dimensional barcode with small square codes. They can store information that can be decoded by scanning them. Businesses use QR codes to connect offline users to online content.
+            </p>
+            <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              QR codes can be scanned with smartphones that have QR code scanning. Also, they can be scanned to retrieve the information using an{' '}
+              <Link to="/" className="text-blue-600 dark:text-blue-400 font-semibold underline hover:text-blue-700">
+                online QR code scanner
+              </Link>
+              . When someone scans a QR code, the code opens the content linked to it.
+            </p>
+          </div>
+          <div className="md:col-span-5 flex items-center justify-center">
+            <div className="w-full max-w-sm rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+              <img
+                src="/images/qrcodegen.jpg"
+                alt="What is a QR Code - Online QR Code Generator"
+                title="What is a QR Code - Online QR Code Generator"
+                className="w-full h-auto object-cover rounded-2xl"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* SECTION 3: How to Create a QR Code */}

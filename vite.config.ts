@@ -140,6 +140,8 @@ Sitemap: https://qrhere.online/sitemap.xml
 - [How to Scan a QR Code Without an App](${domain}/blog/how-to-scan-qr-code-without-app): Step-by-step guide to scanning QR codes using your phone camera, web browser, or screenshots without installing third-party apps.
 - [How to Create a vCard QR Code](${domain}/blog/how-to-create-vcard-qr-code): Guide on generating digital business card QR codes for smartphone address books.
 - [Static vs Dynamic QR Code](${domain}/blog/static-vs-dynamic-qr-code): Comprehensive technical comparison between static and dynamic QR codes.
+- [Scan QR Code From Screenshot](${domain}/blog/scan-qr-code-from-screenshot): Guide to scanning QR codes directly on your own phone from screenshots or saved images without needing a second device.
+- [QR Code History](${domain}/blog/qr-code-history): The full story of who invented the QR code at Denso in 1994, why it was given away open-source, and how it took over the world.
 `;
 
   return {
@@ -327,6 +329,11 @@ Sitemap: https://qrhere.online/sitemap.xml
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         const domain = resolveDomain();
+        const urlPath = (req.url || '').split('?')[0];
+        if (urlPath === '/index.html' || urlPath === '/index.php' || urlPath === '/index') {
+          res.writeHead(301, { Location: '/' });
+          return res.end();
+        }
         if (req.url === '/sitemap.xml') {
           res.setHeader('Content-Type', 'application/xml; charset=utf-8');
           return res.end(getSitemapXml());
@@ -367,6 +374,42 @@ export default defineConfig(() => {
         },
       }),
     ],
+    build: {
+      target: 'es2020',
+      cssCodeSplit: true,
+      sourcemap: false,
+      minify: 'esbuild',
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (
+              id.includes('node_modules/react/') ||
+              id.includes('node_modules/react-dom/') ||
+              id.includes('node_modules/react-router/') ||
+              id.includes('node_modules/react-router-dom/')
+            ) {
+              return 'vendor-react';
+            }
+            if (
+              id.includes('node_modules/jspdf') ||
+              id.includes('node_modules/html2canvas') ||
+              id.includes('node_modules/dompurify')
+            ) {
+              return 'vendor-pdf';
+            }
+            if (id.includes('node_modules/@zxing')) {
+              return 'vendor-zxing';
+            }
+            if (id.includes('node_modules/jsqr')) {
+              return 'vendor-jsqr';
+            }
+            if (id.includes('node_modules/lucide-react')) {
+              return 'vendor-icons';
+            }
+          },
+        },
+      },
+    },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

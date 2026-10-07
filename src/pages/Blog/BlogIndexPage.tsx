@@ -19,6 +19,41 @@ interface BlogPostSummary {
 
 const BLOG_POSTS: BlogPostSummary[] = [
   {
+    slug: '/blog/how-does-a-qr-code-work',
+    title: "How Does a QR Code Work? What's Inside the Square",
+    excerpt:
+      'Ever wondered how a QR code works? Learn what is inside the square, how your phone reads it in a second, and why a damaged code can still scan.',
+    date: 'October 6, 2026',
+    isoDate: '2026-10-06',
+    readingTime: '6 min read',
+    category: 'Technology Explained',
+    imageUrl: '/images/qr-code-anatomy.svg',
+    featured: true,
+  },
+  {
+    slug: '/blog/scan-qr-code-from-screenshot',
+    title: 'How to Scan a QR Code on Your Own Phone (Screenshot Guide)',
+    excerpt:
+      'Got a QR code as a screenshot or image? Learn how to scan it on iPhone, Android and PC, why it sometimes fails, and how to fix it. No second phone needed.',
+    date: 'October 6, 2026',
+    isoDate: '2026-10-06',
+    readingTime: '4 min read',
+    category: 'Screenshot Guide',
+    imageUrl: '/images/scan-qr-code-from-screenshot.jpg',
+    featured: true,
+  },
+  {
+    slug: '/blog/qr-code-history',
+    title: 'QR Code History: Who Invented It and How It Took Over',
+    excerpt:
+      'The real story of the QR code: why a car factory invented it in 1994, why it was given away, and how phones and 2020 made it part of daily life.',
+    date: 'October 6, 2026',
+    isoDate: '2026-10-06',
+    readingTime: '6 min read',
+    category: 'Invention Story',
+    imageUrl: '/images/qr-code-history.jpg',
+  },
+  {
     slug: '/blog/qr-code-error-correction-explained',
     title: 'QR Code Error Correction Levels Explained: When to Use Which',
     excerpt:
@@ -27,7 +62,7 @@ const BLOG_POSTS: BlogPostSummary[] = [
     isoDate: '2026-10-02',
     readingTime: '5 min read',
     category: 'Design Guide',
-    imageUrl: '/images/qr-code-error-correction.svg',
+    imageUrl: '/images/errorcorrection.jpg',
     featured: true,
   },
   {
@@ -39,7 +74,7 @@ const BLOG_POSTS: BlogPostSummary[] = [
     isoDate: '2026-10-02',
     readingTime: '5 min read',
     category: 'Guide',
-    imageUrl: '/images/how-to-create-wifi-qr-code.svg',
+    imageUrl: '/images/howtocreatewifiqrcode.jpg',
     featured: true,
   },
   {
@@ -51,7 +86,7 @@ const BLOG_POSTS: BlogPostSummary[] = [
     isoDate: '2026-09-20',
     readingTime: '4 min read',
     category: 'Tutorial',
-    imageUrl: '/images/how-to-scan-qr-code-without-app.svg',
+    imageUrl: '/images/howtoscanwithoutapp.jpg',
     featured: true,
   },
   {
@@ -63,7 +98,7 @@ const BLOG_POSTS: BlogPostSummary[] = [
     isoDate: '2026-09-18',
     readingTime: '4 min read',
     category: 'Guide',
-    imageUrl: '/images/how-to-create-vcard-qr-code.svg',
+    imageUrl: '/images/howtocreatevcardqr.jpg',
   },
   {
     slug: '/blog/static-vs-dynamic-qr-code',
@@ -115,14 +150,11 @@ export const BlogIndexPage: React.FC = () => {
                 {post.imageUrl ? (
                   <img
                     src={post.imageUrl}
-                    onError={(e) => {
-                      if (post.imageUrl?.endsWith('.jpg')) {
-                        (e.currentTarget as HTMLImageElement).src = post.imageUrl.replace('.jpg', '.svg');
-                      }
-                    }}
                     alt={post.title}
+                    title={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
+                    decoding="async"
                   />
                 ) : (
                   <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center select-none bg-gradient-to-br from-slate-100 via-slate-50 to-blue-50/40 dark:from-slate-800/90 dark:via-slate-900 dark:to-blue-950/30">

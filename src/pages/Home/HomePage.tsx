@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Camera, Upload, ArrowRight, CheckCircle2, ShieldCheck, HelpCircle } from 'lucide-react';
+import { Camera, Upload, ArrowRight, ShieldCheck } from 'lucide-react';
 import { SEOHead } from '../../components/common/SEOHead';
 import { SEO_CONFIG, HOMEPAGE_FAQS, generateWebsiteSchema, generateFAQSchema } from '../../config/seo.config';
 import { CameraScanner } from '../../components/scanner/CameraScanner';
@@ -30,7 +30,7 @@ export const HomePage: React.FC = () => {
         {/* Page Header - Single H1 on page */}
         <header className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            QR Code Scanner
+            Scan here QR Code
           </h1>
           <p className="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
             Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.
@@ -151,8 +151,12 @@ export const HomePage: React.FC = () => {
                   <img
                     src="/images/qr-code-scan.jpg"
                     alt="How to scan a QR code online"
+                    title="How to scan a QR code online"
+                    width={900}
+                    height={1350}
                     className="w-full h-full object-cover rounded-3xl"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -191,45 +195,152 @@ export const HomePage: React.FC = () => {
                   <img
                     src="/images/qr-type.png"
                     alt="What you can scan - QR code types"
+                    title="What you can scan - QR code types"
                     width={1500}
                     height={800}
                     className="w-full h-auto object-contain rounded-2xl"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
 
               {/* Right Column: What you can scan content - Unboxed */}
               <div className="lg:col-span-5 flex flex-col justify-center">
-                <h2 id="heading-what-you-can-scan" className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                <h2 id="heading-what-you-can-scan" className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-4">
                   What you can scan
                 </h2>
-                <p className="text-sm text-slate-600 dark:text-slate-400 mb-5 leading-relaxed">
-                  QR Here automatically detects and formats standard QR code payloads, including:
-                </p>
                 <ul className="space-y-3.5 text-sm text-slate-700 dark:text-slate-300">
-                  <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                    <span><strong>Website links (URLs):</strong> Open websites, social pages, and online resources.</span>
+                  <li>
+                    <strong>Website links (URLs) scanner:</strong> Open websites, social pages, and online resources.
                   </li>
-                  <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                    <span><strong>Wi-Fi details:</strong> View network names (SSID) and passwords to connect quickly.</span>
+                  <li>
+                    <strong>Wi-Fi QR code scanner:</strong> View network names (SSID) and passwords to connect quickly.
                   </li>
-                  <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                    <span><strong>Contact cards:</strong> Read vCard contact information with phone, email, and name.</span>
+                  <li>
+                    <strong>WhatsApp chat links:</strong> Open WhatsApp conversations and view contact numbers or messages.
                   </li>
-                  <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                    <span><strong>Payment and ticket codes:</strong> Inspect event passes, boarding passes, and invoices.</span>
+                  <li>
+                    <strong>Location and map links:</strong> Open Google Maps pins, navigation routes, and coordinates.
                   </li>
-                  <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                    <span><strong>Plain text:</strong> Decode alphanumeric messages, serial numbers, and notes.</span>
+                  <li>
+                    <strong>Contact cards:</strong> Read vCard contact information with phone, email, and name.
+                  </li>
+                  <li>
+                    <strong>Payment and ticket codes:</strong> Inspect event passes, boarding passes, and invoices.
+                  </li>
+                  <li>
+                    <strong>QR code to text:</strong> Decode alphanumeric messages, serial numbers, and notes.
                   </li>
                 </ul>
               </div>
+            </div>
+          </section>
+
+          {/* Section: What Does "Scan Here" on a QR Code Mean? */}
+          <section aria-labelledby="heading-scan-here-meaning" className="p-6 sm:p-8 lg:p-10 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+            <div className="max-w-4xl">
+              <h2 id="heading-scan-here-meaning" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+                What Does "Scan Here" on a QR Code Mean?
+              </h2>
+
+              <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                &ldquo;Please scan here&rdquo; is a prompt printed next to a QR code. It tells you to open your phone camera, point it at the code, and tap the link that appears. With QR Here you can do the same from your browser, with no app. Here are the most common prompts and what they open:
+              </p>
+
+              {/* Common prompts */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                      Scan here to pay
+                    </h3>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Opens a payment page or wallet. Check the link carefully before you pay.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0"></span>
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                      Scan here to learn more
+                    </h3>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Opens a website, menu, brochure, or product page.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0"></span>
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                      Scan here for location
+                    </h3>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Opens a map pin with directions.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="w-2 h-2 rounded-full bg-purple-500 shrink-0"></span>
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                      Scan here to join
+                    </h3>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Connects you to a Wi-Fi network, meeting, or event.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 sm:col-span-2 lg:col-span-2">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0"></span>
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                      Scan here to contact us
+                    </h3>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Opens WhatsApp, a phone call, SMS, email, or a contact card.
+                  </p>
+                </div>
+              </div>
+
+              {/* Wi-Fi and WhatsApp paragraph */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-blue-50/60 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/50 mb-6 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                Need a{' '}
+                <Link
+                  to="/scan-wifi-qr-code"
+                  className="font-semibold text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
+                >
+                  WiFi QR code scanner
+                </Link>
+                ? Scan a Wi-Fi code to see the network name and password. Need a{' '}
+                <Link
+                  to="/scan-whatsapp-qr-code"
+                  className="font-semibold text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
+                >
+                  WhatsApp QR code scanner
+                </Link>
+                ? Scan the code to see the chat link before you open it. Both work with your camera or an image upload.
+              </div>
+
+              {/* Closing link line */}
+              <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300">
+                Want to make your own &ldquo;scan here&rdquo; code? Try our{' '}
+                <Link
+                  to="/qr-code-generator"
+                  className="font-semibold text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
+                >
+                  QR code generator
+                </Link>
+                .
+              </p>
             </div>
           </section>
 
@@ -259,6 +370,24 @@ export const HomePage: React.FC = () => {
               Frequently asked questions
             </h2>
             <div className="space-y-4">
+              <div className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
+                  What does "scan here" mean?
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  It is an instruction to point your phone camera at the QR code to open what it contains.
+                </p>
+              </div>
+
+              <div className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
+                  Can I scan a Wi-Fi or WhatsApp QR code online?
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Yes. Use your camera or upload a screenshot, and the details or link appear before you open anything.
+                </p>
+              </div>
+
               <div className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
                 <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
                   Is QR Here free?

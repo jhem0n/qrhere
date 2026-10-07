@@ -121,6 +121,22 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
+                  to="/scan-wifi-qr-code"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
+                >
+                  WiFi QR Code Scanner
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/scan-whatsapp-qr-code"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
+                >
+                  WhatsApp QR Scanner
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/barcode-scanner"
                   className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
                 >

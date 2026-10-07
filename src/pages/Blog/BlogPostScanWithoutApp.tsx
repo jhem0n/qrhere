@@ -106,12 +106,14 @@ export const BlogPostScanWithoutApp: React.FC = () => {
         {/* Featured Visual */}
         <figure className="mb-10 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-slate-950">
           <img
-            src="/images/how-to-scan-qr-code-without-app.svg"
+            src="/images/howtoscanwithoutapp.jpg"
             alt="Infographic showing how to scan QR codes on iPhone, Android, and web browsers without installing extra apps"
+            title="How to Scan a QR Code Without Installing an App"
             className="w-full h-auto object-cover"
-            width="1200"
-            height="630"
+            width={1200}
+            height={670}
             loading="eager"
+            decoding="async"
           />
           <figcaption className="p-3 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 bg-slate-900/60">
             Scan QR codes instantly using your web browser, native camera, or screenshots.
