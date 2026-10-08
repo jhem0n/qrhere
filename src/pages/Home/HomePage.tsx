@@ -27,7 +27,7 @@ export const HomePage: React.FC = () => {
       <SEOHead seo={SEO_CONFIG.home} structuredData={homepageSchema} />
 
       <div className="max-w-5xl xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-        {/* Page Header - Single H1 on page */}
+        {/* Page Header */}
         <header className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Scan here QR Code
@@ -37,7 +37,7 @@ export const HomePage: React.FC = () => {
           </p>
         </header>
 
-        {/* Scanner Card - Kept at the top */}
+        {/* Scanner Card */}
         <section aria-label="QR Code Scanner Online" className="flex flex-col items-center">
           {result ? (
             <div className="w-full max-w-2xl md:max-w-3xl">

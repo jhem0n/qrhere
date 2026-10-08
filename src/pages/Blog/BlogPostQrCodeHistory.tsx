@@ -119,8 +119,8 @@ export const BlogPostQrCodeHistory: React.FC = () => {
             alt="History of the QR code: Masahiro Hara and Denso Wave 1994 invention"
             title="QR Code History: Who Invented It, Why, and How It Took Over"
             className="w-full h-auto object-cover"
-            width={1200}
-            height={670}
+            width={1280}
+            height={720}
             loading="eager"
             decoding="async"
           />

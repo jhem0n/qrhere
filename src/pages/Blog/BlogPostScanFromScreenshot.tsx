@@ -114,8 +114,8 @@ export const BlogPostScanFromScreenshot: React.FC = () => {
             alt="How to scan a QR code from a screenshot or saved image on your phone"
             title="How to Scan a QR Code on Your Own Phone"
             className="w-full h-auto object-cover"
-            width={2752}
-            height={1536}
+            width={1280}
+            height={720}
             loading="eager"
             decoding="async"
           />
