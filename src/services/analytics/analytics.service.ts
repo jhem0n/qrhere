@@ -1,4 +1,5 @@
 import { ANALYTICS_CONFIG, AnalyticsEventName } from '../../config/analytics.config';
+import { track as vercelTrack } from '@vercel/analytics';
 
 /**
  * Privacy-Preserving Analytics Service
@@ -14,15 +15,19 @@ class PrivacySafeAnalyticsService {
       return;
     }
 
-    // Defensive check against forbidden fields
-    if (metadata) {
+    try {
+      // Defensive check against forbidden fields
       const sanitized: Record<string, string | number | boolean> = {};
-      for (const [key, value] of Object.entries(metadata)) {
-        if (!ANALYTICS_CONFIG.FORBIDDEN_FIELDS.includes(key as any)) {
-          sanitized[key] = value;
+      if (metadata) {
+        for (const [key, value] of Object.entries(metadata)) {
+          if (!ANALYTICS_CONFIG.FORBIDDEN_FIELDS.includes(key as any)) {
+            sanitized[key] = value;
+          }
         }
       }
-      // Future analytics forwarder would receive: eventName, sanitized
+      vercelTrack(eventName, Object.keys(sanitized).length > 0 ? sanitized : undefined);
+    } catch {
+      // Ignore analytics failures silently
     }
   }
 }
