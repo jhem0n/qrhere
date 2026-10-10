@@ -55,6 +55,7 @@ export const BlogPostErrorCorrection: React.FC = () => {
           canonicalPath: '/blog/qr-code-error-correction-explained',
           datePublished: '2026-10-02',
           dateModified: '2026-10-02',
+          image: `${siteUrl}/images/errorcorrection.jpg`,
         },
         siteUrl
       ),

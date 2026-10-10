@@ -55,6 +55,7 @@ export const BlogPostVcardQrCode: React.FC = () => {
           canonicalPath: '/blog/how-to-create-vcard-qr-code',
           datePublished: '2026-09-18',
           dateModified: '2026-10-02',
+          image: `${siteUrl}/images/howtocreatevcardqr.jpg`,
         },
         siteUrl
       ),

@@ -67,25 +67,38 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       canonicalLink.setAttribute('href', fullCanonical);
     }
 
+    // Calculate Page Image (supports custom image per page, falls back to default og-image)
+    const rawImage = seo.image || '/og-image.png';
+    const pageImage = rawImage.startsWith('http')
+      ? rawImage
+      : `${siteUrl.replace(/\/$/, '')}${rawImage.startsWith('/') ? '' : '/'}${rawImage}`;
+    const imageAlt = seo.imageAlt || seo.title || 'QR Here – Free QR Code Scanner and Generator';
+    const isSvg = pageImage.endsWith('.svg');
+    const isJpg = pageImage.endsWith('.jpg') || pageImage.endsWith('.jpeg');
+    const imageType = isSvg ? 'image/svg+xml' : isJpg ? 'image/jpeg' : 'image/png';
+    const imageWidth = seo.imageWidth ? String(seo.imageWidth) : '1200';
+    const imageHeight = seo.imageHeight ? String(seo.imageHeight) : '630';
+
     // OpenGraph Meta Tags
     setMeta('property', 'og:site_name', APP_CONFIG.name);
     setMeta('property', 'og:title', seo.title);
     setMeta('property', 'og:description', seo.description);
     setMeta('property', 'og:type', seo.ogType || 'website');
     setMeta('property', 'og:url', fullCanonical);
-    setMeta('property', 'og:image', `${siteUrl}/og-image.png`);
-    setMeta('property', 'og:image:type', 'image/png');
-    setMeta('property', 'og:image:width', '1200');
-    setMeta('property', 'og:image:height', '630');
-    setMeta('property', 'og:image:alt', 'QR Here – Free QR Code Scanner and Generator');
+    setMeta('property', 'og:image', pageImage);
+    setMeta('property', 'og:image:secure_url', pageImage);
+    setMeta('property', 'og:image:type', imageType);
+    setMeta('property', 'og:image:width', imageWidth);
+    setMeta('property', 'og:image:height', imageHeight);
+    setMeta('property', 'og:image:alt', imageAlt);
     setMeta('property', 'og:locale', 'en_US');
 
     // Twitter / X Meta Tags
     setMeta('name', 'twitter:card', 'summary_large_image');
     setMeta('name', 'twitter:title', seo.title);
     setMeta('name', 'twitter:description', seo.description);
-    setMeta('name', 'twitter:image', `${siteUrl}/og-image.png`);
-    setMeta('name', 'twitter:image:alt', 'QR Here – Free QR Code Scanner and Generator');
+    setMeta('name', 'twitter:image', pageImage);
+    setMeta('name', 'twitter:image:alt', imageAlt);
 
     // Structured data injection
     let finalSchema: object;
@@ -112,6 +125,8 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     seo.description,
     seo.canonicalPath,
     seo.ogType,
+    seo.image,
+    seo.imageAlt,
     seo.noIndex,
     noIndex,
     breadcrumbs ? JSON.stringify(breadcrumbs) : '',

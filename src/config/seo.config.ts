@@ -5,6 +5,10 @@ export interface RouteSEO {
   description: string;
   canonicalPath: string;
   ogType?: 'website' | 'article';
+  image?: string;
+  imageAlt?: string;
+  imageWidth?: number | string;
+  imageHeight?: number | string;
   noIndex?: boolean;
 }
 
@@ -46,6 +50,8 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
       'Create custom QR codes with logos, colors, and frames for free. Download vector SVG or high-resolution PNG in your browser without an app.',
     canonicalPath: '/qr-code-generator',
     ogType: 'website',
+    image: '/images/qrcodegen.jpg',
+    imageAlt: 'Free QR Code Generator Online – Create Custom QR Codes',
   },
   // Specific QR Code Generator Type Pages
   generatorUrl: {
@@ -54,6 +60,8 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
       'Turn any website link into a permanent, custom QR code. Free, no sign-up, no expiry. Customize colors, add logos, and download vector SVG or high-res PNG files.',
     canonicalPath: '/qr-code-generator-url',
     ogType: 'website',
+    image: '/images/qrcodegen.jpg',
+    imageAlt: 'Free URL QR Code Generator',
   },
   generatorText: {
     title: 'Free Text QR Code Generator – Plain Text to QR | QR Here',
@@ -61,6 +69,8 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
       'Convert any message, note, or serial number into a plain text QR code. Free, private, and works 100% offline without an internet connection or sign-up.',
     canonicalPath: '/qr-code-generator-text',
     ogType: 'website',
+    image: '/images/qrcodegen.jpg',
+    imageAlt: 'Free Text QR Code Generator',
   },
   generatorWifi: {
     title: 'WiFi QR Code Maker – Create a Scannable Password in Seconds',
@@ -68,6 +78,8 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
       'Use our free WiFi QR code generator to turn your network name and password into a scannable code. Print it, share it, and let guests connect instantly.',
     canonicalPath: '/qr-code-generator-wifi',
     ogType: 'website',
+    image: '/images/howtocreatewifiqrcode.jpg',
+    imageAlt: 'WiFi QR Code Maker',
   },
   generatorVcard: {
     title: 'Free vCard QR Code Generator – Digital Business Card | QR Here',
@@ -75,6 +87,8 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
       'Create a free vCard QR code for digital business cards. Scan with camera to save contacts to address books instantly. Free, private, and customizable.',
     canonicalPath: '/qr-code-generator-vcard',
     ogType: 'website',
+    image: '/images/howtocreatevcardqr.jpg',
+    imageAlt: 'Free vCard QR Code Generator',
   },
   generatorWhatsapp: {
     title: 'Free WhatsApp QR Code Generator – Direct Chat Link | QR Here',
@@ -251,6 +265,8 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
       'Learn the difference between static and dynamic QR codes, how they work, key benefits and limits, and how to choose the right one for your needs.',
     canonicalPath: '/blog/static-vs-dynamic-qr-code',
     ogType: 'article',
+    image: '/images/static-vs-dynamic-qr-code.jpg',
+    imageAlt: 'Static vs Dynamic QR Codes: What is the Difference?',
   },
   blogVcardBusinessCards: {
     title: 'Free vCard QR Code Generator for Business Cards | QR Here',
@@ -258,6 +274,8 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
       'Create a free vCard QR code for your business card. Let contacts save your details directly to their phone address book with a single camera scan.',
     canonicalPath: '/blog/how-to-create-vcard-qr-code',
     ogType: 'article',
+    image: '/images/howtocreatevcardqr.jpg',
+    imageAlt: 'How to Create a vCard QR Code for Digital Business Cards',
   },
   blogScanWithoutApp: {
     title: 'How to Scan a QR Code Without an App | QR Here',
@@ -265,6 +283,8 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
       'Learn how to scan QR codes on iPhone, Android, and PC without downloading apps. Step-by-step camera, browser, and screenshot scanning guide.',
     canonicalPath: '/blog/how-to-scan-qr-code-without-app',
     ogType: 'article',
+    image: '/images/howtoscanwithoutapp.jpg',
+    imageAlt: 'How to Scan a QR Code Without Installing an App',
   },
   blogWifiQrCode: {
     title: 'How to Create a WiFi QR Code for Free | QR Here',
@@ -272,6 +292,8 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
       'Make a free Wi-Fi QR code so guests can join your network instantly with one camera scan. No app, no passwords to spell out, and no sign-up required.',
     canonicalPath: '/blog/how-to-create-wifi-qr-code',
     ogType: 'article',
+    image: '/images/howtocreatewifiqrcode.jpg',
+    imageAlt: 'How to Create a WiFi QR Code',
   },
   blogErrorCorrection: {
     title: 'QR Code Error Correction Explained: Levels L, M, Q, H & When to Use Which | QR Here',
@@ -279,6 +301,8 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
       'Understand Reed-Solomon error correction in QR codes. Learn the practical trade-offs between Levels L, M, Q, and H, logo embedding limits, and print durability.',
     canonicalPath: '/blog/qr-code-error-correction-explained',
     ogType: 'article',
+    image: '/images/errorcorrection.jpg',
+    imageAlt: 'QR Code Error Correction Explained: Levels L, M, Q, and H',
   },
   blogScanFromScreenshot: {
     title: 'How to Scan a QR Code on Your Own Phone (Screenshot Guide)',
@@ -286,6 +310,8 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
       'Got a QR code as a screenshot or image? Learn how to scan it on iPhone, Android and PC, why it sometimes fails, and how to fix it. No second phone needed.',
     canonicalPath: '/blog/scan-qr-code-from-screenshot',
     ogType: 'article',
+    image: '/images/scan-qr-code-from-screenshot.jpg',
+    imageAlt: 'How to Scan a QR Code on Your Own Phone from a Screenshot',
   },
   blogQrCodeHistory: {
     title: 'QR Code History: Who Invented It and How It Took Over',
@@ -293,6 +319,8 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
       'The real story of the QR code: why a car factory invented it in 1994, why it was given away, and how phones and 2020 made it part of daily life.',
     canonicalPath: '/blog/qr-code-history',
     ogType: 'article',
+    image: '/images/qr-code-history.jpg',
+    imageAlt: 'QR Code History: Who Invented It, Why, and How It Took Over',
   },
   blogHowDoesQrCodeWork: {
     title: "How Does a QR Code Work? What's Inside the Square",
@@ -300,6 +328,8 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
       'Ever wondered how a QR code works? Learn what is inside the square, how your phone reads it in a second, and why a damaged code can still scan.',
     canonicalPath: '/blog/how-does-a-qr-code-work',
     ogType: 'article',
+    image: '/images/qr-code-anatomy.svg',
+    imageAlt: 'How Does a QR Code Work – Anatomy and Structure of a QR Code',
   },
   blogScanBarcodeToCheckPrice: {
     title: 'Scan a Barcode to Check Price: Free Online Barcode Reader',
@@ -307,6 +337,8 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
       "Use a free online barcode reader to scan any product barcode, then compare prices in seconds. Works on phone or laptop, no app needed. Here's how.",
     canonicalPath: '/blog/scan-barcode-to-check-price',
     ogType: 'article',
+    image: '/images/scan-barcode-price.svg',
+    imageAlt: 'How to Scan a Barcode to Check Price Online',
   },
   qrCodeSecurity: {
     title: 'QR Code Security Guide – Scan Codes Safely | QR Here',
@@ -600,6 +632,13 @@ export function generateArticleSchema(
   siteUrl: string = getSiteUrl()
 ) {
   const fullUrl = `${siteUrl.replace(/\/$/, '')}${data.canonicalPath}`;
+  const baseDomain = siteUrl.replace(/\/$/, '');
+  const resolvedImage = data.image
+    ? data.image.startsWith('http')
+      ? data.image
+      : `${baseDomain}${data.image.startsWith('/') ? '' : '/'}${data.image}`
+    : `${baseDomain}/og-image.png`;
+
   return {
     '@type': 'Article',
     headline: data.headline,
@@ -611,7 +650,8 @@ export function generateArticleSchema(
     url: fullUrl,
     datePublished: data.datePublished,
     dateModified: data.dateModified,
-    image: data.image || `${siteUrl}/icon.svg`,
+    image: [resolvedImage],
+    primaryImageOfPage: resolvedImage,
     author: {
       '@type': 'Organization',
       name: APP_CONFIG.name,
@@ -623,7 +663,7 @@ export function generateArticleSchema(
       url: siteUrl,
       logo: {
         '@type': 'ImageObject',
-        url: `${siteUrl}/icon.svg`,
+        url: `${siteUrl.replace(/\/$/, '')}/icon.svg`,
       },
     },
   };

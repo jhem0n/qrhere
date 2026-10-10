@@ -413,7 +413,7 @@ export const BarcodeGeneratorWidget: React.FC<BarcodeGeneratorWidgetProps> = ({
           >
             {svgString && !error ? (
               <div
-                className="w-full h-full flex items-center justify-center max-h-[300px]"
+                className="w-full h-full flex items-center justify-center max-h-[300px] [&>svg]:max-w-full [&>svg]:max-h-full [&>svg]:w-auto [&>svg]:h-auto [&>svg]:object-contain"
                 dangerouslySetInnerHTML={{ __html: svgString }}
               />
             ) : (

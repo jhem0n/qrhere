@@ -52,6 +52,7 @@ export const BlogPostStaticVsDynamic: React.FC = () => {
           canonicalPath: '/blog/static-vs-dynamic-qr-code',
           datePublished: '2026-09-17',
           dateModified: '2026-10-02',
+          image: `${siteUrl}/images/static-vs-dynamic-qr-code.jpg`,
         },
         siteUrl
       ),

@@ -55,6 +55,7 @@ export const BlogPostScanWithoutApp: React.FC = () => {
           canonicalPath: '/blog/how-to-scan-qr-code-without-app',
           datePublished: '2026-09-20',
           dateModified: '2026-10-02',
+          image: `${siteUrl}/images/howtoscanwithoutapp.jpg`,
         },
         siteUrl
       ),

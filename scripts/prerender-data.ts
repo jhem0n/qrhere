@@ -16,6 +16,8 @@ export interface StaticRouteConfig {
   keywords: string;
   heading: string;
   breadcrumbs: { name: string; path: string }[];
+  image?: string;
+  imageAlt?: string;
   structuredData?: object;
   htmlContent: string;
 }
@@ -35,6 +37,8 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
       { name: 'Home', path: '/' },
       { name: 'QR Code Generator', path: '/qr-code-generator' },
     ],
+    image: '/images/qrcodegen.jpg',
+    imageAlt: 'Online Best Free QR Code Generator',
     htmlContent: `
       <section class="max-w-4xl mx-auto px-4 py-8 space-y-12 text-slate-800 leading-relaxed">
         <header class="text-center space-y-3">
@@ -436,6 +440,8 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
       { name: 'Blog', path: '/blog' },
       { name: 'Static vs Dynamic QR Code', path: '/blog/static-vs-dynamic-qr-code' },
     ],
+    image: '/images/static-vs-dynamic-qr-code.jpg',
+    imageAlt: 'Static vs Dynamic QR Codes: What is the Difference?',
     htmlContent: `
       <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
         <header class="border-b border-slate-200 pb-6 mb-6">
@@ -571,6 +577,8 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
       { name: 'Blog', path: '/blog' },
       { name: 'vCard QR Code for Digital Business Cards', path: '/blog/how-to-create-vcard-qr-code' },
     ],
+    image: '/images/howtocreatevcardqr.jpg',
+    imageAlt: 'How to Create a vCard QR Code for Digital Business Cards',
     htmlContent: `
       <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
         <header class="border-b border-slate-200 pb-6 mb-6">
@@ -681,6 +689,8 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
       { name: 'Blog', path: '/blog' },
       { name: 'How to Scan a QR Code Without an App', path: '/blog/how-to-scan-qr-code-without-app' },
     ],
+    image: '/images/howtoscanwithoutapp.jpg',
+    imageAlt: 'How to Scan a QR Code Without Installing an App',
     htmlContent: `
       <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
         <header class="border-b border-slate-200 pb-6 mb-6">
@@ -1110,6 +1120,8 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
       { name: 'Blog', path: '/blog' },
       { name: 'How to Create a WiFi QR Code', path: '/blog/how-to-create-wifi-qr-code' },
     ],
+    image: '/images/howtocreatewifiqrcode.jpg',
+    imageAlt: 'How to Create a WiFi QR Code',
     htmlContent: `
       <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
         <header class="border-b border-slate-200 pb-6 mb-6">
@@ -1187,6 +1199,8 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
       { name: 'Blog', path: '/blog' },
       { name: 'QR Code Error Correction Explained', path: '/blog/qr-code-error-correction-explained' },
     ],
+    image: '/images/errorcorrection.jpg',
+    imageAlt: 'QR Code Error Correction Explained: Levels L, M, Q, and H',
     htmlContent: `
       <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
         <header class="border-b border-slate-200 pb-6 mb-6">
@@ -1424,6 +1438,8 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
       { name: 'Home', path: '/' },
       { name: 'Barcode Scanner', path: '/barcode-scanner' },
     ],
+    image: '/images/scan-barcode-price.svg',
+    imageAlt: 'Free Online Barcode Scanner & Reader',
     htmlContent: `
       <section class="max-w-4xl mx-auto px-4 py-8 space-y-10 text-slate-800 leading-relaxed">
         <header class="text-center space-y-3 mb-8">
@@ -1739,6 +1755,8 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
       { name: 'Blog', path: '/blog' },
       { name: 'Scan QR Code From Screenshot', path: '/blog/scan-qr-code-from-screenshot' },
     ],
+    image: '/images/scan-qr-code-from-screenshot.jpg',
+    imageAlt: 'How to Scan a QR Code on Your Own Phone from a Screenshot or Image',
     htmlContent: `
       <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
         <header class="border-b border-slate-200 pb-6 mb-6">
@@ -1890,6 +1908,8 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
       { name: 'Blog', path: '/blog' },
       { name: 'QR Code History', path: '/blog/qr-code-history' },
     ],
+    image: '/images/qr-code-history.jpg',
+    imageAlt: 'QR Code History: Who Invented It, Why, and How It Took Over',
     htmlContent: `
       <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
         <header class="border-b border-slate-200 pb-6 mb-6">
@@ -2061,6 +2081,8 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
       { name: 'Blog', path: '/blog' },
       { name: 'How Does a QR Code Work', path: '/blog/how-does-a-qr-code-work' },
     ],
+    image: '/images/qr-code-anatomy.svg',
+    imageAlt: 'How Does a QR Code Work – Anatomy and Structure of a QR Code',
     htmlContent: `
       <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
         <header class="border-b border-slate-200 pb-6 mb-6">
@@ -2177,6 +2199,8 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
       { name: 'Blog', path: '/blog' },
       { name: 'Scan Barcode to Check Price', path: '/blog/scan-barcode-to-check-price' },
     ],
+    image: '/images/scan-barcode-price.svg',
+    imageAlt: 'How to Scan a Barcode to Check Price Online',
     htmlContent: `
       <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
         <header class="border-b border-slate-200 pb-6 mb-6">
@@ -2374,6 +2398,8 @@ const QR_TYPE_STATIC_ROUTES: StaticRouteConfig[] = QR_TYPES.map((typeDef) => {
       { name: 'Home', path: '/' },
       { name: typeDef.h1, path: `/${typeDef.slug}` },
     ],
+    image: '/images/qrcodegen.jpg',
+    imageAlt: typeDef.h1,
     htmlContent: `
       <section class="max-w-4xl mx-auto px-4 py-8 space-y-10 text-slate-800 leading-relaxed">
         <header class="border-b border-slate-200 pb-6 mb-6">
@@ -2471,6 +2497,8 @@ const BARCODE_STATIC_ROUTES: StaticRouteConfig[] = BARCODE_PAGES.map((pageDef) =
       { name: 'Barcode Scanner', path: '/barcode-scanner' },
       { name: pageDef.breadcrumbName, path: pageDef.path },
     ],
+    image: '/images/scan-barcode-price.svg',
+    imageAlt: pageDef.h1,
     htmlContent: `
       <section class="max-w-4xl mx-auto px-4 py-8 space-y-10 text-slate-800 leading-relaxed">
         <header class="text-center space-y-3 mb-8">

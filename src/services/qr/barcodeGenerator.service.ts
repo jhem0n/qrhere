@@ -317,6 +317,12 @@ export class BarcodeGeneratorService {
     const bgColor = (options.backgroundColor || '#ffffff').replace('#', '');
     const showText = options.showText !== false && is1D;
 
+    // For standard linear barcodes (Code 128, Code 39, Code 93, Codabar, etc.), a small negative
+    // offset gives a clean separation below the bars. Retail barcodes (EAN/UPC) have standardized GS1
+    // notch placement and should not have textyoffset overridden.
+    const isRetail = ['EAN_13', 'EAN_8', 'UPC_A', 'UPC_E'].includes(options.format);
+    const textyoffset = isRetail ? undefined : -1;
+
     let warning: string | undefined = validation.suggestion;
 
     try {
@@ -328,7 +334,7 @@ export class BarcodeGeneratorService {
         ...(height !== undefined ? { height } : {}),
         includetext: showText,
         textsize: 10,
-        textyoffset: 6,
+        ...(textyoffset !== undefined ? { textyoffset } : {}),
         textxalign: 'center',
         barcolor: barColor,
         backgroundcolor: bgColor,
@@ -349,7 +355,7 @@ export class BarcodeGeneratorService {
         ...(height !== undefined ? { height } : {}),
         includetext: showText,
         textsize: 10,
-        textyoffset: 6,
+        ...(textyoffset !== undefined ? { textyoffset } : {}),
         textxalign: 'center',
         barcolor: barColor,
         backgroundcolor: bgColor,

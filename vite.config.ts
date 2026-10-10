@@ -239,16 +239,86 @@ Sitemap: https://qrhere.online/sitemap.xml
             `<meta name="twitter:description" content="${route.description}" />`
           );
 
+          // Calculate route-specific image and OpenGraph/Twitter image tags
+          const rawImage = route.image || '/og-image.png';
+          const routeImage = rawImage.startsWith('http')
+            ? rawImage
+            : `${domain}${rawImage.startsWith('/') ? '' : '/'}${rawImage}`;
+          const imageAlt = route.imageAlt || route.heading || route.title;
+          const isSvg = routeImage.endsWith('.svg');
+          const isJpg = routeImage.endsWith('.jpg') || routeImage.endsWith('.jpeg');
+          const imageType = isSvg ? 'image/svg+xml' : isJpg ? 'image/jpeg' : 'image/png';
+
+          // Replace og:image
+          routeHtml = routeHtml.replace(
+            /<meta\s+property="og:image"\s+content="[^"]*"\s*\/?>/i,
+            `<meta property="og:image" content="${routeImage}" />`
+          );
+          // Replace og:image:type
+          routeHtml = routeHtml.replace(
+            /<meta\s+property="og:image:type"\s+content="[^"]*"\s*\/?>/i,
+            `<meta property="og:image:type" content="${imageType}" />`
+          );
+          // Replace og:image:alt
+          routeHtml = routeHtml.replace(
+            /<meta\s+property="og:image:alt"\s+content="[^"]*"\s*\/?>/i,
+            `<meta property="og:image:alt" content="${imageAlt.replace(/"/g, '&quot;')}" />`
+          );
+          // Replace twitter:image
+          routeHtml = routeHtml.replace(
+            /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/?>/i,
+            `<meta name="twitter:image" content="${routeImage}" />`
+          );
+          // Replace twitter:image:alt
+          routeHtml = routeHtml.replace(
+            /<meta\s+name="twitter:image:alt"\s+content="[^"]*"\s*\/?>/i,
+            `<meta name="twitter:image:alt" content="${imageAlt.replace(/"/g, '&quot;')}" />`
+          );
+
           // Replace Schema.org JSON-LD with route-specific structured data (replaces 3.9KB homepage schema)
+          const isArticle = route.path.startsWith('/blog/') && route.path !== '/blog';
           const schemaObj = route.structuredData || {
             '@context': 'https://schema.org',
             '@graph': [
-              {
-                '@type': 'WebPage',
-                name: route.heading || route.title,
-                url: `${domain}${route.path}`,
-                description: route.description,
-              },
+              ...(isArticle
+                ? [
+                    {
+                      '@type': 'Article',
+                      headline: route.heading || route.title,
+                      url: `${domain}${route.path}`,
+                      description: route.description,
+                      image: [routeImage],
+                      primaryImageOfPage: routeImage,
+                      mainEntityOfPage: {
+                        '@type': 'WebPage',
+                        '@id': `${domain}${route.path}`,
+                      },
+                      author: {
+                        '@type': 'Organization',
+                        name: 'QR Here',
+                        url: domain,
+                      },
+                      publisher: {
+                        '@type': 'Organization',
+                        name: 'QR Here',
+                        url: domain,
+                        logo: {
+                          '@type': 'ImageObject',
+                          url: `${domain}/icon.svg`,
+                        },
+                      },
+                    },
+                  ]
+                : [
+                    {
+                      '@type': 'WebPage',
+                      name: route.heading || route.title,
+                      url: `${domain}${route.path}`,
+                      description: route.description,
+                      image: [routeImage],
+                      primaryImageOfPage: routeImage,
+                    },
+                  ]),
               ...(route.breadcrumbs && route.breadcrumbs.length > 0
                 ? [
                     {

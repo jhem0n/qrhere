@@ -60,6 +60,7 @@ export const BlogPostWifiQrCode: React.FC = () => {
           canonicalPath: '/blog/how-to-create-wifi-qr-code',
           datePublished: '2026-09-24',
           dateModified: '2026-10-02',
+          image: `${siteUrl}/images/howtocreatewifiqrcode.jpg`,
         },
         siteUrl
       ),
