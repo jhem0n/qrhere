@@ -119,6 +119,8 @@ Sitemap: https://qrhere.online/sitemap.xml
 
 - [QR Code Scanner](${domain}/): Scan QR codes directly with your device webcam or by uploading image files. Decoded 100% locally in your browser with zero server uploads.
 - [QR Code Generator](${domain}/qr-code-generator): Create customized vector QR codes with colors, dots, corners, and embedded logos with SVG or PNG export.
+- [Barcode Generator](${domain}/barcode-generator): Create free linear and 2D barcodes (Code 128, EAN-13, UPC-A, Data Matrix, PDF417, Aztec, Bulk) with PNG/SVG vector export.
+- [Barcode Scanner](${domain}/barcode-scanner): Scan product barcodes, UPC, EAN, Code 128, and Code 39 online with camera or image upload.
 
 ## Support & Documentation
 

@@ -7,6 +7,7 @@
 
 import { QR_TYPES } from '../src/data/qrTypes';
 import { BARCODE_PAGES } from '../src/data/barcodePages';
+import { BARCODE_HUB_CONFIG, BARCODE_DEDICATED_PAGES } from '../src/data/barcodeGeneratorConfig';
 
 export interface StaticRouteConfig {
   path: string;
@@ -2615,8 +2616,308 @@ const BARCODE_STATIC_ROUTES: StaticRouteConfig[] = BARCODE_PAGES.map((pageDef) =
   };
 });
 
+const BARCODE_GENERATOR_HUB_ROUTE: StaticRouteConfig = {
+  path: BARCODE_HUB_CONFIG.path,
+  folder: BARCODE_HUB_CONFIG.slug,
+  title: BARCODE_HUB_CONFIG.title,
+  description: BARCODE_HUB_CONFIG.metaDescription,
+  keywords:
+    'barcode generator, free barcode generator, online barcode maker, code 128 generator, ean barcode generator, upc barcode maker, data matrix generator, svg barcode',
+  heading: BARCODE_HUB_CONFIG.h1,
+  breadcrumbs: BARCODE_HUB_CONFIG.breadcrumbs,
+  image: '/images/scan-barcode-price.svg',
+  imageAlt: BARCODE_HUB_CONFIG.h1,
+  structuredData: {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebApplication',
+        name: BARCODE_HUB_CONFIG.h1,
+        url: `https://qrhere.online${BARCODE_HUB_CONFIG.path}`,
+        description: BARCODE_HUB_CONFIG.metaDescription,
+        applicationCategory: 'UtilityApplication',
+        operatingSystem: 'All',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: BARCODE_HUB_CONFIG.breadcrumbs.map((b, idx) => ({
+          '@type': 'ListItem',
+          position: idx + 1,
+          name: b.name,
+          item: `https://qrhere.online${b.path}`,
+        })),
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: BARCODE_HUB_CONFIG.faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer,
+          },
+        })),
+      },
+    ],
+  },
+  htmlContent: `
+    <section class="max-w-4xl mx-auto px-4 py-8 space-y-10 text-slate-800 leading-relaxed">
+      <header class="text-center space-y-3 mb-8">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+          ${BARCODE_HUB_CONFIG.h1}
+        </h1>
+        <p class="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          ${BARCODE_HUB_CONFIG.subline || ''}
+        </p>
+        <p class="mt-2 text-sm text-slate-500 max-w-2xl mx-auto leading-relaxed">
+          ${BARCODE_HUB_CONFIG.intro}
+        </p>
+      </header>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Make a barcode in 3 quick steps</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+          ${(BARCODE_HUB_CONFIG.sections[0].steps || [])
+            .map(
+              (step) => `
+            <div class="p-5 rounded-2xl border border-slate-200 bg-white shadow-xs space-y-2">
+              <span class="font-bold text-blue-600 block text-xs uppercase tracking-wider mb-1">Step ${step.step}</span>
+              <h3 class="text-base font-bold text-slate-900">${step.title || ''}</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">${step.text}</p>
+            </div>
+          `
+            )
+            .join('')}
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Which barcode type should you pick?</h2>
+        <div class="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-xs">
+          <table class="w-full text-left text-sm border-collapse">
+            <thead>
+              <tr class="border-b border-slate-200 bg-slate-50 text-slate-900 font-semibold">
+                ${(BARCODE_HUB_CONFIG.sections[1].table?.headers || []).map((h) => `<th class="py-3 px-4">${h}</th>`).join('')}
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-700">
+              ${(BARCODE_HUB_CONFIG.sections[1].table?.rows || [])
+                .map(
+                  (r) => `
+                <tr>
+                  <td class="py-3 px-4 font-semibold text-slate-900">${r.col1}</td>
+                  <td class="py-3 px-4">${r.col2}</td>
+                  <td class="py-3 px-4 font-mono text-xs">${r.col3 || ''}</td>
+                </tr>
+              `
+                )
+                .join('')}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      ${BARCODE_HUB_CONFIG.sections
+        .slice(2)
+        .map(
+          (sec) => `
+        <section class="space-y-3">
+          <h2 class="text-2xl font-bold text-slate-900 tracking-tight">${sec.title}</h2>
+          <p class="text-slate-600 text-base leading-relaxed">${sec.content || ''}</p>
+        </section>
+      `
+        )
+        .join('')}
+
+      <section class="space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          ${BARCODE_HUB_CONFIG.faqs
+            .map(
+              (faq, idx) => `
+            <div class="p-5 rounded-2xl border border-slate-200 bg-white shadow-xs">
+              <h3 class="text-base font-bold text-slate-900 mb-2">${idx + 1}. ${faq.question}</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">${faq.answer}</p>
+            </div>
+          `
+            )
+            .join('')}
+        </div>
+      </section>
+
+      <section class="space-y-4 pt-4 border-t border-slate-200">
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Barcode Formats &amp; Related Tools</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-sm">
+          <a href="/barcode-generator/code-128" class="p-3 rounded-xl border border-slate-200 text-slate-700 hover:text-blue-600">
+            <span class="font-bold block text-sm mb-1">Code 128 Generator</span>
+            <span class="text-xs text-slate-500">Shipping, inventory, and asset labels</span>
+          </a>
+          <a href="/barcode-generator/bulk" class="p-3 rounded-xl border border-slate-200 text-slate-700 hover:text-blue-600">
+            <span class="font-bold block text-sm mb-1">Bulk Barcode Generator</span>
+            <span class="text-xs text-slate-500">Generate up to 100 barcodes in a single ZIP</span>
+          </a>
+          <a href="/barcode-generator/upc-a" class="p-3 rounded-xl border border-slate-200 text-slate-700 hover:text-blue-600">
+            <span class="font-bold block text-sm mb-1">UPC-A Generator</span>
+            <span class="text-xs text-slate-500">12-digit North American retail product codes</span>
+          </a>
+          <a href="/barcode-generator/data-matrix" class="p-3 rounded-xl border border-slate-200 text-slate-700 hover:text-blue-600">
+            <span class="font-bold block text-sm mb-1">Data Matrix Generator</span>
+            <span class="text-xs text-slate-500">High-density 2D code for small parts</span>
+          </a>
+          <a href="/barcode-generator/pdf417" class="p-3 rounded-xl border border-slate-200 text-slate-700 hover:text-blue-600">
+            <span class="font-bold block text-sm mb-1">PDF417 Generator</span>
+            <span class="text-xs text-slate-500">Stacked barcode for government IDs and tickets</span>
+          </a>
+          <a href="/barcode-scanner" class="p-3 rounded-xl border border-slate-200 text-slate-700 hover:text-blue-600">
+            <span class="font-bold block text-sm mb-1">Online Barcode Scanner</span>
+            <span class="text-xs text-slate-500">Test and verify your barcode via webcam</span>
+          </a>
+        </div>
+      </section>
+    </section>
+  `,
+};
+
+const BARCODE_GENERATOR_DEDICATED_ROUTES: StaticRouteConfig[] = Object.values(BARCODE_DEDICATED_PAGES).map(
+  (pageConfig) => {
+    return {
+      path: pageConfig.path,
+      folder: pageConfig.slug,
+      title: pageConfig.title,
+      description: pageConfig.metaDescription,
+      keywords: `${pageConfig.h1.toLowerCase()}, barcode generator, free barcode maker, ${pageConfig.slug.replace('barcode-generator/', '')}`,
+      heading: pageConfig.h1,
+      breadcrumbs: pageConfig.breadcrumbs,
+      image: '/images/scan-barcode-price.svg',
+      imageAlt: pageConfig.h1,
+      structuredData: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'WebApplication',
+            name: pageConfig.h1,
+            url: `https://qrhere.online${pageConfig.path}`,
+            description: pageConfig.metaDescription,
+            applicationCategory: 'UtilityApplication',
+            operatingSystem: 'All',
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'USD',
+            },
+          },
+          {
+            '@type': 'BreadcrumbList',
+            itemListElement: pageConfig.breadcrumbs.map((b, idx) => ({
+              '@type': 'ListItem',
+              position: idx + 1,
+              name: b.name,
+              item: `https://qrhere.online${b.path}`,
+            })),
+          },
+          {
+            '@type': 'FAQPage',
+            mainEntity: pageConfig.faqs.map((faq) => ({
+              '@type': 'Question',
+              name: faq.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: faq.answer,
+              },
+            })),
+          },
+        ],
+      },
+      htmlContent: `
+        <section class="max-w-4xl mx-auto px-4 py-8 space-y-10 text-slate-800 leading-relaxed">
+          <header class="text-center space-y-3 mb-8">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+              ${pageConfig.h1}
+            </h1>
+            ${
+              pageConfig.subline
+                ? `
+              <p class="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                ${pageConfig.subline}
+              </p>
+            `
+                : ''
+            }
+            <p class="mt-2 text-sm text-slate-500 max-w-2xl mx-auto leading-relaxed">
+              ${pageConfig.intro}
+            </p>
+          </header>
+
+          ${pageConfig.sections
+            .map(
+              (sec) => `
+            <section class="space-y-4">
+              <h2 class="text-2xl font-bold text-slate-900 tracking-tight">${sec.title}</h2>
+              ${sec.content ? `<p class="text-slate-600 text-base leading-relaxed">${sec.content}</p>` : ''}
+              ${
+                sec.steps
+                  ? `
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                  ${sec.steps
+                    .map(
+                      (st) => `
+                    <div class="p-5 rounded-2xl border border-slate-200 bg-white shadow-xs space-y-2">
+                      <span class="font-bold text-blue-600 block text-xs uppercase tracking-wider mb-1">Step ${st.step}</span>
+                      <h3 class="text-base font-bold text-slate-900">${st.title || ''}</h3>
+                      <p class="text-sm text-slate-600 leading-relaxed">${st.text}</p>
+                    </div>
+                  `
+                    )
+                    .join('')}
+                </div>
+              `
+                  : ''
+              }
+            </section>
+          `
+            )
+            .join('')}
+
+          <section class="space-y-6">
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+              ${pageConfig.faqs
+                .map(
+                  (faq, idx) => `
+                <div class="p-5 rounded-2xl border border-slate-200 bg-white shadow-xs">
+                  <h3 class="text-base font-bold text-slate-900 mb-2">${idx + 1}. ${faq.question}</h3>
+                  <p class="text-slate-600 text-sm leading-relaxed">${faq.answer}</p>
+                </div>
+              `
+                )
+                .join('')}
+            </div>
+          </section>
+
+          <section class="space-y-4 pt-4 border-t border-slate-200">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Related Tools</h2>
+            <ul class="space-y-2 text-sm">
+              <li><a href="/barcode-generator" class="text-blue-600 underline font-semibold">Free online barcode generator</a> &ndash; All formats hub (Code 128, EAN, UPC, Data Matrix).</li>
+              <li><a href="/barcode-generator/bulk" class="text-blue-600 underline font-semibold">Bulk barcode generator</a> &ndash; Create batches of up to 100 barcodes in a single ZIP.</li>
+              <li><a href="/barcode-scanner" class="text-blue-600 underline font-semibold">Online barcode scanner</a> &ndash; Scan and verify barcodes with webcam or image upload.</li>
+              <li><a href="/" class="text-blue-600 underline font-semibold">QR code scanner</a> &ndash; Free instant browser QR reader.</li>
+            </ul>
+          </section>
+        </section>
+      `,
+    };
+  }
+);
+
 export const STATIC_ROUTES: StaticRouteConfig[] = [
   ...BASE_STATIC_ROUTES,
   ...QR_TYPE_STATIC_ROUTES,
   ...BARCODE_STATIC_ROUTES,
+  BARCODE_GENERATOR_HUB_ROUTE,
+  ...BARCODE_GENERATOR_DEDICATED_ROUTES,
 ];
