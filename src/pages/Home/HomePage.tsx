@@ -30,10 +30,10 @@ export const HomePage: React.FC = () => {
         {/* Page Header */}
         <header className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Scan here QR Code
+            Scan QR Code Here
           </h1>
           <p className="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
-            Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.
+            Free online QR code scanner. Use your camera or upload an image. Private, runs in your browser, no app or sign-up needed.
           </p>
         </header>
 
@@ -89,6 +89,18 @@ export const HomePage: React.FC = () => {
           )}
         </section>
 
+        {/* Contextual link to barcode scanner */}
+        <p className="mt-4 text-center text-sm text-slate-600 dark:text-slate-400">
+          Need to scan a product barcode? Use our{' '}
+          <Link
+            to="/barcode-scanner"
+            className="font-semibold text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
+          >
+            barcode scanner
+          </Link>
+          .
+        </p>
+
         {/* Homepage Educational Content Sections (All H2s below the scanner tool) */}
         <div className="mt-16 sm:mt-20 space-y-14 sm:space-y-16 max-w-5xl lg:max-w-6xl mx-auto">
           {/* Section: How to scan a QR code online */}
@@ -100,15 +112,15 @@ export const HomePage: React.FC = () => {
                   How to scan a QR code online
                 </h2>
 
-                <div className="space-y-4">
+                  <div className="space-y-4">
                   <div className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs flex items-start gap-4">
                     <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 font-bold flex items-center justify-center text-sm shrink-0">
                       1
                     </div>
                     <div>
-                      <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1.5">
+                      <p className="text-base font-bold text-slate-900 dark:text-white mb-1.5">
                         Open the page and allow camera access
-                      </h3>
+                      </p>
                       <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
                         Open QR Here in any browser and allow camera permissions, or switch to the image upload tab if you have a saved picture.
                       </p>
@@ -120,9 +132,9 @@ export const HomePage: React.FC = () => {
                       2
                     </div>
                     <div>
-                      <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1.5">
+                      <p className="text-base font-bold text-slate-900 dark:text-white mb-1.5">
                         Point the camera or upload an image
-                      </h3>
+                      </p>
                       <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
                         Hold your QR code steadily in front of your camera, or drag and drop a screenshot or photo directly into the upload area.
                       </p>
@@ -134,9 +146,9 @@ export const HomePage: React.FC = () => {
                       3
                     </div>
                     <div>
-                      <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1.5">
+                      <p className="text-base font-bold text-slate-900 dark:text-white mb-1.5">
                         Open or copy the result
-                      </h3>
+                      </p>
                       <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
                         Your code decodes in milliseconds. Preview the link safely, copy the text to your clipboard, or open the destination.
                       </p>
@@ -150,8 +162,8 @@ export const HomePage: React.FC = () => {
                 <div className="relative w-full max-w-md lg:max-w-none aspect-4/5 sm:aspect-3/4 lg:aspect-4/5 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-800/60 shadow-sm">
                   <img
                     src="/images/qr-code-scan.jpg"
-                    alt="How to scan a QR code online"
-                    title="How to scan a QR code online"
+                    alt="Person scanning a QR code on a parcel with a smartphone"
+                    title="Person scanning a QR code on a parcel with a smartphone"
                     width={900}
                     height={1350}
                     className="w-full h-full object-cover rounded-3xl"
@@ -166,20 +178,20 @@ export const HomePage: React.FC = () => {
           {/* Section: Camera scanning and Image upload */}
           <section className="grid grid-cols-1 md:grid-cols-2 gap-6" aria-label="Scanning Methods">
             <div className="p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2.5">
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2.5">
                 <Camera className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                 <span>Camera scanning</span>
-              </h2>
+              </h3>
               <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 Scan QR codes directly using your smartphone camera or desktop webcam. Live camera video frames are processed in real time entirely within your browser memory. There is no software to install, no delay, and your video feed is never uploaded to any server.
               </p>
             </div>
 
             <div className="p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2.5">
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2.5">
                 <Upload className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                 <span>Image upload</span>
-              </h2>
+              </h3>
               <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 Scan QR codes from screenshots, saved photos, and digital documents. Simply upload or drop your image into the scanner. Supported formats include PNG, JPG, and WEBP files up to 10 MB, all decoded privately on your device.
               </p>
@@ -194,8 +206,8 @@ export const HomePage: React.FC = () => {
                 <div className="w-full flex items-center justify-center">
                   <img
                     src="/images/qr-type.png"
-                    alt="What you can scan - QR code types"
-                    title="What you can scan - QR code types"
+                    alt="Examples of QR code data types: text, URL, call, SMS, email, location, event, vCard and Wi-Fi"
+                    title="Examples of QR code data types: text, URL, call, SMS, email, location, event, vCard and Wi-Fi"
                     width={1500}
                     height={800}
                     className="w-full h-auto object-contain rounded-2xl"
@@ -232,8 +244,94 @@ export const HomePage: React.FC = () => {
                   <li>
                     <strong>QR code to text:</strong> Decode alphanumeric messages, serial numbers, and notes.
                   </li>
+                  <li>
+                    <strong>Barcodes:</strong> Need to scan a product or shipping barcode? Use our{' '}
+                    <Link
+                      to="/barcode-scanner"
+                      className="font-semibold text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
+                    >
+                      barcode scanner online
+                    </Link>
+                    .
+                  </li>
                 </ul>
               </div>
+            </div>
+          </section>
+
+          {/* Section: Scan QR codes on any device */}
+          <section aria-labelledby="heading-scan-any-device">
+            <h2 id="heading-scan-any-device" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-3">
+              Scan QR codes on any device
+            </h2>
+            <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+              QR Here runs in your browser, so the same page works on phones, tablets and computers. Allow camera access when asked, or upload an image instead.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2">
+                  iPhone and Android
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Open QR Here in Safari or Chrome, tap Start Camera and point it at the code. No app download is needed, though you can add QR Here to your home screen with the Install App button.
+                </p>
+              </div>
+
+              <div className="p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2">
+                  Windows PC and laptop
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Scan a QR code on your computer with a laptop or USB webcam in Chrome, Edge or Firefox. If the code is on your screen, take a screenshot and use Image upload.
+                </p>
+              </div>
+
+              <div className="p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2">
+                  Mac and MacBook
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Scan a QR code on a MacBook with its built-in camera in Safari or Chrome, with nothing to install. For a code on your screen, drag a screenshot into the upload area.
+                </p>
+              </div>
+
+              <div className="p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2">
+                  Chromebook
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Open QR Here in Chrome, allow the camera and scan. You can also upload a saved image.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Section: Scan a QR code from an image or screenshot */}
+          <section aria-labelledby="heading-scan-from-image" className="p-6 sm:p-8 lg:p-10 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+            <div className="max-w-4xl">
+              <h2 id="heading-scan-from-image" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+                Scan a QR code from an image or screenshot
+              </h2>
+              <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                Got a QR code in a screenshot or a saved photo? Switch to Image upload and drop the file in. QR Here decodes it on your device and shows the result before you open anything. PNG, JPG and WEBP files up to 10 MB are supported.
+              </p>
+              <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+                You can{' '}
+                <Link
+                  to="/"
+                  className="font-semibold text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
+                >
+                  scan a QR code from an image
+                </Link>{' '}
+                directly in your browser, or read our step-by-step{' '}
+                <Link
+                  to="/blog/scan-qr-code-from-screenshot"
+                  className="font-semibold text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
+                >
+                  screenshot guide
+                </Link>
+                .
+              </p>
             </div>
           </section>
 
@@ -253,9 +351,9 @@ export const HomePage: React.FC = () => {
                 <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
                   <div className="flex items-center gap-2 mb-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
-                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                    <p className="text-sm font-bold text-slate-900 dark:text-white">
                       Scan here to pay
-                    </h3>
+                    </p>
                   </div>
                   <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     Opens a payment page or wallet. Check the link carefully before you pay.
@@ -265,9 +363,9 @@ export const HomePage: React.FC = () => {
                 <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
                   <div className="flex items-center gap-2 mb-1.5">
                     <span className="w-2 h-2 rounded-full bg-blue-500 shrink-0"></span>
-                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                    <p className="text-sm font-bold text-slate-900 dark:text-white">
                       Scan here to learn more
-                    </h3>
+                    </p>
                   </div>
                   <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     Opens a website, menu, brochure, or product page.
@@ -277,9 +375,9 @@ export const HomePage: React.FC = () => {
                 <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
                   <div className="flex items-center gap-2 mb-1.5">
                     <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0"></span>
-                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                    <p className="text-sm font-bold text-slate-900 dark:text-white">
                       Scan here for location
-                    </h3>
+                    </p>
                   </div>
                   <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     Opens a map pin with directions.
@@ -289,9 +387,9 @@ export const HomePage: React.FC = () => {
                 <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
                   <div className="flex items-center gap-2 mb-1.5">
                     <span className="w-2 h-2 rounded-full bg-purple-500 shrink-0"></span>
-                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                    <p className="text-sm font-bold text-slate-900 dark:text-white">
                       Scan here to join
-                    </h3>
+                    </p>
                   </div>
                   <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     Connects you to a Wi-Fi network, meeting, or event.
@@ -301,9 +399,9 @@ export const HomePage: React.FC = () => {
                 <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 sm:col-span-2 lg:col-span-2">
                   <div className="flex items-center gap-2 mb-1.5">
                     <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0"></span>
-                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                    <p className="text-sm font-bold text-slate-900 dark:text-white">
                       Scan here to contact us
-                    </h3>
+                    </p>
                   </div>
                   <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     Opens WhatsApp, a phone call, SMS, email, or a contact card.
@@ -311,23 +409,35 @@ export const HomePage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Wi-Fi and WhatsApp paragraph */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-blue-50/60 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/50 mb-6 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                Need a{' '}
-                <Link
-                  to="/scan-wifi-qr-code"
-                  className="font-semibold text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
-                >
-                  WiFi QR code scanner
-                </Link>
-                ? Scan a Wi-Fi code to see the network name and password. Need a{' '}
-                <Link
-                  to="/scan-whatsapp-qr-code"
-                  className="font-semibold text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
-                >
-                  WhatsApp QR code scanner
-                </Link>
-                ? Scan the code to see the chat link before you open it. Both work with your camera or an image upload.
+              {/* Wi-Fi, WhatsApp and Barcode tools paragraph */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-blue-50/60 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/50 mb-6 text-sm text-slate-700 dark:text-slate-300 leading-relaxed space-y-2">
+                <p>
+                  Need a{' '}
+                  <Link
+                    to="/scan-wifi-qr-code"
+                    className="font-semibold text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
+                  >
+                    Wi-Fi QR code scanner
+                  </Link>
+                  ? Scan a Wi-Fi code to see the network name and password. Need a{' '}
+                  <Link
+                    to="/scan-whatsapp-qr-code"
+                    className="font-semibold text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
+                  >
+                    WhatsApp QR code scanner
+                  </Link>
+                  ? Scan the code to see the chat link before you open it. Both work with your camera or an image upload.
+                </p>
+                <p>
+                  Need to read 1D product codes or shipping barcodes? Try our{' '}
+                  <Link
+                    to="/barcode-scanner"
+                    className="font-semibold text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300"
+                  >
+                    Free online barcode scanner
+                  </Link>{' '}
+                  to decode UPC, EAN, and Code 128 barcodes directly in your browser.
+                </p>
               </div>
 
               {/* Closing link line */}
@@ -375,43 +485,34 @@ export const HomePage: React.FC = () => {
                   What does "scan here" mean?
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  It is an instruction to point your phone camera at the QR code to open what it contains.
+                  "Scan here" is an instruction printed next to a QR code. It means point your phone camera at the code to open what it contains, such as a website, payment page, menu or Wi-Fi login. You can do the same in your browser with QR Here.
                 </p>
               </div>
 
               <div className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
                 <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  Can I scan a Wi-Fi or WhatsApp QR code online?
+                  How do I scan a QR code online?
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Yes. Use your camera or upload a screenshot, and the details or link appear before you open anything.
+                  Open QR Here, tap Start Camera, allow camera access and hold the code in front of the camera. Or switch to Image upload and add a screenshot or photo. The result appears in a moment and you choose whether to open or copy it.
                 </p>
               </div>
 
               <div className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
                 <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  Is QR Here free?
+                  Can I scan a QR code on my computer or laptop?
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Yes, QR Here is 100% free to use. There are no subscriptions, hidden fees, scan limits, or watermarks.
+                  Yes. Any laptop or desktop with a webcam works in Chrome, Edge, Safari or Firefox. If the code is on your screen, take a screenshot and upload it.
                 </p>
               </div>
 
               <div className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
                 <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  Does it work on iPhone and Android?
+                  Can I scan a QR code from an image or screenshot?
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Yes. QR Here works seamlessly on iPhones, iPads, Android smartphones, tablets, Windows PCs, and Macs using any modern web browser.
-                </p>
-              </div>
-
-              <div className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
-                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  Do you store my camera feed or images?
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  No. All scanning and decoding runs completely in your web browser. Your camera feed and uploaded images never leave your device and are never sent to or stored on any server.
+                  Yes. Use the Image upload tab and drop in a PNG, JPG or WEBP file up to 10 MB. Decoding happens on your device.
                 </p>
               </div>
 
@@ -426,10 +527,37 @@ export const HomePage: React.FC = () => {
 
               <div className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
                 <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
+                  Can I scan a Wi-Fi or WhatsApp QR code online?
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Yes. Use your camera or upload a screenshot, and the details or link appear before you open anything.
+                </p>
+              </div>
+
+              <div className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
+                  Is it safe to scan QR codes with QR Here?
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Yes. Scanning runs in your browser, so your camera feed and images never leave your device, and we do not store your scans. Always check the link shown before you open it.
+                </p>
+              </div>
+
+              <div className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
                   Which image formats are supported?
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                   You can upload QR code images and screenshots in PNG, JPG, and WEBP formats up to 10 MB in file size.
+                </p>
+              </div>
+
+              <div className="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
+                  Is QR Here free?
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Yes, QR Here is 100% free to use. There are no subscriptions, hidden fees, scan limits, or watermarks.
                 </p>
               </div>
 
@@ -454,9 +582,9 @@ export const HomePage: React.FC = () => {
           {/* Contextual Generator CTA Banner */}
           <section className="p-6 sm:p-8 rounded-3xl bg-slate-900 dark:bg-slate-800 text-white flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
-              <h2 className="text-xl font-bold mb-1.5">
+              <p className="text-xl font-bold mb-1.5">
                 Need to create a QR code?
-              </h2>
+              </p>
               <p className="text-sm text-slate-300 max-w-lg leading-relaxed">
                 Generate high-resolution PNG or vector SVG QR codes with colors, logos, and frames in seconds.
               </p>

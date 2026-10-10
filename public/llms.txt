@@ -5,6 +5,11 @@
 ## Core Tools
 
 - [QR Code Scanner](https://qrhere.online/): Scan QR codes directly with your device webcam or by uploading image files. Decoded 100% locally in your browser with zero server uploads.
+- [Free Online Barcode Scanner](https://qrhere.online/barcode-scanner): Scan 1D and 2D barcodes (UPC, EAN, Code 128, QR, Data Matrix) free using your camera or image upload directly in your browser.
+- [Scan Barcode from Image](https://qrhere.online/barcode-reader-from-image): Upload photos or screenshots (JPG, PNG, WebP) to decode retail and logistics barcodes instantly in your browser.
+- [Free UPC & EAN Barcode Scanner](https://qrhere.online/upc-ean-scanner): Scan 12-digit UPC and 13-digit EAN retail packaging barcodes with camera or image upload.
+- [Webcam Barcode Scanner Online](https://qrhere.online/webcam-barcode-scanner): Use your laptop or desktop webcam to scan barcodes online without software or drivers.
+- [Barcode Decoder Online](https://qrhere.online/barcode-decoder-online): Decode barcodes and detect symbologies (UPC, EAN, Code 128, QR, Data Matrix) to extract raw data.
 - [QR Code Generator](https://qrhere.online/qr-code-generator): Create customized vector QR codes with colors, dots, corners, and embedded logos with SVG or PNG export.
 
 ## Support & Documentation

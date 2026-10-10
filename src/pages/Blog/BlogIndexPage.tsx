@@ -19,6 +19,18 @@ interface BlogPostSummary {
 
 const BLOG_POSTS: BlogPostSummary[] = [
   {
+    slug: '/blog/scan-barcode-to-check-price',
+    title: 'How to Scan a Barcode to Check Price (Free Online Barcode Reader)',
+    excerpt:
+      'Use a free online barcode reader to scan any product barcode, then compare prices in seconds. Works on phone or laptop, no app needed. Here is how.',
+    date: 'October 8, 2026',
+    isoDate: '2026-10-08',
+    readingTime: '7 min read',
+    category: 'QR & Barcode',
+    imageUrl: '/images/scan-barcode-price.svg',
+    featured: true,
+  },
+  {
     slug: '/blog/how-does-a-qr-code-work',
     title: "How Does a QR Code Work? What's Inside the Square",
     excerpt:

@@ -26,6 +26,7 @@ export const Header: React.FC = () => {
 
   const navLinks = [
     { to: '/qr-code-generator', label: 'Generate QR Code' },
+    { to: '/barcode-generator', label: 'Barcode Generator' },
     { to: '/barcode-scanner', label: 'Barcode Scanner' },
     { to: '/blog', label: 'Blog' },
     { to: '/about', label: 'About' },

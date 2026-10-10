@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Camera, Upload, Wifi, ShieldCheck, ArrowRight, Eye, ChevronDown, KeyRound, Laptop } from 'lucide-react';
+import { Camera, Upload, ShieldCheck, ChevronDown } from 'lucide-react';
 import { SEOHead } from '../../components/common/SEOHead';
 import { Breadcrumbs } from '../../components/common/Breadcrumbs';
-import {
-  SEO_CONFIG,
-  SCAN_WIFI_FAQS,
-  generateWebApplicationSchema,
-  generateBreadcrumbSchema,
-  generateFAQSchema,
-} from '../../config/seo.config';
+import { SEO_CONFIG, generateBreadcrumbSchema } from '../../config/seo.config';
 import { CameraScanner } from '../../components/scanner/CameraScanner';
 import { ImageScanner } from '../../components/scanner/ImageScanner';
 import { ScanResultCard } from '../../components/qr/ScanResultCard';
@@ -27,17 +21,61 @@ export const ScanWifiPage: React.FC = () => {
   };
 
   const breadcrumbs = [
+    { name: 'Home', path: '/' },
     { name: 'WiFi QR Code Scanner', path: '/scan-wifi-qr-code' },
   ];
 
   const structuredData = {
     '@context': 'https://schema.org',
     '@graph': [
-      generateWebApplicationSchema(),
+      {
+        '@type': 'WebApplication',
+        name: 'QR Here',
+        url: window.location.origin + '/scan-wifi-qr-code',
+        applicationCategory: 'UtilitiesApplication',
+        operatingSystem: 'Any (web browser)',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      },
       generateBreadcrumbSchema(breadcrumbs),
-      generateFAQSchema(SCAN_WIFI_FAQS),
     ],
   };
+
+  const faqs = [
+    {
+      question: 'Can I see the password from a WiFi QR code?',
+      answer:
+        'Yes. When you scan a Wi-Fi QR code with our scanner, it decodes the standard Wi-Fi configuration string directly in your browser. It extracts and displays the network name (SSID), security type, and the plain text password so you can view or copy it.',
+    },
+    {
+      question: 'Can I scan a WiFi QR code from a screenshot?',
+      answer:
+        'Yes. Switch to the Upload Image tab and select or drag and drop any saved screenshot or photo of a Wi-Fi code. The scanner reads the image instantly without uploading anything to external servers.',
+    },
+    {
+      question: 'Does this work on iPhone, Android and PC?',
+      answer:
+        'Yes, it works in any modern web browser across iPhone, Android, Windows PC, Mac, and Linux. While mobile cameras can join networks directly, this online tool is especially useful for revealing passwords or scanning from desktop screens.',
+    },
+    {
+      question: 'Is it safe to scan a WiFi QR code?',
+      answer:
+        'Scanning on QR Here is 100% private because all decoding happens locally inside your browser memory. However, you should only connect to wireless networks and routers that you personally trust.',
+    },
+    {
+      question: 'Why does my WiFi QR code not scan?',
+      answer:
+        'Scanning failures are usually caused by poor lighting, blur, glare on a shiny laminated print, or low image resolution. Make sure the code is well-lit, steady, and entirely visible within the frame.',
+    },
+    {
+      question: 'How do I make a WiFi QR code?',
+      answer:
+        'You can generate your own custom Wi-Fi QR code using our free QR code maker. Enter your network SSID and password, customize colors or frames, and download it as an SVG or PNG file for printing.',
+    },
+  ];
 
   return (
     <>
@@ -53,15 +91,11 @@ export const ScanWifiPage: React.FC = () => {
 
         {/* Page Header */}
         <header className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/80 dark:border-blue-900/60 text-blue-700 dark:text-blue-300 text-xs font-semibold mb-4">
-            <Wifi className="w-3.5 h-3.5" />
-            <span>Free WiFi QR Code Scanner</span>
-          </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Scan WiFi QR code here - to join network
+            WiFi QR Code Scanner
           </h1>
           <p className="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
-            scan here wifi qr code to see password or join wifi network by one click. Use our fast wifi qr code scanner with your camera or an uploaded image.
+            Scan a WiFi QR code with your camera or upload a screenshot to see the network name, security type and password. Everything is decoded in your browser, so nothing is uploaded.
           </p>
         </header>
 
@@ -118,145 +152,141 @@ export const ScanWifiPage: React.FC = () => {
         </section>
 
         {/* Content Section */}
-        <div className="mt-16 sm:mt-20 space-y-14 sm:space-y-16 max-w-5xl lg:max-w-6xl mx-auto">
-          {/* Section: How to use the WiFi QR code scanner */}
-          <section aria-labelledby="heading-how-to-scan-wifi">
-            <h2
-              id="heading-how-to-scan-wifi"
-              className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-6"
-            >
-              How to use the WiFi QR code scanner
+        <div className="mt-16 sm:mt-20 space-y-14 sm:space-y-16 max-w-4xl mx-auto text-slate-700 dark:text-slate-300">
+          
+          {/* What a WiFi QR code contains */}
+          <section aria-labelledby="heading-wifi-contents">
+            <h2 id="heading-wifi-contents" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              What a WiFi QR code contains
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs flex flex-col justify-start">
-                <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 font-bold flex items-center justify-center text-sm mb-4">
+            <p className="text-base leading-relaxed mb-4">
+              Wireless QR codes encode network connection details following the standardized URI configuration format: <code className="text-xs bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-blue-600 dark:text-blue-400 font-mono">WIFI:S:&lt;name&gt;;T:&lt;security&gt;;P:&lt;password&gt;;;</code>. When parsed correctly by our client-side scanner, the data structure breaks down into clear components that give you total visibility before connecting your devices.
+            </p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-base">
+              <li className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <strong className="block text-slate-900 dark:text-white mb-1">Network name (SSID)</strong>
+                The exact broadcast identifier name of the wireless router so you know which network you are inspecting.
+              </li>
+              <li className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <strong className="block text-slate-900 dark:text-white mb-1">Security type</strong>
+                Indicates whether the network utilizes WPA, WPA2, WPA3, WEP encryption, or remains completely open.
+              </li>
+              <li className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <strong className="block text-slate-900 dark:text-white mb-1">Password</strong>
+                The exact security passkey displayed with a convenient copy button so you can paste it into any device settings.
+              </li>
+              <li className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <strong className="block text-slate-900 dark:text-white mb-1">Hidden-network flag</strong>
+                Flags whether the wireless router hides its SSID broadcast or announces itself publicly to nearby devices.
+              </li>
+            </ul>
+          </section>
+
+          {/* How to scan a WiFi QR code */}
+          <section aria-labelledby="heading-how-to-scan">
+            <h2 id="heading-how-to-scan" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              How to scan a WiFi QR code
+            </h2>
+            <p className="text-base leading-relaxed mb-6">
+              Scanning wireless codes online takes just a few seconds whether you are using a smartphone camera or an archived screenshot on your desktop computer.
+            </p>
+            <ol className="space-y-4 text-base">
+              <li className="flex items-start gap-4 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <div className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 font-bold flex items-center justify-center shrink-0">
                   1
                 </div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  Allow camera or upload image
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Open the wifi qr code scanner in any browser. Grant camera access or drag and drop a saved photo or screenshot.
-                </p>
-              </div>
-
-              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs flex flex-col justify-start">
-                <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 font-bold flex items-center justify-center text-sm mb-4">
+                <div>
+                  <strong className="block text-slate-900 dark:text-white mb-1">Open the camera tab or upload a screenshot</strong>
+                  Choose the camera scanner mode to use your live webcam or mobile lens, or switch to the image upload tab if you saved a photo of the code.
+                </div>
+              </li>
+              <li className="flex items-start gap-4 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <div className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 font-bold flex items-center justify-center shrink-0">
                   2
                 </div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  Point at the Wi-Fi code
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Hold your phone or webcam steadily over the Wi-Fi code on the router, cafe table card, or rental guestbook.
-                </p>
-              </div>
-
-              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs flex flex-col justify-start">
-                <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 font-bold flex items-center justify-center text-sm mb-4">
+                <div>
+                  <strong className="block text-slate-900 dark:text-white mb-1">View the decoded network details</strong>
+                  The scanner instantly processes the payload in your browser and displays the SSID, security protocol, and password on your screen.
+                </div>
+              </li>
+              <li className="flex items-start gap-4 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <div className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 font-bold flex items-center justify-center shrink-0">
                   3
                 </div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  See password &amp; connect
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  The wifi qr code scanner decodes the network name and password instantly. Connect in one tap or copy the password.
-                </p>
-              </div>
-            </div>
+                <div>
+                  <strong className="block text-slate-900 dark:text-white mb-1">Copy the password or use Wi-Fi settings</strong>
+                  Copy the plain text password to your clipboard with one click, or enter it manually into your device's Wi-Fi settings panel to establish your connection.
+                </div>
+              </li>
+            </ol>
           </section>
 
-          {/* Section: Why use an online WiFi QR code scanner */}
-          <section aria-labelledby="heading-benefits-wifi-scanner">
-            <h2
-              id="heading-benefits-wifi-scanner"
-              className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-6"
-            >
-              Why use an online WiFi QR code scanner?
+          {/* Scan a WiFi QR code on any device */}
+          <section aria-labelledby="heading-any-device">
+            <h2 id="heading-any-device" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Scan a WiFi QR code on any device
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
-                <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-4">
-                  <KeyRound className="w-5 h-5" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                  Reveal hidden passwords
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Most native phone camera apps connect blindly without revealing the Wi-Fi password. Our wifi qr code scanner reveals the exact plain text password so you can share it with others.
+            <p className="text-base leading-relaxed mb-6">
+              Our web-based scanner works seamlessly across different hardware platforms without requiring app store downloads or proprietary software installations.
+            </p>
+            <div className="space-y-6">
+              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">iPhone and Android</h3>
+                <p className="text-base leading-relaxed">
+                  While modern smartphone camera apps can join wireless networks directly when pointed at a code, this page is especially useful when you need to see and copy the actual password to share with family members or guests.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
-                <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-4">
-                  <Laptop className="w-5 h-5" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                  Works on laptops &amp; desktops
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Laptops, MacBooks, and Windows PCs lack native QR camera readers. With our online wifi qr code scanner, you can upload a photo of the code and get the password in seconds.
+              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Windows PC and laptop</h3>
+                <p className="text-base leading-relaxed">
+                  Windows laptops lack native built-in QR readers. You can easily use your built-in webcam or upload a screenshot of the network code to retrieve the password instantly.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
-                <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-4">
-                  <ShieldCheck className="w-5 h-5" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                  100% private &amp; client-side
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Your network credentials and camera feeds are processed exclusively inside your browser memory. We never store, transmit, or log Wi-Fi passwords on external servers.
+              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Mac and MacBook</h3>
+                <p className="text-base leading-relaxed">
+                  MacBooks and iMacs can access this page directly in Safari, Chrome, or Firefox. Use your FaceTime camera or drag and drop a received image file to decode network credentials in seconds.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Smart TV, console or other devices with no camera</h3>
+                <p className="text-base leading-relaxed">
+                  Devices like smart TVs, streaming boxes, and gaming consoles often lack cameras. Use your phone to read the password here, then type it into your TV or console's network configuration menu.
                 </p>
               </div>
             </div>
           </section>
 
-          {/* Section: What information is revealed */}
-          <section aria-labelledby="heading-wifi-info-revealed">
-            <div className="p-6 sm:p-8 rounded-2xl border border-blue-200/80 dark:border-blue-900/60 bg-blue-50/50 dark:bg-blue-950/20 shadow-xs">
-              <h2
-                id="heading-wifi-info-revealed"
-                className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2"
-              >
-                <Eye className="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0" />
-                <span>What information is decoded by the wifi qr code scanner?</span>
-              </h2>
-              <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-                Wi-Fi QR codes follow standard protocol schemas (<code className="text-xs bg-white dark:bg-slate-800 px-1.5 py-0.5 rounded text-blue-600 dark:text-blue-400 font-mono">WIFI:T:WPA;S:Network;P:Password;;</code>). When scanned by our wifi qr code scanner, you get:
-              </p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-700 dark:text-slate-300">
-                <li className="flex items-start gap-2">
-                  <span className="text-blue-600 dark:text-blue-400 font-bold">•</span>
-                  <span><strong>Network SSID:</strong> The exact broadcast name of the wireless router.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-blue-600 dark:text-blue-400 font-bold">•</span>
-                  <span><strong>Network Password:</strong> The security passkey with a reveal/hide toggle and copy button.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-blue-600 dark:text-blue-400 font-bold">•</span>
-                  <span><strong>Security Protocol:</strong> Identifies WPA, WPA2, WPA3, WEP, or Open unencrypted networks.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-blue-600 dark:text-blue-400 font-bold">•</span>
-                  <span><strong>Hidden Status:</strong> Displays whether the SSID is broadcast publicly or hidden.</span>
-                </li>
-              </ul>
-            </div>
+          {/* Find a WiFi password from a QR code */}
+          <section aria-labelledby="heading-find-password">
+            <h2 id="heading-find-password" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Find a WiFi password from a QR code
+            </h2>
+            <p className="text-base leading-relaxed">
+              If you took a photo of a router sticker during a hotel stay, cafe visit, or friend's house party and forgot the password later, you do not need to hunt down the physical router again. Simply upload your saved photo to our browser scanner. The tool extracts the plain text password instantly, saving you time and hassle.
+            </p>
           </section>
 
-          {/* Section: Frequently Asked Questions */}
-          <section aria-labelledby="heading-wifi-scanner-faqs">
-            <h2
-              id="heading-wifi-scanner-faqs"
-              className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-6"
-            >
-              Frequently asked questions about WiFi QR code scanner
+          {/* Is it safe? */}
+          <section aria-labelledby="heading-is-it-safe">
+            <h2 id="heading-is-it-safe" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Is it safe?
+            </h2>
+            <p className="text-base leading-relaxed mb-3">
+              All decoding occurs 100% client-side inside your browser. Your camera stream, uploaded screenshots, and extracted passwords are never uploaded, logged, or stored on any external server. However, for your personal online security, only join wireless networks and routers that you trust. Read more in our <Link to="/qr-code-security" className="text-blue-600 dark:text-blue-400 underline hover:opacity-80">QR code security guide</Link>.
+            </p>
+          </section>
+
+          {/* Frequently asked questions */}
+          <section aria-labelledby="heading-wifi-faqs">
+            <h2 id="heading-wifi-faqs" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
+              Frequently asked questions
             </h2>
             <div className="space-y-3">
-              {SCAN_WIFI_FAQS.map((faq, index) => {
+              {faqs.map((faq, index) => {
                 const isOpen = openFaqIndexes.includes(index);
                 return (
                   <div
@@ -269,9 +299,9 @@ export const ScanWifiPage: React.FC = () => {
                       aria-expanded={isOpen}
                       className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/40 transition"
                     >
-                      <span className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">
+                      <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">
                         {faq.question}
-                      </span>
+                      </h3>
                       <ChevronDown
                         className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-200 ${
                           isOpen ? 'rotate-180 text-blue-600 dark:text-blue-400' : ''
@@ -289,25 +319,38 @@ export const ScanWifiPage: React.FC = () => {
             </div>
           </section>
 
-          {/* Generator Cross-Link CTA */}
-          <section className="p-6 sm:p-8 rounded-3xl bg-slate-900 dark:bg-slate-800 text-white flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div>
-              <h2 className="text-xl font-bold mb-1.5">
-                Need to create a WiFi QR code?
-              </h2>
-              <p className="text-sm text-slate-300 max-w-lg leading-relaxed">
-                Generate a custom Wi-Fi QR code with your network name, password, and custom frames for your home, cafe, or Airbnb.
-              </p>
-            </div>
-            <Link
-              to="/qr-code-generator-wifi"
-              onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' })}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue-600 text-white text-sm font-semibold hover:bg-blue-500 transition shrink-0 shadow-sm"
-            >
-              <span>WiFi QR Code Maker</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+          {/* Related Links Block */}
+          <section className="pt-6 border-t border-slate-200 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-400">
+            <p className="font-semibold text-slate-900 dark:text-white mb-3">Related scanning and generation tools:</p>
+            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+              <li>
+                <Link to="/qr-code-generator-wifi" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  create a WiFi QR code
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog/how-to-create-wifi-qr-code" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  how to create a WiFi QR code
+                </Link>
+              </li>
+              <li>
+                <Link to="/" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  QR code scanner
+                </Link>
+              </li>
+              <li>
+                <Link to="/qr-code-security" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  QR code security guide
+                </Link>
+              </li>
+              <li>
+                <Link to="/scan-whatsapp-qr-code" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  WhatsApp QR code scanner
+                </Link>
+              </li>
+            </ul>
           </section>
+
         </div>
       </div>
     </>

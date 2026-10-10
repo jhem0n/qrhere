@@ -137,10 +137,66 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
+                  to="/barcode-generator"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 font-medium transition"
+                >
+                  Barcode Generator
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/barcode-generator/code-128"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
+                >
+                  Code 128 Barcode Generator
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/barcode-generator/bulk"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
+                >
+                  Bulk Barcode Generator
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/barcode-scanner"
                   className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
                 >
-                  Barcode Scanner Online
+                  Free online barcode scanner
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/barcode-reader-from-image"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
+                >
+                  Scan Barcode from Image
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/upc-ean-scanner"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
+                >
+                  UPC &amp; EAN Scanner
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/webcam-barcode-scanner"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
+                >
+                  Webcam Barcode Scanner
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/barcode-decoder-online"
+                  className="text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition"
+                >
+                  Barcode Decoder Online
                 </Link>
               </li>
               <li>

@@ -410,6 +410,7 @@ export const BarcodeScannerBox: React.FC<BarcodeScannerBoxProps> = ({ onScanSucc
                   <button
                     type="button"
                     onClick={() => handleStartCamera()}
+                    aria-label="Open Camera to scan barcode"
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition cursor-pointer shadow-sm min-h-[44px]"
                   >
                     <Camera className="w-4 h-4" />
@@ -625,6 +626,7 @@ export const BarcodeScannerBox: React.FC<BarcodeScannerBoxProps> = ({ onScanSucc
                 </p>
                 <button
                   type="button"
+                  aria-label="Upload barcode image from device"
                   disabled={isProcessing}
                   onClick={(e) => {
                     e.stopPropagation();

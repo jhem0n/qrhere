@@ -1,0 +1,467 @@
+================================================================================
+QR HERE (https://qrhere.online) - COMPREHENSIVE PROJECT & SYSTEM ARCHITECTURE
+================================================================================
+Generated for: Strategic Advisory & Engineering Consultation (Claude Dedicated Account)
+Document Version: 1.0.0
+Domain: https://qrhere.online
+Contact / Admin: qrhereonline@gmail.com
+Repository Owner: https://github.com/jhem0n
+
+--------------------------------------------------------------------------------
+TABLE OF CONTENTS
+--------------------------------------------------------------------------------
+1. EXECUTIVE SUMMARY & OUR GOAL
+2. WHAT WE SERVE (VALUE PROPOSITION & AUDIENCE)
+3. ALL SERVICES & PRODUCT CATALOG
+   3.1. High-Performance Scanner Suite
+   3.2. Full-Featured Custom QR Code Generator Studio
+   3.3. Programmatic Keyword Landing Pages
+   3.4. Educational, Security & Guide Hub
+4. SOFTWARE ARCHITECTURE
+   4.1. High-Level Architectural Pattern
+   4.2. Client-Side Rendering & Zero-Persistence Privacy Model
+   4.3. State Management & Data Flow
+   4.4. Video & Canvas Frame Processing Pipeline
+   4.5. Offline PWA & Service Worker
+5. TECHNOLOGY STACK & LIBRARIES
+   5.1. Core Framework & Language
+   5.2. Computer Vision & QR / Barcode Engines
+   5.3. QR Generation & Rendering Engines
+   5.4. Export & Graphic Utilities
+   5.5. Styling & User Interface
+   5.6. Build Tools, Dev Pipeline & Testing
+6. SEO ARCHITECTURE & STRATEGY
+   6.1. Technical SEO Architecture
+   6.2. Route Architecture & Clean URLs
+   6.3. Structured Data (Schema.org / JSON-LD)
+   6.4. Sitemaps, Robots & Canonical Policy
+   6.5. 301 Redirect Architecture (Vercel & SPA Level)
+   6.6. AI Engine Discoverability (llms.txt)
+7. GOOGLE ADSENSE MONETIZATION SETUP
+   7.1. AdSense Auto Ads Philosophy
+   7.2. Performance-Protected Non-Blocking Injection
+   7.3. ads.txt Compliance
+   7.4. Monetization Integrity & User Experience Rules
+8. ANALYTICS ARCHITECTURE
+   8.1. Google Analytics 4 (GA4) Implementation
+   8.2. Vercel Analytics Integration
+   8.3. Privacy-Preserving Event Pipeline & Forbidden Fields
+9. SECURITY & PRIVACY MANDATE
+   9.1. Quishing (QR Phishing) & Malicious URL Detection
+   9.2. Zero Data Retention Architecture
+10. DEPLOYMENT & CLOUD HOSTING INFRASTRUCTURE
+11. STRATEGIC TOPICS & QUESTIONS FOR CLAUDE ADVISORY
+
+================================================================================
+1. EXECUTIVE SUMMARY & OUR GOAL
+================================================================================
+QR Here (https://qrhere.online) is a fast, free, privacy-first web utility for 
+scanning and generating QR codes and barcodes directly inside modern web 
+browsers.
+
+OUR GOAL:
+To become the world's most trusted, ultra-responsive, zero-friction QR code and 
+barcode platform on the web.
+
+Key Pillars of Our Goal:
+1. Universal Accessibility: No app downloads, no account registrations, no 
+   subscriptions, no forced sign-ups, and no paywalls.
+2. Uncompromising Privacy: 100% of video decoding, barcode parsing, image 
+   analysis, and vector QR rendering happens client-side in the user's browser 
+   memory. Scanned data, camera streams, and personal credentials NEVER touch 
+   a remote server.
+3. Top-Tier Performance: Sub-second load times, smooth 60fps camera scanning, 
+   instant vector generation, and pristine Core Web Vitals scores (LCP < 1.2s, 
+   INP < 50ms, CLS = 0).
+4. Permanent Free Utility: While competitors bait users with "dynamic" QR codes 
+   that expire after 14 days and demand monthly fees, QR Here creates permanent, 
+   un-expiring static QR codes with vector SVG/PNG/PDF downloads that work forever.
+5. High Organic Search Footprint: Deep technical SEO architecture ranking 
+   across commercial intent queries for scanning, creating, and specialized 
+   formats (Wi-Fi, WhatsApp, vCard, Barcodes).
+
+================================================================================
+2. WHAT WE SERVE (VALUE PROPOSITION & AUDIENCE)
+================================================================================
+WHAT WE SERVE:
+1. Instant Camera QR & Barcode Scanning: Open the camera on any phone, tablet, 
+   or desktop webcam and decode QR codes and barcodes in milliseconds without 
+   installing native apps.
+2. Image & Screenshot Decoder: Upload or drag-and-drop saved screenshots, photos, 
+   or receipts containing QR codes or barcodes to decode them on-device.
+3. Studio-Grade QR Code Generator: Design customized QR codes with custom brand 
+   colors, gradients, eye shapes, body patterns, embedded logos, and frame banners.
+4. One-Click Specialized Utilities: Scan a Wi-Fi QR code to copy the password or 
+   connect immediately; scan a WhatsApp QR to start a chat without saving the number; 
+   read retail 1D barcodes (UPC/EAN) to look up product info.
+5. Print & Security Education: Comprehensive documentation explaining error 
+   correction levels (L/M/Q/H), minimum print sizes, optical distance ratios, 
+   and protection against quishing (QR phishing).
+
+TARGET AUDIENCE:
+- Everyday mobile & desktop users looking to scan a QR code from a screen or photo.
+- Small businesses, restaurants, cafes, and Airbnb hosts creating Wi-Fi and menu QRs.
+- Professionals and marketers designing branded vCard digital business cards.
+- Developers, warehouse staff, and retailers needing a fast barcode scanner.
+- Security-conscious users seeking ad-free, malware-free scanning alternatives.
+
+================================================================================
+3. ALL SERVICES & PRODUCT CATALOG
+================================================================================
+
+3.1. HIGH-PERFORMANCE SCANNER SUITE
+-----------------------------------
+- Camera QR Scanner (/): Live camera viewfinder with reticle, flashlight/torch 
+  toggle, front/rear camera switcher, and instant URL safety check.
+- Image Upload QR Scanner (/): Client-side image parser with drag-and-drop, 
+  canvas scaling, and support for PNG, JPEG, WEBP, and SVG.
+- Barcode Scanner Online (/barcode-scanner): Supports 1D barcodes (UPC-A, UPC-E, 
+  EAN-13, EAN-8, Code 128, Code 39, ITF, Codabar) and 2D barcodes (QR Code, 
+  Data Matrix, Aztec, PDF417). Employs browser hardware-accelerated BarcodeDetector 
+  with ZXing MultiFormat and jsQR fallback.
+- Wi-Fi QR Code Scanner (/scan-wifi-qr-code): Automatically detects and parses 
+  Wi-Fi connection strings (WIFI:S:MySSID;T:WPA;P:password;;). Displays SSID, 
+  security protocol, one-click password copy button, and connection guide.
+- WhatsApp QR Code Scanner (/scan-whatsapp-qr-code): Recognizes WhatsApp wa.me 
+  links, phone numbers, and pre-composed messages. Provides one-click action to 
+  open WhatsApp Web or the WhatsApp mobile app directly.
+
+3.2. FULL-FEATURED CUSTOM QR CODE GENERATOR STUDIO (/qr-code-generator)
+-----------------------------------------------------------------------
+A real-time vector QR generator supporting 13 data types:
+1.  Website URL (https://...)
+2.  Plain Text (Arbitrary UTF-8 notes, instructions, codes)
+3.  Wi-Fi Network (SSID, WPA/WPA2/WEP/Open, hidden network toggle)
+4.  vCard 3.0 / 4.0 (Full name, phone, email, organization, job title, address, website)
+5.  WhatsApp Direct (Country code selector, phone number, pre-typed message)
+6.  Email Message (Recipient, subject, body text)
+7.  Phone Call (Direct tel: dialer)
+8.  SMS Message (Phone number and pre-filled text)
+9.  Geo Location (Latitude, longitude, Google Maps deep link)
+10. Calendar Event (Event title, start time, end time, location, description)
+11. PayPal Payment (PayPal username/email, payment type, fixed amount, currency)
+12. Cryptocurrency / Bitcoin (Bitcoin/crypto address, amount, message)
+13. Skype & Zoom Meetings (Meeting ID, passcode, join URL)
+
+Customization Workbench Features:
+- Color & Gradient Customization: Single colors or linear gradients with 
+  custom angle (0° to 360°), contrast ratio validator, dark mode previews.
+- Eye Patterns & Body Dots: Square, rounded, dots, extra-rounded, leaf, and diamond.
+- Center Logo / Watermark: Upload custom PNG/SVG logo or choose from built-in 
+  brand presets (WhatsApp, Wi-Fi, LinkedIn, Instagram, YouTube, X/Twitter, etc.) 
+  with automatic white-badge background padding.
+- Error Correction Control: Low (7%), Medium (15%), Quartile (25%), High (30%). 
+  Automatically defaults to High (30%) when center logos are embedded.
+- Frame Wrappers: "SCAN ME" CTA frames, modern card borders, badge pins, and 
+  pill frames with custom label text and colors.
+- Multi-Format Vector & Raster Exports:
+  * High-res PNG (up to 4096px with customizable scale)
+  * Vector SVG (pure resolution-independent SVG for commercial print shops)
+  * Print-Ready PDF (generated via jsPDF with high-DPI scaling)
+- Design Presets: One-click aesthetic presets (Clean Minimalist, Corporate Blue, 
+  Emerald Green, Neon Cyber, Midnight Dark, Crimson Red).
+- Recent Designs History: In-browser local storage design cache for instant re-use.
+
+3.3. PROGRAMMATIC KEYWORD LANDING PAGES
+---------------------------------------
+Dedicated SEO-optimized landing pages targeting specific high-intent search terms:
+- /qr-code-generator-url
+- /qr-code-generator-text
+- /qr-code-generator-wifi
+- /qr-code-generator-vcard
+- /qr-code-generator-whatsapp
+- /qr-code-generator-email
+- /qr-code-generator-phone
+- /qr-code-generator-sms
+- /qr-code-generator-location
+- /qr-code-generator-event
+- /qr-code-generator-paypal
+- /qr-code-generator-bitcoin
+- /qr-code-generator-skype
+- /qr-code-generator-zoom
+
+Each page pre-selects the corresponding generator type, embeds specialized 
+schema markup (HowTo, SoftwareApplication, FAQ), and features extensive, 
+human-written technical guidance.
+
+3.4. EDUCATIONAL, SECURITY & GUIDE HUB
+--------------------------------------
+- /blog: Index of in-depth guides and technical deep-dives.
+- /blog/static-vs-dynamic-qr-code: Transparent guide debunking dynamic QR fees 
+  and showing how to achieve free redirection on your own domain.
+- /blog/how-to-create-vcard-qr-code: Complete digital business card guide.
+- /blog/how-to-scan-qr-code-without-app: Browser-based scanning manual.
+- /blog/how-to-create-wifi-qr-code: Setting up guest Wi-Fi networks with QRs.
+- /blog/qr-code-error-correction-explained: Mathematical explanation of Reed-Solomon.
+- /blog/scan-qr-code-from-screenshot: Desktop and mobile screenshot scanning tips.
+- /blog/qr-code-history: 1994 Denso Wave origins and Masahiro Hara's design.
+- /blog/how-does-a-qr-code-work: Finder patterns, alignment patterns, timing strips.
+- /qr-code-security: Quishing detection, link inspection, and defense strategies.
+- /qr-code-size-and-print-guide: 10:1 distance rule, minimum module size, DPI formulas.
+- /faq: 20+ comprehensive technical and legal answers.
+- /about, /contact, /privacy, /terms: Full compliance and transparency pages.
+
+================================================================================
+4. SOFTWARE ARCHITECTURE
+================================================================================
+
+4.1. HIGH-LEVEL ARCHITECTURAL PATTERN
+-------------------------------------
+- Architecture: Single Page Application (SPA) built with React 19 and Vite 6.
+- Routing: Declarative client-side routing via React Router DOM v7.
+- Code Splitting: Route-level lazy loading (`React.lazy` + `Suspense`) ensures 
+  the initial bundle is razor-thin (~90KB gzipped). Non-homepage pages (generator, 
+  blogs, scanner variants) are downloaded on demand.
+- Component Design: Pure functional components with custom hooks (`useTheme`, 
+  `useOnlineStatus`, `usePWAInstall`).
+- Styling: Tailwind CSS v4 with unified design tokens, dark mode classes (`dark:`), 
+  and zero custom external CSS files.
+
+4.2. CLIENT-SIDE RENDERING & ZERO-PERSISTENCE PRIVACY MODEL
+------------------------------------------------------------
+- 100% Client-Side Execution: Unlike server-rendered QR generators that save images 
+  to AWS S3 or pass user input to backend endpoints, QR Here processes everything 
+  in the client's V8 engine / browser runtime.
+- Zero Persistence: Camera video streams are piped strictly into an in-memory 
+  HTML5 `<video>` element. Frames are sampled onto an off-screen HTML5 `<canvas>`. 
+  Once parsed, pixel buffers are immediately released. When the user stops the camera 
+  or leaves the tab, `MediaStreamTrack.stop()` shuts down the camera hardware.
+
+4.3. STATE MANAGEMENT & DATA FLOW
+---------------------------------
+- Generator State: Clean, typed immutable design state model (`QRDesignState`) 
+  managing payload fields, styling (dot patterns, eye patterns, colors, gradients), 
+  logo settings, and frame parameters.
+- Separation of Concerns:
+  * `src/services/qr/generator.service.ts`: Reed-Solomon encoding and matrix calculation.
+  * `src/services/qr/advanced-renderer.service.ts`: Vector SVG construction and frame math.
+  * `src/services/barcode/barcode-scanner.service.ts`: Multi-format barcode parsing.
+  * `src/services/camera/camera.service.ts`: Hardware camera lifecycle, permissions, and torch.
+
+4.4. VIDEO & CANVAS FRAME PROCESSING PIPELINE
+---------------------------------------------
+- Camera Loop: Uses `requestAnimationFrame` with a 160ms throttle to prevent 
+  CPU starvation while maintaining immediate responsiveness.
+- Multi-Engine Decoding Pipeline:
+  1. Tier 1 (Hardware Acceleration): If `window.BarcodeDetector` exists, decode 
+     the video element directly on the device GPU/C++ layer (<5ms).
+  2. Tier 2 (ZXing MultiFormat Reader): Scans canvas buffer across 1D/2D symbologies.
+  3. Tier 3 (jsQR Engine): Specialized fast fallback for QR codes under tough angles.
+
+4.5. OFFLINE PWA & SERVICE WORKER
+---------------------------------
+- Configured via `vite-plugin-pwa` with Workbox caching strategy.
+- Web App Manifest: `/manifest.webmanifest` with responsive icons and shortcuts.
+- Offline Capability: Core generator and scanner logic works 100% offline once cached.
+
+================================================================================
+5. TECHNOLOGY STACK & LIBRARIES
+================================================================================
+
+5.1. CORE FRAMEWORK & LANGUAGE
+- TypeScript 5.8 (Strict typing across all services, props, and configurations)
+- React 19.0.1 (Modern functional components, hooks, concurrent rendering)
+- React Router DOM 7.18.3 (Client-side routing, programmatic parameters, redirects)
+- Vite 6.2.3 (Ultra-fast ESM bundler, rollup production build pipeline)
+
+5.2. COMPUTER VISION & SCANNING ENGINES
+- Native Web BarcodeDetector API (Zero-dependency hardware-accelerated decoding)
+- @zxing/browser 0.2.1 & @zxing/library 0.23.0 (Multi-format 1D/2D barcode reader)
+- jsQR 1.4.0 (Robust QR code matrix detector)
+
+5.3. QR GENERATION & RENDERING ENGINES
+- qrcode 1.5.4 (Core QR matrix computation and Reed-Solomon error correction)
+- Custom Vector Renderer (High-precision SVG builder for rounded eyes, custom dots, frames)
+
+5.4. EXPORT & GRAPHIC UTILITIES
+- jsPDF 4.2.1 (Vector and high-DPI raster PDF generation for commercial print)
+- HTML5 Canvas API (In-memory frame rendering, scaling, and PNG downloads)
+
+5.5. STYLING & USER INTERFACE
+- Tailwind CSS 4.1.14 (Next-gen engine with zero-runtime utility classes)
+- lucide-react 0.546.0 (Consistent, accessible iconography)
+- motion 12.23.24 (Smooth hardware-accelerated animations and modal transitions)
+
+5.6. BUILD TOOLS, DEV PIPELINE & TESTING
+- tsx 4.21.0 (TypeScript script execution for validation and pre-render checks)
+- vite-plugin-pwa 1.3.0 (PWA service worker generation)
+- Automated Test Scripts:
+  * `npm run test:seo` -> `scripts/test-seo-sitemap.ts` (Validates 35 sitemap URLs, robots.txt, schema)
+  * `npm run test:ads` -> `scripts/test-monetization.ts` (Validates AdSense publisher ID, ads.txt)
+  * `npm run lint` -> `tsc --noEmit` (Zero-warning TypeScript compilation)
+
+================================================================================
+6. SEO ARCHITECTURE & STRATEGY
+================================================================================
+
+6.1. TECHNICAL SEO ARCHITECTURE
+- Title & Meta Description Synchronization: Dynamically synced across every 
+  route via a custom `SEOHead` component.
+- Canonical URL Resolution: Strict canonical URL policy (`getSiteUrl()`) ensuring 
+  no dev URLs, ports, or localhost ever pollute canonical tags.
+- Open Graph & Twitter Cards: 1200x630 branded social share cards (`/og-image.png`) 
+  with dynamic per-page titles, descriptions, and article schemas.
+- Resource Hints: Early `<link rel="preconnect">` and `<link rel="dns-prefetch">` 
+  for Google fonts, analytics, and AdSense CDNs.
+
+6.2. ROUTE ARCHITECTURE & CLEAN URLS
+- Primary Routes:
+  * `/` -> Free QR Code Reader & Scanner
+  * `/qr-code-generator` -> Online Best Free QR Code Generator
+  * `/barcode-scanner` -> Online Barcode Reader (UPC/EAN/Code 128)
+  * `/scan-wifi-qr-code` -> Dedicated Wi-Fi QR Scanner
+  * `/scan-whatsapp-qr-code` -> Dedicated WhatsApp QR Scanner
+- Programmatic Sub-Routes:
+  * `/qr-code-generator-[type]` -> High-converting single-type landing pages
+- Educational Cluster:
+  * `/blog` and 8 long-form pillar articles
+- Clean URL Configuration: Enforced in `vercel.json` (`cleanUrls: true`, `trailingSlash: false`).
+
+6.3. STRUCTURED DATA (SCHEMA.ORG / JSON-LD)
+Rich JSON-LD `@graph` payloads injected on every route:
+- `WebApplication` / `SoftwareApplication`: Defines applicationCategory, operatingSystem ("All"), 
+  browserRequirements ("HTML5, JavaScript"), price ("0 USD").
+- `FAQPage`: Rich FAQ schema marking up top user questions for SERP rich snippet expansion.
+- `BreadcrumbList`: Structured breadcrumbs connecting parent/child page hierarchies.
+- `HowTo`: Step-by-step instructions for creating and scanning codes.
+- `Article` / `TechArticle`: Author, publisher, datePublished, dateModified for blog posts.
+
+6.4. SITEMAPS, ROBOTS & CANONICAL POLICY
+- Sitemap: Clean XML sitemap at `/sitemap.xml` containing 35 high-priority pages 
+  with `<lastmod>` dates. No redirecting URLs, no duplicate trailing slashes.
+- Robots.txt: Clean `/robots.txt` allowing all legitimate search bots and linking sitemap.
+- Automated CI Test: `scripts/test-seo-sitemap.ts` verifies sitemap XML syntax and URL status.
+
+6.5. 301 REDIRECT ARCHITECTURE
+- `vercel.json` contains permanent 301 server-level redirects:
+  * `/create` -> `/qr-code-generator`
+  * `/scan` -> `/`
+  * `/index.html` -> `/`
+- In-app React Router fallback routes guarantee zero 404s even during client-side hydration.
+
+6.6. AI ENGINE DISCOVERABILITY (llms.txt)
+- Implements `/public/llms.txt` following the emerging web standard for AI crawlers 
+  (Perplexity, ChatGPT, Claude, Gemini).
+- Provides plain-text semantic summaries of the site's capabilities, URL structures, 
+  and developer integrations.
+
+================================================================================
+7. GOOGLE ADSENSE MONETIZATION SETUP
+================================================================================
+
+7.1. ADSENSE AUTO ADS PHILOSOPHY
+- Architecture Rule: 100% Google AdSense Auto Ads.
+- Zero Manual Ad Banners: We do not hardcode manual banner slots, sticky footer 
+  takeovers, or intrusive popups.
+- AI Placement: Google’s machine learning determines optimal ad density and placement 
+  without obstructing camera viewfinders, scanner cards, or download buttons.
+
+7.2. PERFORMANCE-PROTECTED NON-BLOCKING INJECTION
+- The official AdSense script is deferred until browser idle time 
+  (`requestIdleCallback` / `setTimeout` fallback).
+- Third-party scripts are completely deferred during initial paint so that LCP (Largest 
+  Contentful Paint) and FID/INP (Interaction to Next Paint) are never penalized.
+- Publisher Client ID: `ca-pub-6935522846608744`.
+
+7.3. ADS.TXT COMPLIANCE
+- Verified `/public/ads.txt`:
+  `google.com, pub-6935522846608744, DIRECT, f08c47fec0942fa0`
+- Passes automated validation script (`scripts/test-monetization.ts`).
+
+7.4. MONETIZATION INTEGRITY & USER EXPERIENCE RULES
+- No intrusive ads over the active camera viewfinder.
+- No ads interrupting file downloads or scanning results.
+- Scanned QR/barcode contents and uploaded images are NEVER passed into ad context.
+
+================================================================================
+8. ANALYTICS ARCHITECTURE
+================================================================================
+
+8.1. GOOGLE ANALYTICS 4 (GA4) IMPLEMENTATION
+- Measurement ID: `G-LJDCL6XYYB`.
+- Initialized in `index.html` with deferred script loading.
+- Managed client-side via `GoogleAnalyticsTracker` component listening to 
+  `useLocation()` route changes for accurate SPA page view tracking.
+
+8.2. VERCEL ANALYTICS INTEGRATION
+- Integrated via official `@vercel/analytics/react` package.
+- Mounted at root application level (`<Analytics />` in `src/App.tsx`).
+- Provides real-time traffic monitoring, geographic distribution, and Web Vitals metrics.
+
+8.3. PRIVACY-PRESERVING EVENT PIPELINE & FORBIDDEN FIELDS
+- `src/services/analytics/analytics.service.ts`:
+  Features an automated defense layer against sensitive data exfiltration.
+- Forbidden Fields Guard:
+  Compile-time and runtime filtering strictly rejects any metadata containing:
+  `['qrText', 'qrContent', 'url', 'image', 'imageData', 'filename', 'message', 'name', 'email']`.
+- Whitelisted Operational Events:
+  `qr_scan_started`, `qr_scan_success`, `qr_scan_failed`, `qr_generation`, 
+  `qr_download`, `image_upload`, `camera_permission_granted`, `camera_permission_denied`.
+
+================================================================================
+9. SECURITY & PRIVACY MANDATE
+================================================================================
+
+9.1. QUISHING (QR PHISHING) & MALICIOUS URL DETECTION
+- Scanned URLs pass through `src/utils/security/url.ts`.
+- Deep Inspection Checks:
+  * IP Address URLs: Flags raw IP addresses (e.g., http://192.168.1.1 or public IPs) 
+    frequently used in malicious attacks.
+  * Punycode / Homograph Attacks: Flags internationalized domain names (xn--) 
+    used to spoof legitimate brands like paypal.com or google.com.
+  * Insecure HTTP: Warns users if a destination URL lacks TLS encryption.
+  * Embedded Credentials: Flags URLs with embedded user credentials (e.g., user:pass@domain).
+  * BiDi Spoofing: Detects bidirectional override characters used to disguise file extensions.
+  * Private / Local IP Warning: Detects intranet addresses to prevent SSRF-like local attacks.
+
+9.2. ZERO DATA RETENTION ARCHITECTURE
+- No databases (no SQL, no MongoDB, no Firestore).
+- No user accounts, cookies, or sessions tracking personal data.
+- Camera streams exist exclusively in device RAM for immediate frame decoding.
+
+================================================================================
+10. DEPLOYMENT & CLOUD HOSTING INFRASTRUCTURE
+================================================================================
+- Production Host: Vercel Cloud Platform.
+- Build Output: Optimized static bundle (`/dist`) compiled via Vite.
+- Edge Rules (`vercel.json`):
+  * `cleanUrls: true` (strips .html extensions automatically)
+  * `trailingSlash: false` (canonicalizes URLs to prevent duplicate indexing)
+  * Cache-Control Headers:
+    - `/assets/*`: `public, max-age=31536000, immutable` (fingerprinted assets cached for 1 year)
+    - `/images/*` and `/icon.svg`: `public, max-age=86400, stale-while-revalidate=604800`
+  * SPA Rewrites: All route traffic rewrites to `/index.html` for client-side routing.
+
+================================================================================
+11. STRATEGIC TOPICS & QUESTIONS FOR CLAUDE ADVISORY
+================================================================================
+The following strategic areas are designated for consultation with the dedicated 
+Claude account:
+
+1. SEO & Organic Traffic Expansion:
+   - What high-volume, low-competition programmatic landing pages or long-tail keywords 
+     should we build next (e.g., PDF to QR, Menu QR, App Store QR, Event Ticket Scanner)?
+   - How can we optimize our internal linking architecture between the blog posts, 
+     tool landing pages, and the homepage to maximize PageRank distribution?
+   - How can we optimize our content to earn Google Featured Snippets and People Also Ask (PAA) boxes?
+
+2. Conversion Rate & User Retention:
+   - What micro-interactions or UI improvements will increase repeat visits and bookmarks?
+   - How can we maximize the PWA install rate on mobile devices without annoying users?
+   - Would adding a "batch QR generator" or "scan history export (CSV/JSON)" improve power-user retention?
+
+3. Monetization Optimization (Google AdSense):
+   - How can we maximize AdSense Auto Ads RPM while preserving a pristine, app-like user experience?
+   - Are there complementary, privacy-safe monetization channels (e.g., non-intrusive affiliate 
+     partnerships for domain registration or commercial label printers) that fit our audience?
+
+4. Technical Innovation & Feature Roadmap:
+   - How can we further improve camera scanning speed in low-light and high-glare environments?
+   - Would implementing WebAssembly (WASM) for computer vision edge-detection yield meaningful speedups 
+     over existing engines?
+   - Internationalization (i18n): What is the optimal architecture to roll out multilingual support 
+     (Spanish, Portuguese, German, French, Japanese) without degrading bundle size or build times?
+
+================================================================================
+END OF SYSTEM DOCUMENTATION
+================================================================================

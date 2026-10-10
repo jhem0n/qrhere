@@ -7,6 +7,7 @@ import { GoogleAutoAds } from './components/common/GoogleAutoAds';
 import { ScrollToTop } from './components/common/ScrollToTop';
 import { HomePage } from './pages/Home/HomePage';
 import { QR_TYPES } from './data/qrTypes';
+import { BARCODE_PAGES } from './data/barcodePages';
 
 // Route-level code splitting: lazy load all non-homepage routes
 const CreatePage = lazy(() => import('./pages/Create/CreatePage').then(m => ({ default: m.CreatePage })));
@@ -24,13 +25,18 @@ const BlogPostErrorCorrection = lazy(() => import('./pages/Blog/BlogPostErrorCor
 const BlogPostScanFromScreenshot = lazy(() => import('./pages/Blog/BlogPostScanFromScreenshot').then(m => ({ default: m.BlogPostScanFromScreenshot })));
 const BlogPostQrCodeHistory = lazy(() => import('./pages/Blog/BlogPostQrCodeHistory').then(m => ({ default: m.BlogPostQrCodeHistory })));
 const BlogPostHowDoesQrCodeWork = lazy(() => import('./pages/Blog/BlogPostHowDoesQrCodeWork').then(m => ({ default: m.BlogPostHowDoesQrCodeWork })));
+const BlogPostScanBarcodeToCheckPrice = lazy(() => import('./pages/Blog/BlogPostScanBarcodeToCheckPrice').then(m => ({ default: m.BlogPostScanBarcodeToCheckPrice })));
 const BarcodeScannerPage = lazy(() => import('./pages/Barcode/BarcodeScannerPage').then(m => ({ default: m.BarcodeScannerPage })));
+const BarcodeHubPage = lazy(() => import('./pages/Barcode/BarcodeHubPage').then(m => ({ default: m.BarcodeHubPage })));
+const BarcodeBulkPage = lazy(() => import('./pages/Barcode/BarcodeBulkPage').then(m => ({ default: m.BarcodeBulkPage })));
+const BarcodeDedicatedPage = lazy(() => import('./pages/Barcode/BarcodeDedicatedPage').then(m => ({ default: m.BarcodeDedicatedPage })));
 const ScanWifiPage = lazy(() => import('./pages/Scanner/ScanWifiPage').then(m => ({ default: m.ScanWifiPage })));
 const ScanWhatsappPage = lazy(() => import('./pages/Scanner/ScanWhatsappPage').then(m => ({ default: m.ScanWhatsappPage })));
 const QrCodeSecurityPage = lazy(() => import('./pages/Security/QrCodeSecurityPage').then(m => ({ default: m.QrCodeSecurityPage })));
 const QrCodePrintGuidePage = lazy(() => import('./pages/Guide/QrCodePrintGuidePage').then(m => ({ default: m.QrCodePrintGuidePage })));
 const NotFoundPage = lazy(() => import('./pages/NotFound/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
 const TypePageTemplate = lazy(() => import('./components/generator/TypePageTemplate').then(m => ({ default: m.TypePageTemplate })));
+const BarcodePageTemplate = lazy(() => import('./components/scanner/BarcodePageTemplate').then(m => ({ default: m.BarcodePageTemplate })));
 
 export default function App() {
   return (
@@ -46,6 +52,17 @@ export default function App() {
           <Route path="/scan-whatsapp-qr-code" element={<ScanWhatsappPage />} />
           <Route path="/barcode-scanner" element={<BarcodeScannerPage />} />
           <Route path="/barcode-scanner-online" element={<Navigate to="/barcode-scanner" replace />} />
+          <Route path="/barcode-reader" element={<Navigate to="/barcode-scanner" replace />} />
+          <Route path="/barcode-generator" element={<BarcodeHubPage />} />
+          <Route path="/barcode-generator/bulk" element={<BarcodeBulkPage />} />
+          <Route path="/barcode-generator/:slug" element={<BarcodeDedicatedPage />} />
+          {BARCODE_PAGES.map((pageDef) => (
+            <Route
+              key={pageDef.slug}
+              path={`/${pageDef.slug}`}
+              element={<BarcodePageTemplate pageDef={pageDef} />}
+            />
+          ))}
           <Route path="/qr-code-generator" element={<CreatePage />} />
           <Route path="/create" element={<Navigate to="/qr-code-generator" replace />} />
           <Route path="/scan" element={<Navigate to="/" replace />} />
@@ -89,6 +106,10 @@ export default function App() {
           <Route
             path="/blog/how-does-a-qr-code-work"
             element={<BlogPostHowDoesQrCodeWork />}
+          />
+          <Route
+            path="/blog/scan-barcode-to-check-price"
+            element={<BlogPostScanBarcodeToCheckPrice />}
           />
           <Route path="/qr-code-security" element={<QrCodeSecurityPage />} />
           <Route path="/qr-code-size-and-print-guide" element={<QrCodePrintGuidePage />} />

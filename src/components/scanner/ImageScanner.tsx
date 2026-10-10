@@ -118,9 +118,9 @@ export const ImageScanner: React.FC<ImageScannerProps> = ({ onScanSuccess }) => 
               <UploadCloud className="h-8 w-8 sm:h-10 sm:w-10" />
             </div>
 
-            <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight">
+            <p className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight">
               Scan QR Code from Image
-            </h3>
+            </p>
 
             <p className="mt-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-sm">
               Drag and drop an image or screenshot to scan here, or{' '}

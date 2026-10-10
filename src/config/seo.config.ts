@@ -20,23 +20,23 @@ export interface FAQItemSchema {
 
 export const SEO_CONFIG: Record<string, RouteSEO> = {
   home: {
-    title: 'Scan Here QR Code – Free QR Reader Online | QR Here',
+    title: 'Scan QR Code Here – Free Online QR Scanner | QR Here',
     description:
-      'Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.',
+      'Scan QR codes online for free with your camera or by uploading an image. Works on phone, PC and Mac. No app, no sign-up, and nothing leaves your device.',
     canonicalPath: '/',
     ogType: 'website',
   },
   scanWifi: {
-    title: 'Scan WiFi QR code here - to join network',
+    title: 'WiFi QR Code Scanner – See Password Online | QR Here',
     description:
-      'scan here wifi qr code to see password or join wifi network by one click',
+      'Scan a WiFi QR code online and see the network name, security type and password. Use your camera or upload a screenshot. Free, private, no app.',
     canonicalPath: '/scan-wifi-qr-code',
     ogType: 'website',
   },
   scanWhatsapp: {
-    title: 'Scan WhatsApp QR Code - to start chat',
+    title: 'WhatsApp QR Code Scanner – Preview Chat Link Free | QR Here',
     description:
-      'scan here WhatsApp qr code to join chat or see phone number instant by one click',
+      'Scan a WhatsApp QR code online and preview the phone number and message before you open the chat. Camera or image upload. Free, private, no app.',
     canonicalPath: '/scan-whatsapp-qr-code',
     ogType: 'website',
   },
@@ -154,10 +154,38 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
     ogType: 'article',
   },
   barcodeScanner: {
-    title: 'Barcode Reader Online – detect barcode free',
+    title: 'Free Online Barcode Scanner – Camera or Image | QR Here',
     description:
-      'Scan barcodes online using your camera or image upload. Free web-based barcode reader supporting UPC, EAN, Code 128, and more.',
+      'Free online barcode scanner. Scan UPC, EAN, Code 128 and QR codes with your camera or an image. No app, no sign-up – processed in your browser.',
     canonicalPath: '/barcode-scanner',
+    ogType: 'website',
+  },
+  barcodeReaderFromImage: {
+    title: 'Scan Barcode from Image – Free Online Reader | QR Here',
+    description:
+      'Upload a photo or screenshot and read the barcode instantly. Free online barcode reader from image. Supports UPC, EAN, Code 128, QR. Nothing is uploaded.',
+    canonicalPath: '/barcode-reader-from-image',
+    ogType: 'website',
+  },
+  upcEanScanner: {
+    title: 'Free UPC & EAN Barcode Scanner Online | QR Here',
+    description:
+      'Scan UPC-A, UPC-E, EAN-13 and EAN-8 product barcodes free with your camera or an image. No app, no sign-up. Processed in your browser.',
+    canonicalPath: '/upc-ean-scanner',
+    ogType: 'website',
+  },
+  webcamBarcodeScanner: {
+    title: 'Webcam Barcode Scanner Online – Free | QR Here',
+    description:
+      'Use your laptop or PC webcam to scan barcodes online. Free, no software to install, works in your browser. Camera stays on your device.',
+    canonicalPath: '/webcam-barcode-scanner',
+    ogType: 'website',
+  },
+  barcodeDecoderOnline: {
+    title: 'Barcode Decoder Online – Read Any Barcode | QR Here',
+    description:
+      'Decode barcodes online and see the data and format. Free barcode decoder for UPC, EAN, Code 128, QR and Data Matrix. Works in your browser.',
+    canonicalPath: '/barcode-decoder-online',
     ogType: 'website',
   },
   // Legacy route aliases for backward compatibility in config lookups
@@ -273,6 +301,13 @@ export const SEO_CONFIG: Record<string, RouteSEO> = {
     canonicalPath: '/blog/how-does-a-qr-code-work',
     ogType: 'article',
   },
+  blogScanBarcodeToCheckPrice: {
+    title: 'Scan a Barcode to Check Price: Free Online Barcode Reader',
+    description:
+      "Use a free online barcode reader to scan any product barcode, then compare prices in seconds. Works on phone or laptop, no app needed. Here's how.",
+    canonicalPath: '/blog/scan-barcode-to-check-price',
+    ogType: 'article',
+  },
   qrCodeSecurity: {
     title: 'QR Code Security Guide – Scan Codes Safely | QR Here',
     description:
@@ -296,27 +331,22 @@ export const HOMEPAGE_FAQS: FAQItemSchema[] = [
   {
     question: 'What does "scan here" mean?',
     answer:
-      'It is an instruction to point your phone camera at the QR code to open what it contains.',
+      '"Scan here" is an instruction printed next to a QR code. It means point your phone camera at the code to open what it contains, such as a website, payment page, menu or Wi-Fi login. You can do the same in your browser with QR Here.',
   },
   {
-    question: 'Can I scan a Wi-Fi or WhatsApp QR code online?',
+    question: 'How do I scan a QR code online?',
     answer:
-      'Yes. Use your camera or upload a screenshot, and the details or link appear before you open anything.',
+      'Open QR Here, tap Start Camera, allow camera access and hold the code in front of the camera. Or switch to Image upload and add a screenshot or photo. The result appears in a moment and you choose whether to open or copy it.',
   },
   {
-    question: 'Is QR Here free?',
+    question: 'Can I scan a QR code on my computer or laptop?',
     answer:
-      'Yes, QR Here is 100% free to use. There are no subscriptions, hidden fees, scan limits, or watermarks.',
+      'Yes. Any laptop or desktop with a webcam works in Chrome, Edge, Safari or Firefox. If the code is on your screen, take a screenshot and upload it.',
   },
   {
-    question: 'Does it work on iPhone and Android?',
+    question: 'Can I scan a QR code from an image or screenshot?',
     answer:
-      'Yes. QR Here works seamlessly on iPhones, iPads, Android smartphones, tablets, Windows PCs, and Macs using any modern web browser.',
-  },
-  {
-    question: 'Do you store my camera feed or images?',
-    answer:
-      'No. All scanning and decoding runs completely in your web browser. Your camera feed and uploaded images never leave your device and are never sent to or stored on any server.',
+      'Yes. Use the Image upload tab and drop in a PNG, JPG or WEBP file up to 10 MB. Decoding happens on your device.',
   },
   {
     question: 'Do I need to install an app or sign up?',
@@ -324,9 +354,24 @@ export const HOMEPAGE_FAQS: FAQItemSchema[] = [
       'No installation or account registration is required. You can scan or create QR codes immediately directly in your browser without entering an email or password.',
   },
   {
+    question: 'Can I scan a Wi-Fi or WhatsApp QR code online?',
+    answer:
+      'Yes. Use your camera or upload a screenshot, and the details or link appear before you open anything.',
+  },
+  {
+    question: 'Is it safe to scan QR codes with QR Here?',
+    answer:
+      'Yes. Scanning runs in your browser, so your camera feed and images never leave your device, and we do not store your scans. Always check the link shown before you open it.',
+  },
+  {
     question: 'Which image formats are supported?',
     answer:
       'You can upload QR code images and screenshots in PNG, JPG, and WEBP formats up to 10 MB in file size.',
+  },
+  {
+    question: 'Is QR Here free?',
+    answer:
+      'Yes, QR Here is 100% free to use. There are no subscriptions, hidden fees, scan limits, or watermarks.',
   },
   {
     question: 'How do I create my own QR code?',
@@ -398,6 +443,42 @@ export const SCAN_WHATSAPP_FAQS: FAQItemSchema[] = [
 ];
 
 /**
+ * FAQs for the Barcode Scanner Landing Page
+ */
+export const BARCODE_SCANNER_FAQS: FAQItemSchema[] = [
+  {
+    question: 'Is this online barcode scanner really free?',
+    answer:
+      'Yes. It is completely free, with no sign-up, no limits and no app to install.',
+  },
+  {
+    question: 'Can I scan a barcode from an image or screenshot?',
+    answer:
+      'Yes. Upload a JPG, PNG or WebP image and the barcode is decoded in your browser.',
+  },
+  {
+    question: 'Does it work on iPhone and Android?',
+    answer:
+      'Yes. It works in modern mobile browsers such as Safari and Chrome. Allow camera access when prompted.',
+  },
+  {
+    question: 'Which barcode types can it read?',
+    answer:
+      'It reads common 1D barcodes such as UPC, EAN and Code 128, and 2D codes such as QR and Data Matrix.',
+  },
+  {
+    question: 'Is my data stored or sent anywhere?',
+    answer:
+      'No. Everything is processed locally on your device.',
+  },
+  {
+    question: "Why won't my barcode scan?",
+    answer:
+      'Usually poor lighting, glare, blur or a cropped code. Try better light, hold the camera steady, or upload a clearer, higher-resolution image.',
+  },
+];
+
+/**
  * Generates Schema.org WebSite entity
  */
 export function generateWebSiteSchema(siteUrl: string = getSiteUrl()) {
@@ -421,9 +502,9 @@ export function generateWebApplicationSchema(siteUrl: string = getSiteUrl()) {
     name: 'QR Here',
     url: siteUrl,
     description:
-      'Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.',
+      'Scan QR codes online for free with your camera or by uploading an image. Works on phone, PC and Mac. No app, no sign-up, and nothing leaves your device.',
     applicationCategory: 'UtilitiesApplication',
-    operatingSystem: 'Any',
+    operatingSystem: 'Any (web browser)',
     browserRequirements: 'Requires JavaScript. Requires HTML5 Canvas or WebAssembly support.',
     softwareVersion: APP_CONFIG.version,
     offers: {

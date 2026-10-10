@@ -1,0 +1,211 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" role="img" aria-labelledby="svg-title svg-desc" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="svg-title">Scan Barcode to Check Price</title>
+  <desc id="svg-desc">Illustration showing an online barcode reader scanning a retail product barcode to check and compare prices online.</desc>
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#090d16" />
+    </linearGradient>
+    <linearGradient id="laserGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0" />
+      <stop offset="25%" stop-color="#ef4444" stop-opacity="0.85" />
+      <stop offset="50%" stop-color="#f87171" stop-opacity="1" />
+      <stop offset="75%" stop-color="#ef4444" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="blueCardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.8" />
+    </linearGradient>
+    <linearGradient id="greenCardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#065f46" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.8" />
+    </linearGradient>
+    <filter id="laserGlow" x="-20%" y="-100%" width="140%" height="300%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1200" height="675" fill="url(#bgGrad)" />
+
+  <!-- Grid overlay -->
+  <g opacity="0.07" stroke="#94a3b8" stroke-width="1">
+    <line x1="0" y1="75" x2="1200" y2="75" />
+    <line x1="0" y1="150" x2="1200" y2="150" />
+    <line x1="0" y1="225" x2="1200" y2="225" />
+    <line x1="0" y1="300" x2="1200" y2="300" />
+    <line x1="0" y1="375" x2="1200" y2="375" />
+    <line x1="0" y1="450" x2="1200" y2="450" />
+    <line x1="0" y1="525" x2="1200" y2="525" />
+    <line x1="0" y1="600" x2="1200" y2="600" />
+    <line x1="150" y1="0" x2="150" y2="675" />
+    <line x1="300" y1="0" x2="300" y2="675" />
+    <line x1="450" y1="0" x2="450" y2="675" />
+    <line x1="600" y1="0" x2="600" y2="675" />
+    <line x1="750" y1="0" x2="750" y2="675" />
+    <line x1="900" y1="0" x2="900" y2="675" />
+    <line x1="1050" y1="0" x2="1050" y2="675" />
+  </g>
+
+  <!-- Left: Scanner Viewport with Retail Barcode -->
+  <g transform="translate(80, 80)">
+    <!-- Scanner frame container -->
+    <rect width="480" height="515" rx="24" fill="#0b1120" stroke="#334155" stroke-width="2" filter="url(#cardShadow)" />
+
+    <!-- Top scanner bar -->
+    <rect x="0" y="0" width="480" height="52" rx="24" fill="#1e293b" />
+    <rect x="0" y="28" width="480" height="24" fill="#1e293b" />
+    <circle cx="36" cy="26" r="6" fill="#ef4444" />
+    <circle cx="56" cy="26" r="6" fill="#f59e0b" />
+    <circle cx="76" cy="26" r="6" fill="#10b981" />
+    <text x="240" y="31" font-size="13" font-weight="600" fill="#94a3b8" text-anchor="middle">Online Barcode Reader • Camera Scanner</text>
+
+    <!-- Scan Area Reticle Background -->
+    <rect x="36" y="80" width="408" height="340" rx="16" fill="#0f172a" stroke="#1e293b" stroke-width="2" />
+
+    <!-- Corner Reticles (Scanner targeting brackets) -->
+    <g stroke="#38bdf8" stroke-width="4" stroke-linecap="round" fill="none">
+      <!-- Top Left -->
+      <path d="M 60 128 L 60 104 L 84 104" />
+      <!-- Top Right -->
+      <path d="M 420 128 L 420 104 L 396 104" />
+      <!-- Bottom Left -->
+      <path d="M 60 372 L 60 396 L 84 396" />
+      <!-- Bottom Right -->
+      <path d="M 420 372 L 420 396 L 396 396" />
+    </g>
+
+    <!-- Barcode Package Surface -->
+    <g transform="translate(68, 140)">
+      <rect width="344" height="220" rx="12" fill="#ffffff" filter="url(#cardShadow)" />
+
+      <!-- Barcode Bars (Accurate UPC/EAN styling) -->
+      <g fill="#111827">
+        <!-- Guard bar left -->
+        <rect x="28" y="24" width="4" height="135" />
+        <rect x="36" y="24" width="4" height="135" />
+
+        <!-- Digits group 1 -->
+        <rect x="46" y="24" width="6" height="120" />
+        <rect x="58" y="24" width="3" height="120" />
+        <rect x="65" y="24" width="7" height="120" />
+        <rect x="78" y="24" width="4" height="120" />
+        <rect x="88" y="24" width="8" height="120" />
+        <rect x="102" y="24" width="3" height="120" />
+        <rect x="110" y="24" width="6" height="120" />
+        <rect x="122" y="24" width="4" height="120" />
+        <rect x="132" y="24" width="8" height="120" />
+        <rect x="146" y="24" width="5" height="120" />
+        <rect x="157" y="24" width="3" height="120" />
+
+        <!-- Center guard -->
+        <rect x="168" y="24" width="4" height="135" />
+        <rect x="176" y="24" width="4" height="135" />
+
+        <!-- Digits group 2 -->
+        <rect x="186" y="24" width="6" height="120" />
+        <rect x="198" y="24" width="4" height="120" />
+        <rect x="208" y="24" width="8" height="120" />
+        <rect x="222" y="24" width="3" height="120" />
+        <rect x="230" y="24" width="7" height="120" />
+        <rect x="243" y="24" width="4" height="120" />
+        <rect x="253" y="24" width="5" height="120" />
+        <rect x="264" y="24" width="8" height="120" />
+        <rect x="278" y="24" width="3" height="120" />
+        <rect x="287" y="24" width="6" height="120" />
+        <rect x="299" y="24" width="4" height="120" />
+
+        <!-- Right guard -->
+        <rect x="309" y="24" width="4" height="135" />
+        <rect x="317" y="24" width="4" height="135" />
+      </g>
+
+      <!-- Barcode Digits Text (UPC-A standard) -->
+      <text x="14" y="174" font-size="16" font-family="'Courier New', monospace" font-weight="700" fill="#111827">0</text>
+      <text x="100" y="174" font-size="18" font-family="'Courier New', monospace" font-weight="700" fill="#111827" letter-spacing="4" text-anchor="middle">12345</text>
+      <text x="245" y="174" font-size="18" font-family="'Courier New', monospace" font-weight="700" fill="#111827" letter-spacing="4" text-anchor="middle">67890</text>
+      <text x="330" y="174" font-size="16" font-family="'Courier New', monospace" font-weight="700" fill="#111827">5</text>
+    </g>
+
+    <!-- Laser Scanning Line Beam -->
+    <g filter="url(#laserGlow)">
+      <line x1="44" y1="250" x2="436" y2="250" stroke="url(#laserGrad)" stroke-width="4" />
+    </g>
+
+    <!-- Decoded Number Badge on Scanner Bottom -->
+    <g transform="translate(36, 440)">
+      <rect width="408" height="52" rx="12" fill="#047857" fill-opacity="0.2" stroke="#10b981" stroke-width="1.5" />
+      <circle cx="28" cy="26" r="10" fill="#10b981" />
+      <!-- Checkmark -->
+      <path d="M 23 26 L 27 30 L 33 22" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      <text x="48" y="23" font-size="11" font-weight="600" fill="#a7f3d0">DECODED BARCODE NUMBER</text>
+      <text x="48" y="40" font-size="16" font-family="'Courier New', monospace" font-weight="700" fill="#ffffff">012345678905</text>
+      <text x="388" y="32" font-size="12" font-weight="600" fill="#34d399" text-anchor="end">UPC-A / EAN-13</text>
+    </g>
+  </g>
+
+  <!-- Right: Price Comparison & Lookup Flow -->
+  <g transform="translate(620, 80)">
+    <!-- Header Badge -->
+    <rect x="0" y="0" width="180" height="32" rx="16" fill="#38bdf8" fill-opacity="0.15" stroke="#38bdf8" stroke-width="1" />
+    <text x="90" y="21" font-size="12" font-weight="700" fill="#38bdf8" text-anchor="middle">PRICE CHECKER WORKFLOW</text>
+
+    <!-- Main Title -->
+    <text x="0" y="68" font-size="32" font-weight="800" fill="#ffffff">Scan Barcode to</text>
+    <text x="0" y="108" font-size="32" font-weight="800" fill="#38bdf8">Check &amp; Compare Price</text>
+
+    <!-- Card 1: Shop Physical Shelf Price -->
+    <g transform="translate(0, 140)">
+      <rect width="500" height="96" rx="16" fill="#1e293b" stroke="#334155" stroke-width="1.5" filter="url(#cardShadow)" />
+      <!-- Store icon badge -->
+      <rect x="18" y="20" width="56" height="56" rx="12" fill="#334155" />
+      <text x="46" y="54" font-size="24" text-anchor="middle">🏬</text>
+      <text x="90" y="42" font-size="14" font-weight="600" fill="#94a3b8">Physical Shop Shelf Price</text>
+      <text x="90" y="66" font-size="13" fill="#cbd5e1">Bluetooth Wireless Speaker</text>
+      <text x="475" y="48" font-size="24" font-weight="800" fill="#f87171" text-anchor="end">$40.00</text>
+      <text x="475" y="68" font-size="11" font-weight="500" fill="#94a3b8" text-anchor="end">In-store price tag</text>
+    </g>
+
+    <!-- Card 2: Local Marketplace Price (Winning Deal!) -->
+    <g transform="translate(0, 252)">
+      <rect width="500" height="110" rx="16" fill="url(#greenCardGrad)" stroke="#10b981" stroke-width="2" filter="url(#cardShadow)" />
+      <!-- Deal icon badge -->
+      <rect x="18" y="24" width="62" height="62" rx="14" fill="#047857" />
+      <text x="49" y="62" font-size="28" text-anchor="middle">🏷️</text>
+      <text x="94" y="44" font-size="15" font-weight="700" fill="#ffffff">Online Marketplace Price</text>
+      <text x="94" y="66" font-size="13" fill="#6ee7b7">Daraz / Shopee / Local Online Stores</text>
+      <text x="94" y="88" font-size="11" font-weight="600" fill="#a7f3d0">Identical barcode match: 012345678905</text>
+      <!-- Price & Savings -->
+      <text x="475" y="52" font-size="30" font-weight="900" fill="#34d399" text-anchor="end">$32.00</text>
+      <rect x="365" y="66" width="112" height="26" rx="13" fill="#10b981" />
+      <text x="421" y="83" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">SAVE $8.00 (20%)</text>
+    </g>
+
+    <!-- Card 3: Free Product Database Lookup -->
+    <g transform="translate(0, 378)">
+      <rect width="500" height="96" rx="16" fill="url(#blueCardGrad)" stroke="#38bdf8" stroke-width="1.5" filter="url(#cardShadow)" />
+      <!-- DB icon badge -->
+      <rect x="18" y="20" width="56" height="56" rx="12" fill="#1e3a8a" />
+      <text x="46" y="54" font-size="24" text-anchor="middle">🔍</text>
+      <text x="90" y="42" font-size="14" font-weight="600" fill="#ffffff">Free Database &amp; Search Engine</text>
+      <text x="90" y="66" font-size="13" fill="#93c5fd">Open Food Facts • Google Shopping • UPCitemdb</text>
+      <text x="475" y="55" font-size="13" font-weight="700" fill="#38bdf8" text-anchor="end">Instant Lookup</text>
+    </g>
+
+    <!-- Trust Footer -->
+    <g transform="translate(0, 492)">
+      <text x="0" y="16" font-size="12" fill="#94a3b8">⚡ 100% Client-Side In-Browser Decoding</text>
+      <text x="235" y="16" font-size="12" fill="#94a3b8">• No App Required</text>
+      <text x="350" y="16" font-size="12" fill="#94a3b8">• Zero Server Uploads</text>
+    </g>
+  </g>
+</svg>

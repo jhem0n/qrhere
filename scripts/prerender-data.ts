@@ -6,6 +6,7 @@
  */
 
 import { QR_TYPES } from '../src/data/qrTypes';
+import { BARCODE_PAGES } from '../src/data/barcodePages';
 
 export interface StaticRouteConfig {
   path: string;
@@ -308,6 +309,24 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
         </header>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <article class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col justify-between space-y-4 md:col-span-2 bg-gradient-to-br from-blue-50/50 to-white">
+            <div>
+              <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">QR &amp; Barcode • Price Checker</span>
+              <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mt-1">
+                <a href="/blog/scan-barcode-to-check-price" class="hover:text-blue-600 underline">
+                  How to Scan a Barcode to Check Price (Free Online Barcode Reader)
+                </a>
+              </h2>
+              <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                Use a free online barcode reader to scan any product barcode, then compare prices in seconds. Works on phone or laptop, no app needed.
+              </p>
+            </div>
+            <div class="text-xs text-slate-500 pt-2 border-t border-slate-100 flex items-center justify-between">
+              <span>Published October 2026</span>
+              <span>7 min read</span>
+            </div>
+          </article>
+
           <article class="p-6 rounded-2xl border border-slate-200 bg-white flex flex-col justify-between space-y-4">
             <div>
               <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Comparison Guide</span>
@@ -1395,49 +1414,210 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
   {
     path: '/barcode-scanner',
     folder: 'barcode-scanner',
-    title: 'Barcode Scanner Online – Free, No App Needed | QR Here',
+    title: 'Free Online Barcode Scanner – Camera or Image | QR Here',
     description:
-      'Scan barcodes online using your camera or image upload. Free web-based barcode reader supporting UPC, EAN, Code 128, and more.',
+      'Free online barcode scanner. Scan UPC, EAN, Code 128 and QR codes with your camera or an image. No app, no sign-up – processed in your browser.',
     keywords:
-      'barcode scanner online, online barcode reader, scan barcode with camera, barcode scanner free, UPC scanner, EAN scanner',
-    heading: 'Online Barcode Reader',
+      'free barcode scanner, scan barcode online, online barcode scanner, online barcode reader, UPC scanner, EAN scanner, Code 128 reader',
+    heading: 'Free Online Barcode Scanner & Reader',
     breadcrumbs: [
       { name: 'Home', path: '/' },
       { name: 'Barcode Scanner', path: '/barcode-scanner' },
     ],
     htmlContent: `
-      <section class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
-        <header class="border-b border-slate-200 pb-6 mb-6">
-          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Online Barcode Reader
+      <section class="max-w-4xl mx-auto px-4 py-8 space-y-10 text-slate-800 leading-relaxed">
+        <header class="text-center space-y-3 mb-8">
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+            Free Online Barcode Scanner &amp; Reader
           </h1>
-          <p class="mt-2 text-base text-slate-600 max-w-2xl leading-relaxed">
-            Scan 1D and 2D barcodes directly in your web browser. Free, client-side, and private with no application installation needed.
+          <p class="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            Scan any barcode free with your camera or an image upload. Reads 1D barcodes (UPC, EAN, Code 128) and 2D codes (QR, Data Matrix). No app, no sign-up, and your images never leave your device.
           </p>
         </header>
 
-        <div class="space-y-6 text-sm text-slate-700 leading-relaxed">
-          <section>
-            <h2 class="text-lg font-bold text-slate-900 mb-2">Supported Formats</h2>
-            <p>Our online barcode scanner supports both linear (1D) and matrix (2D) formats:</p>
-            <ul class="list-disc pl-5 space-y-1 text-slate-600 mt-2">
-              <li><strong>EAN-13 &amp; EAN-8:</strong> Standard retail barcodes across Europe and worldwide.</li>
-              <li><strong>UPC-A &amp; UPC-E:</strong> Standard retail product barcodes in North America.</li>
-              <li><strong>Code 128 &amp; Code 39:</strong> High-density industrial, packaging, and shipping barcodes.</li>
-              <li><strong>ITF (Interleaved 2 of 5):</strong> Warehouse carton and logistics barcodes.</li>
-              <li><strong>QR Code &amp; Data Matrix:</strong> High-density 2D barcodes for websites and logistics.</li>
-            </ul>
-          </section>
+        <section class="space-y-6">
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+            How to Scan a Barcode Online
+          </h2>
+          <p class="text-slate-700 text-base sm:text-lg leading-relaxed">
+            Our online barcode scanner works in any modern browser on phone, tablet and desktop. Choose whichever method suits you. Whether you have a saved screenshot on your device or a physical product right in front of you, you can decode barcodes instantly without installing apps or buying hardware scanners.
+          </p>
 
-          <section>
-            <h2 class="text-lg font-bold text-slate-900 mb-2">How to Scan Online</h2>
-            <ol class="list-decimal pl-5 space-y-1.5 text-slate-600">
-              <li>Click <strong>Start Camera</strong> and allow access to your smartphone camera or webcam.</li>
-              <li>Hold the barcode steadily within the guide box.</li>
-              <li>The decoded digits or text will instantly appear on your screen for easy copying.</li>
-            </ol>
-          </section>
-        </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+            <div class="p-6 rounded-2xl border border-slate-200 bg-white shadow-xs space-y-3">
+              <h3 class="text-lg sm:text-xl font-bold text-slate-900">
+                Scan a barcode from an image
+              </h3>
+              <ol class="list-decimal pl-5 space-y-2 text-sm sm:text-base text-slate-700 leading-relaxed">
+                <li>Open the scanner and click &ldquo;Upload&rdquo;.</li>
+                <li>Select a photo or screenshot of the barcode from your phone or computer.</li>
+                <li>The barcode is decoded instantly and the data appears in the output panel.</li>
+              </ol>
+            </div>
+
+            <div class="p-6 rounded-2xl border border-slate-200 bg-white shadow-xs space-y-3">
+              <h3 class="text-lg sm:text-xl font-bold text-slate-900">
+                Scan a barcode with your camera
+              </h3>
+              <ol class="list-decimal pl-5 space-y-2 text-sm sm:text-base text-slate-700 leading-relaxed">
+                <li>Click &ldquo;Open Camera&rdquo; and allow camera access.</li>
+                <li>Point the camera at the barcode and click &ldquo;Capture&rdquo;.</li>
+                <li>The captured image is decoded automatically and the result is shown.</li>
+              </ol>
+            </div>
+          </div>
+
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200">
+            <strong>Helpful scanning tips:</strong> Ensure good lighting on the barcode surface and hold your device steady. Keep the whole barcode in frame with all margins and bars clearly visible. Avoid glare or strong light reflections on glossy plastic packaging. If a camera scan fails due to camera motion blur, take a crisp, well-focused photo and upload the higher-resolution image instead.
+          </p>
+        </section>
+
+        <section class="space-y-5">
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+            Supported Barcode Formats
+          </h2>
+          <p class="text-slate-700 text-base leading-relaxed">
+            Our web barcode scanner is built with multi-format recognition engines. It supports the standard linear (1D) and matrix (2D) symbologies used across retail, warehousing, logistics, and identity verification:
+          </p>
+
+          <div class="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-xs">
+            <table class="w-full text-left text-sm sm:text-base border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 bg-slate-50 text-slate-900 font-semibold">
+                  <th class="py-3.5 px-4 sm:px-6 w-1/3">Barcode Format</th>
+                  <th class="py-3.5 px-4 sm:px-6">Typical Use &amp; Application</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700">
+                <tr>
+                  <td class="py-3 px-4 sm:px-6 font-medium text-slate-900">UPC-A and UPC-E</td>
+                  <td class="py-3 px-4 sm:px-6">Retail products, groceries, and consumer point of sale in the US and Canada.</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-4 sm:px-6 font-medium text-slate-900">EAN-13 and EAN-8</td>
+                  <td class="py-3 px-4 sm:px-6">Retail products, supermarket items, and book ISBNs worldwide outside North America.</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-4 sm:px-6 font-medium text-slate-900">Code 128</td>
+                  <td class="py-3 px-4 sm:px-6">High-density tracking for shipping labels, freight, packaging, and logistics management.</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-4 sm:px-6 font-medium text-slate-900">Code 39</td>
+                  <td class="py-3 px-4 sm:px-6">Industrial manufacturing, inventory tracking, automotive tagging, and defense records.</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-4 sm:px-6 font-medium text-slate-900">ITF / ITF-14</td>
+                  <td class="py-3 px-4 sm:px-6">Corrugated shipping cartons, cardboard master cases, and bulk wholesale packaging.</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-4 sm:px-6 font-medium text-slate-900">QR Code</td>
+                  <td class="py-3 px-4 sm:px-6">Website URLs, Wi-Fi network credentials, digital payments, and plain text notes.</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-4 sm:px-6 font-medium text-slate-900">Data Matrix</td>
+                  <td class="py-3 px-4 sm:px-6">Tiny components, aerospace parts, medical devices, and healthcare serialization.</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-4 sm:px-6 font-medium text-slate-900">PDF417</td>
+                  <td class="py-3 px-4 sm:px-6">ID cards, driver licenses, airline boarding passes, railway tickets, and parcels.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="space-y-4 p-6 sm:p-8 rounded-3xl bg-blue-50/50 border border-blue-200">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+            Private and Free – Nothing Is Uploaded
+          </h2>
+          <p class="text-slate-700 text-base leading-relaxed">
+            Scanning runs entirely in your browser. Your camera feed and images are never uploaded to a server or stored. All image processing and barcode decoding happen locally inside your web browser memory using client-side algorithms. There is no account, no paywall and no scan limit. You can scan as many barcodes as you need every day with complete confidentiality.
+          </p>
+        </section>
+
+        <section class="space-y-6">
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+            Frequently Asked Questions
+          </h2>
+          <div class="space-y-4">
+            <div class="p-5 sm:p-6 rounded-2xl border border-slate-200 bg-white shadow-xs">
+              <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-2">
+                1. Is this online barcode scanner really free?
+              </h3>
+              <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                Yes. It is completely free, with no sign-up, no limits and no app to install.
+              </p>
+            </div>
+
+            <div class="p-5 sm:p-6 rounded-2xl border border-slate-200 bg-white shadow-xs">
+              <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-2">
+                2. Can I scan a barcode from an image or screenshot?
+              </h3>
+              <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                Yes. Upload a JPG, PNG or WebP image and the barcode is decoded in your browser.
+              </p>
+            </div>
+
+            <div class="p-5 sm:p-6 rounded-2xl border border-slate-200 bg-white shadow-xs">
+              <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-2">
+                3. Does it work on iPhone and Android?
+              </h3>
+              <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                Yes. It works in modern mobile browsers such as Safari and Chrome. Allow camera access when prompted.
+              </p>
+            </div>
+
+            <div class="p-5 sm:p-6 rounded-2xl border border-slate-200 bg-white shadow-xs">
+              <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-2">
+                4. Which barcode types can it read?
+              </h3>
+              <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                It reads common 1D barcodes such as UPC, EAN and Code 128, and 2D codes such as QR and Data Matrix.
+              </p>
+            </div>
+
+            <div class="p-5 sm:p-6 rounded-2xl border border-slate-200 bg-white shadow-xs">
+              <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-2">
+                5. Is my data stored or sent anywhere?
+              </h3>
+              <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                No. Everything is processed locally on your device.
+              </p>
+            </div>
+
+            <div class="p-5 sm:p-6 rounded-2xl border border-slate-200 bg-white shadow-xs">
+              <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-2">
+                6. Why won&apos;t my barcode scan?
+              </h3>
+              <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                Usually poor lighting, glare, blur or a cropped code. Try better light, hold the camera steady, or upload a clearer, higher-resolution image.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+            Related Tools
+          </h2>
+          <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
+            Check out our other fast and private web utilities:
+          </p>
+          <ul class="space-y-2.5 text-sm sm:text-base">
+            <li>
+              <a href="/" class="font-semibold text-blue-600 underline">
+                QR code scanner
+              </a>
+              &ndash; Scan 2D QR codes with your webcam or an uploaded image in your browser.
+            </li>
+            <li>
+              <a href="/qr-code-generator" class="font-semibold text-blue-600 underline">
+                QR code generator
+              </a>
+              &ndash; Create custom QR codes with logos, frames, and colors with instant vector SVG or PNG download.
+            </li>
+          </ul>
+        </section>
       </section>
     `,
   },
@@ -1867,6 +2047,318 @@ const BASE_STATIC_ROUTES: StaticRouteConfig[] = [
       </article>
     `,
   },
+  {
+    path: '/blog/how-does-a-qr-code-work',
+    folder: 'blog/how-does-a-qr-code-work',
+    title: "How Does a QR Code Work? What's Inside the Square",
+    description:
+      'Ever wondered how a QR code works? Learn what is inside the square, how your phone reads it in a second, and why a damaged code can still scan.',
+    keywords:
+      'how does a qr code work, what is inside a qr code, qr code anatomy, how qr codes work, qr code finder patterns, qr code modules, qr code error correction',
+    heading: "How Does a QR Code Work? What's Really Inside That Square",
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog' },
+      { name: 'How Does a QR Code Work', path: '/blog/how-does-a-qr-code-work' },
+    ],
+    htmlContent: `
+      <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Technology Explained • 6 min read</span>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">
+            How Does a QR Code Work? What's Really Inside That Square
+          </h1>
+          <p class="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed">
+            You point your phone at a little black and white square. A second later, a website opens, a Wi-Fi network connects, or a payment screen appears. It feels like magic. Here is how it actually works, in plain language.
+          </p>
+        </header>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">The short answer</h2>
+          <p class="text-slate-600">A QR code is a grid of tiny black and white squares called modules. Together they spell out a message in a simple code, the same way letters spell words. Your phone's camera sees the grid, works out how it's turned and sized, reads the squares, fixes any mistakes, and turns them back into text, like a link.</p>
+        </section>
+
+        <section class="space-y-6">
+          <h2 class="text-2xl font-bold text-slate-900">What's inside a QR code</h2>
+          <p class="text-slate-600">Every QR code has the same set of parts. Some help the scanner find the code. Others hold the actual message.</p>
+          
+          <div class="space-y-2">
+            <h3 class="text-xl font-bold text-slate-900">The three big squares in the corners</h3>
+            <p class="text-slate-600">These are the finder patterns. They are the first thing a scanner looks for. Each one is built from dark, light and dark rings in a fixed ratio, which is unusual enough that it rarely appears by accident in normal printing.</p>
+            <p class="text-slate-600">There are three, not four, on purpose. Because one corner is missing, the scanner can tell which way up the code is, even if you hold it sideways or upside down.</p>
+          </div>
+
+          <div class="space-y-2">
+            <h3 class="text-xl font-bold text-slate-900">The small square and the dotted lines</h3>
+            <p class="text-slate-600">Larger codes have smaller squares inside called alignment patterns, which help the scanner fix any bending or tilt. Two lines of alternating black and white dots, called timing patterns, run between the big squares. By counting them, the scanner learns the exact size of each module and can lay an accurate grid over the whole code.</p>
+          </div>
+
+          <div class="space-y-2">
+            <h3 class="text-xl font-bold text-slate-900">The blank border</h3>
+            <p class="text-slate-600">Around the code is a plain empty margin called the quiet zone. The standard asks for at least four modules of space. It keeps nearby text, pictures or edges from being mistaken for part of the code.</p>
+          </div>
+
+          <div class="space-y-2">
+            <h3 class="text-xl font-bold text-slate-900">The format information</h3>
+            <p class="text-slate-600">Near the big squares, a small strip of modules tells the scanner two things: how much error correction the code uses, and which mask pattern was applied.</p>
+          </div>
+
+          <div class="space-y-2">
+            <h3 class="text-xl font-bold text-slate-900">The data area</h3>
+            <p class="text-slate-600">Everything else is the message itself, plus extra backup data used to fix errors. This is the speckled part that looks like random noise, but is actually precisely encoded data.</p>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">How your phone reads a QR code, step by step</h2>
+          <ol class="list-decimal pl-6 space-y-2 text-slate-600">
+            <li>The camera takes a picture and turns it into high-contrast black and white.</li>
+            <li>The software searches for the three finder patterns in the corners.</li>
+            <li>It works out how the code is oriented and straightened using alignment and timing patterns.</li>
+            <li>It reads the format information to learn the error correction level and the mask.</li>
+            <li>It removes the mask pattern and reads the modules in a zigzag path across the grid.</li>
+            <li>It uses the backup data to fix any mistakes, such as a smudge or a blurry spot.</li>
+            <li>It turns the result back into readable text (URL, Wi-Fi credentials, text, contact).</li>
+          </ol>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">Why a damaged QR code can still work</h2>
+          <p class="text-slate-600">When a code is made, extra backup data is added using Reed-Solomon error correction. If part of the code is dirty, torn or covered by a logo, the scanner uses the backup data to rebuild what is missing.</p>
+          <p class="text-slate-600">The four levels (L, M, Q, and H) can restore approximately 7%, 15%, 25%, and 30% of damaged data, allowing codes with logos in the middle to still scan seamlessly.</p>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+          <h2 class="text-2xl font-bold text-slate-900">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">Can a QR code have a virus?</h3>
+              <p class="text-slate-600 mt-1">The code itself is just text data. The risk is where it sends you. A malicious code can point to a phishing or malware website, so always check the previewed URL before opening.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">Why do QR codes have three big squares?</h3>
+              <p class="text-slate-600 mt-1">They let the scanner find the code and determine its orientation immediately, regardless of what angle the phone is held.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">Do QR codes expire?</h3>
+              <p class="text-slate-600 mt-1">Static QR codes never expire because data is baked directly into the square pattern. Dynamic codes depend on the forwarding service staying active.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">Do QR codes need the internet?</h3>
+              <p class="text-slate-600 mt-1">No. Decoding happens completely offline on your device. You only need internet if the decoded content is a website address you wish to visit.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+          <h2 class="text-2xl font-bold text-slate-900">Related reading</h2>
+          <ul class="space-y-1 text-sm">
+            <li><a href="/blog/qr-code-history" class="text-blue-600 underline">QR Code History: Who Invented It and How It Took Over</a></li>
+            <li><a href="/blog/static-vs-dynamic-qr-code" class="text-blue-600 underline">Static vs Dynamic QR Code – What's the Difference?</a></li>
+            <li><a href="/blog/qr-code-error-correction-explained" class="text-blue-600 underline">QR Code Error Correction Levels Explained</a></li>
+            <li><a href="/blog/scan-qr-code-from-screenshot" class="text-blue-600 underline">How to Scan a QR Code on Your Own Phone</a></li>
+            <li><a href="/" class="text-blue-600 underline">Free Online QR Code Scanner</a></li>
+          </ul>
+        </section>
+      </article>
+    `,
+  },
+  {
+    path: '/blog/scan-barcode-to-check-price',
+    folder: 'blog/scan-barcode-to-check-price',
+    title: 'Scan a Barcode to Check Price: Free Online Barcode Reader',
+    description:
+      "Use a free online barcode reader to scan any product barcode, then compare prices in seconds. Works on phone or laptop, no app needed. Here's how.",
+    keywords:
+      'scan barcode to check price, online barcode reader, barcode reader online, barcode price checker, barcode lookup free, check price by barcode, scan barcode with phone, scan barcode from photo',
+    heading: 'How to Scan a Barcode to Check Price (Free Online Barcode Reader)',
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog' },
+      { name: 'Scan Barcode to Check Price', path: '/blog/scan-barcode-to-check-price' },
+    ],
+    htmlContent: `
+      <article class="max-w-4xl mx-auto px-4 py-8 space-y-8 text-slate-800 leading-relaxed">
+        <header class="border-b border-slate-200 pb-6 mb-6">
+          <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">QR &amp; Barcode • 7 min read</span>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">
+            How to Scan a Barcode to Check Price (Free Online Barcode Reader)
+          </h1>
+          <p class="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed">
+            You're in a shop, holding a speaker with a price tag that feels a bit too high. You wonder if it's cheaper online. Or you're clearing a shelf of old books and want to know what they might sell for.
+          </p>
+          <p class="mt-2 text-base sm:text-lg text-slate-600 leading-relaxed">
+            In both cases the quickest place to start is the barcode. Every packaged product has one, and with a free <a href="/barcode-scanner" class="text-blue-600 font-semibold underline">online barcode reader</a> you can turn it into a number you can search in about a minute. No app to download, and it works on a phone or a laptop.
+          </p>
+          <p class="mt-2 text-base sm:text-lg text-slate-600 leading-relaxed">
+            Here's how to do it, where to look the number up, and what to do when nothing shows up.
+          </p>
+        </header>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">How to scan a barcode and check the price in 3 steps</h2>
+          <ol class="list-decimal pl-6 space-y-2 text-slate-700">
+            <li><strong>Open our online barcode reader:</strong> Launch our free <a href="/barcode-scanner" class="text-blue-600 underline">online barcode reader</a> in any browser. It decodes images completely in-browser without uploading them to any server.</li>
+            <li><strong>Scan or upload:</strong> Point your camera at the barcode, or upload a photo of it. The online barcode reader shows the number printed under the bars, usually 12 or 13 digits.</li>
+            <li><strong>Compare prices:</strong> Copy the number and paste it into Google, a shopping site, or your local marketplace. Compare what comes up.</li>
+          </ol>
+          <p class="text-slate-600">That's the whole method. The rest of this post covers where to paste the number and why it sometimes finds nothing.</p>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">Where to paste the barcode number</h2>
+          <p class="text-slate-600">Once your online barcode reader gives you the number, you have a few good places to try.</p>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">Search engines and shopping sites</h3>
+            <p class="text-slate-600 text-sm">Paste the number into Google or Google Shopping. For many products it brings up listings with prices from several sellers. You can also try the search box on Amazon, and eBay is handy for used or older items.</p>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">Your local marketplace</h3>
+            <p class="text-slate-600 text-sm">Prices and stock change from country to country, so use the shops people near you actually buy from. For example, Daraz in Bangladesh, Flipkart in India, or Shopee in Southeast Asia. If a site doesn't find the number, search the product name and size instead.</p>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">Free product databases</h3>
+            <p class="text-slate-600 text-sm">For food and drinks, Open Food Facts is a free, open database that can show the product name, brand, ingredients and more. UPCitemdb covers general products, and it has free and paid plans with limits. These are best for identifying a product, not for current shop prices.</p>
+            <p class="text-slate-600 text-sm">One extra tip: if the item is sold on Amazon, a price history site such as CamelCamelCamel shows whether today's price is close to the usual one.</p>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">Why a barcode doesn't contain the price</h2>
+          <p class="text-slate-600">This surprises a lot of people. A normal product barcode holds only an identification number, a bit like a name tag. The price isn't in it.</p>
+          <p class="text-slate-600">The price lives in each shop's own system. When a cashier scans the code, the till looks up that number and finds the price. When you scan it with an online barcode reader, you get the number, and you then do the lookup yourself.</p>
+          <p class="text-slate-600">That's why you'll sometimes see these problems:</p>
+          <ul class="list-disc pl-6 space-y-1 text-slate-700 text-sm">
+            <li>A local or niche product may not appear in any online catalog.</li>
+            <li>Store-brand items often aren't listed in public databases.</li>
+            <li>The same product in a different size or pack usually has a different barcode, so make sure the numbers match the exact one in your hand.</li>
+            <li>Different shops can charge different prices for the same barcode.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">Three ways to scan a barcode on your phone</h2>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">Use an online barcode reader in your browser</h3>
+            <p class="text-slate-600 text-sm">This is the simplest way, and it works on iPhone, Android, Windows and Mac. Open the <a href="/barcode-scanner" class="text-blue-600 underline">online barcode reader</a>, allow camera access, and hold the barcode steady inside the frame. There's nothing to install and nothing to update. You also get the plain number, so you can paste it into any site you like.</p>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">Use Google Lens on Android</h3>
+            <p class="text-slate-600 text-sm">If you have Google Lens, open it, frame the barcode, and it can often show product matches with shopping results. It's quick, but the results arrive inside Google's own view. If you want the raw number to use somewhere else, an online barcode reader is the cleaner option.</p>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-lg font-bold text-slate-900">Scan from a photo or screenshot</h3>
+            <p class="text-slate-600 text-sm">Maybe a friend sent you a picture of a box, or you took a photo in a shop with weak signal and want to look it up later. Upload that image to the online barcode reader instead of scanning live. For the best result, use a sharp photo with the whole barcode visible, include a little blank space on each side, and avoid glare across the bars.</p>
+            <p class="text-slate-600 text-sm">If a QR code is the thing stuck in an image, our guide to <a href="/blog/scan-qr-code-from-screenshot" class="text-blue-600 underline">scanning a QR code from a screenshot</a> walks through it.</p>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">Barcode types you'll see on products</h2>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm border border-slate-200">
+              <thead class="bg-slate-100">
+                <tr>
+                  <th class="p-2 border-b">Format</th>
+                  <th class="p-2 border-b">Where you'll see it</th>
+                  <th class="p-2 border-b">Length</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b"><td class="p-2 font-medium">UPC-A</td><td class="p-2">Retail in North America</td><td class="p-2 font-mono">12 digits</td></tr>
+                <tr class="border-b"><td class="p-2 font-medium">UPC-E</td><td class="p-2">Small packages in North America</td><td class="p-2 font-mono">8 digits</td></tr>
+                <tr class="border-b"><td class="p-2 font-medium">EAN-13</td><td class="p-2">Retail in most of the world</td><td class="p-2 font-mono">13 digits</td></tr>
+                <tr class="border-b"><td class="p-2 font-medium">EAN-8</td><td class="p-2">Very small packages</td><td class="p-2 font-mono">8 digits</td></tr>
+                <tr class="border-b"><td class="p-2 font-medium">ISBN-13</td><td class="p-2">Books</td><td class="p-2 font-mono">13 digits, starts with 978 or 979</td></tr>
+                <tr class="border-b"><td class="p-2 font-medium">Code 128</td><td class="p-2">Shipping and warehouse labels</td><td class="p-2 font-mono">Varies</td></tr>
+                <tr class="border-b"><td class="p-2 font-medium">Code 39</td><td class="p-2">Industrial and automotive labels</td><td class="p-2 font-mono">Varies</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-slate-600">A 12-digit UPC-A is the same as a 13-digit EAN-13 with a zero added at the front, so many shop systems treat them as the same thing.</p>
+          <p class="text-slate-600">A good online barcode reader should read all of these. If you get no result, check that you scanned the product barcode and not a shelf label or a batch sticker.</p>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">Real examples (the prices here are made up)</h2>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+            <h3 class="font-bold text-slate-900">Comparing a gadget price in a shop</h3>
+            <p class="text-sm text-slate-600">You're holding a Bluetooth speaker priced at 4,000 in the shop.</p>
+            <ol class="list-decimal pl-6 text-sm text-slate-700 space-y-1">
+              <li>Scan its barcode with the online barcode reader.</li>
+              <li>Paste the number into Google and your local marketplace.</li>
+              <li>You find the same model for 3,200 online.</li>
+            </ol>
+            <p class="text-xs text-slate-500 italic">Before you buy online, check the delivery fee, the warranty, and the seller's reviews.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+            <h3 class="font-bold text-slate-900">Pricing a used book</h3>
+            <p class="text-sm text-slate-600">You want to sell an old textbook. Scan the barcode on the back cover (ISBN starts with 978 or 979), search that number on a marketplace, and compare listings in similar condition.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+            <h3 class="font-bold text-slate-900">Checking what's in a snack</h3>
+            <p class="text-sm text-slate-600">Scan the barcode with the online barcode reader, search the number on Open Food Facts, and view ingredients and nutritional values.</p>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold text-slate-900">What a barcode can't tell you</h2>
+          <ul class="list-disc pl-6 space-y-1 text-slate-700 text-sm">
+            <li><strong>The price in the shop you're standing in:</strong> The barcode doesn't contain it.</li>
+            <li><strong>Whether the item is genuine:</strong> A barcode number can be copied onto a fake product, so a matching number isn't proof.</li>
+            <li><strong>Expiry date or batch:</strong> A standard product barcode doesn't carry them.</li>
+            <li><strong>Where the item was made:</strong> The first digits show which barcode office issued the code, not the country of manufacture.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+          <h2 class="text-2xl font-bold text-slate-900">Frequently asked questions</h2>
+          <div class="space-y-3">
+            <div>
+              <h3 class="font-bold text-slate-900">Can I scan a barcode to check the price?</h3>
+              <p class="text-slate-600 text-sm mt-0.5">Yes, with one extra step. Scan the barcode with an online barcode reader to get the number, then paste it into Google, a shopping site, or your local marketplace to see prices.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900">Is there a free online barcode reader that works without an app?</h3>
+              <p class="text-slate-600 text-sm mt-0.5">Yes. Our <a href="/barcode-scanner" class="text-blue-600 underline">online barcode reader</a> runs in your browser on phones and computers, so there's nothing to install.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900">What is the difference between a UPC and an EAN?</h3>
+              <p class="text-slate-600 text-sm mt-0.5">UPC is the 12-digit standard used mainly in North America. EAN is the 13-digit standard used in most of the world. A UPC-A is the same as an EAN-13 with a zero at the front.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900">Can I use an online barcode reader on a photo?</h3>
+              <p class="text-slate-600 text-sm mt-0.5">Yes. Upload a clear photo of the barcode and the reader decodes it.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900">Why does my barcode search show no results?</h3>
+              <p class="text-slate-600 text-sm mt-0.5">The product may be local, new, or sold only in certain regions, so it isn't in public catalogs. Try searching the product name and size instead.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900">How do I know if an online price is a good deal?</h3>
+              <p class="text-slate-600 text-sm mt-0.5">Compare the exact same model and size, add the delivery fee, and check the seller and warranty.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+          <h2 class="text-2xl font-bold text-slate-900">Related reading</h2>
+          <ul class="space-y-1 text-sm">
+            <li><a href="/blog/how-does-a-qr-code-work" class="text-blue-600 underline">How Does a QR Code Work?</a></li>
+            <li><a href="/blog/scan-qr-code-from-screenshot" class="text-blue-600 underline">How to Scan a QR Code on Your Own Phone</a></li>
+            <li><a href="/blog/qr-code-history" class="text-blue-600 underline">QR Code History: Who Invented It and How It Took Over</a></li>
+            <li><a href="/barcode-scanner" class="text-blue-600 underline">Free Online Barcode Reader</a></li>
+          </ul>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+          <h2 class="text-2xl font-bold text-slate-900">Final thoughts</h2>
+          <p class="text-slate-600">Checking a price from a barcode is a small trick that saves real money. Scan the code with an online barcode reader, copy the number, and let a few quick searches do the rest. Just remember that the barcode gives you an identity, not a price, and it can't prove that an item is the real thing.</p>
+          <p class="text-slate-600">Ready to try it? Open our free <a href="/barcode-scanner" class="text-blue-600 font-semibold underline">online barcode reader</a> and scan the next product you're unsure about.</p>
+        </section>
+      </article>
+    `,
+  },
 ];
 
 // Dynamically generate static routes for all 14 QR Types from `QR_TYPES`
@@ -1966,7 +2458,137 @@ const QR_TYPE_STATIC_ROUTES: StaticRouteConfig[] = QR_TYPES.map((typeDef) => {
   };
 });
 
+const BARCODE_STATIC_ROUTES: StaticRouteConfig[] = BARCODE_PAGES.map((pageDef) => {
+  return {
+    path: pageDef.path,
+    folder: pageDef.slug,
+    title: pageDef.title,
+    description: pageDef.metaDescription,
+    keywords: (pageDef.keywords || []).join(', '),
+    heading: pageDef.h1,
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Barcode Scanner', path: '/barcode-scanner' },
+      { name: pageDef.breadcrumbName, path: pageDef.path },
+    ],
+    htmlContent: `
+      <section class="max-w-4xl mx-auto px-4 py-8 space-y-10 text-slate-800 leading-relaxed">
+        <header class="text-center space-y-3 mb-8">
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+            ${pageDef.h1}
+          </h1>
+          <p class="mt-3 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            ${pageDef.intro}
+          </p>
+        </header>
+
+        ${pageDef.sections
+          .map(
+            (sec) => `
+          <section class="space-y-4">
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">${sec.title}</h2>
+            ${sec.intro ? `<p class="text-slate-700 text-base leading-relaxed">${sec.intro}</p>` : ''}
+            ${
+              sec.steps
+                ? `<div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                    ${sec.steps
+                      .map(
+                        (st) => `
+                      <div class="p-5 rounded-2xl border border-slate-200 bg-white shadow-xs space-y-2">
+                        <h3 class="text-base font-bold text-slate-900">${st.step}. ${st.title || ''}</h3>
+                        <p class="text-sm text-slate-700 leading-relaxed">${st.text}</p>
+                      </div>
+                    `
+                      )
+                      .join('')}
+                  </div>`
+                : ''
+            }
+            ${
+              sec.subsections
+                ? `<div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                    ${sec.subsections
+                      .map(
+                        (sub) => `
+                      <div class="p-5 rounded-2xl border border-slate-200 bg-white shadow-xs space-y-2">
+                        <h3 class="text-base font-bold text-slate-900">${sub.title}</h3>
+                        <p class="text-sm text-slate-700 leading-relaxed">${sub.text}</p>
+                      </div>
+                    `
+                      )
+                      .join('')}
+                  </div>`
+                : ''
+            }
+            ${
+              sec.paragraphs
+                ? `<div class="space-y-3">
+                    ${sec.paragraphs.map((p) => `<p class="text-slate-700 text-base leading-relaxed">${p}</p>`).join('')}
+                  </div>`
+                : ''
+            }
+            ${
+              sec.table
+                ? `<div class="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-xs">
+                    <table class="w-full text-left text-sm border-collapse">
+                      <thead>
+                        <tr class="border-b border-slate-200 bg-slate-50 text-slate-900 font-semibold">
+                          ${sec.table.headers.map((h) => `<th class="py-3 px-4">${h}</th>`).join('')}
+                        </tr>
+                      </thead>
+                      <tbody class="divide-y divide-slate-100 text-slate-700">
+                        ${sec.table.rows
+                          .map(
+                            (r) => `
+                          <tr>
+                            <td class="py-3 px-4 font-medium text-slate-900">${r.col1}</td>
+                            <td class="py-3 px-4">${r.col2}</td>
+                            ${r.col3 ? `<td class="py-3 px-4">${r.col3}</td>` : ''}
+                          </tr>
+                        `
+                          )
+                          .join('')}
+                      </tbody>
+                    </table>
+                  </div>`
+                : ''
+            }
+          </section>
+        `
+          )
+          .join('')}
+
+        <section class="space-y-6">
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            ${pageDef.faqs
+              .map(
+                (faq, idx) => `
+              <div class="p-5 rounded-2xl border border-slate-200 bg-white shadow-xs">
+                <h3 class="text-base font-bold text-slate-900 mb-2">${idx + 1}. ${faq.question}</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">${faq.answer}</p>
+              </div>
+            `
+              )
+              .join('')}
+          </div>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-slate-200">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Related Tools</h2>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/barcode-scanner" class="text-blue-600 underline font-semibold">Free online barcode scanner</a> &ndash; All-in-one barcode reader for camera and image uploads.</li>
+            <li><a href="/" class="text-blue-600 underline font-semibold">QR code scanner</a> &ndash; Scan 2D QR codes with camera or image upload.</li>
+            <li><a href="/qr-code-generator" class="text-blue-600 underline font-semibold">QR code generator</a> &ndash; Create custom QR codes online for free.</li>
+          </ul>
+        </section>
+      </section>
+    `,
+  };
+});
+
 export const STATIC_ROUTES: StaticRouteConfig[] = [
   ...BASE_STATIC_ROUTES,
   ...QR_TYPE_STATIC_ROUTES,
+  ...BARCODE_STATIC_ROUTES,
 ];

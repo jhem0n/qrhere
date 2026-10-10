@@ -199,9 +199,9 @@ export const CameraScanner: React.FC<CameraScannerProps> = ({
             <Camera className="h-8 w-8 sm:h-10 sm:w-10" />
           </div>
 
-          <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight">
+          <p className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight">
             Camera QR Scanner
-          </h3>
+          </p>
 
           <p className="mt-1.5 text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-sm">
             Scan here with your camera or webcam directly in your browser.
@@ -229,9 +229,9 @@ export const CameraScanner: React.FC<CameraScannerProps> = ({
             <ShieldAlert className="h-7 w-7" />
           </div>
 
-          <h3 className="text-base sm:text-lg font-bold text-rose-900 dark:text-rose-200">
+          <p className="text-base sm:text-lg font-bold text-rose-900 dark:text-rose-200">
             Camera Permission Denied
-          </h3>
+          </p>
           <p className="mt-2 text-xs sm:text-sm text-rose-700 dark:text-rose-300 max-w-md leading-relaxed">
             Camera access was blocked by your browser. To scan QR codes using your camera, please allow camera permissions in your browser or site settings.
           </p>
@@ -281,9 +281,9 @@ export const CameraScanner: React.FC<CameraScannerProps> = ({
             <AlertCircle className="h-7 w-7" />
           </div>
 
-          <h3 className="text-base sm:text-lg font-bold text-amber-900 dark:text-amber-200">
+          <p className="text-base sm:text-lg font-bold text-amber-900 dark:text-amber-200">
             Unable to Connect to Camera
-          </h3>
+          </p>
           <p className="mt-2 text-xs sm:text-sm text-amber-800 dark:text-amber-300 max-w-md leading-relaxed">
             {error || 'Could not start camera on this device. Please verify camera settings and try again.'}
           </p>

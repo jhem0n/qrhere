@@ -1,6 +1,6 @@
 {
   "name": "QR Here",
-  "description": "Scan any QR code free with your camera or an image upload. Private, runs in your browser, no app or signup needed.",
+  "description": "Scan QR codes online for free with your camera or by uploading an image. Works on phone, PC and Mac. No app, no sign-up, and nothing leaves your device.",
   "requestFramePermissions": [
     "camera"
   ],

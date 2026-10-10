@@ -6,7 +6,63 @@
   </url>
   <url>
     <loc>https://qrhere.online/barcode-scanner</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-09</lastmod>
+  </url>
+  <url>
+    <loc>https://qrhere.online/barcode-generator</loc>
+    <lastmod>2026-10-10</lastmod>
+  </url>
+  <url>
+    <loc>https://qrhere.online/barcode-generator/code-128</loc>
+    <lastmod>2026-10-10</lastmod>
+  </url>
+  <url>
+    <loc>https://qrhere.online/barcode-generator/bulk</loc>
+    <lastmod>2026-10-10</lastmod>
+  </url>
+  <url>
+    <loc>https://qrhere.online/barcode-generator/data-matrix</loc>
+    <lastmod>2026-10-10</lastmod>
+  </url>
+  <url>
+    <loc>https://qrhere.online/barcode-generator/code-39</loc>
+    <lastmod>2026-10-10</lastmod>
+  </url>
+  <url>
+    <loc>https://qrhere.online/barcode-generator/pdf417</loc>
+    <lastmod>2026-10-10</lastmod>
+  </url>
+  <url>
+    <loc>https://qrhere.online/barcode-generator/aztec</loc>
+    <lastmod>2026-10-10</lastmod>
+  </url>
+  <url>
+    <loc>https://qrhere.online/barcode-generator/upc-a</loc>
+    <lastmod>2026-10-10</lastmod>
+  </url>
+  <url>
+    <loc>https://qrhere.online/barcode-generator/isbn</loc>
+    <lastmod>2026-10-10</lastmod>
+  </url>
+  <url>
+    <loc>https://qrhere.online/barcode-generator/random</loc>
+    <lastmod>2026-10-10</lastmod>
+  </url>
+  <url>
+    <loc>https://qrhere.online/barcode-reader-from-image</loc>
+    <lastmod>2026-10-09</lastmod>
+  </url>
+  <url>
+    <loc>https://qrhere.online/upc-ean-scanner</loc>
+    <lastmod>2026-10-09</lastmod>
+  </url>
+  <url>
+    <loc>https://qrhere.online/webcam-barcode-scanner</loc>
+    <lastmod>2026-10-09</lastmod>
+  </url>
+  <url>
+    <loc>https://qrhere.online/barcode-decoder-online</loc>
+    <lastmod>2026-10-09</lastmod>
   </url>
   <url>
     <loc>https://qrhere.online/scan-wifi-qr-code</loc>
@@ -111,6 +167,10 @@
   <url>
     <loc>https://qrhere.online/blog/how-does-a-qr-code-work</loc>
     <lastmod>2026-10-06</lastmod>
+  </url>
+  <url>
+    <loc>https://qrhere.online/blog/scan-barcode-to-check-price</loc>
+    <lastmod>2026-10-08</lastmod>
   </url>
   <url>
     <loc>https://qrhere.online/faq</loc>

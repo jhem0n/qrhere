@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Camera, Upload, MessageSquare, ShieldCheck, ArrowRight, Eye, ChevronDown, PhoneCall, UserCheck } from 'lucide-react';
+import { Camera, Upload, ShieldCheck, ChevronDown } from 'lucide-react';
 import { SEOHead } from '../../components/common/SEOHead';
 import { Breadcrumbs } from '../../components/common/Breadcrumbs';
-import {
-  SEO_CONFIG,
-  SCAN_WHATSAPP_FAQS,
-  generateWebApplicationSchema,
-  generateBreadcrumbSchema,
-  generateFAQSchema,
-} from '../../config/seo.config';
+import { SEO_CONFIG, generateBreadcrumbSchema } from '../../config/seo.config';
 import { CameraScanner } from '../../components/scanner/CameraScanner';
 import { ImageScanner } from '../../components/scanner/ImageScanner';
 import { ScanResultCard } from '../../components/qr/ScanResultCard';
@@ -27,17 +21,61 @@ export const ScanWhatsappPage: React.FC = () => {
   };
 
   const breadcrumbs = [
+    { name: 'Home', path: '/' },
     { name: 'WhatsApp QR Code Scanner', path: '/scan-whatsapp-qr-code' },
   ];
 
   const structuredData = {
     '@context': 'https://schema.org',
     '@graph': [
-      generateWebApplicationSchema(),
+      {
+        '@type': 'WebApplication',
+        name: 'QR Here',
+        url: window.location.origin + '/scan-whatsapp-qr-code',
+        applicationCategory: 'UtilitiesApplication',
+        operatingSystem: 'Any (web browser)',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      },
       generateBreadcrumbSchema(breadcrumbs),
-      generateFAQSchema(SCAN_WHATSAPP_FAQS),
     ],
   };
+
+  const faqs = [
+    {
+      question: 'How do I scan a WhatsApp QR code?',
+      answer:
+        'Open our scanner tab, allow camera access or upload a saved screenshot of the WhatsApp QR code. The app decodes the chat link instantly in your browser.',
+    },
+    {
+      question: 'Can I scan a WhatsApp QR code from a screenshot?',
+      answer:
+        'Yes. Switch to the Upload Image tab and select or drag and drop any screenshot or image file containing a WhatsApp chat code.',
+    },
+    {
+      question: 'Can I see the phone number before opening WhatsApp?',
+      answer:
+        'Yes! The scanner extracts and displays the full international phone number and any pre-filled greeting message on screen before you decide to open the chat.',
+    },
+    {
+      question: 'Is this the same as WhatsApp Web login?',
+      answer:
+        'No. WhatsApp Web login QR codes must be scanned inside the mobile WhatsApp app under Linked Devices. This page is specifically designed for scanning contact chat links and wa.me URLs.',
+    },
+    {
+      question: 'Is it safe to scan WhatsApp QR codes?',
+      answer:
+        'Yes. Scanning on QR Here is 100% private because all processing happens locally in your browser. However, never scan or authorize unknown login codes sent by strangers to protect your account.',
+    },
+    {
+      question: 'How do I make a WhatsApp QR code?',
+      answer:
+        'You can generate your own custom WhatsApp click-to-chat QR code using our free QR code maker. Enter your phone number and default greeting message, then download as an SVG or PNG.',
+    },
+  ];
 
   return (
     <>
@@ -53,15 +91,11 @@ export const ScanWhatsappPage: React.FC = () => {
 
         {/* Page Header */}
         <header className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/80 dark:border-emerald-900/60 text-emerald-700 dark:text-emerald-300 text-xs font-semibold mb-4">
-            <MessageSquare className="w-3.5 h-3.5" />
-            <span>Free WhatsApp QR Code Scanner</span>
-          </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Scan WhatsApp QR Code - to start chat
+            WhatsApp QR Code Scanner
           </h1>
           <p className="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
-            scan here WhatsApp qr code to join chat or see phone number instant by one click. Use our free whatsapp qr code scanner with your live camera or a saved image.
+            Scan a WhatsApp QR code to preview the phone number and pre-filled message before you open the chat. Decoding happens in your browser, so nothing is uploaded.
           </p>
         </header>
 
@@ -118,145 +152,130 @@ export const ScanWhatsappPage: React.FC = () => {
         </section>
 
         {/* Content Section */}
-        <div className="mt-16 sm:mt-20 space-y-14 sm:space-y-16 max-w-5xl lg:max-w-6xl mx-auto">
-          {/* Section: How to use the WhatsApp QR code scanner */}
-          <section aria-labelledby="heading-how-to-scan-whatsapp">
-            <h2
-              id="heading-how-to-scan-whatsapp"
-              className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-6"
-            >
-              How to use the WhatsApp QR code scanner
+        <div className="mt-16 sm:mt-20 space-y-14 sm:space-y-16 max-w-4xl mx-auto text-slate-700 dark:text-slate-300">
+          
+          {/* What this scanner reads */}
+          <section aria-labelledby="heading-whatsapp-reads">
+            <h2 id="heading-whatsapp-reads" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              What this scanner reads
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs flex flex-col justify-start">
-                <div className="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-sm mb-4">
+            <p className="text-base leading-relaxed mb-4">
+              WhatsApp QR codes and click-to-chat links are designed to streamline instant messaging without manual phone number entry. Our specialized scanner parses these payloads instantly within your browser environment.
+            </p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-base">
+              <li className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <strong className="block text-slate-900 dark:text-white mb-1">wa.me and api.whatsapp.com links</strong>
+                Standardized URL structures that initiate direct messaging conversations with specific phone numbers.
+              </li>
+              <li className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <strong className="block text-slate-900 dark:text-white mb-1">WhatsApp chat QR codes</strong>
+                Encoded square patterns found on business cards, flyers, and storefront posters containing international telephone digits and optional welcome notes.
+              </li>
+              <li className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <strong className="block text-slate-900 dark:text-white mb-1">WhatsApp Business links</strong>
+                Catalog and business contact identifiers that open verified enterprise support channels.
+              </li>
+              <li className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <strong className="block text-slate-900 dark:text-white mb-1">Pre-filled greeting messages</strong>
+                Automated text payloads that populate the chat input field the moment you open the conversation.
+              </li>
+            </ul>
+          </section>
+
+          {/* How to scan a WhatsApp QR code */}
+          <section aria-labelledby="heading-how-to-scan-whatsapp">
+            <h2 id="heading-how-to-scan-whatsapp" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              How to scan a WhatsApp QR code
+            </h2>
+            <p className="text-base leading-relaxed mb-6">
+              Decoding a messaging QR code takes only a few seconds with our browser-based utility.
+            </p>
+            <ol className="space-y-4 text-base">
+              <li className="flex items-start gap-4 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <div className="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center shrink-0">
                   1
                 </div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  Open scanner or upload image
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Open the whatsapp qr code scanner in your browser. Use your camera or upload a saved photo or screenshot.
-                </p>
-              </div>
-
-              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs flex flex-col justify-start">
-                <div className="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-sm mb-4">
+                <div>
+                  <strong className="block text-slate-900 dark:text-white mb-1">Open camera tab or upload a screenshot</strong>
+                  Select camera mode to use your live webcam or mobile lens, or choose image upload if you saved a screenshot of the code.
+                </div>
+              </li>
+              <li className="flex items-start gap-4 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <div className="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center shrink-0">
                   2
                 </div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  Scan the WhatsApp code
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Point your camera at the QR code on a shop flyer, business card, product packaging, or website screen.
-                </p>
-              </div>
-
-              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs flex flex-col justify-start">
-                <div className="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-sm mb-4">
+                <div>
+                  <strong className="block text-slate-900 dark:text-white mb-1">Review the phone number and message</strong>
+                  The parsed phone number, link destination, and pre-filled message appear immediately on your screen for safe inspection.
+                </div>
+              </li>
+              <li className="flex items-start gap-4 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <div className="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center shrink-0">
                   3
                 </div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  See phone number &amp; chat
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Our whatsapp qr code scanner reveals the phone number and welcome message. Tap to chat or copy the number.
-                </p>
-              </div>
-            </div>
+                <div>
+                  <strong className="block text-slate-900 dark:text-white mb-1">Open in WhatsApp or copy the link</strong>
+                  Tap the button to launch the chat directly in WhatsApp, or copy the raw link and phone number to your clipboard.
+                </div>
+              </li>
+            </ol>
           </section>
 
-          {/* Section: Why use an online WhatsApp QR code scanner */}
-          <section aria-labelledby="heading-benefits-whatsapp-scanner">
-            <h2
-              id="heading-benefits-whatsapp-scanner"
-              className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-6"
-            >
-              Why use an online WhatsApp QR code scanner?
+          {/* Scan a WhatsApp QR code on any device */}
+          <section aria-labelledby="heading-whatsapp-devices">
+            <h2 id="heading-whatsapp-devices" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Scan a WhatsApp QR code on any device
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
-                  <UserCheck className="w-5 h-5" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                  No need to save contacts
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Avoid cluttering your address book with one-time service numbers. Our whatsapp qr code scanner lets you inspect numbers and start chats without saving contacts first.
+            <p className="text-base leading-relaxed mb-6">
+              Our web tool runs smoothly across all major operating systems and web browsers.
+            </p>
+            <div className="space-y-6">
+              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">iPhone and Android</h3>
+                <p className="text-base leading-relaxed">
+                  Use your mobile browser to scan codes on posters or packaging without switching between apps. You can preview recipient numbers before launching your messaging app.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
-                  <PhoneCall className="w-5 h-5" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                  Preview phone numbers safely
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Preview the full country code, mobile number, and pre-filled message before opening WhatsApp. This protects you from suspicious redirects and unwanted spam.
+              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Windows PC and laptop</h3>
+                <p className="text-base leading-relaxed">
+                  Working on a Windows computer? Use your laptop webcam or upload screenshot files to inspect chat links without picking up your phone.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
-                  <ShieldCheck className="w-5 h-5" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
-                  100% free &amp; private
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Our whatsapp qr code scanner decodes every image in your browser memory. We never record phone numbers, store images, or track your communications.
+              <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Mac and MacBook</h3>
+                <p className="text-base leading-relaxed">
+                  Open Safari or Chrome on macOS to decode WhatsApp QR codes from digital documents, PDFs, or photos with complete privacy.
                 </p>
               </div>
             </div>
           </section>
 
-          {/* Section: What information is revealed */}
-          <section aria-labelledby="heading-whatsapp-info-revealed">
-            <div className="p-6 sm:p-8 rounded-2xl border border-emerald-200/80 dark:border-emerald-900/60 bg-emerald-50/50 dark:bg-emerald-950/20 shadow-xs">
-              <h2
-                id="heading-whatsapp-info-revealed"
-                className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2"
-              >
-                <Eye className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                <span>What information is decoded by the whatsapp qr code scanner?</span>
-              </h2>
-              <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-                WhatsApp QR codes generally encode official <code className="text-xs bg-white dark:bg-slate-800 px-1.5 py-0.5 rounded text-emerald-600 dark:text-emerald-400 font-mono">wa.me/[phone]?text=[message]</code> links. When parsed by our whatsapp qr code scanner, you get:
-              </p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-700 dark:text-slate-300">
-                <li className="flex items-start gap-2">
-                  <span className="text-emerald-600 dark:text-emerald-400 font-bold">•</span>
-                  <span><strong>Full Phone Number:</strong> Displays the complete telephone number with country dial code.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-emerald-600 dark:text-emerald-400 font-bold">•</span>
-                  <span><strong>Welcome Message:</strong> Shows any pre-written text ready to be sent in the chat.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-emerald-600 dark:text-emerald-400 font-bold">•</span>
-                  <span><strong>Direct Chat Link:</strong> One-tap button to open WhatsApp on mobile or WhatsApp Web on desktop.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-emerald-600 dark:text-emerald-400 font-bold">•</span>
-                  <span><strong>Copy Number Button:</strong> Copy the raw telephone number to your clipboard with one click.</span>
-                </li>
-              </ul>
+          {/* Is it safe to scan a WhatsApp QR code? */}
+          <section aria-labelledby="heading-whatsapp-safety">
+            <h2 id="heading-whatsapp-safety" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
+              Is it safe to scan a WhatsApp QR code?
+            </h2>
+            <p className="text-base leading-relaxed mb-4">
+              Chat QR codes are generally safe because they only open a conversation with a specific phone number. However, you should always preview the destination link before opening it. Never scan or authorize a WhatsApp Web / Linked Devices login code sent by an unknown person, as doing so can grant attackers full access to your personal account. Read our <Link to="/qr-code-security" className="text-emerald-600 dark:text-emerald-400 underline hover:opacity-80">QR code security guide</Link> for more tips.
+            </p>
+            <div className="p-4 rounded-2xl border border-emerald-200/80 dark:border-emerald-900/60 bg-emerald-50/50 dark:bg-emerald-950/20 text-sm text-slate-700 dark:text-slate-300 flex items-start gap-3">
+              <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+              <span>
+                <strong>Client-side privacy:</strong> All image analysis and decoding occur locally in your browser memory. We never store phone numbers, log chat links, or transmit your data externally.
+              </span>
             </div>
           </section>
 
-          {/* Section: Frequently Asked Questions */}
-          <section aria-labelledby="heading-whatsapp-scanner-faqs">
-            <h2
-              id="heading-whatsapp-scanner-faqs"
-              className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-6"
-            >
-              Frequently asked questions about WhatsApp QR code scanner
+          {/* Frequently asked questions */}
+          <section aria-labelledby="heading-whatsapp-faqs">
+            <h2 id="heading-whatsapp-faqs" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-6">
+              Frequently asked questions
             </h2>
             <div className="space-y-3">
-              {SCAN_WHATSAPP_FAQS.map((faq, index) => {
+              {faqs.map((faq, index) => {
                 const isOpen = openFaqIndexes.includes(index);
                 return (
                   <div
@@ -269,9 +288,9 @@ export const ScanWhatsappPage: React.FC = () => {
                       aria-expanded={isOpen}
                       className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/40 transition"
                     >
-                      <span className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">
+                      <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">
                         {faq.question}
-                      </span>
+                      </h3>
                       <ChevronDown
                         className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-200 ${
                           isOpen ? 'rotate-180 text-emerald-600 dark:text-emerald-400' : ''
@@ -289,25 +308,33 @@ export const ScanWhatsappPage: React.FC = () => {
             </div>
           </section>
 
-          {/* Generator Cross-Link CTA */}
-          <section className="p-6 sm:p-8 rounded-3xl bg-slate-900 dark:bg-slate-800 text-white flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div>
-              <h2 className="text-xl font-bold mb-1.5">
-                Need to create a WhatsApp QR code?
-              </h2>
-              <p className="text-sm text-slate-300 max-w-lg leading-relaxed">
-                Generate a custom WhatsApp click-to-chat QR code with your phone number, custom greeting message, and official logo.
-              </p>
-            </div>
-            <Link
-              to="/qr-code-generator-whatsapp"
-              onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' })}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 text-white text-sm font-semibold hover:bg-emerald-500 transition shrink-0 shadow-sm"
-            >
-              <span>WhatsApp QR Code Maker</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+          {/* Related Links Block */}
+          <section className="pt-6 border-t border-slate-200 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-400">
+            <p className="font-semibold text-slate-900 dark:text-white mb-3">Related scanning and generation tools:</p>
+            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+              <li>
+                <Link to="/qr-code-generator-whatsapp" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+                  create a WhatsApp QR code
+                </Link>
+              </li>
+              <li>
+                <Link to="/" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+                  QR code scanner
+                </Link>
+              </li>
+              <li>
+                <Link to="/qr-code-security" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+                  QR code security guide
+                </Link>
+              </li>
+              <li>
+                <Link to="/scan-wifi-qr-code" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+                  WiFi QR code scanner
+                </Link>
+              </li>
+            </ul>
           </section>
+
         </div>
       </div>
     </>
